@@ -7,10 +7,10 @@ import com.mongodb.client.MongoDatabase;
 import java.util.HashMap;
 
 public class ConnectionManager {
-    private static final String username = "admin";
-    private static final String password = "ZUs7nwYGLnoArOPS";
-    private static final String uri = String.format("mongodb+srv://%s:%s@cluster0.cyy73o0.mongodb.net/?retryWrites=true&w=majority",
-            username, password);
+    private static final String username = "macrosoft_team";
+    private static final String password = "fnJtaE3UTfCngETL";
+    private static final String uri = String.format("mongodb+srv://%s:%s@cluster0.grpiws2.mongodb.net/?retryWrites=true&w=majority", username, password);
+
     private MongoClient client;
     private MongoDatabase database;
     private HashMap<String, MongoCollection> collections;
