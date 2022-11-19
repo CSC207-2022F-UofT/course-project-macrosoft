@@ -3,6 +3,8 @@ package Interactors;
 import Entities.*;
 import DataModels.*;
 
+import InputBoundary.*;
+
 import com.mongodb.client.model.Filters;
 
 import org.bson.Document;
@@ -11,7 +13,7 @@ import org.bson.conversions.Bson;
 import java.util.*;
 
 
-public class UserGetOrderInteractor {
+public class UserGetOrderInteractor implements UserGetOrderInputBoundary {
 
     public UserGetOrderResponseModel getOrders(UserGetOrderRequestModel requestModel) {
         DBConnection dbConnection = new MongoConnection();
