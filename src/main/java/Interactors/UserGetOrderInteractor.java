@@ -9,10 +9,9 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 
-public class UserGetOrderInteractor implements UserGetOrderInputBoundary {
+public class UserGetOrderInteractor {
 
     public UserGetOrderResponseModel getOrders(UserGetOrderRequestModel requestModel) {
         DBConnection dbConnection = new MongoConnection();

@@ -1,18 +1,16 @@
-package login_use_case;
+package LoginUseCase;
 
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.*;
 
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-
-import database_access.ConnectionManager;
 import Entities.*;
 
 public class LoginUserInteractor {
-
-    private static ConnectionManager connectionManager = new ConnectionManager();
     private static User currentUser = null;
 
     public LoginUserInteractor() {}
@@ -25,11 +23,13 @@ public class LoginUserInteractor {
      * 1002: Invalid Credential
      */
     public static int login(String username, String password) {
+        DBConnection dbConnection = new MongoConnection();
+
         Bson queryFilter = Filters.and(
                 Filters.eq("username", username),
                 Filters.eq("password", password));
 
-        MongoIterable<Document> users = connectionManager.getCollection("AuthInfo").find(queryFilter);
+        MongoIterable<Document> users = dbConnection.getCollection("AuthInfo").find(queryFilter);
 
         if (users.first() != null) {
             Document userDocument = users.first();

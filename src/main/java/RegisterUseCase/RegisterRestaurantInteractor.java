@@ -1,25 +1,14 @@
-package register_use_case;
+package RegisterUseCase;
 
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import com.mongodb.client.result.InsertOneResult;
-import org.bson.types.BasicBSONList;
-import org.bson.types.ObjectId;
 import org.bson.BsonValue;
 
-import java.io.UnsupportedEncodingException;
-import java.util.*;
-
-import javax.mail.*;
-import javax.mail.internet.*;
-
-import database_access.ConnectionManager;
-import entities.*;
-
 public class RegisterRestaurantInteractor {
-
-    private static ConnectionManager connectionManager = new ConnectionManager();
 
     public RegisterRestaurantInteractor() {}
 
@@ -33,10 +22,12 @@ public class RegisterRestaurantInteractor {
      * 1001: Username Exists
      */
     public static int registerRestaurant(String restaurantName, String password, String email, String location, String phone){
+        DBConnection dbConnection = new MongoConnection();
+
         // Check if username exists
         Bson filter = Filters.eq("username", restaurantName);
 
-        if (connectionManager.getCollection("AuthInfo").find(filter).first() != null) {
+        if (dbConnection.getCollection("AuthInfo").find(filter).first() != null) {
             return 1001;
         }
 
@@ -46,13 +37,13 @@ public class RegisterRestaurantInteractor {
                 .append("phone", phone)
                 .append("verified", false);
 
-        InsertOneResult result = connectionManager.getCollection("Restaurants").insertOne(newRestaurantDoc);
+        InsertOneResult result = dbConnection.getCollection("Restaurants").insertOne(newRestaurantDoc);
 
         BsonValue restID = result.getInsertedId();
         Document newUserAuthInfo = new Document("username", restaurantName)
                 .append("password", password)
                 .append("userID", restID);
-        connectionManager.getCollection("AuthInfo").insertOne(newUserAuthInfo);
+        dbConnection.getCollection("AuthInfo").insertOne(newUserAuthInfo);
 
 
         return 1000;

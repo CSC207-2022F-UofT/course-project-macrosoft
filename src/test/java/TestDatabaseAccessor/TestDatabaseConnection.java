@@ -1,6 +1,6 @@
 package TestDatabaseAccessor;
 
-import database_access.ConnectionManager;
+import DatabaseAccess.ConnectionManager;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.Document;

@@ -1,23 +1,16 @@
-package register_use_case;
+package RegisterUseCase;
 
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.types.BasicBSONList;
-import org.bson.types.ObjectId;
 import org.bson.BsonValue;
 
-import java.io.UnsupportedEncodingException;
-import java.util.*;
-
-
-import database_access.ConnectionManager;
-import entities.*;
 
 public class RegisterUserInteractor {
-
-    private static ConnectionManager connectionManager = new ConnectionManager();
 
     public RegisterUserInteractor() {}
 
@@ -31,10 +24,12 @@ public class RegisterUserInteractor {
      * 1001: Username Exists
      */
     public static int registerUser(String username, String password, String firstName, String lastName, String email) {
+        DBConnection dbConnection = new MongoConnection();
+
         // Check if username exists
         Bson filter = Filters.eq("username", username);
 
-        if (connectionManager.getCollection("AuthInfo").find(filter).first() != null) {
+        if (dbConnection.getCollection("AuthInfo").find(filter).first() != null) {
             return 1001;
         }
 
@@ -44,14 +39,14 @@ public class RegisterUserInteractor {
                 .append("orders", new BasicBSONList())
                 .append("verified", false);
 
-        InsertOneResult result = connectionManager.getCollection("Users").insertOne(newUserDoc);
+        InsertOneResult result = dbConnection.getCollection("Users").insertOne(newUserDoc);
 
         BsonValue userID = result.getInsertedId();
         Document newUserAuthInfo = new Document("username", username)
                 .append("password", password)
                 .append("userID", userID);
 
-        connectionManager.getCollection("AuthInfo").insertOne(newUserAuthInfo);
+        dbConnection.getCollection("AuthInfo").insertOne(newUserAuthInfo);
 
 
         return 1000;

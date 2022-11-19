@@ -1,4 +1,4 @@
-package login_use_case;
+package LoginUseCase;
 
 
 import Interactors.DBConnection;
@@ -10,7 +10,6 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-import database_access.ConnectionManager;
 import Entities.*;
 
 public class UserInfoAccessor {

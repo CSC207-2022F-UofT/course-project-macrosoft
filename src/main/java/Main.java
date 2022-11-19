@@ -1,13 +1,12 @@
-import database_access.ConnectionManager;
-import com.mongodb.client.result.InsertOneResult;
-import org.bson.Document;
-import register_use_case.RegisterUserInteractor;
+import DataModels.*;
+import Interactors.UserGetOrderInteractor;
+import org.bson.types.ObjectId;
 
 public class Main {
+
     public static void main(String[] args) {
+        UserGetOrderInteractor userGetOrderInteractor = new UserGetOrderInteractor();
 
-        RegisterUserInteractor.registerUser("inorrrr", "123456", "Inor", "Zhou", "wowla");
-
+        userGetOrderInteractor.getOrders(new UserGetOrderRequestModel(new ObjectId("63335e7abb6cd6599ed6f64b"))).getOrders().forEach(item -> System.out.println(item.getOrderStatus()));
     }
-
 }

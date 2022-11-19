@@ -1,7 +1,7 @@
-package login_use_case;
-import database_access.ConnectionManager;
-import Entities.*;
+package LoginUseCase;
 
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.*;
 
 import com.mongodb.client.model.Filters;
@@ -9,16 +9,17 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
+import Entities.*;
 
 public class RestaurantInfoAccessor {
 
-    private static ConnectionManager connectionManager = new ConnectionManager();
-
     public static Restaurant getRestaurantProfile(ObjectId restaurantID) {
+        DBConnection dbConnection = new MongoConnection();
+
         Bson queryFilter = Filters.eq("_id", restaurantID);
 
         MongoIterable<Document> results =
-                connectionManager.getCollection("Restaurants").find(queryFilter);
+                dbConnection.getCollection("Restaurants").find(queryFilter);
 
         if (results.first() != null) {
             Document restaurantDocument = results.first();

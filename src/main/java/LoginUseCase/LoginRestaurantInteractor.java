@@ -1,18 +1,17 @@
-package login_use_case;
+package LoginUseCase;
 
-import Entities.*;
-
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.*;
 
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
-import database_access.ConnectionManager;
+import Entities.*;
 
 public class LoginRestaurantInteractor {
 
-    private static ConnectionManager connectionManager = new ConnectionManager();
     private static Restaurant currentRestaurant = null;
 
     public LoginRestaurantInteractor() {}
@@ -25,11 +24,13 @@ public class LoginRestaurantInteractor {
      * 1002: Invalid Credential
      */
     public static int login(String username, String password) {
+        DBConnection dbConnection = new MongoConnection();
+
         Bson queryFilter = Filters.and(
                 Filters.eq("username", username),
                 Filters.eq("password", password));
 
-        MongoIterable<Document> users = connectionManager.getCollection("AuthInfo").find(queryFilter);
+        MongoIterable<Document> users = dbConnection.getCollection("AuthInfo").find(queryFilter);
 
         if (users.first() != null) {
             Document RestDocument = users.first();
