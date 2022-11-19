@@ -1,3 +1,5 @@
+package Entities;
+
 import org.bson.types.ObjectId;
 
 import java.util.Date;
