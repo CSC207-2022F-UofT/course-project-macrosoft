@@ -14,9 +14,9 @@ public class EditFoodInteractor {
 
     public static void modifyDescription(Food currFood, String newDescription){
         currFood.setDescription(newDescription);
-    }
 
     public static void modifyCategory(Food currFood, String newCategory){
         currFood.setDescription(newCategory);
     }
 }
+
