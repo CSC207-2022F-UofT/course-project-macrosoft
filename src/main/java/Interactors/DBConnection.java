@@ -1,3 +1,5 @@
+package Interactors;
+
 import com.mongodb.client.MongoCollection;
 
 public interface DBConnection {

@@ -1,4 +1,8 @@
+package DataModels;
+
 import java.util.List;
+
+import Entities.*;
 
 public class UserGetOrderResponseModel {
     private List<Order> orders;
@@ -9,9 +13,5 @@ public class UserGetOrderResponseModel {
 
     public List<Order> getOrders() {
         return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
     }
 }

@@ -1,7 +1,12 @@
+package Interactors;
+
+import Entities.*;
+
 import org.bson.Document;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
 
 public class DocumentOrderConverter {
     public static Order convertDocumentToOrder(Document document) {
