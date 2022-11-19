@@ -1,0 +1,38 @@
+package VerifyuserUseCase;
+
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
+
+public class VerifyUserInteractor {
+    private static DBConnection connectionManager = new MongoConnection();
+
+    /**
+     * @param userID
+     * @param code
+     * @return 1000: Success
+     * 1001: Entered Incorrect Code
+     * 1002: Expired or code doesn't exist
+     */
+    public static int verifyUser(ObjectId userID, String code) {
+        String actualCode = GetCodeInteractor.getVerificationCode(userID);
+
+        if (actualCode.isEmpty()) {
+            return 1002;
+        } else if (!code.equals(actualCode)) {
+            return 1001;
+        }
+
+        Bson filter = Filters.eq("userID", userID);
+        connectionManager.getCollection("Verification").deleteOne(filter);
+
+        filter = Filters.eq("_id", userID);
+        Bson update = Updates.set("verified", true);
+        connectionManager.getCollection("Users").updateOne(filter, update);
+
+        return 1000;
+    }
+}
