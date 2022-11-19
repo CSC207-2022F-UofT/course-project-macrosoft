@@ -10,7 +10,10 @@ import org.bson.conversions.Bson;
 import Entities.*;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
-    public UserLoginInteractor() {
+    private UserLoginPresenter presenter;
+
+    public UserLoginInteractor(UserLoginPresenter presenter) {
+        this.presenter = presenter;
     }
 
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
@@ -28,12 +31,12 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
             User currentUser = UserInfoAccessor.getUserProfile(userDocument.getObjectId("userID"));
 
             if (!currentUser.isVerified()) {
-                return new UserLoginResponseModel(1001, currentUser);
+                return presenter.notVerified(new UserLoginResponseModel(1001, currentUser));
             } else {
-                return new UserLoginResponseModel(1000, currentUser);
+                return presenter.loginSuccess(new UserLoginResponseModel(1000, currentUser));
             }
         }
 
-        return new UserLoginResponseModel(1002, null);
+        return presenter.loginFailed(new UserLoginResponseModel(1003, null));
     }
 }
