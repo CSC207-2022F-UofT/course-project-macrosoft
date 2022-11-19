@@ -1,11 +1,15 @@
-package verifyuser_use_case;
+package VerifyuserUseCase;
 
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-public class VerifyUser {
+public class VerifyUserInteractor {
+    private static DBConnection connectionManager = new MongoConnection();
+
     /**
      * @param userID
      * @param code
@@ -14,7 +18,7 @@ public class VerifyUser {
      * 1002: Expired or code doesn't exist
      */
     public static int verifyUser(ObjectId userID, String code) {
-        String actualCode = GetCode.getVerificationCode(userID);
+        String actualCode = GetCodeInteractor.getVerificationCode(userID);
 
         if (actualCode.isEmpty()) {
             return 1002;
