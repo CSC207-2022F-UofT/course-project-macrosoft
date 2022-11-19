@@ -1,8 +1,10 @@
+package entities;
+
+import entities.Menu;
 import org.bson.types.ObjectId;
 
-import java.util.List;
-
 public class Restaurant {
+
     private ObjectId restaurantID;
 
     private String name;
@@ -13,24 +15,16 @@ public class Restaurant {
 
     private String phone;
 
-    private Menu menu;
+    private boolean verified;
 
-    public Restaurant(ObjectId restaurantID, String name, String email, String location, String phone, Menu menu) {
+
+    public Restaurant(ObjectId restaurantID, String name, String email, String location, String phone, boolean verified) {
         this.restaurantID = restaurantID;
         this.name = name;
         this.email = email;
         this.location = location;
         this.phone = phone;
-        this.menu = menu;
-    }
-
-    public Restaurant(ObjectId restaurantID, String name, String email, String location, String phone) {
-        this.restaurantID = restaurantID;
-        this.name = name;
-        this.email = email;
-        this.location = location;
-        this.phone = phone;
-        this.menu = null;
+        this.verified = verified;
     }
 
     public ObjectId getRestaurantID() {
@@ -73,11 +67,12 @@ public class Restaurant {
         this.phone = phone;
     }
 
-    public Menu getMenu() {
-        return menu;
+    public boolean isVerified() {
+        return verified;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }
+

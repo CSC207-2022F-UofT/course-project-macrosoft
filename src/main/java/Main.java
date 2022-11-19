@@ -1,15 +1,12 @@
-import com.mongodb.client.model.Filters;
+import database_access.ConnectionManager;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.Document;
-import org.bson.conversions.Bson;
+import register_use_case.RegisterUserInteractor;
 
 public class Main {
     public static void main(String[] args) {
 
-        ConnectionManager cm = new ConnectionManager();
-
-        Document newRestaurantDoc = new Document("name", "testing_res");
-        InsertOneResult result = cm.getCollection("Restaurants").insertOne(newRestaurantDoc);
+        RegisterUserInteractor.registerUser("inorrrr", "123456", "Inor", "Zhou", "wowla");
 
     }
 

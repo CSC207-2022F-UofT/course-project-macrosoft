@@ -1,3 +1,5 @@
+package entities;
+
 import java.util.List;
 import java.awt.*;
 import java.awt.image.BufferedImage;

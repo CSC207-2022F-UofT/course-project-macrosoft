@@ -1,3 +1,5 @@
+package database_access;
+
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -7,10 +9,10 @@ import com.mongodb.client.MongoDatabase;
 import java.util.HashMap;
 
 public class ConnectionManager {
-    private static final String username = "macrosoft_team";
-    private static final String password = "fnJtaE3UTfCngETL";
-    private static final String uri = String.format("mongodb+srv://%s:%s@cluster0.grpiws2.mongodb.net/?retryWrites=true&w=majority", username, password);
-
+    private static final String username = "admin";
+    private static final String password = "ZUs7nwYGLnoArOPS";
+    private static final String uri = String.format("mongodb+srv://%s:%s@cluster0.cyy73o0.mongodb.net/?retryWrites=true&w=majority",
+            username, password);
     private MongoClient client;
     private MongoDatabase database;
     private HashMap<String, MongoCollection> collections;
@@ -25,7 +27,8 @@ public class ConnectionManager {
             collections.put("Users", database.getCollection("Users"));
             collections.put("Orders", database.getCollection("Orders"));
             collections.put("Restaurants", database.getCollection("Restaurants"));
-            collections.put("Verification", database.getCollection("Verification"));
+            collections.put("Menu", database.getCollection("Menu"));
+
         } catch (MongoException me) {
             System.err.println("An error occurred while attempting to run a command: " + me);
         }
