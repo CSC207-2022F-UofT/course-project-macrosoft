@@ -1,2 +1,8 @@
-package Entities;public interface MongoDBConvertible {
+package Entities;
+
+import com.mongodb.DBObject;
+
+public interface MongoDBConvertible {
+
+
 }
