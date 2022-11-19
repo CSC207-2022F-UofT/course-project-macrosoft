@@ -2,7 +2,7 @@ import LoginUseCase.UserLoginController;
 import LoginUseCase.UserLoginInputBoundary;
 import LoginUseCase.UserLoginInteractor;
 import LoginUseCase.UserLoginPresenter;
-import MenuEditingUseCase.UserLoginProcessor;
+import LoginUseCase.UserLoginProcessor;
 import Presenters.*;
 
 import javax.swing.*;
