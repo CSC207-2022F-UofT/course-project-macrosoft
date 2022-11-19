@@ -1,6 +1,7 @@
 package TestDatabaseAccessor;
 
-import DatabaseAccess.ConnectionManager;
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.Document;
@@ -13,20 +14,20 @@ public class TestDatabaseConnection {
 
     @Test
     public void databaseConnection(){
-        ConnectionManager cm = new ConnectionManager();
+        DBConnection dbConnection = new MongoConnection();
 
         Document newRestaurantDoc = new Document("name", "testing_res");
-        InsertOneResult result = cm.getCollection("Restaurants").insertOne(newRestaurantDoc);
+        InsertOneResult result = dbConnection.getCollection("Restaurants").insertOne(newRestaurantDoc);
 
         Bson queryFilter = Filters.eq("name", "testing_res");
-        Document orderDocument = (Document) cm.getCollection("Restaurants")
+        Document orderDocument = (Document) dbConnection.getCollection("Restaurants")
                 .find(queryFilter)
                 .first();
 
         String access = orderDocument.get("name").toString();
         Assertions.assertEquals("testing_res", access);
 
-        cm.getCollection("Orders").deleteOne(queryFilter);
+        dbConnection.getCollection("Orders").deleteOne(queryFilter);
 
 
     }
