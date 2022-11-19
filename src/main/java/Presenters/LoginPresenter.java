@@ -1,5 +1,8 @@
 package Presenters;
 
+import LoginUseCase.UserLoginController;
+import LoginUseCase.UserLoginResponseModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,11 +18,14 @@ public class LoginPresenter extends JFrame implements ActionListener {
      */
     JPasswordField password = new JPasswordField(15);
 
+    UserLoginController userLoginController;
 
     /**
      * A window with a title and a JButton.
      */
-    public LoginPresenter() {
+    public LoginPresenter(UserLoginController controller) {
+
+        this.userLoginController = controller;
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -56,5 +62,19 @@ public class LoginPresenter extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
+
+        if (evt.getActionCommand().equals("Log in")) {
+            try {
+                UserLoginResponseModel userLoginResponseModel = userLoginController.login(username.getText(),
+                        String.valueOf(password.getPassword()));
+                System.out.println(userLoginResponseModel.getResponseCode());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        }
+        else if (evt.getActionCommand().equals("Cancel")) {
+           this.dispose();
+           System.exit(0);
+        }
     }
 }
