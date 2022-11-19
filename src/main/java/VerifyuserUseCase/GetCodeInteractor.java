@@ -1,5 +1,7 @@
-package verifyuser_use_case;
+package VerifyuserUseCase;
 
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
@@ -8,7 +10,15 @@ import org.bson.types.ObjectId;
 
 import java.util.Date;
 
-public class GetCode {
+public class GetCodeInteractor {
+
+    private static DBConnection connectionManager = new MongoConnection();
+
+    /**
+     *
+     * @param userID: id of user
+     * @return: return verification code or nothing
+     */
     public static String getVerificationCode(ObjectId userID) {
         Bson filter = Filters.eq("userID", userID);
 
@@ -20,7 +30,7 @@ public class GetCode {
             Date currentTime = new Date();
             Date createdTime = verificationDoc.getDate("createdTime");
 
-            if (currentTime.compareTo(AddMinutes.addMinutesToDate(5, createdTime)) > 0) {
+            if (currentTime.compareTo(AddMinutesInteractor.addMinutesToDate(5, createdTime)) > 0) {
                 connectionManager.getCollection("Verification").deleteMany(Filters.eq("userID", userID));
                 return "";
             } else {

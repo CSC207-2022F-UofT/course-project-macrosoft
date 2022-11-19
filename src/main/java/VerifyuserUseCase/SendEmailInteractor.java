@@ -1,17 +1,16 @@
-package verifyuser_use_case;
-
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
-import org.bson.Document;
-import org.bson.conversions.Bson;
-import org.bson.types.ObjectId;
+package VerifyuserUseCase;
 
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-public class SendEmail {
+public class SendEmailInteractor {
+    /**
+     * : the person the email is sent to
+     * @param subject: subject of the email
+     * @param body: the body of the email
+     */
 
     public static void sendEmail(String to, String subject, String body) {
         // Assuming you are sending email from through gmails smtp
