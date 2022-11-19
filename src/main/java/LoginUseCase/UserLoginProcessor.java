@@ -1,4 +1,4 @@
-package MenuEditingUseCase;
+package LoginUseCase;
 
 import LoginUseCase.UserLoginPresenter;
 import LoginUseCase.UserLoginResponseModel;
