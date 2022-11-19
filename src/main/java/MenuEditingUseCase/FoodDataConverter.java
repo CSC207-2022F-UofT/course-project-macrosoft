@@ -1,4 +1,3 @@
 package MenuEditingUseCase;
 
-public class FoodDataConverter {
-}
+public class FoodDataConverter {}

@@ -1,12 +1,10 @@
 import DataModels.*;
 import Interactors.UserGetOrderInteractor;
 import org.bson.types.ObjectId;
+import Entities.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        UserGetOrderInteractor userGetOrderInteractor = new UserGetOrderInteractor();
-
-        userGetOrderInteractor.getOrders(new UserGetOrderRequestModel(new ObjectId("63335e7abb6cd6599ed6f64b"))).getOrders().forEach(item -> System.out.println(item.getOrderStatus()));
     }
 }
