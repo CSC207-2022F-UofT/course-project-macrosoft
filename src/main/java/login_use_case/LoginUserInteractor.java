@@ -8,7 +8,7 @@ import org.bson.conversions.Bson;
 
 
 import database_access.ConnectionManager;
-import entities.*;
+import Entities.*;
 
 public class LoginUserInteractor {
 

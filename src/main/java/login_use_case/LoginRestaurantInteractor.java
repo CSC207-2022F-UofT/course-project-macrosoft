@@ -1,6 +1,6 @@
 package login_use_case;
 
-import entities.*;
+import Entities.*;
 
 import com.mongodb.client.*;
 

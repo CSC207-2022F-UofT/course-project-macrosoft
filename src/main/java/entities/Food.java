@@ -1,4 +1,4 @@
-package entities;
+package Entities;
 
 import java.util.List;
 import java.awt.*;

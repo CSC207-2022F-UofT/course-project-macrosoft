@@ -1,6 +1,8 @@
 package login_use_case;
 
 
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.*;
 
 import com.mongodb.client.model.Filters;
@@ -9,17 +11,18 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import database_access.ConnectionManager;
-import entities.*;
+import Entities.*;
 
 public class UserInfoAccessor {
 
-    private static ConnectionManager connectionManager = new ConnectionManager();
 
     public static User getUserProfile(ObjectId userID) {
+        DBConnection dbConnection = new MongoConnection();
+
         Bson queryFilter = Filters.eq("_id", userID);
 
         MongoIterable<Document> results =
-                connectionManager.getCollection("Users").find(queryFilter);
+                dbConnection.getCollection("Users").find(queryFilter);
 
         if (results.first() != null) {
             Document userDocument = results.first();
