@@ -1,6 +1,8 @@
 import LoginUseCase.UserLoginController;
 import LoginUseCase.UserLoginInputBoundary;
 import LoginUseCase.UserLoginInteractor;
+import LoginUseCase.UserLoginPresenter;
+import MenuEditingUseCase.UserLoginProcessor;
 import Presenters.*;
 
 import javax.swing.*;
@@ -17,13 +19,13 @@ public class Main {
 
 
         // Build the GUI, plugging in the parts
-
-        UserLoginInputBoundary interactor = new UserLoginInteractor();
+        UserLoginPresenter presenter = new UserLoginProcessor();
+        UserLoginInputBoundary interactor = new UserLoginInteractor(presenter);
         UserLoginController userLoginController = new UserLoginController(interactor);
 
-        LoginPresenter loginPresenter = new LoginPresenter(userLoginController);
+        LoginScreen loginScreen = new LoginScreen(userLoginController);
 
-        screens.add(loginPresenter.getContentPane(), "login");
+        screens.add(loginScreen.getContentPane(), "login");
         cardLayout.show(screens, "login");
         application.pack();
         application.setVisible(true);
