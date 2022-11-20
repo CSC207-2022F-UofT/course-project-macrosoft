@@ -4,8 +4,9 @@ import Entities.*;
 
 import org.bson.Document;
 
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -17,8 +18,9 @@ public class DocumentReviewConverter {
                 .map(Paths::get)// Paths.get() method is applied to each string
                 .collect(Collectors.toList());
 
-        return new Review(document.getObjectId("reviewID"),
+        return new Review(document.getObjectId("_id"),  // auto-generated ObjectId field "_id" for review by DB, used as reviewID
                 document.getObjectId("orderID"),
+                document.getInteger("rating"),
                 document.getString("comment"),
                 document.getString("subjectLine"),
                 picPathList,
@@ -31,8 +33,7 @@ public class DocumentReviewConverter {
                 .map(Path::toString)  // convert to a stream of strings
                 .collect(Collectors.toList());  // collect into List
 
-        return new Document("reviewID", review.getReviewID())
-                .append("comment", review.getComment())
+        return new Document("comment", review.getComment())  // no need for init ObjectId, as DB will auto-generate _id
                 .append("orderID", review.getOrderID())
                 .append("picPathList", picPaths)
                 .append("subjectLine", review.getSubjectLine())
