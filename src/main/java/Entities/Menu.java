@@ -11,6 +11,7 @@ public class Menu {
 
     private ObjectId menuId;
 
+
     public Menu(List<Food> foodList, ObjectId restaurantId, ObjectId menuId) {
         this.foodList = foodList;
         this.restaurantId = restaurantId;
@@ -24,4 +25,22 @@ public class Menu {
     public void setFoodList(List<Food> foodList) {
         this.foodList = foodList;
     }
+
+    public ObjectId getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(ObjectId restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public ObjectId getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(ObjectId menuId) {
+        this.menuId = menuId;
+    }
 }
+
+

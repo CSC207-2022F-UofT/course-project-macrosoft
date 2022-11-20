@@ -11,24 +11,33 @@ import org.bson.types.ObjectId;
 
 import Interactors.*;
 
+import java.util.ArrayList;
+
 public class GetMenuInteractor {
-    private static DBConnection connectionManager = new MongoConnection();
 
+    /**
+     *
+     * @param restId
+     * @return
+     */
     public static Menu getMenu(ObjectId restId) {
-        Bson queryFilter = Filters.and(
-                Filters.eq("restaurantID", restId));
 
-        MongoIterable<Document> menus = connectionManager.getCollection("Menu").find(queryFilter);
+        DBConnection connectionManager = new MongoConnection();
+        Bson queryFilter = Filters.and(
+                Filters.eq("restaurantId", restId));
+
+        MongoIterable<Document> menus = connectionManager.getCollection("Menus").find(queryFilter);
 
         if(menus.first() != null){
             Document menuDoc = menus.first();
-            return MenuDataConverter.convert(menuDoc);
+            return MenuDataConverter.convertDocToMenu(menuDoc);
         }
         else{
             Document newMenuDoc = new Document("restaurantId", restId);
-            InsertOneResult result = connectionManager.getCollection("Menu").insertOne(newMenuDoc);
+            newMenuDoc.append("Food", new ArrayList<>());
+            InsertOneResult result = connectionManager.getCollection("Menus").insertOne(newMenuDoc);
 
-            return MenuDataConverter.convert(newMenuDoc);
+            return MenuDataConverter.convertDocToMenu(newMenuDoc);
         }
     }
 }

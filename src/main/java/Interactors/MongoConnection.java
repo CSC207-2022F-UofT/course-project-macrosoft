@@ -25,6 +25,8 @@ public class MongoConnection implements DBConnection {
             collections.put("Orders", database.getCollection("Orders"));
             collections.put("Restaurants", database.getCollection("Restaurants"));
             collections.put("Verification", database.getCollection("Verification"));
+            collections.put("Menus", database.getCollection("Menus"));
+
         } catch (MongoException me) {
             System.err.println("An error occurred while attempting to run a command: " + me);
         }
