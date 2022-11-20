@@ -77,5 +77,4 @@ public class LoginScreen extends JFrame implements ActionListener {
            System.exit(0);
         }
     }
-
 }
