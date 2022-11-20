@@ -7,23 +7,24 @@ import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
-public class Review {
+public class Review{
     private ObjectId reviewID;
     private ObjectId orderID;
+    private int rating;  // 0-10
     private String comment;
-
     private List<Path> picPathList;
     private String subjectLine;
-
     private Date lastEditTime;
 
-    public Review(ObjectId reviewID, ObjectId orderID, String comment, String subjectLine, List<Path> picPathList) {
+    /** init a new Review with input Date*/
+    public Review(ObjectId reviewID, ObjectId orderID, int rating, String comment, String subjectLine, List<Path> picPathList, Date lastEditTime) {
         this.reviewID = reviewID;
         this.orderID = orderID;
+        this.rating = rating;
         this.comment = comment;
         this.subjectLine = subjectLine;
         this.picPathList = picPathList;
-        this.lastEditTime = new Date();
+        this.lastEditTime = lastEditTime;
     }
 
     public ObjectId getReviewID() {

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class LoginPresenter extends JFrame implements ActionListener {
+public class LoginScreen extends JFrame implements ActionListener {
     /**
      * The username chosen by the user
      */
@@ -23,7 +23,7 @@ public class LoginPresenter extends JFrame implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public LoginPresenter(UserLoginController controller) {
+    public LoginScreen(UserLoginController controller) {
 
         this.userLoginController = controller;
 
@@ -77,5 +77,4 @@ public class LoginPresenter extends JFrame implements ActionListener {
            System.exit(0);
         }
     }
-
 }
