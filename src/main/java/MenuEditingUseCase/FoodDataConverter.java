@@ -8,7 +8,11 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public class FoodDataConverter {
-
+    /**
+     *
+     * @param foodDoc
+     * @return
+     */
     public static Food convertDocToFood(Document foodDoc){
         if (foodDoc.isEmpty()){
             return null;
@@ -19,6 +23,12 @@ public class FoodDataConverter {
                 foodDoc.getDouble("price").floatValue(),
                 foodDoc.getObjectId("_id"));
     }
+
+    /**
+     *
+     * @param curFood
+     * @return
+     */
 
     public static Document convertFoodToDoc(Food curFood){
         return new Document("_id", new ObjectId())

@@ -1,48 +1,29 @@
 package MenuEditingUseCase;
-import Entities.*;
 
-
+import Entities.Food;
+import Entities.Menu;
 import Interactors.DBConnection;
 import Interactors.MongoConnection;
-import com.mongodb.client.model.Updates;
-import org.bson.BsonObjectId;
-import org.bson.types.BasicBSONList;
-import com.mongodb.client.*;
-
+import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
-import org.bson.BsonDocument;
-import org.bson.BsonInt64;
+import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import com.mongodb.client.result.InsertOneResult;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoException;
 import org.bson.types.ObjectId;
-import org.bson.BsonValue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class EditMenuInteractor {
+public class RemoveFoodInteractor {
+    /**
+     *
+     * @param curMenu
+     * @param delFood
+     */
+    public static void remove(Menu curMenu, Food delFood){
 
-    private static DBConnection connectionManager = new MongoConnection();
+        DBConnection connectionManager = new MongoConnection();
 
-    public static void addFood(Menu curMenu, String name, String description, String category, float price){
-
-        ObjectId menuId = curMenu.getMenuId();
-        Document newFoodDoc = new Document("_id", new ObjectId());
-        newFoodDoc.append("name", name).append("description",description).append("category", category).append("price", price);
-
-        Bson filter = Filters.eq("_id", menuId);
-        Bson update = Updates.push("Food", newFoodDoc);
-
-        connectionManager.getCollection("Menus").updateOne(filter, update);
-
-    }
-
-
-    public static void deleteFood(Menu curMenu, Food delFood){
         ObjectId foodId = delFood.getItemID();
         ObjectId menuId = curMenu.getMenuId();
 
@@ -74,8 +55,5 @@ public class EditMenuInteractor {
         Bson update = Updates.set("Food", newFoodDocLst);
         connectionManager.getCollection("Menus").updateOne(filter, update);
 
-
-
     }
-
 }

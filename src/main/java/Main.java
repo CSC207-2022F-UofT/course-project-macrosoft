@@ -4,8 +4,7 @@ import LoginUseCase.LoginRestaurantInteractor;
 import LoginUseCase.UserLoginController;
 import LoginUseCase.UserLoginInputBoundary;
 import LoginUseCase.UserLoginInteractor;
-import MenuEditingUseCase.EditMenuInteractor;
-import MenuEditingUseCase.GetMenuInteractor;
+import MenuEditingUseCase.*;
 import Presenters.*;
 import RegisterUseCase.RegisterRestaurantInteractor;
 import org.bson.types.ObjectId;
@@ -49,16 +48,17 @@ public class Main {
 //        LoginRestaurantInteractor.login("yinuo's res", "cptbtptp");
 //        ObjectId resId = LoginRestaurantInteractor.getCurrentRestaurant().getRestaurantID();
 //        Menu curMenu = GetMenuInteractor.getMenu(resId);
-//        EditMenuInteractor.addFood(curMenu);
 //        System.out.println(LoginRestaurantInteractor.getCurrentRestaurant().getName());
 //        ObjectId resId = LoginRestaurantInteractor.getCurrentRestaurant().getRestaurantID();
 
-        Menu curMenu = GetMenuInteractor.getMenu(new ObjectId("63797394ee00665db6a0a950")); //restaurantID
-//        EditMenuInteractor.addFood(curMenu, "Ice Cream", "best for summer!", "sweets", 10.00f);
-//        EditMenuInteractor.addFood(curMenu, "Gelato", "bruhhh", "sweets", 14.00f);
+//        Menu curMenu = GetMenuInteractor.getMenu(new ObjectId("63797394ee00665db6a0a950")); //restaurantID
+//        AddFoodInteractor.add(curMenu, "Ice Cream", "best for summer!", "sweets", 10.00f);
+//        AddFoodInteractor.add(curMenu, "Gelato", "bruhhh", "sweets", 14.00f);
 
-        Food f = new Food("Gelato", "bruhhh", "sweets", 14.00f, new ObjectId("637989b8b1fa2e471e821645"));
-        EditMenuInteractor.deleteFood(curMenu,f);
+//        Food f1 = new Food("Gelato", "bruhhh", "sweets", 14.00f, new ObjectId("637993ddb31b3253d8247e2c"));
+//        Food f2 = new Food("Ice Cream", "best for summer!", "sweets", 10.00f, new ObjectId("6379947d89a3ef24fc3af381"));
+//        RemoveFoodInteractor.remove(curMenu,f1);
+//        EditNameInteractor.modifyName(curMenu, f2, "Brownie");
 
 
     }

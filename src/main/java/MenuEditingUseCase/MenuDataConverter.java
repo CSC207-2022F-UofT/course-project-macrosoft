@@ -17,6 +17,11 @@ import Interactors.*;
 
 public class MenuDataConverter {
 
+    /**
+     *
+     * @param menuDoc
+     * @return
+     */
     public static Menu convertDocToMenu(Document menuDoc){
 //        if(menuDoc.getList("Food", Document.class).isEmpty()){
 //            return new Menu(new ArrayList<Food>(), menuDoc.getObjectId("restaurantId"),menuDoc.getObjectId("_id"));
@@ -30,6 +35,12 @@ public class MenuDataConverter {
         return new Menu(foodList, menuDoc.getObjectId("restaurantId"),
                 menuDoc.getObjectId("_id"));
     }
+
+    /**
+     *
+     * @param curMenu
+     * @return
+     */
 
     public static Document convertMenuToDoc(Menu curMenu){
         List<Document> foodDocLst = new ArrayList<>();

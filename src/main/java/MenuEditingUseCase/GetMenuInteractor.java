@@ -14,9 +14,15 @@ import Interactors.*;
 import java.util.ArrayList;
 
 public class GetMenuInteractor {
-    private static DBConnection connectionManager = new MongoConnection();
 
+    /**
+     *
+     * @param restId
+     * @return
+     */
     public static Menu getMenu(ObjectId restId) {
+
+        DBConnection connectionManager = new MongoConnection();
         Bson queryFilter = Filters.and(
                 Filters.eq("restaurantId", restId));
 
