@@ -1,4 +1,4 @@
-package Interactors;
+package ReviewRatingUseCase;
 
 import Entities.*;
 

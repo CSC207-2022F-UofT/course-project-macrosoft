@@ -30,10 +30,12 @@ public class ShoppingCart {
         this.restaurantID = restaurantID;
     }
 
-    /** calculates and update cart's current pre-tax payment amount*/
+    /**
+     * calculates and update cart's current pre-tax payment amount
+     */
     private void calculatePreTaxPayment() {
         float x = 0;
-        for (OrderItem item: this.items) {
+        for (OrderItem item : this.items) {
             x += item.getPrice();
         }
         this.preTaxPayment = x;
@@ -86,4 +88,5 @@ public class ShoppingCart {
     public void setLastEditTime(Date lastEditTime) {
         this.lastEditTime = lastEditTime;
     }
+
 }
