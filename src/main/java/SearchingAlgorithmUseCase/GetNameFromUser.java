@@ -3,7 +3,7 @@ package SearchingAlgorithmUseCase;
 import java.util.Scanner;
 
 public class GetNameFromUser {
-    public static void main(String[] args) {
+    public static void printWantedRestaurant() {
         Scanner myObj = new Scanner(System.in);
 
         System.out.println("Enter restaurant name:");
@@ -12,6 +12,6 @@ public class GetNameFromUser {
         String name = myObj.nextLine();
 
         // Output input by user
-        System.out.println("Name: " + SearchRestaurants.getRestaurant(name).getName());
+        System.out.println("Name: " + SearchRestaurantsInteractor.getRestaurant(name).getName());
     }
 }

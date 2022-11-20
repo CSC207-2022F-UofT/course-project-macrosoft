@@ -7,12 +7,8 @@ import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import Entities.*;
-import org.bson.types.ObjectId;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class SearchRestaurants {
+public class SearchRestaurantsInteractor {
 
     private static DBConnection connectionManager = new MongoConnection();
 
@@ -22,7 +18,6 @@ public class SearchRestaurants {
      *
      * @param restaurantName: name of the restaurant
      */
-
 
     public static Restaurant getRestaurant(String restaurantName) {
         restaurantName = restaurantName.toLowerCase();
@@ -34,15 +29,24 @@ public class SearchRestaurants {
         if (results.first() != null) {
             Document restaurantDocument = results.first();
 
-            Restaurant wantedRestaurant = new Restaurant(
+//            Restaurant wantedRestaurant = new Restaurant(
+//                    restaurantDocument.getObjectId("_id"),
+//                    restaurantDocument.getString("name"),
+//                    restaurantDocument.getString("email"),
+//                    restaurantDocument.getString("location"),
+//                    restaurantDocument.getString("phone"),
+//                    restaurantDocument.getBoolean("verified"));
+
+//            tester:
+//            assert restaurantDocument != null;
+
+            return new Restaurant(
                     restaurantDocument.getObjectId("_id"),
                     restaurantDocument.getString("name"),
                     restaurantDocument.getString("email"),
                     restaurantDocument.getString("location"),
                     restaurantDocument.getString("phone"),
                     restaurantDocument.getBoolean("verified"));
-
-            return wantedRestaurant;
         }
 
         return null;
