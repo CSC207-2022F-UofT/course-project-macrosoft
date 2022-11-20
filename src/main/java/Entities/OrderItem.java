@@ -13,6 +13,10 @@ public class OrderItem {
         this.numberOfItem = numberOfItem;
     }
 
+    public float getPrice() {
+        return this.food.getPrice() * this.numberOfItem;
+    }
+
     public ObjectId getFoodItemID() {
         return foodItemID;
     }
