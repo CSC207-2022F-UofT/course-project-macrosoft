@@ -51,9 +51,13 @@ public class Main {
 //        System.out.println(LoginRestaurantInteractor.getCurrentRestaurant().getName());
 //        ObjectId resId = LoginRestaurantInteractor.getCurrentRestaurant().getRestaurantID();
 
-//        Menu curMenu = GetMenuInteractor.getMenu(new ObjectId("63797394ee00665db6a0a950")); //restaurantID
-//        AddFoodInteractor.add(curMenu, "Ice Cream", "best for summer!", "sweets", 10.00f);
-//        AddFoodInteractor.add(curMenu, "Gelato", "bruhhh", "sweets", 14.00f);
+        Menu curMenu = GetMenuInteractor.getMenu(new ObjectId("63797394ee00665db6a0a950")); //restaurantID
+        AddFoodInteractor.add(curMenu, "Ice Cream", "best for summer!", "sweets", 10.00f);
+        AddFoodInteractor.add(curMenu, "Gelato", "bruhhh", "sweets", 14.00f);
+        AddFoodInteractor.add(curMenu, "Apple", "poisonous", "fruit", 2f);
+        AddFoodInteractor.add(curMenu, "Burger", "bigbigbigburger", "main", 10.00f);
+        AddFoodInteractor.add(curMenu, "Steak", "raw", "main", 80.00f);
+        AddFoodInteractor.add(curMenu, "Salad", "very healthy", "appetizer", 25.00f);
 
 //        Food f1 = new Food("Gelato", "bruhhh", "sweets", 14.00f, new ObjectId("637993ddb31b3253d8247e2c"));
 //        Food f2 = new Food("Ice Cream", "best for summer!", "sweets", 10.00f, new ObjectId("6379947d89a3ef24fc3af381"));
