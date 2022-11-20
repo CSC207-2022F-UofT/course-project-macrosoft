@@ -33,8 +33,8 @@ public class LoginRestaurantInteractor {
         MongoIterable<Document> users = dbConnection.getCollection("AuthInfo").find(queryFilter);
 
         if (users.first() != null) {
-            Document RestDocument = users.first();
-            currentRestaurant = RestaurantInfoAccessor.getRestaurantProfile(RestDocument.getObjectId("restaurantID"));
+            Document authDocument = users.first();
+            currentRestaurant = RestaurantInfoAccessor.getRestaurantProfile(authDocument.getObjectId("userID"));
 
             if (!currentRestaurant.isVerified()) {
                 return 1001;

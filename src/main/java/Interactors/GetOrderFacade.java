@@ -8,13 +8,13 @@ public class GetOrderFacade {
         return userGetOrderInteractor.getOrders(requestModel);
     }
 
-    public UserGetOrderResponseModel getOrdersByRestaurantId(UserGetOrderRequestModel requestModel) {
-        UserGetOrderInteractor userGetOrderInteractor = new UserGetOrderInteractor();
-        return userGetOrderInteractor.getOrders(requestModel);
+    public RestaurantGetOrderResponseModel getOrdersByRestaurantId(RestaurantGetOrderRequestModel requestModel) {
+        RestaurantGetOrderInteractor restaurantGetOrderInteractor = new RestaurantGetOrderInteractor();
+        return restaurantGetOrderInteractor.getOrders(requestModel);
     }
 
-    public UserGetOrderResponseModel getOrdersByOrderId(UserGetOrderRequestModel requestModel) {
-        UserGetOrderInteractor userGetOrderInteractor = new UserGetOrderInteractor();
-        return userGetOrderInteractor.getOrders(requestModel);
+    public IdGetOrderResponseModel getOrdersByOrderId(IdGetOrderRequestModel requestModel) {
+        OrderIdGetOrderInteractor orderIdGetOrderInteractor = new OrderIdGetOrderInteractor();
+        return orderIdGetOrderInteractor.getOrders(requestModel);
     }
 }
