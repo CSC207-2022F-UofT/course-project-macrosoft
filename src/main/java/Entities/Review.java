@@ -1,8 +1,5 @@
 package Entities;
 
-import com.mongodb.DBObject;
-import com.mongodb.BasicDBObject;
-
 import org.bson.types.ObjectId;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
 
-public class Review implements MongoDBConvertible{
+public class Review{
     private ObjectId reviewID;
     private ObjectId orderID;
     private String comment;
@@ -20,6 +17,7 @@ public class Review implements MongoDBConvertible{
 
     private Date lastEditTime;
 
+    /** init a new Review with Date now*/
     public Review(ObjectId reviewID, ObjectId orderID, String comment, String subjectLine, List<Path> picPathList) {
         this.reviewID = reviewID;
         this.orderID = orderID;
@@ -28,10 +26,14 @@ public class Review implements MongoDBConvertible{
         this.picPathList = picPathList;
         this.lastEditTime = new Date();
     }
-
-    @Override
-    public DBObject convertToDBObject() {
-        return new BasicDBObject();
+    /** init a new Review with existing Date*/
+    public Review(ObjectId reviewID, ObjectId orderID, String comment, String subjectLine, List<Path> picPathList, Date lastEditTime) {
+        this.reviewID = reviewID;
+        this.orderID = orderID;
+        this.comment = comment;
+        this.subjectLine = subjectLine;
+        this.picPathList = picPathList;
+        this.lastEditTime = lastEditTime;
     }
 
     public ObjectId getReviewID() {

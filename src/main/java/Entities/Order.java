@@ -1,12 +1,9 @@
 package Entities;
 
-import Interactors.ReviewInteractor;
 import org.bson.types.ObjectId;
 
 import java.util.Date;
 import java.util.List;
-
-import java.nio.file.Path;
 
 public class Order {
     private ObjectId orderID;
@@ -16,8 +13,6 @@ public class Order {
     private List<OrderItem> items;
     private String orderStatus;
 
-    private Review review;
-
     public Order(ObjectId orderID, Date orderDate, ObjectId restaurantID, ObjectId userID, List<OrderItem> items, String orderStatus) {
         this.orderID = orderID;
         this.orderDate = orderDate;
@@ -25,19 +20,6 @@ public class Order {
         this.userID = userID;
         this.items = items;
         this.orderStatus = orderStatus;
-        this.review = null;
-    }
-
-    public boolean hasReview() {
-        return this.review == null;
-    }
-
-    public Review getReview() {
-        return this.review;
-    }
-
-    public void setReview(Review review) {
-        this.review = review;
     }
 
     public ObjectId getOrderID() {

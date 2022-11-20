@@ -29,9 +29,13 @@ public class DocumentOrderConverter {
 
     public static Document convertOrderToDocument(Order order) {
         List<Document> items = order.getItems().stream()
+                // filter out OrderItems
                 .filter(c -> c instanceof OrderItem)
+                // cast each OrderItem
                 .map(c -> (OrderItem) c)
+                // map each OrderItem to a Document
                 .map(c -> new Document("foodItemID", c.getFoodItemID()).append("numberOfItem", c.getNumberOfItem()))
+                // use the toList Collector to collect all Documents in the map into a List
                 .collect(Collectors.toList());
 
         Document doc = new Document("orderDate", order.getOrderDate())
