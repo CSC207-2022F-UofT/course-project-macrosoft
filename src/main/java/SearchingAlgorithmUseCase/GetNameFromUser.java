@@ -3,6 +3,11 @@ package SearchingAlgorithmUseCase;
 import java.util.Scanner;
 
 public class GetNameFromUser {
+
+    /**
+     * Print out a list of relevant restaurants
+     *
+     */
     public static void printWantedRestaurant() {
         Scanner myObj = new Scanner(System.in);
 
