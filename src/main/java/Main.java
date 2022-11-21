@@ -1,20 +1,3 @@
-
-import Entities.Food;
-import LoginUseCase.LoginRestaurantInteractor;
-import LoginUseCase.UserLoginController;
-import LoginUseCase.UserLoginInputBoundary;
-import LoginUseCase.UserLoginInteractor;
-import MenuEditingUseCase.*;
-import LoginUseCase.UserLoginPresenter;
-import LoginUseCase.UserLoginProcessor;
-import Presenters.*;
-import RegisterUseCase.RegisterRestaurantInteractor;
-import org.bson.types.ObjectId;
-
-import javax.swing.*;
-import java.awt.*;
-import Entities.Menu;
-
 public class Main {
     public static void main(String[] args) {
 
