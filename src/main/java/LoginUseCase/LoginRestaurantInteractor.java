@@ -23,7 +23,7 @@ public class LoginRestaurantInteractor {
      * 1001: Not Verified
      * 1002: Invalid Credential
      */
-    public static int login(String username, String password) {
+    public int login(String username, String password) {
         DBConnection dbConnection = new MongoConnection();
 
         Bson queryFilter = Filters.and(
