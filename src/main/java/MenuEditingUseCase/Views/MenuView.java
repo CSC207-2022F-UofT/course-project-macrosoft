@@ -2,6 +2,7 @@ package MenuEditingUseCase.Views;
 
 import Entities.*;
 import MenuEditingUseCase.GetMenuInteractor;
+import MenuEditingUseCase.RemoveFoodInteractor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -18,11 +22,20 @@ import javax.swing.border.Border;
 
 public class MenuView {
 
+    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
+    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
+    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
+    private static final Color GREY_WHITE = new Color(214, 210, 205);
+    private static final Color WHITE = new Color(255, 255, 255);
+
+    private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
+    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
+
+
     public MenuView(Restaurant curRes){
 
         final JFrame frame = new JFrame();
-        Border emptyBorder = BorderFactory.createEmptyBorder(20, 20, 20, 20);
-        Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
 
         frame.setSize(900, 700);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -45,30 +58,37 @@ public class MenuView {
         menuPanel.setBorder(emptyBorder);
         Entities.Menu curMenu = GetMenuInteractor.getMenu(curRes.getRestaurantID());
 
-        for(Food curFood: curMenu.getFoodList()){
+        for(Food curFood: curMenu.getFoodList()) {
             JPanel f = new JPanel();
-
+            f.setBackground(GREY_WHITE);
             f.setLayout(new GridLayout(0, 1));
-            f.setBorder(blackline);
 
             JLabel name = new JLabel("Name: " + curFood.getName());
             JLabel price = new JLabel("Price: " + Float.toString(curFood.getPrice()));
             JLabel category = new JLabel("Category: " + curFood.getCategory());
             JLabel description = new JLabel("Description: " + curFood.getDescription());
             JButton delete = new JButton("Delete");
+            JButton edit = new JButton("Edit");
+
+            delete.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    RemoveFoodInteractor.remove(curMenu,curFood);
+
+                }
+            });
 
             name.setBorder(emptyBorder2);
             price.setBorder(emptyBorder2);
             category.setBorder(emptyBorder2);
             description.setBorder(emptyBorder2);
-            delete.setBorder(blackline);
-
 
             f.add(name);
             f.add(price);
             f.add(category);
             f.add(description);
             f.add(delete);
+            f.add(edit);
 
             menuPanel.add(f);
         }
@@ -78,10 +98,23 @@ public class MenuView {
 
         JButton addFoodButton = new JButton("Add Item");
         JButton finishButton = new JButton("Finish");
+        JButton refreshButton = new JButton("Refresh");
+        refreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuPanel.removeAll();
+                displayFoodPanels(GetMenuInteractor.getMenu(curRes.getRestaurantID()), menuPanel);
+            }
+        });
+        finishButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
 
         buttonPanel.add(addFoodButton);
         buttonPanel.add(finishButton);
-
 
         frame.getContentPane().add(resNamePanel, BorderLayout.NORTH);
         frame.getContentPane().add(menuPanel, BorderLayout.CENTER);
@@ -90,4 +123,40 @@ public class MenuView {
         frame.setVisible(true);
 
     }
+     public void displayFoodPanels(Entities.Menu curMenu, JPanel menuPanel){
+         for(Food curFood: curMenu.getFoodList()) {
+             JPanel f = new JPanel();
+             f.setBackground(GREY_WHITE);
+             f.setLayout(new GridLayout(0, 1));
+
+             JLabel name = new JLabel("Name: " + curFood.getName());
+             JLabel price = new JLabel("Price: " + Float.toString(curFood.getPrice()));
+             JLabel category = new JLabel("Category: " + curFood.getCategory());
+             JLabel description = new JLabel("Description: " + curFood.getDescription());
+             JButton delete = new JButton("Delete");
+             JButton edit = new JButton("Edit");
+
+             delete.addActionListener(new ActionListener() {
+                 @Override
+                 public void actionPerformed(ActionEvent e) {
+                     RemoveFoodInteractor.remove(curMenu,curFood);
+
+                 }
+             });
+
+             name.setBorder(emptyBorder2);
+             price.setBorder(emptyBorder2);
+             category.setBorder(emptyBorder2);
+             description.setBorder(emptyBorder2);
+
+             f.add(name);
+             f.add(price);
+             f.add(category);
+             f.add(description);
+             f.add(delete);
+             f.add(edit);
+
+             menuPanel.add(f);
+         }
+     }
 }
