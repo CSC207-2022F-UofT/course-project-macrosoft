@@ -1,9 +1,9 @@
 package Interactors;
 
+import DataModels.IdGetOrderRequestModel;
+import DataModels.IdGetOrderResponseModel;
 import DataModels.RestaurantGetOrderRequestModel;
 import DataModels.RestaurantGetOrderResponseModel;
-import DataModels.UserGetOrderRequestModel;
-import DataModels.UserGetOrderResponseModel;
 import Entities.Order;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
@@ -12,11 +12,11 @@ import org.bson.conversions.Bson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestaurantGetOrderInteractor {
-    public RestaurantGetOrderResponseModel getOrders(RestaurantGetOrderRequestModel requestModel) {
+public class OrderIdGetOrderInteractor {
+    public IdGetOrderResponseModel getOrders(IdGetOrderRequestModel requestModel) {
         DBConnection dbConnection = new MongoConnection();
 
-        Bson queryFilter = Filters.eq("restaurantID", requestModel.getRestaurantId());
+        Bson queryFilter = Filters.eq("_id", requestModel.getOrderId());
 
         List<Order> orders = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class RestaurantGetOrderInteractor {
                 .map(doc -> DocumentOrderConverter.convertDocumentToOrder((Document) doc))
                 .forEach(order -> orders.add((Order) order));
 
-        RestaurantGetOrderResponseModel responseModel = new RestaurantGetOrderResponseModel(orders);
+        IdGetOrderResponseModel responseModel = new IdGetOrderResponseModel(orders);
 
         return responseModel;
     }
