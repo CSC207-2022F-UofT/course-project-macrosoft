@@ -9,7 +9,7 @@ import org.bson.types.ObjectId;
 import org.bson.conversions.Bson;
 
 
-public class UpdateOrderInteractor {
+public class UpdateOrderStatusInteractor {
 
     private static DBConnection connectionManager = new MongoConnection();
 
