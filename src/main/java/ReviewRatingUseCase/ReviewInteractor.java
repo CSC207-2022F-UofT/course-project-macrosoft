@@ -1,7 +1,9 @@
-package Interactors;
+package ReviewRatingUseCase;
 
 import Entities.Review;
 
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.ReplaceOptions;
