@@ -1,5 +1,7 @@
 package LoginUseCase;
 
+import Database.AuthInfoDataGateway;
+import Database.AuthInfoProcessorMongo;
 import Interactors.DBConnection;
 import Interactors.MongoConnection;
 import com.mongodb.client.MongoIterable;
@@ -17,18 +19,13 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     }
 
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
-        DBConnection dbConnection = new MongoConnection();
+        AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo();
 
-        Bson queryFilter = Filters.and(
-                Filters.eq("username", requestModel.getUsername()),
-                Filters.eq("password", requestModel.getPassword()));
+        AuthInfo authInfo = authInfoDataGateway.getUserByUsernamePassword(requestModel.getUsername(), requestModel.getPassword());
 
-        MongoIterable<Document> users = dbConnection.getCollection("AuthInfo").find(queryFilter);
+        if (authInfo != null) {
 
-        if (users.first() != null) {
-            Document userDocument = users.first();
-
-            User currentUser = UserInfoAccessor.getUserProfile(userDocument.getObjectId("userID"));
+            User currentUser = UserInfoAccessor.getUserProfile(authInfo.getUserId());
 
             if (!currentUser.isVerified()) {
                 return presenter.notVerified(new UserLoginResponseModel(1001, currentUser));

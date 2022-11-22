@@ -1,5 +1,9 @@
 package VerifyuserUseCase;
 
+import Database.VerificationCodeDataGateway;
+import Database.VerificationCodeProcessorMongo;
+import Entities.User;
+import Entities.VerificationCode;
 import Interactors.DBConnection;
 import Interactors.MongoConnection;
 import com.mongodb.client.MongoIterable;
@@ -12,32 +16,14 @@ import java.util.Date;
 
 public class GetCodeInteractor {
 
-    private static DBConnection connectionManager = new MongoConnection();
-
     /**
      *
-     * @param userID: id of user
+     * @param userId: a user entity
      * @return: return verification code or nothing
      */
-    public static String getVerificationCode(ObjectId userID) {
-        Bson filter = Filters.eq("userID", userID);
-
-        MongoIterable<Document> results = connectionManager.getCollection("Verification").find(filter);
-
-        if (results.first() != null) {
-            Document verificationDoc = results.first();
-
-            Date currentTime = new Date();
-            Date createdTime = verificationDoc.getDate("createdTime");
-
-            if (currentTime.compareTo(AddMinutesInteractor.addMinutesToDate(5, createdTime)) > 0) {
-                connectionManager.getCollection("Verification").deleteMany(Filters.eq("userID", userID));
-                return "";
-            } else {
-                return verificationDoc.getString("code");
-            }
-        } else {
-            return "";
-        }
+    public static String getVerificationCode(ObjectId userId) {
+        VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo();
+        VerificationCode verificationCode = verificationCodeDataGateway.validateAndReadByUser(userId);
+        return verificationCode.getCode();
     }
 }
