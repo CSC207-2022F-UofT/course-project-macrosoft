@@ -1,4 +1,4 @@
-package Presenters;
+package Screens;
 
 import javax.swing.*;
 

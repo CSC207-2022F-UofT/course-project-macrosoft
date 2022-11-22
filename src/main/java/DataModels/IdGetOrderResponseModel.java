@@ -5,13 +5,13 @@ import Entities.Order;
 import java.util.List;
 
 public class IdGetOrderResponseModel {
-    private List<Order> orders;
+    private Order order;
 
-    public IdGetOrderResponseModel(List<Order> orders) {
-        this.orders = orders;
+    public IdGetOrderResponseModel(Order order) {
+        this.order = order;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public Order getOrder() {
+        return order;
     }
 }

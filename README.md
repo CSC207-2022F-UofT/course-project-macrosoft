@@ -1,39 +1,73 @@
-# Project Template
+# Welcome to Skip-the-Line
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+Are you a food lover who is looking to try some new restaurants? Are you a restaurant owner who is seeking for more customers? Have you ever been annoyed by the huge line up to your favourite food truck or the unplesant wait you have to stand by in cold winter? If any of these applies to you, Skip-the-Line is here to help! 
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+## Introduction
+In this project, we aim to provide a platform for both customer and resturant owners to place and process food orders. Customers are able to browse and search for the restaurant of their preference, add items from the menu of that restaurant, and place the order. Restaurant owners are able to upload and edit their menues, see the list of orders that has been placed and process those orders by changing the order status. 
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+More details will be introduced in the next few sections of this document.
 
-## Workflow Documents
+## How to Run  
+1. Run the file named `AppRun` and Jframe window will pop out. 
+2. The window can be closed by clicking on the top left/right corner(depends on Mac or Windows) as you would do to all other windows. 
+3. The screens will navigate between each other on click according to their funcationalities.
+4. **Our program is not finished at this point so it CANNOT run by following the above instruction. Please run each individual screen.**
 
-* Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
+## Screens
+### 1. Welcome Screen. 
+[Screenshots to be add]
+This screen is the first screen that shows up when the program is susseefully runned. In contains a simple greeting messgae and two buttons used for register and login.
 
-* [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
+### 2. Login/Register Window.
+[Screenshots to be add]
+Depends on what action is took on the previous screen, the login or registor window will be called and allows users to login to their existing account or register a new account. There will be responsive messages when the user login infomation is invalid(username does not exist in database or password doesn't match with the given username). 
 
-## Gradle Project
-Import this project into your Intellij editor. It should automatically recognise this as a gradle repository.
-The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
+### 3. Verification Window.
+[Screenshots to be add]
+New users need to verify their accout before using this platfrom. In this window, users can request a verification code being sent to their entred email. After the user has reveied the code and enter it to the filed provided, it will be compared with the code sent. Successful match will change the status of the account to "verified".
 
-You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.
+### 4. Restaurant/Customer homepage. 
+[Screenshots to be add] 
+Depends on what type of users you logged in as, the screen will display the homepage for that user. 
 
-You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
-This should run the program and print on your console.
+- For restaurant owners, the home screen consists a list of orders that are currently in queue, along with the status of the orders. The navigation bar at the bottom navigates to the Menu Editing Page and the order histrory page.
 
-You will find HelloWorldTest in `src/test/java/tutorial` directory. Right click on the HelloWorldTest file and click on `Run HelloWorldTest`.
-All tests should pass. Your team can remove this sample of how testing works once you start adding your project code to the repo.
+- For customers, the home screen contains the list of restaurant, and a search bar at the top. By entering the name of the restaurant, a list of restaurant that satisfies the key words will show up. The navigation bar at the bottom will bring you to the shopping cart page or order history page.
 
-Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` (you can keep creating more subdirectories as per your project requirement). Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.
+### 5. Restaurant Owner: Menu Editing Page.
+[Screenshots to be add] 
+This screen is only provided to restaurant owners. The current menu saved in the database will be showned here. Users are able to edit the menu by add or remove food item, as well as edit individual food item's name, price, description and category.
 
-![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
+### 6. Customer: Shopping Cart Page
+[Screenshots to be add] 
+This screen is only provided to customers. The current items that has been added to the shopping card will be showned here. Users are ablt to edit the cart by add or remove items, and edit the quantity of the items. 
 
-You can create another simple class and try generating a test for this class.
+### 7. Restaurant Owner/Customer: Order History Page.
+[Screenshots to be add] 
+Both customers and restaurant owners will have this access to this page, direted from the home page navigation bar. 
+- For restaurant owners, the order history contains the list of orders that the restaurant has completed, from all customers, sorted by time with the most recent order at the top. 
+- For customers, the order history contains the list of orders that the the user has placed, from all restaurants, sorted by time with the most recent order at the top.
+
+### 8. More Screens to be add.
+
+## Database
+In this project, we used MongoDB for as our database, whcih is a ducument-oriented NoSQL database. We created 6 different collections to store our data: 
+<img width="1322" alt="Screen Shot 2022-11-22 at 12 39 14 AM" src="https://user-images.githubusercontent.com/94703030/203233617-86a474e9-7007-4e2d-84bd-0f30f125e7d5.png">
+1. AuthInfo: Stores the username and password for all users(restaurant owners and customers), along with an unique user id.
+2. Menus: Stores menus and the restaurant(id) of this menu.
+3. Orders: Stores all orders with their: status, time placed, customer(id) that placed the order, restaurant(id) that receives the order.
+4. Restaurants: Stores restaurant name, location, email, phone, and an unique restaurant id.
+5. Users: Stores customer's name, email, account verification status and an unique user id.
+6. Verification: Stores the verificatio code that has been set, with the user(id) that receives the code and the time it was requested.
+
+## Architecture and Design Pattern
+We construct our project in a way that it is consistant with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the patten MVC Model-View-Controller design pattern. Each usecase has it's own pakage and all screens, interactors, presentors and controllers are organzied in the package of the by usecase.
+
+## Use of GitHub features
+1. We use the discussion page to open up the floor for everyone to express their thoughts and ask questions. Important deadlines and decisions are also posted there using the announcement feature. 
+2. The issues are used to track our progress of implementing the project. We have one issues for each usecase in the beginning, assigned to each member for implementation. Durnig the process, when ever new problems or ideas arises, we make a new issue to take note and address it.
+3. Branching: we made 1 branch for every sigle feature. Each time the new commit from a branch is merged to the main, that branch will not be used anymore. This workflow has prevented us from the possible mess caused by frequent pull and merge.
+4. Merging and Pull request: We assigned 1 member to keep an eye on the pull requests and merge in the phll requested after having confirmed that there's no conflit and every member in the team is aware of the new changes. 
+
+## Closing Words
+Thank you so much for taking the time to read over this document. Our project is still in the progress of implementation and may not support all of the functionalities planned at this point, but we will work together to make it happen. We will appreciate any comments and feedbacks on this project!
