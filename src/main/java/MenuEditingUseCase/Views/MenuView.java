@@ -97,6 +97,12 @@ public class MenuView {
         buttonPanel.setBorder(emptyBorder);
 
         JButton addFoodButton = new JButton("Add Item");
+        addFoodButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         JButton finishButton = new JButton("Finish");
         JButton refreshButton = new JButton("Refresh");
         refreshButton.addActionListener(new ActionListener() {
