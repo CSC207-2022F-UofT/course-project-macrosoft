@@ -2,6 +2,7 @@ package Database;
 
 import Entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mongodb.client.MongoCollection;
@@ -11,23 +12,37 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-public class UserDataMongo implements UserDataGateway {
+public class UserDataProcessorMongo implements UserDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
-    public UserDataMongo() {
+    public UserDataProcessorMongo() {
         this.mongoCollectionFetcher = new MongoCollectionFetcher();
     }
 
+    /**
+     * insert the User into MongoDB as a document
+     * @param user
+     * @return
+     */
     @Override
     public String save(User user) {
-        MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
+        this.mongoCollectionFetcher.getCollection("Users").insertOne(convertUserToDocument(user));
         return null;
     }
 
     @Override
     public List<User> findAll() {
-        return null;
+        List<User> lst = new ArrayList<>();
+        this.mongoCollectionFetcher.getCollection("Users")
+                .find()  // finds all documents in an iterator
+                .forEach(doc -> lst.add(convertDocumentToUser((Document) doc)));
+        return lst;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public User findById(String id) {
         MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
@@ -44,6 +59,12 @@ public class UserDataMongo implements UserDataGateway {
         else {return null;}
     }
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     @Override
     public User findByUsernamePassword(String username, String password) {
         MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
