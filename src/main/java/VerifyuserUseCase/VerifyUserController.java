@@ -10,8 +10,8 @@ public class VerifyUserController {
         this.verifyUserFacade = verifyUserFacade;
     }
 
-    public int verifyUser(ObjectId userID, String code) {
-        return verifyUserFacade.verifyUser(userID, code);
+    public int verifyUser(ObjectId currentUser, String code) {
+        return verifyUserFacade.verifyUser(currentUser, code);
     }
 
     public void generateEmail(ObjectId userId, String email) {

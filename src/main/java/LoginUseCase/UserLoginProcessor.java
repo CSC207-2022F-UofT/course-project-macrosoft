@@ -11,6 +11,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UserLoginProcessor implements UserLoginPresenter {
+    private JFrame loginScreen;
+
+    public UserLoginProcessor(JFrame loginScreen) {
+        this.loginScreen = loginScreen;
+    }
+
     @Override
     public UserLoginResponseModel loginSuccess(UserLoginResponseModel response) {
         return response;
@@ -23,13 +29,14 @@ public class UserLoginProcessor implements UserLoginPresenter {
 
     @Override
     public UserLoginResponseModel notVerified(UserLoginResponseModel response) {
+        this.loginScreen.dispose();
+
         JFrame application = new JFrame("Verify");
         CardLayout cardLayout = new CardLayout();
         JPanel screens = new JPanel(cardLayout);
         application.add(screens);
 
         // Build the GUI, plugging in the parts
-        UserLoginPresenter presenter = new UserLoginProcessor();
         VerifyUserFacade facade = new VerifyUserFacade();
         VerifyUserController verifyUserController = new VerifyUserController(facade);
 

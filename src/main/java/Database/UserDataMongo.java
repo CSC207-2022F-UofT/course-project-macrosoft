@@ -1,15 +1,12 @@
 package Database;
 
-import Entities.OrderItem;
 import Entities.User;
-import Interactors.MongoConnection;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -59,6 +56,22 @@ public class UserDataMongo implements UserDataGateway {
         else {return null;}
     }
 
+    /**
+     * @param userId
+     * @param newStatus
+     * @return
+     */
+    @Override
+    public String updateVerifiedStatus(ObjectId userId, Boolean newStatus) {
+        MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
+
+        Bson queryFilter = Filters.eq("_id", userId);
+        Bson update = Updates.set("verified", newStatus);
+        userCollection.updateOne(queryFilter, update);
+
+        return null;
+    }
+
     public User convertDocumentToUser(Document document) {
         return null;
     }
@@ -66,4 +79,6 @@ public class UserDataMongo implements UserDataGateway {
     public Document convertUserToDocument(User user) {
         return null;
     }
+
+
 }

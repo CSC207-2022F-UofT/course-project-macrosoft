@@ -12,6 +12,8 @@ public class VerifyScreen extends JFrame implements ActionListener {
 
     VerifyUserController verifyUserController;
 
+    JTextField verificationCode = new JTextField(15);
+
     public VerifyScreen(VerifyUserController controller) {
 
         this.verifyUserController = controller;
@@ -19,8 +21,10 @@ public class VerifyScreen extends JFrame implements ActionListener {
         JLabel title = new JLabel("Verify Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        LabelTextPanel verificationCodeInfo = new LabelTextPanel(
+                new JLabel("Verification Code"), verificationCode);
 
-        JButton logIn = new JButton("Log in");
+        JButton logIn = new JButton("Verify");
         JButton cancel = new JButton("Cancel");
 
         JPanel buttons = new JPanel();
@@ -34,6 +38,7 @@ public class VerifyScreen extends JFrame implements ActionListener {
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
         main.add(title);
+        main.add(verificationCodeInfo);
         main.add(buttons);
         this.setContentPane(main);
 
