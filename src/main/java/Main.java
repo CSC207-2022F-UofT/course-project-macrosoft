@@ -1,19 +1,12 @@
-
-import Entities.Food;
-import LoginUseCase.LoginRestaurantInteractor;
 import LoginUseCase.UserLoginController;
 import LoginUseCase.UserLoginInputBoundary;
 import LoginUseCase.UserLoginInteractor;
-import MenuEditingUseCase.*;
 import LoginUseCase.UserLoginPresenter;
 import LoginUseCase.UserLoginProcessor;
 import Screens.*;
-import RegisterUseCase.RegisterRestaurantInteractor;
-import org.bson.types.ObjectId;
 
 import javax.swing.*;
 import java.awt.*;
-import Entities.Menu;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,7 +19,7 @@ public class Main {
 
 
         // Build the GUI, plugging in the parts
-        UserLoginPresenter presenter = new UserLoginProcessor();
+        UserLoginPresenter presenter = new UserLoginProcessor(application);
         UserLoginInputBoundary interactor = new UserLoginInteractor(presenter);
         UserLoginController userLoginController = new UserLoginController(interactor);
 
