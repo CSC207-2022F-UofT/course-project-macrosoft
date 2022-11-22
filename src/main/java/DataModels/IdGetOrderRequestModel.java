@@ -3,17 +3,17 @@ package DataModels;
 import org.bson.types.ObjectId;
 
 public class IdGetOrderRequestModel {
-    private ObjectId orderId;
+    private String orderId;
 
-    public IdGetOrderRequestModel(ObjectId orderId) {
+    public IdGetOrderRequestModel(String orderId) {
         this.orderId = orderId;
     }
 
-    public ObjectId getOrderId() {
+    public String getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(ObjectId orderId) {
+    public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
 }
