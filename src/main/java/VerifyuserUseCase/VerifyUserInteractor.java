@@ -17,7 +17,7 @@ public class VerifyUserInteractor {
      * 1001: Entered Incorrect Code
      * 1002: Expired or code doesn't exist
      */
-    public static int verifyUser(ObjectId userID, String code) {
+    public int verifyUser(ObjectId userID, String code) {
         String actualCode = GetCodeInteractor.getVerificationCode(userID);
 
         if (actualCode.isEmpty()) {

@@ -9,4 +9,9 @@ public class VerifyUserFacade {
         GenerateEmailInteractor generateEmailInteractor = new GenerateEmailInteractor();
         generateEmailInteractor.generateVerificationEmail(userID, email);
     }
+
+    public int verifyUser(ObjectId userID, String code) {
+        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor();
+        return verifyUserInteractor.verifyUser(userID, code);
+    }
 }
