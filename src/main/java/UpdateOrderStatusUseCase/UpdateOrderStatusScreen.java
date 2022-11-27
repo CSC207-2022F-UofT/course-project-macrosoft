@@ -1,11 +1,11 @@
-package UpdateOrderUseCase;
+package UpdateOrderStatusUseCase;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class UpdateOrderStatusView implements ActionListener {
+public class UpdateOrderStatusScreen implements ActionListener {
 
     String[] OrderStatus = {"Order Received", "Preparing Order", "Ready For Pickup", "Order Complete"};
     private JFrame frame = new JFrame();
@@ -15,7 +15,7 @@ public class UpdateOrderStatusView implements ActionListener {
 
 
 
-    public UpdateOrderStatusView() {
+    public UpdateOrderStatusScreen() {
 
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0,1));
@@ -44,7 +44,7 @@ public class UpdateOrderStatusView implements ActionListener {
 
     public static void main(String[] args) {
 
-        new UpdateOrderStatusView();
+        new UpdateOrderStatusScreen();
 
     }
 

@@ -1,4 +1,4 @@
-package UpdateOrderUseCase;
+package UpdateOrderStatusUseCase;
 
 public class UpdateOrderStatusController {
 
