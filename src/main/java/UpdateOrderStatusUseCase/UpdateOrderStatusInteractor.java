@@ -1,4 +1,4 @@
-package UpdateOrderUseCase;
+package UpdateOrderStatusUseCase;
 
 import Interactors.DBConnection;
 import Interactors.MongoConnection;
