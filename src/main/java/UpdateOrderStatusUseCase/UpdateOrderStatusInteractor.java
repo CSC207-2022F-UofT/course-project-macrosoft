@@ -14,6 +14,12 @@ public class UpdateOrderStatusInteractor {
     private static DBConnection connectionManager = new MongoConnection();
     // creating a DB connection object
 
+    /**
+     * @param orderId: the user id of user
+     * @param orderStatus: the new order status of the order
+     *
+     */
+
     public void updateOrderStatus(ObjectId orderId, String orderStatus) {
         // taking two parameter orderId and orderStatus.
         // orderId is an ObjectId, used for tracking the specific order that we want to update the status of it.
