@@ -21,7 +21,7 @@ public class Main {
         MenuEditingPresenter presenter = new MenuEditingResponseFormatter();
         AddFoodInputBoundary interactor_add = new MenuEditingInteractor(presenter,gateway, curRes);
         RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(presenter,gateway, curRes);
-        MenuEditingController controller = new MenuEditingController(curRes,interactor_add, interactor_remove);
+        MenuEditingController controller = new MenuEditingController(interactor_add, interactor_remove);
 
         MenuScreen Screen = new MenuScreen(controller);
 

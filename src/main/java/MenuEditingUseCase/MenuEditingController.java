@@ -1,21 +1,22 @@
 package MenuEditingUseCase;
-import Entities.*;
+
+import org.bson.types.ObjectId;
+
+
+// Interface Adapters layer
 
 public class MenuEditingController {
     final AddFoodInputBoundary add_input;
     final RemoveFoodInputBoundary remove_input;
 
-    private Restaurant curRestaurant;
-
-    public MenuEditingController(Restaurant curRestaurant, AddFoodInputBoundary add_input, RemoveFoodInputBoundary remove_input) {
-        this.curRestaurant = curRestaurant;
+    public MenuEditingController(AddFoodInputBoundary add_input, RemoveFoodInputBoundary remove_input) {
         this.add_input = add_input;
         this.remove_input = remove_input;
     }
 
     MenuEditingResponseModel create(String name, String description, String category, float price){
-        AddFoodRequestModel requestModel = new AddFoodRequestModel(curRestaurant,
-                add_input.getMenu(curRestaurant),
+        AddFoodRequestModel requestModel = new AddFoodRequestModel(add_input.getCurRes(),
+                add_input.getMenu(),
                 name,
                 description,
                 category,
@@ -23,22 +24,19 @@ public class MenuEditingController {
         return add_input.create(requestModel);
     }
 
-    MenuEditingResponseModel create(Restaurant curRes, Food delFood){
-        RemoveFoodRequestModel requestModel = new RemoveFoodRequestModel(curRes,
-                add_input.getMenu(curRes),
-                delFood);
+    MenuEditingResponseModel create(ObjectId foodID){
+        RemoveFoodRequestModel requestModel = new RemoveFoodRequestModel(remove_input.getCurRes(),
+                remove_input.getMenu(),
+                remove_input.getMenu().findFood(foodID));
         return remove_input.create(requestModel);
     }
 
-    public Menu getMenu(Restaurant curRes){
-        return add_input.getMenu(curRes);
+
+    public AddFoodInputBoundary getAdd_input() {
+        return add_input;
     }
 
-    public Restaurant getCurRestaurant() {
-        return curRestaurant;
-    }
-
-    public void setCurRestaurant(Restaurant curRestaurant) {
-        this.curRestaurant = curRestaurant;
+    public RemoveFoodInputBoundary getRemove_input() {
+        return remove_input;
     }
 }

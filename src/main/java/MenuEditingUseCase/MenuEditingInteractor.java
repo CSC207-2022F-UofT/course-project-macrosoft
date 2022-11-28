@@ -1,13 +1,18 @@
 package MenuEditingUseCase;
 
+// Application Business Rules Layer
+
 import Database.MenuDataGateway;
 import Entities.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodInputBoundary{
 
     final MenuEditingPresenter menuPresenter;
     final MenuDataGateway menuDataGateway;
-
     Restaurant curRes;
 
     public MenuEditingInteractor(MenuEditingPresenter menuPresenter, MenuDataGateway menuDataGateway, Restaurant curRes) {
@@ -15,6 +20,13 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
         this.menuDataGateway = menuDataGateway;
         this.curRes = curRes;
     }
+
+
+    /**
+     *
+     * @param requestModel
+     * @return
+     */
 
     @Override
     public MenuEditingResponseModel create(AddFoodRequestModel requestModel){
@@ -33,12 +45,40 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
     public MenuEditingResponseModel create(RemoveFoodRequestModel requestModel){
         RemoveFoodHelper helper = new RemoveFoodHelper();
         Menu newMenu = helper.remove(requestModel.getCurMenu(), requestModel.getFoodToRemove());
+        requestModel.getCurMenu().removeFoodItem(requestModel.getFoodToRemove());
         MenuEditingResponseModel responseModel = new MenuEditingResponseModel(newMenu);
         menuDataGateway.setMenu(requestModel.getCurRes(), newMenu);
         return menuPresenter.prepareSuccessView(responseModel);
     }
 
-    public Menu getMenu(Restaurant curRes){
+    public Menu getMenu(){
         return menuDataGateway.getMenu(curRes);
     }
+
+    public Restaurant getCurRes() {
+        return curRes;
+    }
+
+    public HashMap<String, List> getMenuDic(){
+        HashMap<String, List> menuDic = new HashMap<>();
+        List<Food> foodLst = getMenu().getFoodList();
+
+        List<String> nameList = new ArrayList<>();
+        List<String> descriptionList = new ArrayList<>();
+        List<String> categoryList = new ArrayList<>();
+        List<Float> priceList = new ArrayList<>();
+        for(Food curFood: foodLst){
+            nameList.add(curFood.getName());
+            descriptionList.add(curFood.getDescription());
+            categoryList.add(curFood.getCategory());
+            priceList.add(curFood.getPrice());
+        }
+        menuDic.put("name", nameList);
+        menuDic.put("description", descriptionList);
+        menuDic.put("category", categoryList);
+        menuDic.put("price", priceList);
+
+        return menuDic;
+    }
+
 }

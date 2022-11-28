@@ -1,6 +1,7 @@
 package MenuEditingUseCase;
 
-import Entities.Menu;
+//Interface Adapters Layer;
+
 
 public interface MenuEditingPresenter {
 

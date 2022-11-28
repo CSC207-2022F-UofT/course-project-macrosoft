@@ -49,6 +49,15 @@ public class Menu {
     public void removeFoodItem(Food delFood){
         this.foodList.remove(delFood);
     }
+
+    public Food findFood(ObjectId foodId){
+        for (Food curFood: foodList){
+            if(curFood.getItemID().equals(foodId)){
+                return curFood;
+            }
+        }
+        return null;
+    }
 }
 
 

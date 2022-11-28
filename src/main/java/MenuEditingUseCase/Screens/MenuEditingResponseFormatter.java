@@ -1,5 +1,7 @@
 package MenuEditingUseCase.Screens;
 
+// Interface adapters layer
+
 import MenuEditingUseCase.MenuEditingPresenter;
 import MenuEditingUseCase.MenuEditingResponseModel;
 

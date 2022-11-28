@@ -1,4 +1,7 @@
 package MenuEditingUseCase;
+
+//Application Business Rule layer
+
 import Entities.*;
 
 public class AddFoodRequestModel {

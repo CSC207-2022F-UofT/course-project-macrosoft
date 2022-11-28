@@ -1,4 +1,7 @@
 package MenuEditingUseCase;
+
+// Application Business Rules Layer
+
 import Entities.*;
 
 public class MenuEditingResponseModel {

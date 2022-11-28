@@ -21,6 +21,11 @@ public class MenuDataMongo implements MenuDataGateway{
         this.mongoCollectionFetcher = mongoCollectionFetcher;
     }
 
+    /**
+     *
+     * @param curRes
+     * @param newMenu
+     */
     @Override
     public void setMenu(Restaurant curRes, Menu newMenu){
         Bson filter = Filters.eq("restaurantId", curRes.getRestaurantID());
@@ -30,6 +35,11 @@ public class MenuDataMongo implements MenuDataGateway{
 
     }
 
+    /**
+     *
+     * @param curRes
+     * @return
+     */
     @Override
     public Menu getMenu(Restaurant curRes) {
 
@@ -51,6 +61,12 @@ public class MenuDataMongo implements MenuDataGateway{
         }
     }
 
+    /**
+     *
+     * @param curMenu
+     * @return
+     */
+
     public Document convertMenuToDoc(Menu curMenu){
         List<Document> foodDocLst = new ArrayList<>();
         for(Food curFood: curMenu.getFoodList()){
@@ -60,6 +76,12 @@ public class MenuDataMongo implements MenuDataGateway{
         return new Document("Food", foodDocLst)
                 .append("restaurantId", curMenu.getRestaurantId());
     }
+
+    /**
+     *
+     * @param menuDoc
+     * @return
+     */
 
     public Menu convertDocToMenu(Document menuDoc){
 
@@ -72,6 +94,12 @@ public class MenuDataMongo implements MenuDataGateway{
                 menuDoc.getObjectId("_id"));
     }
 
+    /**
+     *
+     * @param foodDoc
+     * @return
+     */
+
     public Food convertDocToFood(Document foodDoc){
         if (foodDoc.isEmpty()){
             return null;
@@ -82,6 +110,12 @@ public class MenuDataMongo implements MenuDataGateway{
                 foodDoc.getDouble("price").floatValue(),
                 foodDoc.getObjectId("_id"));
     }
+
+    /**
+     *
+     * @param curFood
+     * @return
+     */
 
     public Document convertFoodToDoc(Food curFood){
         return new Document("_id", new ObjectId())

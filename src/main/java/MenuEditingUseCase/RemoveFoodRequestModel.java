@@ -1,4 +1,7 @@
 package MenuEditingUseCase;
+
+// Application Business Rules Layer
+
 import Entities.*;
 
 public class RemoveFoodRequestModel {
@@ -26,15 +29,15 @@ public class RemoveFoodRequestModel {
         return foodToRemove;
     }
 
-    public void setFoodToRemove(Food foodToRemove) {
-        this.foodToRemove = foodToRemove;
-    }
-
     public Restaurant getCurRes() {
         return curRes;
     }
 
     public void setCurRes(Restaurant curRes) {
         this.curRes = curRes;
+    }
+
+    public void setFoodToRemove(Food foodToRemove) {
+        this.foodToRemove = foodToRemove;
     }
 }

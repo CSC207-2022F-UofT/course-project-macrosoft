@@ -1,34 +1,22 @@
 package MenuEditingUseCase;
 
-import Database.MenuDataGateway;
+//Application Business Rule layer
+
 import Entities.Menu;
-import Interactors.DBConnection;
-import Interactors.MongoConnection;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
-import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import Entities.*;
-import java.util.*;
 
 public class AddFoodHelper {
 
-    /**
+    /** This method adds a Food object to the list of food in the given Menu Object.
      *
-     * @param curMenu
-     * @param name
-     * @param description
-     * @param category
-     * @param price
+     * @param curMenu the current menu to be modifyed.
+     * @param name name of the added food.
+     * @param description description of the added food.
+     * @param category category of the added food.
+     * @param price price of the added food.
+     * @return returns the new menu with the newly added food.
      */
-//    public static Menu add(Restaurant curRes, Menu curMenu, String name, String description, String category, float price, MenuDataGateway dataGateway){
-//        Food newFood = new Food(name, description, category, price, new ObjectId());
-//        curMenu.addFoodItem(newFood);
-//        dataGateway.setMenu(curRes,curMenu);
-//        return curMenu;
-//    }
-
     public Menu add(Menu curMenu, String name, String description, String category, float price){
         Food newFood = new Food(name, description, category, price, new ObjectId());
         curMenu.addFoodItem(newFood);
