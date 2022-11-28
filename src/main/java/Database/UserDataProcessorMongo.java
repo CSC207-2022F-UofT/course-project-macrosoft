@@ -14,8 +14,8 @@ import org.bson.types.ObjectId;
 
 public class UserDataProcessorMongo implements UserDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
-    public UserDataProcessorMongo() {
-        this.mongoCollectionFetcher = new MongoCollectionFetcher();
+    public UserDataProcessorMongo(MongoCollectionFetcher fetcher) {
+        this.mongoCollectionFetcher = fetcher;
     }
 
     /**

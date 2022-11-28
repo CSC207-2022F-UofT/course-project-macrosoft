@@ -11,8 +11,9 @@ import org.bson.conversions.Bson;
 
 public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
     MongoCollectionFetcher mongoCollectionFetcher;
-    public AuthInfoProcessorMongo() {
-        this.mongoCollectionFetcher = new MongoCollectionFetcher();
+
+    public AuthInfoProcessorMongo(MongoCollectionFetcher fetcher) {
+        this.mongoCollectionFetcher = fetcher;
     }
 
     /**

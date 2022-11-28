@@ -4,6 +4,7 @@ import DataModels.IdGetOrderRequestModel;
 import DataModels.IdGetOrderResponseModel;
 import DataModels.RestaurantGetOrderRequestModel;
 import DataModels.RestaurantGetOrderResponseModel;
+import Database.MongoCollectionFetcher;
 import Database.OrderDataGateway;
 import Database.OrderDataProcessorMongo;
 import Entities.Order;
@@ -18,7 +19,8 @@ import java.util.List;
 
 public class OrderIdGetOrderInteractor implements OrderIdGetOrderInputBoundary {
     public IdGetOrderResponseModel getOrder(IdGetOrderRequestModel requestModel) {
-        OrderDataGateway orderDataGateway = new OrderDataProcessorMongo();
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
 
         ObjectId id = new ObjectId(requestModel.getOrderId());
 

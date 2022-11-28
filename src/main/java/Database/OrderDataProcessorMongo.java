@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 
 public class OrderDataProcessorMongo implements OrderDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
-    public OrderDataProcessorMongo() {
-        this.mongoCollectionFetcher = new MongoCollectionFetcher();
+    public OrderDataProcessorMongo(MongoCollectionFetcher fetcher) {
+        this.mongoCollectionFetcher = fetcher;
     }
 
     /**

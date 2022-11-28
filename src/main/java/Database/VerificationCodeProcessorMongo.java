@@ -14,8 +14,8 @@ import java.util.Date;
 
 public class VerificationCodeProcessorMongo implements VerificationCodeDataGateway{
     MongoCollectionFetcher mongoCollectionFetcher;
-    public VerificationCodeProcessorMongo() {
-        this.mongoCollectionFetcher = new MongoCollectionFetcher();
+    public VerificationCodeProcessorMongo(MongoCollectionFetcher fetcher) {
+        this.mongoCollectionFetcher = fetcher;
     }
 
     /**
