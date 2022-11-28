@@ -1,6 +1,9 @@
-package MenuEditingUseCase;
+package MenuEditingUseCase.first_try;
 
-import Entities.Food;
+import Interactors.DBConnection;
+import Interactors.MongoConnection;
+
+import Entities.*;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 

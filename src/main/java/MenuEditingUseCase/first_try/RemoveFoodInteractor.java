@@ -1,4 +1,4 @@
-package MenuEditingUseCase;
+package MenuEditingUseCase.first_try;
 
 import Entities.Food;
 import Entities.Menu;
@@ -14,21 +14,24 @@ import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditDescriptionInteractor {
-
+public class RemoveFoodInteractor {
     /**
      *
-     * @param currMenu
-     * @param currFood
-     * @param newDescription
+     * @param curMenu
+     * @param delFood
      */
-    public static void modifyDescription(Menu currMenu, Food currFood, String newDescription) {
+    public static void remove(Menu curMenu, Food delFood){
+
         DBConnection connectionManager = new MongoConnection();
 
-        ObjectId menuId = currMenu.getMenuId();
+        ObjectId foodId = delFood.getItemID();
+        ObjectId menuId = curMenu.getMenuId();
+
         Bson filter = Filters.eq("_id", menuId);
+
         MongoIterable<Document> results = connectionManager.getCollection("Menus").find(filter);
         Document menuDoc = results.first();
+
 
         List<Document> foodLst = menuDoc.getList("Food", Document.class);
         List<Food> foodObj = new ArrayList<>();
@@ -38,8 +41,8 @@ public class EditDescriptionInteractor {
         }
 
         for(Food curFood: foodObj){
-            if(curFood.getItemID().toString().equals(currFood.getItemID().toString())){
-                curFood.setDescription(newDescription);
+            if(curFood.getItemID().toString().equals(foodId.toString())){
+                foodObj.remove(curFood);
                 break;
             }
         }
@@ -51,5 +54,6 @@ public class EditDescriptionInteractor {
 
         Bson update = Updates.set("Food", newFoodDocLst);
         connectionManager.getCollection("Menus").updateOne(filter, update);
+
     }
 }

@@ -1,4 +1,4 @@
-package MenuEditingUseCase;
+package MenuEditingUseCase.first_try;
 
 import Entities.Food;
 import Entities.Menu;
@@ -14,24 +14,22 @@ import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RemoveFoodInteractor {
+public class EditNameInteractor {
+
     /**
      *
-     * @param curMenu
-     * @param delFood
+     * @param currMenu
+     * @param currFood
+     * @param newName
      */
-    public static void remove(Menu curMenu, Food delFood){
+    public static void modifyName(Menu currMenu, Food currFood, String newName) {
 
         DBConnection connectionManager = new MongoConnection();
 
-        ObjectId foodId = delFood.getItemID();
-        ObjectId menuId = curMenu.getMenuId();
-
+        ObjectId menuId = currMenu.getMenuId();
         Bson filter = Filters.eq("_id", menuId);
-
         MongoIterable<Document> results = connectionManager.getCollection("Menus").find(filter);
         Document menuDoc = results.first();
-
 
         List<Document> foodLst = menuDoc.getList("Food", Document.class);
         List<Food> foodObj = new ArrayList<>();
@@ -41,8 +39,8 @@ public class RemoveFoodInteractor {
         }
 
         for(Food curFood: foodObj){
-            if(curFood.getItemID().toString().equals(foodId.toString())){
-                foodObj.remove(curFood);
+            if(curFood.getItemID().toString().equals(currFood.getItemID().toString())){
+                curFood.setName(newName);
                 break;
             }
         }

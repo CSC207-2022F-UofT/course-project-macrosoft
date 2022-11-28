@@ -1,4 +1,4 @@
-package MenuEditingUseCase;
+package MenuEditingUseCase.first_try;
 
 import Entities.Menu;
 import Interactors.DBConnection;

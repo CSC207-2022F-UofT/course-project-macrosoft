@@ -1,4 +1,4 @@
-package MenuEditingUseCase;
+package MenuEditingUseCase.first_try;
 
 import Entities.Food;
 import Entities.Menu;
@@ -14,17 +14,15 @@ import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditPriceInteractor {
+public class EditDescriptionInteractor {
 
     /**
      *
      * @param currMenu
      * @param currFood
-     * @param newPrice
+     * @param newDescription
      */
-
-    public static void modifyPrice(Menu currMenu, Food currFood, float newPrice) {
-
+    public static void modifyDescription(Menu currMenu, Food currFood, String newDescription) {
         DBConnection connectionManager = new MongoConnection();
 
         ObjectId menuId = currMenu.getMenuId();
@@ -41,7 +39,7 @@ public class EditPriceInteractor {
 
         for(Food curFood: foodObj){
             if(curFood.getItemID().toString().equals(currFood.getItemID().toString())){
-                curFood.setPrice(newPrice);
+                curFood.setDescription(newDescription);
                 break;
             }
         }

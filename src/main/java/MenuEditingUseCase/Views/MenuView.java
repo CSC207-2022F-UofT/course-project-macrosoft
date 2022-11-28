@@ -1,18 +1,15 @@
 package MenuEditingUseCase.Views;
 
 import Entities.*;
-import MenuEditingUseCase.GetMenuInteractor;
-import MenuEditingUseCase.RemoveFoodInteractor;
+import MenuEditingUseCase.first_try.GetMenuInteractor;
+import MenuEditingUseCase.first_try.RemoveFoodInteractor;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;

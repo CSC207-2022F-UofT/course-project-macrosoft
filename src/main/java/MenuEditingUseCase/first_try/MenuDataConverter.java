@@ -1,13 +1,10 @@
-package MenuEditingUseCase;
+package MenuEditingUseCase.first_try;
 
-import Entities.Food;
-import Entities.Menu;
-import MenuEditingUseCase.first_try.FoodDataConverter;
-import org.bson.Document;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import Entities.*;
+import org.bson.Document;
 
 public class MenuDataConverter {
 
