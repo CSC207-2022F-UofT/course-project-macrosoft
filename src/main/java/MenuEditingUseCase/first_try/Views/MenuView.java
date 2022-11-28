@@ -1,4 +1,4 @@
-package MenuEditingUseCase.Views;
+package MenuEditingUseCase.first_try.Views;
 
 import Entities.*;
 import MenuEditingUseCase.first_try.GetMenuInteractor;

@@ -3,11 +3,14 @@ import Entities.*;
 
 public class RemoveFoodRequestModel {
 
+    private Restaurant curRes;
+
     private Menu curMenu;
 
     private Food foodToRemove;
 
-    public RemoveFoodRequestModel(Menu curMenu, Food foodToRemove) {
+    public RemoveFoodRequestModel(Restaurant curRes, Menu curMenu, Food foodToRemove) {
+        this.curRes = curRes;
         this.curMenu = curMenu;
         this.foodToRemove = foodToRemove;
     }
@@ -25,5 +28,13 @@ public class RemoveFoodRequestModel {
 
     public void setFoodToRemove(Food foodToRemove) {
         this.foodToRemove = foodToRemove;
+    }
+
+    public Restaurant getCurRes() {
+        return curRes;
+    }
+
+    public void setCurRes(Restaurant curRes) {
+        this.curRes = curRes;
     }
 }

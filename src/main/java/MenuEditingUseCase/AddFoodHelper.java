@@ -1,5 +1,6 @@
 package MenuEditingUseCase;
 
+import Database.MenuDataGateway;
 import Entities.Menu;
 import Interactors.DBConnection;
 import Interactors.MongoConnection;
@@ -21,9 +22,18 @@ public class AddFoodHelper {
      * @param category
      * @param price
      */
-    public static Menu add(Menu curMenu, String name, String description, String category, float price){
+//    public static Menu add(Restaurant curRes, Menu curMenu, String name, String description, String category, float price, MenuDataGateway dataGateway){
+//        Food newFood = new Food(name, description, category, price, new ObjectId());
+//        curMenu.addFoodItem(newFood);
+//        dataGateway.setMenu(curRes,curMenu);
+//        return curMenu;
+//    }
+
+    public Menu add(Menu curMenu, String name, String description, String category, float price){
         Food newFood = new Food(name, description, category, price, new ObjectId());
         curMenu.addFoodItem(newFood);
         return curMenu;
     }
+
+
 }

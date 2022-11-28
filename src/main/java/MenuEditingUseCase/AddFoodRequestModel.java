@@ -3,6 +3,7 @@ import Entities.*;
 
 public class AddFoodRequestModel {
 
+    private Restaurant curRes;
     private Menu curMenu;
 
     private String name;
@@ -13,7 +14,8 @@ public class AddFoodRequestModel {
 
     private float price;
 
-    public AddFoodRequestModel(Menu curMenu, String name, String category, String description, float price) {
+    public AddFoodRequestModel(Restaurant curRes, Menu curMenu, String name, String category, String description, float price) {
+        this.curRes = curRes;
         this.curMenu = curMenu;
         this.name = name;
         this.category = category;
@@ -59,6 +61,14 @@ public class AddFoodRequestModel {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public Restaurant getCurRes() {
+        return curRes;
+    }
+
+    public void setCurRes(Restaurant curRes) {
+        this.curRes = curRes;
     }
 }
 

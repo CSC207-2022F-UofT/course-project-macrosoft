@@ -17,7 +17,7 @@ import java.util.List;
 
 public class RemoveFoodHelper {
 
-    public static Menu remove(Menu curMenu, Food delFood){
+    public Menu remove(Menu curMenu, Food delFood){
         curMenu.removeFoodItem(delFood);
         return curMenu;
     }

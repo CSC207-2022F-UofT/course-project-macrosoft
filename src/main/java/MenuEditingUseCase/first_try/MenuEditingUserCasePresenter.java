@@ -1,6 +1,6 @@
 package MenuEditingUseCase.first_try;
 
-import MenuEditingUseCase.Views.MenuView;
+import MenuEditingUseCase.first_try.Views.MenuView;
 
 public class MenuEditingUserCasePresenter {
 
