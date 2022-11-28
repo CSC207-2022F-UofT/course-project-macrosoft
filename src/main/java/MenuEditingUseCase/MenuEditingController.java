@@ -14,7 +14,7 @@ public class MenuEditingController {
         this.remove_input = remove_input;
     }
 
-    MenuEditingResponseModel create(String name, String description, String category, float price){
+    public MenuEditingResponseModel create(String name, String description, String category, float price){
         AddFoodRequestModel requestModel = new AddFoodRequestModel(add_input.getCurRes(),
                 add_input.getMenu(),
                 name,
@@ -24,7 +24,7 @@ public class MenuEditingController {
         return add_input.create(requestModel);
     }
 
-    MenuEditingResponseModel create(ObjectId foodID){
+    public MenuEditingResponseModel create(ObjectId foodID){
         RemoveFoodRequestModel requestModel = new RemoveFoodRequestModel(remove_input.getCurRes(),
                 remove_input.getMenu(),
                 remove_input.getMenu().findFood(foodID));

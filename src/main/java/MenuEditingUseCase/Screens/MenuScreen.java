@@ -43,6 +43,10 @@ public class MenuScreen extends JFrame implements ActionListener{
         resNamePanel.add(label);
 
         JPanel menuPanel = new JPanel();
+        JScrollPane menuScroll = new JScrollPane(menuPanel);
+        menuScroll.setBorder(emptyBorder2);
+        menuScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         Border blackline = BorderFactory.createLineBorder(Color.black);
         menuPanel.setBorder(blackline);
         GridLayout layout = new GridLayout(0, 3);
@@ -51,35 +55,9 @@ public class MenuScreen extends JFrame implements ActionListener{
         menuPanel.setLayout(layout);
         menuPanel.setBorder(emptyBorder);
 
-//        Entities.Menu curMenu = controller.getAdd_input().getMenu();
+
         HashMap<String, List> menuDic = controller.getAdd_input().getMenuDic();
 
-//        for(Food curFood: curMenu.getFoodList()) {
-//            JPanel f = new JPanel();
-//            f.setBackground(GREY_WHITE);
-//            f.setLayout(new GridLayout(0, 1));
-//
-//            JLabel name = new JLabel("Name: " + curFood.getName());
-//            JLabel price = new JLabel("Price: " + Float.toString(curFood.getPrice()));
-//            JLabel category = new JLabel("Category: " + curFood.getCategory());
-//            JLabel description = new JLabel("Description: " + curFood.getDescription());
-//            JButton delete = new JButton("Delete");
-//            JButton edit = new JButton("Edit");
-//
-//            name.setBorder(emptyBorder2);
-//            price.setBorder(emptyBorder2);
-//            category.setBorder(emptyBorder2);
-//            description.setBorder(emptyBorder2);
-//
-//            f.add(name);
-//            f.add(price);
-//            f.add(category);
-//            f.add(description);
-//            f.add(delete);
-//            f.add(edit);
-//
-//            menuPanel.add(f);
-//        }
 
         for(int i = 0; i< menuDic.get("name").size(); i++){
 
@@ -117,11 +95,25 @@ public class MenuScreen extends JFrame implements ActionListener{
         JButton finishButton = new JButton("Finish");
         JButton refreshButton = new JButton("Refresh");
 
+        addFoodButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AddFoodScreen foodScreen = new AddFoodScreen(controller);
+            }
+        });
+
+        finishButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+
         buttonPanel.add(addFoodButton);
         buttonPanel.add(finishButton);
 
         frame.getContentPane().add(resNamePanel, BorderLayout.NORTH);
-        frame.getContentPane().add(menuPanel, BorderLayout.CENTER);
+        frame.getContentPane().add(menuScroll, BorderLayout.CENTER);
         frame.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
         frame.setVisible(true);
