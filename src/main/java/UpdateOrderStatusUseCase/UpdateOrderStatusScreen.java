@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class UpdateOrderStatusScreen implements ActionListener {
 
-    String[] OrderStatus = {"Order Received", "Preparing Order", "Ready For Pickup", "Order Complete"};
+    String[] OrderStatus = {"Order Received", "Preparing Order", "Ready For Pickup", "Picked Up", "Order Complete"};
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
     private JLabel label = new JLabel("Order #");
