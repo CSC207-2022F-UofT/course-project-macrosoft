@@ -41,6 +41,23 @@ public class Menu {
     public void setMenuId(ObjectId menuId) {
         this.menuId = menuId;
     }
+
+    public void addFoodItem(Food newFood){
+        this.foodList.add(newFood);
+    }
+
+    public void removeFoodItem(Food delFood){
+        this.foodList.remove(delFood);
+    }
+
+    public Food findFood(ObjectId foodId){
+        for (Food curFood: foodList){
+            if(curFood.getItemID().equals(foodId)){
+                return curFood;
+            }
+        }
+        return null;
+    }
 }
 
 
