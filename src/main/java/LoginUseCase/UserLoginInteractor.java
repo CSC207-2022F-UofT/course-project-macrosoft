@@ -2,6 +2,7 @@ package LoginUseCase;
 
 import Database.AuthInfoDataGateway;
 import Database.AuthInfoProcessorMongo;
+import Database.MongoCollectionFetcher;
 import Interactors.DBConnection;
 import Interactors.MongoConnection;
 import com.mongodb.client.MongoIterable;
@@ -19,7 +20,8 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     }
 
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
-        AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo();
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
 
         AuthInfo authInfo = authInfoDataGateway.getUserByUsernamePassword(requestModel.getUsername(), requestModel.getPassword());
 

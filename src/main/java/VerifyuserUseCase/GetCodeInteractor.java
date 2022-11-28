@@ -1,5 +1,6 @@
 package VerifyuserUseCase;
 
+import Database.MongoCollectionFetcher;
 import Database.VerificationCodeDataGateway;
 import Database.VerificationCodeProcessorMongo;
 import Entities.User;
@@ -22,7 +23,8 @@ public class GetCodeInteractor {
      * @return: return verification code or nothing
      */
     public static String getVerificationCode(ObjectId userId) {
-        VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo();
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         VerificationCode verificationCode = verificationCodeDataGateway.validateAndReadByUser(userId);
         return verificationCode.getCode();
     }
