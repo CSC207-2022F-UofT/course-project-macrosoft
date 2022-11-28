@@ -1,8 +1,18 @@
 package UpdateOrderStatusUseCase;
 
+import org.bson.types.ObjectId;
+
 public class UpdateOrderStatusController {
 
-    public void UpdateOrderStatusController() {
+    /**
+     * @param orderId: the user id of user
+     * @param orderStatus: the new order status of the order
+     *
+     */
+
+    public void UpdateOrderStatusController(ObjectId orderId, String orderStatus) {
+
+
 
 
     }
