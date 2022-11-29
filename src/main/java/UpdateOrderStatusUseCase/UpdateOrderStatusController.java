@@ -1,23 +1,24 @@
 package UpdateOrderStatusUseCase;
 
-import org.bson.types.ObjectId;
+// Interface Adaptors Layer
 
 public class UpdateOrderStatusController {
 
-    /**
-     * @param orderId: the user id of user
-     * @param orderStatus: the new order status of the order
-     *
-     */
+    final UpdateOrderStatusInputBoundary StatusInput;
 
-    public void UpdateOrderStatusController(ObjectId orderId, String orderStatus) {
-
-
-
-
+    public UpdateOrderStatusController(UpdateOrderStatusInputBoundary StatusInput) {
+        this.StatusInput = StatusInput;
     }
 
-    public void UpdateOrderStatusPresenter() {
-
+    public UpdateOrderStatusResponseModel create(String newStatus) {
+        UpdateOrderStatusRequestModel requestModel =
+                new UpdateOrderStatusRequestModel(StatusInput.getCurOrder(), newStatus);
+        return StatusInput.create(requestModel);
     }
+
+    public UpdateOrderStatusInputBoundary getStatusInput() {
+        return StatusInput;
+    }
+
+
 }

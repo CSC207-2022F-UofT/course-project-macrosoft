@@ -1,41 +1,99 @@
 package UpdateOrderStatusUseCase;
 
-import Interactors.DBConnection;
-import Interactors.MongoConnection;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
-import org.bson.types.ObjectId;
+// Application Business Rules Layer
 
-import org.bson.conversions.Bson;
+import Database.OrderDataGateway;
+import Entities.*;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import java.text.DateFormat;
+
+public class UpdateOrderStatusInteractor implements UpdateOrderStatusInputBoundary {
+
+    final UpdateOrderStatusPresenter orderPresenter;
+
+    final OrderDataGateway orderDataGateway;
+
+    private Order curOrder;
+
+    private Restaurant curRes;
 
 
-public class UpdateOrderStatusInteractor {
-
-    private static DBConnection connectionManager = new MongoConnection();
-    // creating a DB connection object
+    public UpdateOrderStatusInteractor(UpdateOrderStatusPresenter orderPresenter, OrderDataGateway orderDataGateway,
+                                       Order curOrder) {
+        this.orderPresenter = orderPresenter;
+        this.orderDataGateway = orderDataGateway;
+        this.curOrder = curOrder;
+    }
 
     /**
-     * @param orderId: the user id of user
-     * @param orderStatus: the new order status of the order
      *
+     * @param requestModel
+     * @return
      */
 
-    public void updateOrderStatus(ObjectId orderId, String orderStatus) {
-        // taking two parameter orderId and orderStatus.
-        // orderId is an ObjectId, used for tracking the specific order that we want to update the status of it.
-        // orderStatus is a String, used for updating the order status of an order
+    @Override
+    public UpdateOrderStatusResponseModel create(UpdateOrderStatusRequestModel requestModel) {
+        UpdateOrderStatusHelper helper = new UpdateOrderStatusHelper();
+        Order newOrder = helper.update(requestModel.getCurOrder(), requestModel.getNewStatus());
+        UpdateOrderStatusResponseModel responseModel = new UpdateOrderStatusResponseModel(newOrder);
+        orderDataGateway.save(newOrder); // not sure if I use "save" correctly
+        return orderPresenter.prepareSuccessView(responseModel);
+    }
 
-        Bson idFilter = Filters.eq("_id", orderId);
-        // filter out the specific Order with order id ("_id" in DB) orderID
+    public List<Order> getOrders() {
+        return orderDataGateway.findAllByRestaurant(curRes.getRestaurantID());
+    }
 
-        Bson updates = Updates.set("orderStatus", orderStatus);
-        // set the order status ("orderStatus" in DB) of the order to orderStatus.
+    public Order getCurOrder() {
+        return this.curOrder;
+    }
 
-        connectionManager.getCollection("Orders")
-                // get the order collection that are named "Orders" in our DB
 
-                .updateOne(idFilter, updates);
-        // using updateOne to update the order that filtered by idFilter and update its order status with updates.
+    public Restaurant getCurRes() {return curRes;}
 
+
+    public HashMap<String, List> getOrderDic() {
+        HashMap<String, List> orderDic = new HashMap<>();
+        List<Order> orderList = getOrders();
+
+        List<String> timeList = new ArrayList<>();
+        List<String> userIdList = new ArrayList();
+        List<String> orderIdList = new ArrayList<>();
+        List<List<OrderItem>> itemList = new ArrayList<>();
+        List<String> statusList = new ArrayList<>();
+
+        for (Order curOrder: orderList) {
+
+            String pattern = "MM/dd/yyyy HH:mm:ss";
+            DateFormat df = new SimpleDateFormat(pattern);
+            String strDate = df.format(curOrder.getOrderDate());
+            timeList.add(strDate);
+
+            String UserIdCopy = String.valueOf(curOrder.getUserID());
+            userIdList.add(UserIdCopy);
+
+            String OrderIdCopy = String.valueOf(curOrder.getOrderID());
+            orderIdList.add(OrderIdCopy);
+
+
+            itemList.add(curOrder.getItems());
+
+            statusList.add(curOrder.getOrderStatus());
+
+            // please check if this for loops works in the way as we wish.
+        }
+
+        orderDic.put("time", timeList);
+        orderDic.put("userId", userIdList);
+        orderDic.put("orderId", orderIdList);
+        orderDic.put("items", itemList);
+        orderDic.put("order status", statusList);
+
+        return orderDic;
     }
 }
