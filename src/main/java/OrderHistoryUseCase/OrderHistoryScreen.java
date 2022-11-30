@@ -2,6 +2,7 @@ package OrderHistoryUseCase;
 
 
 import Entities.Order;
+import Entities.OrderItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,8 +45,17 @@ public class OrderHistoryScreen extends JFrame{
             JPanel orderPanel = new JPanel();
             orderPanel.setBackground(Color.GRAY);
             orderPanel.setLayout(new GridLayout(0, 1));
-            JLabel resName = new JLabel("Restaurant Name: " + order.getRestaurantID());
-            JLabel orderItems = new JLabel("Order Items: " + order.getItems());
+            resIdToNameConvertor convertor = new resIdToNameConvertor();
+            JLabel resName = new JLabel("Restaurant Name: " + convertor.getResNameById(order.getRestaurantID()));
+            String orderFoods = "";
+            for (OrderItem orderItem : order.getItems()) {
+                if(orderItem.getFood() != null){
+                    String foodName = orderItem.getFood().getName();
+                    String foodNum = String.valueOf(orderItem.getNumberOfItem());
+                    orderFoods = orderFoods + foodName + " " + foodNum + "\n";
+                }
+            }
+            JLabel orderItems = new JLabel("Order Items: " + orderFoods);
             JLabel orderTime = new JLabel("Order Time: " + order.getOrderDate());
             JLabel orderStatus = new JLabel("Order Status: " + order.getOrderStatus());
 
