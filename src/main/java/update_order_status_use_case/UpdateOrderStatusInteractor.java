@@ -38,10 +38,12 @@ public class UpdateOrderStatusInteractor implements UpdateOrderStatusInputBounda
 
     @Override
     public UpdateOrderStatusResponseModel create(UpdateOrderStatusRequestModel requestModel) {
-        UpdateOrderStatusHelper helper = new UpdateOrderStatusHelper();
-        Order newOrder = helper.update(requestModel.getCurOrder(), requestModel.getNewStatus());
-        UpdateOrderStatusResponseModel responseModel = new UpdateOrderStatusResponseModel(newOrder);
-        orderDataGateway.save(newOrder); // not sure if I use "save" correctly
+
+        requestModel.getCurOrder().setOrderStatus(requestModel.getNewStatus());
+        // UpdateOrderStatusHelper helper = new UpdateOrderStatusHelper();
+        // Order newOrder = helper.update(requestModel.getCurOrder(), requestModel.getNewStatus());
+        UpdateOrderStatusResponseModel responseModel = new UpdateOrderStatusResponseModel(requestModel.getCurOrder());
+        // orderDataGateway.save(newOrder); // not sure if I use "save" correctly
         return orderPresenter.prepareSuccessView(responseModel);
     }
 
