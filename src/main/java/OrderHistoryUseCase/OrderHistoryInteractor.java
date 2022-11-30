@@ -3,7 +3,6 @@ package OrderHistoryUseCase;
 import Database.OrderDataGateway;
 import Entities.Order;
 import Entities.User;
-import org.bson.types.ObjectId;
 
 import java.util.List;
 
@@ -19,16 +18,16 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary {
         this.orderDataGateway = orderDataGateway;
         this.user = user;
     }
-    public OrderHistoryResponseModel getOrders(OrderHistoryRequestModel requestModel) {
-        ObjectId userId = requestModel.getCurUser().getUserId();
-        List<Order> orderHistory =  orderDataGateway.findAllByUser(userId);
 
-        OrderHistoryResponseModel orderHistoryResponseModel = new OrderHistoryResponseModel(orderHistory);
-        return presenter.getSuccess(orderHistoryResponseModel);
+    @Override
+    public OrderHistoryResponseModel getOrders(OrderHistoryRequestModel requestModel) {
+        List<Order> orderList = orderDataGateway.findAllByUser(requestModel.getCurUser().getUserId());
+        OrderHistoryResponseModel responseModel = new OrderHistoryResponseModel(orderList);
+        return responseModel;
     }
 
     @Override
-    public User getUser() {
+    public User getCurUser() {
         return user;
     }
 }

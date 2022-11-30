@@ -3,7 +3,7 @@ package OrderHistoryUseCase;
 import Entities.User;
 
 public class OrderHistoryController {
-    final OrderHistoryInputBoundary orderHistoryInput;
+    private final OrderHistoryInputBoundary orderHistoryInput;
 
     public OrderHistoryController(OrderHistoryInputBoundary orderHistoryInput) {
         this.orderHistoryInput = orderHistoryInput;

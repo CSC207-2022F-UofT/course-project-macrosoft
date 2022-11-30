@@ -7,8 +7,9 @@ import LoginUseCase.LoginUserInteractor;
 public class Main {
     public static void main (String[] args){
         LoginUserInteractor i = new LoginUserInteractor();
-        i.login("jackson", "123456");
+        i.login("davidlin123", "123456");
         User curUser = LoginUserInteractor.getCurUser();
+
 
         OrderHistoryPresenter presenter = new OrderHistoryProcessor();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo();
