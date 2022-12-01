@@ -4,28 +4,29 @@ import DataModels.IdGetOrderRequestModel;
 import DataModels.IdGetOrderResponseModel;
 import DataModels.RestaurantGetOrderRequestModel;
 import DataModels.RestaurantGetOrderResponseModel;
+import Database.MongoCollectionFetcher;
+import Database.OrderDataGateway;
+import Database.OrderDataProcessorMongo;
 import Entities.Order;
+import InputBoundary.OrderIdGetOrderInputBoundary;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderIdGetOrderInteractor {
-    public IdGetOrderResponseModel getOrders(IdGetOrderRequestModel requestModel) {
-        DBConnection dbConnection = new MongoConnection();
+public class OrderIdGetOrderInteractor implements OrderIdGetOrderInputBoundary {
+    public IdGetOrderResponseModel getOrder(IdGetOrderRequestModel requestModel) {
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
 
-        Bson queryFilter = Filters.eq("_id", requestModel.getOrderId());
+        ObjectId id = new ObjectId(requestModel.getOrderId());
 
-        List<Order> orders = new ArrayList<>();
+        Order order = orderDataGateway.findById(id);
 
-        dbConnection.getCollection("Orders")
-                .find(queryFilter)
-                .map(doc -> DocumentOrderConverter.convertDocumentToOrder((Document) doc))
-                .forEach(order -> orders.add((Order) order));
-
-        IdGetOrderResponseModel responseModel = new IdGetOrderResponseModel(orders);
+        IdGetOrderResponseModel responseModel = new IdGetOrderResponseModel(order);
 
         return responseModel;
     }

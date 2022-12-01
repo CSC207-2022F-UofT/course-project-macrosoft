@@ -1,5 +1,6 @@
 package VerifyuserUseCase;
 
+import Entities.User;
 import Interactors.DBConnection;
 import Interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
@@ -15,27 +16,27 @@ public class GenerateEmailInteractor {
     private static DBConnection connectionManager = new MongoConnection();
 
     /**
-     * @param userID: the user id of user
+     * @param userId: the user id of user
      * @param email: the email of user
      *
      */
-    public void generateVerificationEmail(ObjectId userID, String email) {
+    public void generateVerificationEmail(ObjectId userId, String email) {
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
 
         // this will convert any number sequence into 6 character.
         String verificationCode = String.format("%06d", number);
 
-        String existingCode = GetCodeInteractor.getVerificationCode(userID);
+        String existingCode = GetCodeInteractor.getVerificationCode(userId);
 
         if (existingCode.isEmpty()) {
-            Document verificationCodeDoc = new Document("userID", userID)
+            Document verificationCodeDoc = new Document("userID", userId)
                     .append("code", verificationCode)
                     .append("createdTime", new Date());
 
             connectionManager.getCollection("Verification").insertOne(verificationCodeDoc);
         } else {
-            Bson filter = Filters.eq("userID", userID);
+            Bson filter = Filters.eq("userID", userId);
             Bson update = Updates.combine(Updates.set("code", verificationCode), Updates.set("createdTime", new Date()));
 
             connectionManager.getCollection("Verification").updateOne(filter, update);
