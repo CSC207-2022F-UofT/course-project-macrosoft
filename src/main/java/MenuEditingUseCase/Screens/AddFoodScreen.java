@@ -79,6 +79,7 @@ public class AddFoodScreen {
                         descriptionField.getText(),
                         categoryField.getText(),
                         Float.parseFloat(priceField.getText()));
+
                 frame.dispose();
             }
         });
@@ -88,7 +89,6 @@ public class AddFoodScreen {
         frame.add(categoryPanel);
         frame.add(descriptionPanel);
         frame.add(pricePanel);
-
         frame.add(finishButton);
 
         frame.setVisible(true);
