@@ -3,12 +3,14 @@ package SearchingAlgorithmUseCase;
 import Interactors.DBConnection;
 import Interactors.MongoConnection;
 import com.mongodb.client.MongoIterable;
+import com.mongodb.client.model.Collation;
+import com.mongodb.client.model.CollationStrength;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import Entities.*;
 
-public class SearchRestaurantsInteractor {
+public class UserSearchRestaurantsInteractor {
 
     private static DBConnection connectionManager = new MongoConnection();
 
@@ -20,22 +22,14 @@ public class SearchRestaurantsInteractor {
      */
 
     public static Restaurant getRestaurant(String restaurantName) {
-        restaurantName = restaurantName.toLowerCase();
         Bson restaurant = Filters.eq("name", restaurantName);
 
+        Collation collation = Collation.builder().locale("en").collationStrength(CollationStrength.TERTIARY).build();
         MongoIterable<Document> results =
-                connectionManager.getCollection("Restaurants").find(restaurant);
+                connectionManager.getCollection("Restaurants").find(restaurant).collation(collation);
 
         if (results.first() != null) {
             Document restaurantDocument = results.first();
-
-//            Restaurant wantedRestaurant = new Restaurant(
-//                    restaurantDocument.getObjectId("_id"),
-//                    restaurantDocument.getString("name"),
-//                    restaurantDocument.getString("email"),
-//                    restaurantDocument.getString("location"),
-//                    restaurantDocument.getString("phone"),
-//                    restaurantDocument.getBoolean("verified"));
 
 //            tester:
 //            assert restaurantDocument != null;
