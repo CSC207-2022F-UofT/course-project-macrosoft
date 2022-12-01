@@ -1,9 +1,6 @@
 package VerifyuserUseCase;
 
-import Database.UserDataGateway;
-import Database.UserDataMongo;
-import Database.VerificationCodeDataGateway;
-import Database.VerificationCodeProcessorMongo;
+import Database.*;
 import Entities.User;
 import Interactors.DBConnection;
 import Interactors.MongoConnection;
@@ -24,8 +21,9 @@ public class VerifyUserInteractor {
      * 1002: Expired or code doesn't exist
      */
     public int verifyUser(ObjectId userId, String code) {
-        VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo();
-        UserDataGateway userDataGateway = new UserDataMongo();
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
+        UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
 
         String actualCode = GetCodeInteractor.getVerificationCode(userId);
 
