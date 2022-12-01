@@ -11,8 +11,9 @@ public class Main {
         User curUser = LoginUserInteractor.getCurUser();
 
 
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
         OrderHistoryPresenter presenter = new OrderHistoryProcessor();
-        OrderDataGateway orderDataGateway = new OrderDataProcessorMongo();
+        OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
         OrderHistoryInputBoundary orderHistoryInputBoundary = new OrderHistoryInteractor(presenter, orderDataGateway, curUser);
         OrderHistoryController controller = new OrderHistoryController(orderHistoryInputBoundary);
 
