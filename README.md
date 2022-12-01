@@ -28,46 +28,48 @@ New users need to verify their accout before using this platfrom. In this window
 
 ### 4. Restaurant/Customer homepage. 
 [Screenshots to be add] 
-Depends on what type of users you logged in as, the screen will display the homepage for that user. 
+Depending on what type of users you logged in as, the screen will display the homepage for that user. 
 
-- For restaurant owners, the home screen consists a list of orders that are currently in queue, along with the status of the orders. The navigation bar at the bottom navigates to the Menu Editing Page and the order histrory page.
+- For restaurant owners, the home screen consists of a list of orders that are currently in queue, along with the status of the orders. The navigation bar at the bottom navigates to the Menu Editing Page and the order history page.
 
-- For customers, the home screen contains the list of restaurant, and a search bar at the top. By entering the name of the restaurant, a list of restaurant that satisfies the key words will show up. The navigation bar at the bottom will bring you to the shopping cart page or order history page.
+- For customers, the home screen contains the list of restaurants, and a search bar at the top. By entering the name of the restaurant, a list of restaurants that satisfies the key words will show up. The navigation bar at the bottom will bring you to the shopping cart page or order history page.
 
 ### 5. Restaurant Owner: Menu Editing Page.
 [Screenshots to be add] 
-This screen is only provided to restaurant owners. The current menu saved in the database will be showned here. Users are able to edit the menu by add or remove food item, as well as edit individual food item's name, price, description and category.
+This screen is only provided to restaurant owners. The current menu saved in the database will be shown here. Users are able to edit the menu by adding or removing food items, as well as edit individual food item's name, price, description and category.
 
 ### 6. Customer: Shopping Cart Page
 [Screenshots to be add] 
-This screen is only provided to customers. The current items that has been added to the shopping card will be showned here. Users are ablt to edit the cart by add or remove items, and edit the quantity of the items. 
+This screen is only provided to customers. The current items that have been added to the shopping card will be shown here. Users are able to edit the cart by adding or removing items, and edit the quantity of the items. 
 
 ### 7. Restaurant Owner/Customer: Order History Page.
 [Screenshots to be add] 
-Both customers and restaurant owners will have this access to this page, direted from the home page navigation bar. 
+Both customers and restaurant owners will have this access to this page, directed from the home page navigation bar. 
 - For restaurant owners, the order history contains the list of orders that the restaurant has completed, from all customers, sorted by time with the most recent order at the top. 
-- For customers, the order history contains the list of orders that the the user has placed, from all restaurants, sorted by time with the most recent order at the top.
+- For customers, the order history contains the list of orders that the user has placed, from all restaurants, sorted by time with the most recent order at the top.
 
-### 8. More Screens to be add.
+### 8. More Screens to be added.
 
 ## Database
-In this project, we used MongoDB for as our database, whcih is a ducument-oriented NoSQL database. We created 6 different collections to store our data: 
-<img width="1322" alt="Screen Shot 2022-11-22 at 12 39 14 AM" src="https://user-images.githubusercontent.com/94703030/203233617-86a474e9-7007-4e2d-84bd-0f30f125e7d5.png">
+In this project, we used MongoDB as our database, which is a document-oriented NoSQL database. We created 6 different collections to store our data: 
+<img width="1322" alt="Screenshot 2022-11-22 at 12 39 14 AM" src="https://user-images.githubusercontent.com/94703030/203233617-86a474e9-7007-4e2d-84bd-0f30f125e7d5.png">
 1. AuthInfo: Stores the username and password for all users(restaurant owners and customers), along with an unique user id.
 2. Menus: Stores menus and the restaurant(id) of this menu.
 3. Orders: Stores all orders with their: status, time placed, customer(id) that placed the order, restaurant(id) that receives the order.
-4. Restaurants: Stores restaurant name, location, email, phone, and an unique restaurant id.
+4. Restaurants: Stores restaurant name, location, email, phone, and a unique restaurant id.
 5. Users: Stores customer's name, email, account verification status and an unique user id.
-6. Verification: Stores the verificatio code that has been set, with the user(id) that receives the code and the time it was requested.
+6. Verification: Stores the verification code that has been set, with the user(id) that receives the code and the time it was requested.
 
 ## Architecture and Design Pattern
-We construct our project in a way that it is consistant with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the patten MVC Model-View-Controller design pattern. Each usecase has it's own pakage and all screens, interactors, presentors and controllers are organzied in the package of the by usecase.
+We construct our project in a way that it is consistent with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the pattern MVC Model-View-Controller design pattern. Each use case has its own package and all screens, interactors, presenters and controllers are organized in the package of the by use case.
 
 ## Use of GitHub features
 1. We use the discussion page to open up the floor for everyone to express their thoughts and ask questions. Important deadlines and decisions are also posted there using the announcement feature. 
-2. The issues are used to track our progress of implementing the project. We have one issues for each usecase in the beginning, assigned to each member for implementation. Durnig the process, when ever new problems or ideas arises, we make a new issue to take note and address it.
-3. Branching: we made 1 branch for every sigle feature. Each time the new commit from a branch is merged to the main, that branch will not be used anymore. This workflow has prevented us from the possible mess caused by frequent pull and merge.
-4. Merging and Pull request: We assigned 1 member to keep an eye on the pull requests and merge in the phll requested after having confirmed that there's no conflit and every member in the team is aware of the new changes. 
+2. The issues are used to track our progress of implementing the project. We have one issue for each use case in the beginning, assigned to each member for implementation. During the process, whenever new problems or ideas arise, we make a new issue to take note of and address it.
+3. Branching: we made 1 branch for every single feature. Each time the new commit from a branch is merged to the main, that branch will not be used anymore. This workflow has prevented us from the possible mess caused by frequent pull and merge.
+4. Merging and Pull request: We assigned 1 member to keep an eye on the pull requests and merge in the phll requested after having confirmed that there's no conflict and every member in the team is aware of the new changes. 
 
 ## Closing Words
-Thank you so much for taking the time to read over this document. Our project is still in the progress of implementation and may not support all of the functionalities planned at this point, but we will work together to make it happen. We will appreciate any comments and feedbacks on this project!
+Thank you so much for taking the time to read over this document. Our project is still in the progress of implementation and may not support all of the functionalities planned at this point, but we will work together to make it happen. We will appreciate any comments and feedback on this project!
+
+
