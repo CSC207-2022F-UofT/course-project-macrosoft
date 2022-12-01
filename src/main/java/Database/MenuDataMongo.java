@@ -1,7 +1,5 @@
 package Database;
 import Entities.*;
-import Interactors.DBConnection;
-import Interactors.MongoConnection;
 import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
@@ -29,10 +27,9 @@ public class MenuDataMongo implements MenuDataGateway{
     @Override
     public void setMenu(Restaurant curRes, Menu newMenu){
         Bson filter = Filters.eq("restaurantId", curRes.getRestaurantID());
-        mongoCollectionFetcher.getCollection("Menu").deleteOne(filter);
+        mongoCollectionFetcher.getCollection("Menus").deleteOne(filter);
         Document newMenuDoc = convertMenuToDoc(newMenu);
-        mongoCollectionFetcher.getCollection("Menu").insertOne(newMenuDoc);
-
+        mongoCollectionFetcher.getCollection("Menus").insertOne(newMenuDoc);
     }
 
     /**
@@ -73,8 +70,9 @@ public class MenuDataMongo implements MenuDataGateway{
             foodDocLst.add(convertFoodToDoc(curFood));
         }
 
-        return new Document("Food", foodDocLst)
-                .append("restaurantId", curMenu.getRestaurantId());
+
+        return new Document("restaurantId", curMenu.getRestaurantId())
+                .append("Food", foodDocLst);
     }
 
     /**

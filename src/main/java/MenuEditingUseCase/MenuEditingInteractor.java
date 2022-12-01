@@ -4,6 +4,7 @@ package MenuEditingUseCase;
 
 import Database.MenuDataGateway;
 import Entities.*;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +37,8 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
                 requestModel.getDescription(),
                 requestModel.getCategory(),
                 requestModel.getPrice());
-        MenuEditingResponseModel responseModel = new MenuEditingResponseModel(newMenu);
+        MenuEditingResponseModel responseModel = new MenuEditingResponseModel(getMenuDic());
+
         menuDataGateway.setMenu(requestModel.getCurRes(), newMenu);
         return menuPresenter.prepareSuccessView(responseModel);
     };
@@ -45,8 +47,10 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
     public MenuEditingResponseModel create(RemoveFoodRequestModel requestModel){
         RemoveFoodHelper helper = new RemoveFoodHelper();
         Menu newMenu = helper.remove(requestModel.getCurMenu(), requestModel.getFoodToRemove());
-        requestModel.getCurMenu().removeFoodItem(requestModel.getFoodToRemove());
-        MenuEditingResponseModel responseModel = new MenuEditingResponseModel(newMenu);
+
+//        requestModel.getCurMenu().removeFoodItem(requestModel.getFoodToRemove());
+        MenuEditingResponseModel responseModel = new MenuEditingResponseModel(getMenuDic());
+
         menuDataGateway.setMenu(requestModel.getCurRes(), newMenu);
         return menuPresenter.prepareSuccessView(responseModel);
     }
@@ -67,16 +71,20 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
         List<String> descriptionList = new ArrayList<>();
         List<String> categoryList = new ArrayList<>();
         List<Float> priceList = new ArrayList<>();
+        List<ObjectId> idList = new ArrayList<>();
+
         for(Food curFood: foodLst){
             nameList.add(curFood.getName());
             descriptionList.add(curFood.getDescription());
             categoryList.add(curFood.getCategory());
             priceList.add(curFood.getPrice());
+            idList.add(curFood.getItemID());
         }
         menuDic.put("name", nameList);
         menuDic.put("description", descriptionList);
         menuDic.put("category", categoryList);
         menuDic.put("price", priceList);
+        menuDic.put("id", idList);
 
         return menuDic;
     }
