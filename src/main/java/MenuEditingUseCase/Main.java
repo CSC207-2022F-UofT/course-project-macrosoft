@@ -23,7 +23,7 @@ public class Main {
         RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(presenter,gateway, curRes);
         MenuEditingController controller = new MenuEditingController(interactor_add, interactor_remove);
 
-        MenuScreen Screen = new MenuScreen(controller);
+        MenuScreen Screen = new MenuScreen(controller, presenter);
 
     }
 }
