@@ -54,7 +54,7 @@ public class WelcomeScreen {
         // creating the credit panel
         JPanel creditPanel = new JPanel();
         creditPanel.setOpaque(false);
-        JLabel creditLabel = new JLabel("Developed by Allen Xu, Leo Liu, Kevin Yang, Peter Yang, Jackson Su, Yinuo Zhao");
+        JLabel creditLabel = new JLabel("Developed by David Lin, Allen Xu, Leo Liu, Kevin Yang, Peter Yang, Jackson Su, Yinuo Zhao");
         creditLabel.setFont(new Font("Serif", Font.PLAIN, 15));
         creditLabel.setForeground(GREY_WHITE);
         creditLabel.setBorder(emptyBorder);

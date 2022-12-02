@@ -46,13 +46,19 @@ public class MenuScreen extends JFrame implements ActionListener{
         frame.setLocationRelativeTo(null);
 
         JPanel resNamePanel = new JPanel();
+        resNamePanel.setBackground(BG_DARK_GREEN);
+//        resNamePanel.setBackground(GREY_WHITE);
         JLabel label = new JLabel(controller.getAdd_input().getCurRes().getName());
-        label.setFont(new Font("Serif", Font.PLAIN, 40));
+        label.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+//        label.setForeground(BG_DARK_GREEN);
+        label.setForeground(GREY_WHITE);
         label.setBorder(emptyBorder);
         resNamePanel.add(label);
 
 
         JPanel menuPanel = new JPanel();
+//        menuPanel.setBackground(BG_DARK_GREEN);
+        menuPanel.setBackground(GREY_WHITE);
         menuPanel.setBorder(blackline);
         GridLayout layout = new GridLayout(0, 3);
         layout.setVgap(40);
@@ -61,11 +67,15 @@ public class MenuScreen extends JFrame implements ActionListener{
         menuPanel.setBorder(emptyBorder);
 
         JPanel emptyPanel = new JPanel();
+        emptyPanel.setBackground(BG_DARK_GREEN);
+//        emptyPanel.setBackground(GREY_WHITE);
         emptyPanel.add(menuPanel);
 
         JScrollPane menuScroll = new JScrollPane(emptyPanel);
         menuScroll.setBorder(emptyBorder2);
         menuScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        menuScroll.setBackground(BG_DARK_GREEN);
+//        menuScroll.setBackground(GREY_WHITE);
 
 
 
@@ -75,7 +85,8 @@ public class MenuScreen extends JFrame implements ActionListener{
         for(int i = 0; i< menuDic.get("name").size(); i++){
 
             JPanel f = new JPanel();
-            f.setBackground(GREY_WHITE);
+//            f.setBackground(GREY_WHITE);
+//            f.setBackground(Color.white);
             f.setLayout(new GridLayout(0, 1));
 
             JLabel name = new JLabel("Name: " + menuDic.get("name").get(i));
@@ -85,10 +96,17 @@ public class MenuScreen extends JFrame implements ActionListener{
             JButton delete = new JButton("Delete");
             JButton edit = new JButton("Edit");
 
+            delete.setForeground(BG_DARK_GREEN);
+            edit.setForeground(BG_DARK_GREEN);
+
             name.setBorder(emptyBorder2);
+            name.setForeground(BG_DARK_GREEN);
             price.setBorder(emptyBorder2);
+            price.setForeground(BG_DARK_GREEN);
             category.setBorder(emptyBorder2);
+            category.setForeground(BG_DARK_GREEN);
             description.setBorder(emptyBorder2);
+            description.setForeground(BG_DARK_GREEN);
 
             ObjectId curid = new ObjectId(menuDic.get("id").get(i).toString());
 
@@ -110,12 +128,18 @@ public class MenuScreen extends JFrame implements ActionListener{
 
         }
 
-        JPanel buttonPanel = new JPanel(new GridLayout(0, 2));
+        JPanel buttonPanel = new JPanel(new GridLayout(0, 3));
+        buttonPanel.setBackground(BG_DARK_GREEN);
+//        buttonPanel.setBackground(GREY_WHITE);
         buttonPanel.setBorder(emptyBorder);
 
         JButton addFoodButton = new JButton("Add Item");
         JButton finishButton = new JButton("Finish");
         JButton refreshButton = new JButton("Refresh");
+
+        addFoodButton.setForeground(BG_DARK_GREEN);
+        finishButton.setForeground(BG_DARK_GREEN);
+        refreshButton.setForeground(BG_DARK_GREEN);
 
         addFoodButton.addActionListener(new ActionListener() {
             @Override
