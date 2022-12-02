@@ -118,12 +118,13 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
     }
 
     public Order convertDocumentToOrder(Document document) {
+        FoodDataGateway foodDataGateway = new FoodDataMongo(new MongoCollectionFetcher());
         List<OrderItem> items = document.getList("items", Document.class)
                 .stream()
                 .map(doc ->
                         new OrderItem(
                                 doc.getObjectId("foodItemID"),
-                                null,
+                                foodDataGateway.getFood(doc.getObjectId("foodItemID"), document.getObjectId("restaurantID")),
                                 doc.getInteger("numberOfItem")))
                 .collect(Collectors.toList());
 

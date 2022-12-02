@@ -10,7 +10,6 @@ public class Main {
         i.login("davidlin123", "123456");
         User curUser = LoginUserInteractor.getCurUser();
 
-
         MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
         OrderHistoryPresenter presenter = new OrderHistoryProcessor();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
