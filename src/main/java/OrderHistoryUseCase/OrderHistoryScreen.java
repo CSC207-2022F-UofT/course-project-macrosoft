@@ -29,6 +29,10 @@ public class OrderHistoryScreen extends JFrame{
 
         JPanel titlePanel = new JPanel();
         JPanel orderDisplayPanel = new JPanel();
+        JScrollPane orderHistoryScroll = new JScrollPane(orderDisplayPanel);
+        orderHistoryScroll.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+        orderHistoryScroll.setVerticalScrollBarPolicy((ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS));
+        orderDisplayPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
         titlePanel.add(title);
         title.setVerticalAlignment(JLabel.CENTER);
@@ -43,7 +47,7 @@ public class OrderHistoryScreen extends JFrame{
         List<Order> orderList = controller.getOrderHistoryInput().getOrders(new OrderHistoryRequestModel(controller.getOrderHistoryInput().getCurUser())).getOrders();
         for(Order order : orderList){
             JPanel orderPanel = new JPanel();
-            orderPanel.setBackground(Color.GRAY);
+            orderPanel.setBackground(new Color(214, 210, 205));
             orderPanel.setLayout(new GridLayout(0, 1));
             resIdToNameConvertor convertor = new resIdToNameConvertor();
             JLabel resName = new JLabel("Restaurant Name: " + convertor.getResNameById(order.getRestaurantID()));
@@ -52,7 +56,7 @@ public class OrderHistoryScreen extends JFrame{
                 if(orderItem.getFood() != null){
                     String foodName = orderItem.getFood().getName();
                     String foodNum = String.valueOf(orderItem.getNumberOfItem());
-                    orderFoods = orderFoods + foodName + " " + foodNum + "\n";
+                    orderFoods = orderFoods + foodName + " # " + foodNum + "\n";
                 }
             }
             JLabel orderItems = new JLabel("Order Items: " + orderFoods);

@@ -52,7 +52,7 @@ public class Menu {
 
     public Food findFood(ObjectId foodId){
         for (Food curFood: foodList){
-            if(curFood.getItemID().equals(foodId)){
+            if(curFood.getItemID().compareTo(foodId) == 0){
                 return curFood;
             }
         }
