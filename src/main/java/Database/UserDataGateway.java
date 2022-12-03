@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserDataGateway {
     String save(User user);
     List<User> findAll();
-    User findById(String id);
+    User findById(ObjectId id);
     User findByUsernamePassword(String username, String password);
     String updateVerifiedStatus(ObjectId userId, Boolean newStatus);
 }
