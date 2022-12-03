@@ -30,7 +30,6 @@ public class UserInfoAccessor {
                     userDocument.getString("lastName"),
                     userDocument.getString("email"),
                     userDocument.getObjectId("_id"),
-                    userDocument.getList("orders", ObjectId.class),
                     userDocument.getBoolean("verified"));
 
             return user;

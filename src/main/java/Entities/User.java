@@ -9,15 +9,13 @@ public class User {
     private String lastName;
     private String email;
     private ObjectId userId;
-    private List<ObjectId> orderIds;
     private boolean verified;
 
-    public User(String firstName, String lastName, String email, ObjectId userId, List<ObjectId> orderIds, boolean verified) {
+    public User(String firstName, String lastName, String email, ObjectId userId, boolean verified) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.userId = userId;
-        this.orderIds = orderIds;
         this.verified = verified;
     }
 
@@ -51,14 +49,6 @@ public class User {
 
     public void setUserId(ObjectId userId) {
         this.userId = userId;
-    }
-
-    public List<ObjectId> getOrderIds() {
-        return orderIds;
-    }
-
-    public void setOrderIds(List<ObjectId> orderIds) {
-        this.orderIds = orderIds;
     }
 
     public boolean isVerified() {
