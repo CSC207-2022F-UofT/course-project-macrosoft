@@ -1,9 +1,9 @@
 package change_password_use_case;
 
-import Database.AuthInfoDataGateway;
-import Database.AuthInfoProcessorMongo;
-import Database.MongoCollectionFetcher;
-import Entities.AuthInfo;
+import database.AuthInfoDataGateway;
+import database.AuthInfoProcessorMongo;
+import database.MongoCollectionFetcher;
+import entities.AuthInfo;
 import org.bson.types.ObjectId;
 
 public class ChangePasswordInteractor implements ChangePasswordInputBoundary {
