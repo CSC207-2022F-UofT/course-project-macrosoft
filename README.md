@@ -13,7 +13,7 @@ More details will be introduced in the next few sections of this document.
 3. The screens will navigate between each other on click according to their functionalities.
 4. **Our program is not finished at this point so it CANNOT run by following the above instruction. Please run each individual screen.**
 
-## Screens
+## screens
 ### 1. Welcome Screen. 
 [Screenshots to be add]
 This screen is the first screen that shows up when the program is successfully runned. It contains a simple greeting message and two buttons used for register and login.
@@ -48,9 +48,9 @@ Both customers and restaurant owners will have this access to this page, directe
 - For restaurant owners, the order history contains the list of orders that the restaurant has completed, from all customers, sorted by time with the most recent order at the top. 
 - For customers, the order history contains the list of orders that the user has placed, from all restaurants, sorted by time with the most recent order at the top.
 
-### 8. More Screens to be added.
+### 8. More screens to be added.
 
-## Database
+## database
 In this project, we used MongoDB as our database, which is a document-oriented NoSQL database. We created 6 different collections to store our data: 
 <img width="1322" alt="Screenshot 2022-11-22 at 12 39 14 AM" src="https://user-images.githubusercontent.com/94703030/203233617-86a474e9-7007-4e2d-84bd-0f30f125e7d5.png">
 1. AuthInfo: Stores the username and password for all users(restaurant owners and customers), along with an unique user id.
