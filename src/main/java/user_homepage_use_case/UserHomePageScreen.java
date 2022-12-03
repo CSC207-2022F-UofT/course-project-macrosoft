@@ -28,7 +28,16 @@ public class UserHomePageScreen {
         frame.setLayout(new CardLayout());
         frame.setLocationRelativeTo(null);
 
-        JTabbedPane pane1 = new JTabbedPane();
+        JPanel homePanel = new JPanel();
+        JPanel cartPanel = new JPanel();
+        JPanel profilePanel = new JPanel();
+
+        JTabbedPane tabs = new JTabbedPane();
+        tabs.addTab("Home", homePanel);
+        tabs.addTab("cart", cartPanel);
+        tabs.addTab("Proile", profilePanel);
+
+        frame.add(tabs);
 
         frame.setVisible(true);
 

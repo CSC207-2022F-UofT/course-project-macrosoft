@@ -1,7 +1,7 @@
 package TestDatabaseAccessor;
 
-import Interactors.DBConnection;
-import Interactors.MongoConnection;
+import interactors.DBConnection;
+import interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.Document;
