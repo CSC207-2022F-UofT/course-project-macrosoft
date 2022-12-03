@@ -44,14 +44,11 @@ public class UserDataProcessorMongo implements UserDataGateway {
      * @return
      */
     @Override
-    public User findById(String id) {
+    public User findById(ObjectId id) {
         MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
 
-        // id is a hexString, convert to ObjectId
-        ObjectId _id = new ObjectId(id);
-
         // filter by Id
-        Bson queryFilter = Filters.eq("_id", _id);
+        Bson queryFilter = Filters.eq("_id", id);
 
         Document doc = (Document) userCollection.find(queryFilter).first();
 
