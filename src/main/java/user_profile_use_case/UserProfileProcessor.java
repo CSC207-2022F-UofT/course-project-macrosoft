@@ -13,7 +13,8 @@ public class UserProfileProcessor implements UserProfilePresenter {
      */
     @Override
     public void userFound(UserProfileResponseModel userProfileResponseModel) {
-
+        userProfilePanel.updateNameLabel(userProfileResponseModel.getFirstName() + " " + userProfileResponseModel.getLastName());
+        userProfilePanel.updateEmailLabel(userProfileResponseModel.getEmail());
     }
 
     /**

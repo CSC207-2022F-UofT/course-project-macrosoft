@@ -1,5 +1,6 @@
 package Database;
 
+import Entities.AuthInfo;
 import Entities.User;
 
 import java.util.ArrayList;
@@ -91,7 +92,12 @@ public class UserDataProcessorMongo implements UserDataGateway {
     }
 
     public User convertDocumentToUser(Document document) {
-        return null;
+        return new User(document.getString("firstName"),
+                document.getString("lastName"),
+                document.getString("email"),
+                document.getObjectId("_id"),
+                document.getBoolean("verified")
+        );
     }
 
     public Document convertUserToDocument(User user) {
