@@ -1,10 +1,9 @@
 package user_profile_use_case;
 
-import Database.MongoCollectionFetcher;
-import Database.UserDataGateway;
-import Database.UserDataProcessorMongo;
-import Entities.User;
-import org.bson.types.ObjectId;
+import database.MongoCollectionFetcher;
+import database.UserDataGateway;
+import database.UserDataProcessorMongo;
+import entities.User;
 
 public class UserProfileInteractor implements UserProfileInputBoundary {
 
