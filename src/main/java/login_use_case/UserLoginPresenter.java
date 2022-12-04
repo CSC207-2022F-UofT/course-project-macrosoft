@@ -1,7 +1,8 @@
 package login_use_case;
 
 public interface UserLoginPresenter {
-    public UserLoginResponseModel loginSuccess(UserLoginResponseModel response);
-    public UserLoginResponseModel loginFailed(UserLoginResponseModel response);
-    public UserLoginResponseModel notVerified(UserLoginResponseModel response);
+    UserLoginResponseModel loginSuccess(UserLoginResponseModel response);
+    UserLoginResponseModel loginFailed(UserLoginResponseModel response);
+    UserLoginResponseModel notVerified(UserLoginResponseModel response);
+    void setLoginScreen(UserLoginScreenInterface loginScreen);
 }

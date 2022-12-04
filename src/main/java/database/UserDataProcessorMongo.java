@@ -113,6 +113,16 @@ public class UserDataProcessorMongo implements UserDataGateway {
         userCollection.updateOne(queryFilter, update);
     }
 
+    @Override
+    public boolean getVerifiedStatus(ObjectId userId) {
+        MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
+        Bson queryFilter = Filters.eq("_id", userId);
+
+        Document doc = (Document) userCollection.find(queryFilter).first();
+
+        return doc.getBoolean("verified");
+    }
+
     public User convertDocumentToUser(Document document) {
         return new User(document.getString("firstName"),
                 document.getString("lastName"),
