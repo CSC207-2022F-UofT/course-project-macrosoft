@@ -6,6 +6,11 @@ import org.bson.types.ObjectId;
 public class VerifyUserInteractor {
 
     private VerifyUserPresenter presenter;
+
+    public VerifyUserInteractor(VerifyUserPresenter presenter) {
+        this.presenter = presenter;
+    }
+
     /**
      * @param userId
      * @param code

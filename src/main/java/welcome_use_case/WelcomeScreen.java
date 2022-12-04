@@ -1,5 +1,7 @@
 package welcome_use_case;
 
+import login_use_case.*;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -79,10 +81,14 @@ public class WelcomeScreen {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                UserLoginInputBoundary interactor = new UserLoginInteractor();
-//                UserLoginController userLoginController = new UserLoginController(interactor);
-//                LoginPresenter loginPresenter = new LoginPresenter(userLoginController);
+                UserLoginPresenter userLoginPresenter = new UserLoginProcessor(null);
+                UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginPresenter);
+                UserLoginController userLoginController = new UserLoginController(userLoginInteractor);
+                UserLoginScreenInterface screen = new UserLoginScreen(userLoginController);
 
+                userLoginPresenter.setLoginScreen(screen);
+
+                screen.getFrame().setVisible(true);
             }
         });
 

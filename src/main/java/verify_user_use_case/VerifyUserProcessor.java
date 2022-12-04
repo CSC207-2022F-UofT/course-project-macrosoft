@@ -2,7 +2,13 @@ package verify_user_use_case;
 
 import org.bson.types.ObjectId;
 
-public class VerifyUserProcessor implements VerifyUserPresenter{
+public class VerifyUserProcessor implements VerifyUserPresenter {
+    private VerifyUserScreenInterface verifyUserScreen;
+
+    public VerifyUserProcessor(VerifyUserScreenInterface verifyUserScreen) {
+        this.verifyUserScreen = verifyUserScreen;
+    }
+
     /**
      * @param currentUser
      * @return
@@ -19,5 +25,9 @@ public class VerifyUserProcessor implements VerifyUserPresenter{
     @Override
     public String verifiedFailed() {
         return null;
+    }
+
+    public void setVerifyUserScreen(VerifyUserScreenInterface verifyUserScreen) {
+        this.verifyUserScreen = verifyUserScreen;
     }
 }

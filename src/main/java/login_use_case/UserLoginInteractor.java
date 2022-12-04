@@ -1,10 +1,9 @@
 package login_use_case;
 
-import database.AuthInfoDataGateway;
-import database.AuthInfoProcessorMongo;
-import database.MongoCollectionFetcher;
+import database.*;
 
 import entities.*;
+import library.PasswordHasher;
 
 public class UserLoginInteractor implements UserLoginInputBoundary {
     private UserLoginPresenter presenter;
@@ -16,17 +15,24 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
         MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
+        UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
 
-        AuthInfo authInfo = authInfoDataGateway.getUserByUsernamePassword(requestModel.getUsername(), requestModel.getPassword());
+        String hashedPassword;
+        try {
+            hashedPassword = PasswordHasher.toHexString(PasswordHasher.getSHA(requestModel.getPassword()));
+        } catch (Exception e) {
+            return null;
+        }
+
+        AuthInfo authInfo = authInfoDataGateway.getUserByUsernamePassword(requestModel.getUsername(), hashedPassword);
 
         if (authInfo != null) {
+            boolean verified = userDataGateway.getVerifiedStatus(authInfo.getUserId());
 
-            User currentUser = UserInfoAccessor.getUserProfile(authInfo.getUserId());
-
-            if (!currentUser.isVerified()) {
-                return presenter.notVerified(new UserLoginResponseModel(1001, currentUser));
+            if (!verified) {
+                return presenter.notVerified(new UserLoginResponseModel(1001, authInfo.getUserId()));
             } else {
-                return presenter.loginSuccess(new UserLoginResponseModel(1000, currentUser));
+                return presenter.loginSuccess(new UserLoginResponseModel(1000, authInfo.getUserId()));
             }
         }
 
