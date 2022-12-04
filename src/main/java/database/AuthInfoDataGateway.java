@@ -10,5 +10,5 @@ public interface AuthInfoDataGateway {
     String create(Order order);
     AuthInfo getUserByUsernamePassword(String username, String password);
     AuthInfo getUserByUserIdPassword(ObjectId userId, String password);
-    void setNewPassword(ObjectId userId, String newPassword);
+    String setNewPassword(ObjectId userId, String newPassword);
 }

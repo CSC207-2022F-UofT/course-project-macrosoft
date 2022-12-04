@@ -17,14 +17,10 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
     private JLabel emailLabel = new JLabel("Email");
     private UserProfileController userProfileController;
 
-    public UserProfilePanel(ObjectId userId) {
+    public UserProfilePanel(UserProfileController userProfileController) {
+        this.userProfileController = userProfileController;
+
         GridLayout gridLayout = new GridLayout(0,1);
-
-        UserProfilePresenter userProfilePresenter = new UserProfileProcessor(this);
-        UserProfileInputBoundary userProfileInteractor = new UserProfileInteractor(userProfilePresenter);
-        userProfileController = new UserProfileController(userProfileInteractor, userId);
-
-        updatePanelData();
 
         JPanel centrePanel = new JPanel(gridLayout);
         centrePanel.setOpaque(false);
@@ -76,12 +72,16 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
     public void updateNameLabel(String newName) {
         nameLabel.setText(newName);
     }
-
+    @Override
     public void updateEmailLabel(String newEmail) {
         emailLabel.setText(newEmail);
     }
-
+    @Override
     public void updatePanelData() {
         userProfileController.getUserProfile();
+    }
+    @Override
+    public void showChangePasswordScreen() {
+
     }
 }

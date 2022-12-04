@@ -1,14 +1,13 @@
-package screens;
+package login_use_case;
 
-import login_use_case.UserLoginController;
-import login_use_case.UserLoginResponseModel;
+import screens.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 
-public class LoginScreen extends JFrame implements ActionListener {
+public class UserLoginScreen extends JFrame implements ActionListener {
     /**
      * The username chosen by the user
      */
@@ -23,7 +22,7 @@ public class LoginScreen extends JFrame implements ActionListener {
     /**
      * A window with a title and a JButton.
      */
-    public LoginScreen(UserLoginController controller) {
+    public UserLoginScreen(UserLoginController controller) {
 
         this.userLoginController = controller;
 
@@ -61,8 +60,6 @@ public class LoginScreen extends JFrame implements ActionListener {
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
-
         if (evt.getActionCommand().equals("Log in")) {
             try {
                 UserLoginResponseModel userLoginResponseModel = userLoginController.login(username.getText(),
