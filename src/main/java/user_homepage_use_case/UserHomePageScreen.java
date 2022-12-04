@@ -21,59 +21,15 @@ public class UserHomePageScreen {
     public UserHomePageScreen(UserHomepageController controller) {
         this.controller = controller;
 
-        final JFrame frame = new JFrame("User Homepage");
+        final JFrame frame = new JFrame();
 
         frame.setSize(900, 700);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new CardLayout());
         frame.setLocationRelativeTo(null);
 
-        JPanel homePanel = new JPanel();
-        JPanel cartPanel = new JPanel();
-        JPanel profilePanel = new JPanel();
+        JTabbedPane pane1 = new JTabbedPane();
 
-        homePanel.setOpaque(true);
-        cartPanel.setOpaque(true);
-        profilePanel.setOpaque(true);
-
-        homePanel.setBackground(GREY_WHITE);
-        cartPanel.setBackground(GREY_WHITE);
-        profilePanel.setBackground(GREY_WHITE);
-
-        JPanel greetingPanel = new JPanel();
-        JLabel greetingLabel = new JLabel("Hello");
-        greetingLabel.setBackground(GREY_WHITE);
-        greetingLabel.setForeground(BG_DARK_GREEN);
-        greetingLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
-        greetingPanel.setBackground(GREY_WHITE);
-        greetingPanel.setBorder(emptyBorder);
-        greetingPanel.add(greetingLabel);
-
-        homePanel.add(greetingPanel);
-
-        JLabel reminderLabel1 = new JLabel("This page will contain the search bar and a list of restaurants");
-        JLabel reminderLabel2 = new JLabel("This page will contain the shopping cart(items in cart)");
-        JLabel reminderLabel3 = new JLabel("This page will contain user profile page");
-        homePanel.add(reminderLabel1);
-        cartPanel.add(reminderLabel2);
-        profilePanel.add(reminderLabel3);
-
-        UIManager.put("TabbedPane.selected", Color.red);
-
-        JLabel homeLabel = new JLabel("Home");
-        homeLabel.setPreferredSize(new Dimension(20, 10));
-
-        JTabbedPane tabs = new JTabbedPane();
-        tabs.setOpaque(true);
-        tabs.setBackground(BG_DARK_GREEN);
-        tabs.setForeground(GREY_WHITE);
-
-        tabs.addTab("Home", homePanel);
-        tabs.addTab("cart", cartPanel);
-        tabs.addTab("Profile", profilePanel);
-
-        tabs.setTabPlacement(JTabbedPane.BOTTOM);
-        frame.add(tabs);
         frame.setVisible(true);
 
     }
