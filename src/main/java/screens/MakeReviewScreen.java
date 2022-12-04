@@ -3,8 +3,8 @@ package screens;
 import entities.Order;
 
 import make_review_use_case.MakeReviewController;
-import make_review_use_case.MakeReviewRequestModel;
-import make_review_use_case.MakeReviewResponseModel;
+import datamodels.MakeReviewRequestModel;
+import datamodels.MakeReviewResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,6 +31,8 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
 
         this.makeReviewController = controller;
         this.curOrder = curOrder;
+
+        this.setSize(900, 700);
 
         JLabel title = new JLabel("Review");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -99,13 +101,12 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
                 Date d = new Date();
 
                 // generate request based on model, dependency injection
-                MakeReviewRequestModel requestModel = new MakeReviewRequestModel(curOrder, r, c, lst, s, d);
+                MakeReviewRequestModel request = new MakeReviewRequestModel(curOrder, r, c, lst, s, d);
 
                 // pass request to controller to get a response
-                MakeReviewResponseModel makeReviewResponseModel = makeReviewController.makeReview(requestModel);
+                MakeReviewResponseModel response = makeReviewController.makeReview(request);
 
-                // call presenter to modify UI based on response model
-                // TODO
+
 
             } catch (NullPointerException e) {  // error: certain required fields are empty
                 JOptionPane.showMessageDialog(this,
