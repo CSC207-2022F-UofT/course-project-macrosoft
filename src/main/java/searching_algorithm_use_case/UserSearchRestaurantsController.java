@@ -7,7 +7,9 @@ public class UserSearchRestaurantsController {
         this.restaurantName = restaurantName;
     }
 
-    public UserSearchRestaurantsResponseModel search(UserSearchRestaurantsRequestModel requestModel) {
+    public UserSearchRestaurantsResponseModel search(String name) {
+        UserSearchRestaurantsRequestModel requestModel = new UserSearchRestaurantsRequestModel(name);
+
         return restaurantName.search(requestModel);
     }
 }
