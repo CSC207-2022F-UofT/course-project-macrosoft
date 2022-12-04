@@ -14,7 +14,7 @@ public class UserProfileInteractor implements UserProfileInputBoundary {
     }
 
     /**
-     * @param userId
+     * @param
      */
     @Override
     public void displayUserProfile(UserProfileRequestModel userProfileRequestModel) {
