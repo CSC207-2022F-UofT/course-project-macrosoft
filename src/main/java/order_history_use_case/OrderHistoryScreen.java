@@ -29,7 +29,7 @@ public class OrderHistoryScreen extends JFrame{
 
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1100,800);
+        frame.setSize(1400,800);
         frame.setLocationRelativeTo(null);
 
         JPanel titlePanel = new JPanel();
@@ -92,9 +92,22 @@ public class OrderHistoryScreen extends JFrame{
             orderDisplayPanel.add(orderPanel);
         }
 
+        JPanel right = new JPanel();
+        JPanel left = new JPanel();
+        JPanel bottom = new JPanel();
+
+        right.setPreferredSize(new Dimension(100 ,0));
+        left.setPreferredSize(new Dimension(100 ,0));
+        bottom.setPreferredSize(new Dimension(0 ,100));
+        right.setBackground(BG_DARK_GREEN);
+        left.setBackground(BG_DARK_GREEN);
+        bottom.setBackground(BG_DARK_GREEN);
 
         frame.getContentPane().add(orderHistoryScroll, BorderLayout.CENTER);
         frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
+        frame.getContentPane().add(right, BorderLayout.EAST);
+        frame.getContentPane().add(left, BorderLayout.WEST);
+        frame.getContentPane().add(bottom, BorderLayout.SOUTH);
 
         frame.setVisible(true);
     }

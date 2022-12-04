@@ -28,7 +28,7 @@ public class OrderHistoryDetailScreen {
 
         frame.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1100,800);
+        frame.setSize(1400,800);
         frame.setLocationRelativeTo(null);
 
         JPanel titlePanel = new JPanel();
@@ -44,7 +44,7 @@ public class OrderHistoryDetailScreen {
         JPanel orderDisplayDetailPanel = new JPanel();
         orderDisplayDetailPanel.setBackground(GREY_WHITE);
         orderDisplayDetailPanel.setBorder(blackline);
-        GridLayout layout = new GridLayout(0 ,3);
+        GridLayout layout = new GridLayout(0 ,1);
         layout.setVgap(40);
         layout.setHgap(40);
         orderDisplayDetailPanel.setLayout(layout);
@@ -93,14 +93,33 @@ public class OrderHistoryDetailScreen {
             foodPanel.add(pricePerFood);
             foodPanel.add(price);
 
+
             orderDisplayDetailPanel.add(foodPanel);
         }
 
+        JPanel totalPanel = new JPanel();
+        totalPanel.setBackground(BG_DARK_GREEN);
+
         JLabel totalOrderPrice = new JLabel("Total: $" + String.valueOf(totalPrice));
+        totalOrderPrice.setHorizontalTextPosition(JLabel.CENTER);
+        totalOrderPrice.setForeground(GREY_WHITE);
+        totalOrderPrice.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 60));
+        totalPanel.add(totalOrderPrice);
+
+        JPanel right = new JPanel();
+        JPanel left = new JPanel();
+        JPanel bottom = new JPanel();
+
+        right.setPreferredSize(new Dimension(100 ,0));
+        left.setPreferredSize(new Dimension(100 ,0));
+        right.setBackground(BG_DARK_GREEN);
+        left.setBackground(BG_DARK_GREEN);
 
         frame.getContentPane().add(orderHistoryDetailScroll, BorderLayout.CENTER);
         frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
-        frame.getContentPane().add(totalOrderPrice, BorderLayout.SOUTH);
+        frame.getContentPane().add(totalPanel, BorderLayout.SOUTH);
+        frame.getContentPane().add(right, BorderLayout.EAST);
+        frame.getContentPane().add(left, BorderLayout.WEST);
 
         frame.setVisible(true);
     }
