@@ -58,6 +58,24 @@ public class MenuDataMongo implements MenuDataGateway{
         }
     }
 
+    public Menu getMenu(ObjectId restId){
+        Bson queryFilter = Filters.and(
+                Filters.eq("restaurantId", restId));
+
+        MongoIterable<Document> menus = mongoCollectionFetcher.getCollection("Menus").find(queryFilter);
+
+        if (menus.first() != null) {
+            Document menuDoc = menus.first();
+            return convertDocToMenu(menuDoc);
+        } else {
+            Document newMenuDoc = new Document("restaurantId", restId);
+            newMenuDoc.append("Food", new ArrayList<>());
+            InsertOneResult result = mongoCollectionFetcher.getCollection("Menus").insertOne(newMenuDoc);
+
+            return convertDocToMenu(newMenuDoc);
+        }
+    }
+
     /**
      *
      * @param curMenu

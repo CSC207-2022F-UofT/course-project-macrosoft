@@ -79,14 +79,13 @@ public class WelcomeScreen {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
 //                UserLoginInputBoundary interactor = new UserLoginInteractor();
-//                UserLoginController controller = new UserLoginController(interactor);
-//                LoginScreen screen = new LoginScreen(controller);
-//                UserLoginPresenter presenter = new UserLoginProcessor(screen);
+//                UserLoginController userLoginController = new UserLoginController(interactor);
+//                LoginPresenter loginPresenter = new LoginPresenter(userLoginController);
 
             }
         });
+
 
         actionPanel.add(loginButton);
         actionPanel.add(registerButton);
