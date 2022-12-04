@@ -24,4 +24,8 @@ public class UserProfileProcessor implements UserProfilePresenter {
     public void userNotFound() {
 
     }
+
+    public void setUserProfilePanel(UserProfilePanelInterface userProfilePanel) {
+        this.userProfilePanel = userProfilePanel;
+    }
 }
