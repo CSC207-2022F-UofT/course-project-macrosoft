@@ -17,4 +17,8 @@ public class UserProfileController {
         UserProfileRequestModel userProfileRequestModel = new UserProfileRequestModel(this.currentUserId);
         userProfileInteractor.displayUserProfile(userProfileRequestModel);
     }
+
+    public ObjectId getCurrentUserId() {
+        return currentUserId;
+    }
 }

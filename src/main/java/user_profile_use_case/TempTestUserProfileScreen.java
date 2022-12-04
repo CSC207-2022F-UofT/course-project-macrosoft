@@ -10,7 +10,7 @@ public class TempTestUserProfileScreen {
     public TempTestUserProfileScreen() {
         UserProfilePresenter userProfilePresenter = new UserProfileProcessor(null);
         UserProfileInputBoundary userProfileInteractor = new UserProfileInteractor(userProfilePresenter);
-        UserProfileController userProfileController = new UserProfileController(userProfileInteractor, new ObjectId("63335e7abb6cd6599ed6f64b"));
+        UserProfileController userProfileController = new UserProfileController(userProfileInteractor, new ObjectId("63504de50fd7682673870fde"));
 
         final JFrame frame = new JFrame();
         frame.setSize(900, 700);
