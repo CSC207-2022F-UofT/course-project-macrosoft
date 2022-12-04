@@ -22,7 +22,7 @@ public class AddFoodScreen {
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
 
-    public AddFoodScreen(MenuEditingController controller){
+    public AddFoodScreen(MenuEditingController controller, JPanel menuPanel){
 
         this.menuEditingController = controller;
 
@@ -79,7 +79,6 @@ public class AddFoodScreen {
                         descriptionField.getText(),
                         categoryField.getText(),
                         Float.parseFloat(priceField.getText()));
-
                 frame.dispose();
             }
         });

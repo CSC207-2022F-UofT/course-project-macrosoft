@@ -3,12 +3,13 @@ package menu_editing_use_case;
 // Application Business Rules Layer
 
 import database.MenuDataGateway;
-import entities.*;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import entities.*;
 
 public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodInputBoundary{
 
@@ -21,7 +22,6 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
         this.menuDataGateway = menuDataGateway;
         this.curRes = curRes;
     }
-
 
     /**
      *
@@ -37,9 +37,10 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
                 requestModel.getDescription(),
                 requestModel.getCategory(),
                 requestModel.getPrice());
-        MenuEditingResponseModel responseModel = new MenuEditingResponseModel(getMenuDic());
 
         menuDataGateway.setMenu(requestModel.getCurRes(), newMenu);
+        MenuEditingResponseModel responseModel = new MenuEditingResponseModel(getMenuDic());
+
         return menuPresenter.prepareSuccessView(responseModel);
     };
 
@@ -48,10 +49,10 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
         RemoveFoodHelper helper = new RemoveFoodHelper();
         Menu newMenu = helper.remove(requestModel.getCurMenu(), requestModel.getFoodToRemove());
 
-//        requestModel.getCurMenu().removeFoodItem(requestModel.getFoodToRemove());
+        menuDataGateway.setMenu(requestModel.getCurRes(), newMenu);
+
         MenuEditingResponseModel responseModel = new MenuEditingResponseModel(getMenuDic());
 
-        menuDataGateway.setMenu(requestModel.getCurRes(), newMenu);
         return menuPresenter.prepareSuccessView(responseModel);
     }
 
@@ -80,6 +81,7 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
             priceList.add(curFood.getPrice());
             idList.add(curFood.getItemID());
         }
+
         menuDic.put("name", nameList);
         menuDic.put("description", descriptionList);
         menuDic.put("category", categoryList);

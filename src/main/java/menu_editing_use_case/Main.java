@@ -18,12 +18,28 @@ public class Main {
 
         MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
         MenuDataGateway gateway = new MenuDataMongo(fetcher);
+
         MenuEditingPresenter presenter = new MenuEditingResponseFormatter();
         AddFoodInputBoundary interactor_add = new MenuEditingInteractor(presenter,gateway, curRes);
         RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(presenter,gateway, curRes);
         MenuEditingController controller = new MenuEditingController(interactor_add, interactor_remove);
 
         MenuScreen Screen = new MenuScreen(controller, presenter);
+
+
+//        Menu curMenu = gateway.getMenu(curRes);
+//        Food foodToRemove = curMenu.findFood(new ObjectId("638bc671a577c8726e2e040c"));
+//
+//        System.out.println(curMenu.toString());
+//        System.out.println(foodToRemove.getName());
+//        RemoveFoodHelper helper = new RemoveFoodHelper();
+//        helper.remove(curMenu, foodToRemove);
+////        curMenu.removeFoodItem(foodToRemove);
+//        System.out.println(curMenu.toString());
+//
+//        gateway.setMenu(curRes,curMenu);
+
+
 
     }
 }

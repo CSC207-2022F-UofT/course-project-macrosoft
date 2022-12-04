@@ -2,10 +2,9 @@ package menu_editing_use_case;
 
 //Application Business Rule layer
 
-import entities.*;
-
 import java.util.HashMap;
 import java.util.List;
+import entities.*;
 
 public interface AddFoodInputBoundary {
 
@@ -16,5 +15,6 @@ public interface AddFoodInputBoundary {
     Restaurant getCurRes();
 
     HashMap<String, List> getMenuDic();
+
 
 }
