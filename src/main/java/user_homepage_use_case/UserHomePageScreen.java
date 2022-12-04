@@ -50,7 +50,7 @@ public class UserHomePageScreen {
         greetingPanel.add(greetingLabel);
 
         homePanel.add(greetingPanel);
-        profilePanel.add(controller.getUserProfilePanel());
+        profilePanel.add(controller.getUserProfilePanel(controller.getUserId()));
 
         JLabel reminderLabel1 = new JLabel("This page will contain the search bar and a list of restaurants");
         JLabel reminderLabel2 = new JLabel("This page will contain the shopping cart(items in cart)");

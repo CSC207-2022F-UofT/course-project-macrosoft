@@ -85,10 +85,10 @@ public class WelcomeScreen {
                 UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginPresenter);
                 UserLoginController userLoginController = new UserLoginController(userLoginInteractor);
                 UserLoginScreenInterface screen = new UserLoginScreen(userLoginController);
-
                 userLoginPresenter.setLoginScreen(screen);
-
                 screen.getFrame().setVisible(true);
+
+                frame.dispose();
             }
         });
 
