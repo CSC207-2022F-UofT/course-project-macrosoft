@@ -82,7 +82,7 @@ public class FoodDataMongo implements FoodDataGateway{
      */
 
     public Document convertFoodToDoc(Food curFood){
-        return new Document("_id", new ObjectId())
+        return new Document("_id", curFood.getItemID())
                 .append("name", curFood.getName())
                 .append("description", curFood.getDescription())
                 .append("category", curFood.getCategory())
