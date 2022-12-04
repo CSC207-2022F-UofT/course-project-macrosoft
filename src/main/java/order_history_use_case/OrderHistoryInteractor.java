@@ -6,7 +6,7 @@ import entities.User;
 
 import java.util.List;
 
-public class OrderHistoryInteractor implements OrderHistoryInputBoundary {
+public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
 
 
     private final OrderHistoryPresenter presenter;
