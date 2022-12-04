@@ -8,7 +8,6 @@ import java.util.List;
 
 public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
 
-
     private final OrderHistoryPresenter presenter;
     private final OrderDataGateway orderDataGateway;
     private final User user;

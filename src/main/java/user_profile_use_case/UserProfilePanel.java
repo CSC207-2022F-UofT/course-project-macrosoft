@@ -1,6 +1,7 @@
 package user_profile_use_case;
 
 import change_password_use_case.*;
+import change_user_info_use_case.*;
 import org.bson.types.ObjectId;
 
 import javax.swing.*;
@@ -47,7 +48,7 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         changeInfoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showChangePasswordScreen();
+                showChangeUserInfoScreen();
             }
         });
         buttonsPanel.add(changeInfoButton);
@@ -59,7 +60,7 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         changePasswordPanel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                showChangePasswordScreen();
             }
         });
         buttonsPanel.add(changePasswordPanel);
@@ -96,5 +97,19 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         changePasswordPresenter.setChangePasswordScreenInterface(changePasswordScreen);
 
         changePasswordScreen.getFrame().setVisible(true);
+    }
+
+    public void showChangeUserInfoScreen() {
+        ChangeUserInfoPresenter changeUserInfoPresenter = new ChangeUserInfoProcessor(null);
+        ChangeUserInfoInputBoundary changeUserInfoInputBoundary = new ChangeUserInfoInteractor(changeUserInfoPresenter);
+        ChangeUserInfoController changeUserInfoController = new ChangeUserInfoController(
+                changeUserInfoInputBoundary,
+                userProfileController.getCurrentUserId());
+
+        ChangeUserInfoScreenInterface changeUserInfoScreen = new ChangeUserInfoScreen(changeUserInfoController);
+
+        changeUserInfoPresenter.setScreen(changeUserInfoScreen);
+
+        changeUserInfoScreen.getFrame().setVisible(true);
     }
 }

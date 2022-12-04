@@ -9,7 +9,7 @@ public class VerifyUserProcessor implements VerifyUserPresenter{
      */
     @Override
     public String verifiedSuccess(ObjectId currentUser) {
-        // Goto user homepage and pass the current user
+        // Go to user's homepage and pass the current user
         return null;
     }
 
