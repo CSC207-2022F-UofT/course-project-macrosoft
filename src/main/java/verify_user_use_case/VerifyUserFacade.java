@@ -5,6 +5,19 @@ import org.bson.types.ObjectId;
 
 public class VerifyUserFacade {
 
+    private VerifyUserPresenter verifyUserPresenter;
+
+    public VerifyUserFacade(VerifyUserPresenter verifyUserPresenter) {
+        this.verifyUserPresenter = verifyUserPresenter;
+    }
+
+    public VerifyUserPresenter getVerifyUserPresenter() {
+        return verifyUserPresenter;
+    }
+
+    public void setVerifyUserPresenter(VerifyUserPresenter verifyUserPresenter) {
+        this.verifyUserPresenter = verifyUserPresenter;
+    }
 
     public void generateEmail(ObjectId userID, String email) {
         GenerateEmailInteractor generateEmailInteractor = new GenerateEmailInteractor();
@@ -12,7 +25,7 @@ public class VerifyUserFacade {
     }
 
     public int verifyUser(ObjectId userID, String code) {
-        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor();
+        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(this.verifyUserPresenter);
         return verifyUserInteractor.verifyUser(userID, code);
     }
 }

@@ -1,14 +1,14 @@
 package login_use_case;
 
-import entities.User;
+import org.bson.types.ObjectId;
 
 public class UserLoginResponseModel {
     private int responseCode;
-    private User user;
+    private ObjectId userId;
 
-    public UserLoginResponseModel(int responseCode, User user) {
+    public UserLoginResponseModel(int responseCode, ObjectId userId) {
         this.responseCode = responseCode;
-        this.user = user;
+        this.userId = userId;
     }
 
     public int getResponseCode() {
@@ -19,11 +19,11 @@ public class UserLoginResponseModel {
         this.responseCode = responseCode;
     }
 
-    public User getUser() {
-        return user;
+    public ObjectId getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(ObjectId userId) {
+        this.userId = userId;
     }
 }

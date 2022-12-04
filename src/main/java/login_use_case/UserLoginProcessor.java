@@ -1,6 +1,6 @@
 package login_use_case;
 
-import screens.VerifyScreen;
+import verify_user_use_case.VerifyUserScreen;
 import verify_user_use_case.VerifyUserController;
 import verify_user_use_case.VerifyUserFacade;
 
@@ -8,9 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class UserLoginProcessor implements UserLoginPresenter {
-    private JFrame loginScreen;
+    private UserLoginScreenInterface loginScreen;
 
-    public UserLoginProcessor(JFrame loginScreen) {
+    public UserLoginProcessor(UserLoginScreenInterface loginScreen) {
         this.loginScreen = loginScreen;
     }
 
@@ -26,24 +26,12 @@ public class UserLoginProcessor implements UserLoginPresenter {
 
     @Override
     public UserLoginResponseModel notVerified(UserLoginResponseModel response) {
-        this.loginScreen.dispose();
-
-        JFrame application = new JFrame("Verify");
-        CardLayout cardLayout = new CardLayout();
-        JPanel screens = new JPanel(cardLayout);
-        application.add(screens);
-
-        // Build the GUI, plugging in the parts
-        VerifyUserFacade facade = new VerifyUserFacade();
-        VerifyUserController verifyUserController = new VerifyUserController(facade);
-
-        VerifyScreen verifyScreen = new VerifyScreen(verifyUserController);
-
-        screens.add(verifyScreen.getContentPane(), "verify");
-        cardLayout.show(screens, "verify");
-        application.pack();
-        application.setVisible(true);
-
+        loginScreen.showVerifiedScreen();
+        loginScreen.close();
         return response;
+    }
+
+    public void setLoginScreen(UserLoginScreenInterface loginScreen) {
+        this.loginScreen = loginScreen;
     }
 }

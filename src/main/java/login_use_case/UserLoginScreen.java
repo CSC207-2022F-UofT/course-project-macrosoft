@@ -1,13 +1,15 @@
 package login_use_case;
 
+import change_user_info_use_case.*;
 import screens.LabelTextPanel;
+import verify_user_use_case.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 
-public class UserLoginScreen extends JFrame implements ActionListener {
+public class UserLoginScreen extends JFrame implements ActionListener, UserLoginScreenInterface {
     /**
      * The username chosen by the user
      */
@@ -73,5 +75,27 @@ public class UserLoginScreen extends JFrame implements ActionListener {
            this.dispose();
            System.exit(0);
         }
+    }
+
+    @Override
+    public void showVerifiedScreen() {
+        VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
+        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
+        VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade);
+        VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
+
+        verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
+
+        verifyUserScreen.getFrame().setVisible(true);
+    }
+
+    @Override
+    public void close() {
+        this.dispose();
+    }
+
+    @Override
+    public JFrame getFrame() {
+        return this;
     }
 }

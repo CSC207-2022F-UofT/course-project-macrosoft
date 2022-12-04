@@ -12,4 +12,6 @@ public interface UserDataGateway {
     User findByUsernamePassword(String username, String password);
     String updateVerifiedStatus(ObjectId userId, Boolean newStatus);
     void UpdateUserInfo(ObjectId userId, String newFirstName, String newLastName, String newEmail);
+
+    boolean getVerifiedStatus(ObjectId userId);
 }
