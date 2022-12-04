@@ -1,5 +1,8 @@
 package database;
 
+import com.mongodb.MongoException;
+import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.UpdateResult;
 import entities.AuthInfo;
 import entities.Order;
 import interactors.DBConnection;
@@ -51,13 +54,11 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
      */
     @Override
     public AuthInfo getUserByUsernamePassword(String username, String password) {
-        DBConnection dbConnection = new MongoConnection();
-
         Bson queryFilter = Filters.and(
                 Filters.eq("username", username),
                 Filters.eq("password", password));
 
-        return getAuthInfo(dbConnection, queryFilter);
+        return getAuthInfo(queryFilter);
     }
 
     /**
@@ -67,13 +68,11 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
      */
     @Override
     public AuthInfo getUserByUserIdPassword(ObjectId userId, String password) {
-        DBConnection dbConnection = new MongoConnection();
-
         Bson queryFilter = Filters.and(
                 Filters.eq("userID", userId),
                 Filters.eq("password", password));
 
-        return getAuthInfo(dbConnection, queryFilter);
+        return getAuthInfo(queryFilter);
     }
 
     /**
@@ -81,12 +80,23 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
      * @param newPassword
      */
     @Override
-    public void setNewPassword(ObjectId userId, String newPassword) {
+    public String setNewPassword(ObjectId userId, String newPassword) {
 
+        Bson query = Filters.eq("userID", userId);
+        Bson updates = Updates.set("password", newPassword);
+
+        try {
+            UpdateResult result = mongoCollectionFetcher.getCollection("AuthInfo")
+                    .updateOne(query, updates);
+
+            return "Success";
+        } catch (MongoException me) {
+            return "Unable to update due to an error: " + me;
+        }
     }
 
-    private AuthInfo getAuthInfo(DBConnection dbConnection, Bson queryFilter) {
-        MongoIterable<Document> users = dbConnection.getCollection("AuthInfo").find(queryFilter);
+    private AuthInfo getAuthInfo(Bson queryFilter) {
+        MongoIterable<Document> users = mongoCollectionFetcher.getCollection("AuthInfo").find(queryFilter);
 
         if (users.first() == null)
             return null;
