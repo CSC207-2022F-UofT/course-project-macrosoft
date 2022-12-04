@@ -70,8 +70,10 @@ public class MenuDataMongo implements MenuDataGateway{
             foodDocLst.add(convertFoodToDoc(curFood));
         }
 
-
-        return new Document("restaurantId", curMenu.getRestaurantId())
+//        return new Document("restaurantId", curMenu.getRestaurantId())
+//                .append("Food", foodDocLst);
+        return new Document("_id", curMenu.getMenuId())
+                .append("restaurantId", curMenu.getRestaurantId())
                 .append("Food", foodDocLst);
     }
 
@@ -116,7 +118,7 @@ public class MenuDataMongo implements MenuDataGateway{
      */
 
     public Document convertFoodToDoc(Food curFood){
-        return new Document("_id", new ObjectId())
+        return new Document("_id", curFood.getItemID())
                 .append("name", curFood.getName())
                 .append("description", curFood.getDescription())
                 .append("category", curFood.getCategory())
