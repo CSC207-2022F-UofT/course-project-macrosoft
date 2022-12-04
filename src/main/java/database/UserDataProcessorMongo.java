@@ -80,14 +80,12 @@ public class UserDataProcessorMongo implements UserDataGateway {
      * @return
      */
     @Override
-    public String updateVerifiedStatus(ObjectId userId, Boolean newStatus) {
+    public void updateVerifiedStatus(ObjectId userId, Boolean newStatus) {
         MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
 
         Bson queryFilter = Filters.eq("_id", userId);
         Bson update = Updates.set("verified", newStatus);
         userCollection.updateOne(queryFilter, update);
-
-        return null;
     }
 
     /**
