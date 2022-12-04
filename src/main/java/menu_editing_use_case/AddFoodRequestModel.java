@@ -1,8 +1,7 @@
 package menu_editing_use_case;
+import entities.*;
 
 //Application Business Rule layer
-
-import entities.*;
 
 public class AddFoodRequestModel {
 

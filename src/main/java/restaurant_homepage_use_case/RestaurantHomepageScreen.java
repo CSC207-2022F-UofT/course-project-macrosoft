@@ -1,11 +1,12 @@
-package user_homepage_use_case;
+package restaurant_homepage_use_case;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-public class UserHomePageScreen {
-    UserHomepageController controller;
+public class RestaurantHomepageScreen {
+
+    RestaurantHomepageController controller;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
     private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
@@ -18,10 +19,10 @@ public class UserHomePageScreen {
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
-    public UserHomePageScreen(UserHomepageController controller) {
+    public RestaurantHomepageScreen(RestaurantHomepageController controller) {
         this.controller = controller;
 
-        final JFrame frame = new JFrame("User Homepage");
+        final JFrame frame = new JFrame("Restaurant Homepage");
 
         frame.setSize(900, 700);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -29,19 +30,19 @@ public class UserHomePageScreen {
         frame.setLocationRelativeTo(null);
 
         JPanel homePanel = new JPanel();
-        JPanel cartPanel = new JPanel();
+        JPanel MenuPanel = new JPanel();
         JPanel profilePanel = new JPanel();
 
         homePanel.setOpaque(true);
-        cartPanel.setOpaque(true);
+        MenuPanel.setOpaque(true);
         profilePanel.setOpaque(true);
 
         homePanel.setBackground(GREY_WHITE);
-        cartPanel.setBackground(GREY_WHITE);
+        MenuPanel.setBackground(GREY_WHITE);
         profilePanel.setBackground(GREY_WHITE);
 
         JPanel greetingPanel = new JPanel();
-        JLabel greetingLabel = new JLabel("Hello");
+        JLabel greetingLabel = new JLabel("Hello~ <username>");
         greetingLabel.setBackground(GREY_WHITE);
         greetingLabel.setForeground(BG_DARK_GREEN);
         greetingLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
@@ -51,17 +52,14 @@ public class UserHomePageScreen {
 
         homePanel.add(greetingPanel);
 
-        JLabel reminderLabel1 = new JLabel("This page will contain the search bar and a list of restaurants");
-        JLabel reminderLabel2 = new JLabel("This page will contain the shopping cart(items in cart)");
-        JLabel reminderLabel3 = new JLabel("This page will contain user profile page");
+
+        JLabel reminderLabel1 = new JLabel("This page will contain the a list of orders in queue");
+        JLabel reminderLabel2 = new JLabel("This page will contain the menu editing panel");
+        JLabel reminderLabel3 = new JLabel("This page will contain restaurant profile page");
+
         homePanel.add(reminderLabel1);
-        cartPanel.add(reminderLabel2);
+        MenuPanel.add(reminderLabel2);
         profilePanel.add(reminderLabel3);
-
-        UIManager.put("TabbedPane.selected", Color.red);
-
-        JLabel homeLabel = new JLabel("Home");
-        homeLabel.setPreferredSize(new Dimension(20, 10));
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.setOpaque(true);
@@ -69,12 +67,11 @@ public class UserHomePageScreen {
         tabs.setForeground(GREY_WHITE);
 
         tabs.addTab("Home", homePanel);
-        tabs.addTab("cart", cartPanel);
+        tabs.addTab("Menu", MenuPanel);
         tabs.addTab("Profile", profilePanel);
 
         tabs.setTabPlacement(JTabbedPane.BOTTOM);
         frame.add(tabs);
         frame.setVisible(true);
-
     }
 }
