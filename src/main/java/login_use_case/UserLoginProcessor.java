@@ -16,6 +16,7 @@ public class UserLoginProcessor implements UserLoginPresenter {
 
     @Override
     public UserLoginResponseModel loginSuccess(UserLoginResponseModel response) {
+        loginScreen.showUserHomepage(response.getUserId());
         return response;
     }
 

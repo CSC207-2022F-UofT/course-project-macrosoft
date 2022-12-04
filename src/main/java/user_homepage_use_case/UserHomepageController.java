@@ -6,10 +6,16 @@ import javax.swing.*;
 
 public class UserHomepageController {
 
-    public JPanel getUserProfilePanel(){
+    private ObjectId userId;
+
+    public UserHomepageController(ObjectId userId) {
+        this.userId = userId;
+    }
+
+    public JPanel getUserProfilePanel(ObjectId userId){
         UserProfilePresenter userProfilePresenter = new UserProfileProcessor(null);
         UserProfileInputBoundary userProfileInteractor = new UserProfileInteractor(userProfilePresenter);
-        UserProfileController userProfileController = new UserProfileController(userProfileInteractor, new ObjectId("63781d9deeca77407b69f2cb"));
+        UserProfileController userProfileController = new UserProfileController(userProfileInteractor, userId);
 
         UserProfilePanelInterface userProfilePanel = new UserProfilePanel(userProfileController);
 
@@ -18,5 +24,9 @@ public class UserHomepageController {
         userProfilePanel.updatePanelData();
 
         return (JPanel)userProfilePanel;
+    }
+
+    public ObjectId getUserId() {
+        return userId;
     }
 }
