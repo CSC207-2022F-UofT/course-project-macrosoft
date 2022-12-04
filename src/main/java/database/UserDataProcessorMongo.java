@@ -90,6 +90,29 @@ public class UserDataProcessorMongo implements UserDataGateway {
         return null;
     }
 
+    /**
+     * @param newFirstName
+     * @param newLastName
+     * @param newEmail
+     */
+    @Override
+    public void UpdateUserInfo(ObjectId userId, String newFirstName, String newLastName, String newEmail) {
+        MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
+
+        List<Bson> updates = new ArrayList<>();
+
+        if (newFirstName != null) updates.add(Updates.set("firstName", newFirstName));
+        if (newLastName != null) updates.add(Updates.set("lastName", newLastName));
+        if (newEmail != null) updates.add(Updates.set("email", newEmail));
+
+        if (updates.size() == 0) return;
+
+        Bson queryFilter = Filters.eq("_id", userId);
+        Bson update = Updates.combine(updates);
+
+        userCollection.updateOne(queryFilter, update);
+    }
+
     public User convertDocumentToUser(Document document) {
         return new User(document.getString("firstName"),
                 document.getString("lastName"),
