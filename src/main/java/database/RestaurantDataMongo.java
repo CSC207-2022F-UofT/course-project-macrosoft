@@ -4,7 +4,6 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import entities.Restaurant;
-import entities.User;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -46,7 +45,7 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
     }
 
     @Override
-    public Restaurant findByRestaurantNamePassword(String restaurantName, String password) {
+    public Restaurant findByRestaurantName(String restaurantName) {
         MongoCollection restaurantCollection = this.mongoCollectionFetcher.getCollection("Restaurants");
         // filter by Id
         Bson queryFilter = Filters.eq("name", restaurantName);
@@ -84,6 +83,8 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
 
         restaurantCollection.updateOne(queryFilter, update);
     }
+
+
 
     public Restaurant convertDocumentToRestaurant(Document document) {
         return new Restaurant(document.getObjectId("_id"),
