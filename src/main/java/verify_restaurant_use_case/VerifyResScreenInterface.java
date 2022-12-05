@@ -8,4 +8,5 @@ public interface VerifyResScreenInterface {
     JFrame getFrame();
     void showLoginScreen();
     void showRestaurantHomePage(ObjectId restaurantId);
+    void close();
 }

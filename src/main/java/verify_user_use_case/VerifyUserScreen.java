@@ -1,7 +1,10 @@
 package verify_user_use_case;
 
 import login_use_case.*;
+import org.bson.types.ObjectId;
 import screens.LabelTextPanel;
+import user_homepage_use_case.UserHomePageScreen;
+import user_homepage_use_case.UserHomepageController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -80,5 +83,16 @@ public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUs
         userLoginPresenter.setLoginScreen(screen);
 
         screen.getFrame().setVisible(true);
+    }
+
+    @Override
+    public void showUserHomepage(ObjectId userId) {
+        UserHomepageController controller = new UserHomepageController(userId);
+        UserHomePageScreen screen = new UserHomePageScreen(controller);
+    }
+
+    @Override
+    public void close() {
+        this.dispose();
     }
 }

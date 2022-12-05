@@ -19,6 +19,7 @@ public class VerifyResProcessor implements VerifyResPresenter {
     public String verifiedSuccess(ObjectId currentRestaurantId) {
         // Go to user homepage and pass the current user, note user means rest. in this case
         verifyResScreenInterface.showRestaurantHomePage(currentRestaurantId);
+        verifyResScreenInterface.close();
         return null;
     }
 
