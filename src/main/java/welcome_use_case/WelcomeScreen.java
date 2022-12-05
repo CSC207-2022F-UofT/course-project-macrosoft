@@ -83,7 +83,8 @@ public class WelcomeScreen {
             public void actionPerformed(ActionEvent e) {
                 UserLoginPresenter userLoginPresenter = new UserLoginProcessor(null);
                 UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginPresenter);
-                UserLoginController userLoginController = new UserLoginController(userLoginInteractor);
+                RestaurantLoginInputBoundary restaurantLoginInteractor = new RestaurantLoginInteractor(userLoginPresenter);
+                UserLoginController userLoginController = new UserLoginController(userLoginInteractor, restaurantLoginInteractor);
                 UserLoginScreenInterface screen = new UserLoginScreen(userLoginController);
                 userLoginPresenter.setLoginScreen(screen);
                 screen.getFrame().setVisible(true);

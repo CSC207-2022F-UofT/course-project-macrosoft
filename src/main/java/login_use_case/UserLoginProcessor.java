@@ -16,18 +16,29 @@ public class UserLoginProcessor implements UserLoginPresenter {
 
     @Override
     public UserLoginResponseModel loginSuccess(UserLoginResponseModel response) {
+        loginScreen.showMessage("Success");
         loginScreen.showUserHomepage(response.getUserId());
+        loginScreen.close();
         return response;
     }
 
     @Override
     public UserLoginResponseModel loginFailed(UserLoginResponseModel response) {
+        loginScreen.showMessage("Failed");
         return response;
     }
 
     @Override
-    public UserLoginResponseModel notVerified(UserLoginResponseModel response) {
-        loginScreen.showVerifiedScreen();
+    public UserLoginResponseModel userNotVerified(UserLoginResponseModel response) {
+        loginScreen.showMessage("You need to verify");
+        loginScreen.showVerifyScreen(response.getUserId());
+        loginScreen.close();
+        return response;
+    }
+
+    public UserLoginResponseModel restaurantNotVerified(UserLoginResponseModel response) {
+        loginScreen.showMessage("You need to verify");
+        loginScreen.showRestaurantVerifyScreen(response.getUserId());
         loginScreen.close();
         return response;
     }

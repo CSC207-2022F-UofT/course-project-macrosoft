@@ -1,5 +1,8 @@
 package verify_restaurant_use_case;
 
+import database.*;
+import entities.Restaurant;
+import entities.VerificationCode;
 import interactors.DBConnection;
 import interactors.MongoConnection;
 import verify_user_use_case.GetCodeInteractor;
@@ -15,13 +18,21 @@ import java.util.Random;
 
 public class GenerateEmailInteractor {
     private static DBConnection connectionManager = new MongoConnection();
+    VerifyResPresenter presenter;
+
+    public GenerateEmailInteractor(VerifyResPresenter presenter) {
+        this.presenter = presenter;
+    }
 
     /**
      * @param restaurantID: the restaurant id
-     * @param email: the email of restaurant
      *
      */
-    public void generateVerificationEmail(ObjectId restaurantID, String email) {
+    public void generateVerificationEmail(ObjectId restaurantID) {
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        VerificationCodeDataGateway dataGateway = new VerificationCodeProcessorMongo(fetcher);
+        RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
+
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
 
@@ -31,20 +42,15 @@ public class GenerateEmailInteractor {
         String existingCode = GetCodeInteractor.getVerificationCode(restaurantID);
 
         if (existingCode.isEmpty()) {
-            Document verificationCodeDoc = new Document("restaurantID", restaurantID)
-                    .append("code", verificationCode)
-                    .append("createdTime", new Date());
-
-            connectionManager.getCollection("Verification").insertOne(verificationCodeDoc);
+            dataGateway.save(restaurantID, new VerificationCode(new Date(), verificationCode));
         } else {
-            Bson filter = Filters.eq("restaurantID", restaurantID);
-            Bson update = Updates.combine(Updates.set("code", verificationCode), Updates.set("createdTime", new Date()));
-
-            connectionManager.getCollection("Verification").updateOne(filter, update);
+            dataGateway.update(restaurantID, new VerificationCode(new Date(), verificationCode));
         }
 
+        Restaurant restaurant = restaurantDataGateway.findById(restaurantID);
+
         String emailBody = String.format("Your verification code is: %s\nThis code expire in 5 minutes", verificationCode);
-        SendEmailInteractor.sendEmail(email, "Verify Your Email", emailBody);
+        SendEmailInteractor.sendEmail(restaurant.getEmail(), "Verify Your Email", emailBody);
     }
 
 }

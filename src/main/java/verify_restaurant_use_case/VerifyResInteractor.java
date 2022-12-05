@@ -5,6 +5,12 @@ import org.bson.types.ObjectId;
 
 public class VerifyResInteractor {
     private VerifyResPresenter presenter;
+
+
+    public VerifyResInteractor(VerifyResPresenter presenter) {
+        this.presenter = presenter;
+    }
+
     /**
      * @param restaurantId
      * @param code
