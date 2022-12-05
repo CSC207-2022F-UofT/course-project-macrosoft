@@ -1,35 +1,17 @@
 package user_view_menu_use_case;
 
-import database.MenuDataGateway;
-import menu_editing_use_case.MenuEditingPresenter;
+import entities.Food;
+import entities.Menu;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import entities.*;
-import org.bson.types.ObjectId;
 
-public class UserViewMenuInteractor implements UserViewMenuInputBoundary{
+public class MenuToDicConverter {
 
-    final UserViewMenuPresenter presenter;
-
-    final MenuDataGateway menuDataGateway;
-
-    public UserViewMenuInteractor(UserViewMenuPresenter presenter, MenuDataGateway menuDataGateway) {
-        this.presenter = presenter;
-        this.menuDataGateway = menuDataGateway;
-    }
-
-    public UserViewMenuResponseModel create(UserViewMenuRequestModel requestModel){
-        HashMap<String, List> menuDic =  getMenuDic(requestModel.getResId());
-        UserViewMenuResponseModel responseModel = new UserViewMenuResponseModel(menuDic);
-        return presenter.prepareSuccessView(responseModel);
-    }
-
-    public HashMap<String, List> getMenuDic(ObjectId restId){
-        Menu curMenu = menuDataGateway.getMenu(restId);
+    public static HashMap<String, List> getMenuDic(Menu curMenu){
         HashMap<String, List> menuDic = new HashMap<>();
-
         List<Food> foodLst = curMenu.getFoodList();
 
         List<String> nameList = new ArrayList<>();
@@ -54,4 +36,5 @@ public class UserViewMenuInteractor implements UserViewMenuInputBoundary{
 
         return menuDic;
     }
+
 }

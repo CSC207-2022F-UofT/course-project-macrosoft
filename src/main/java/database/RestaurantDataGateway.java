@@ -10,6 +10,7 @@ public interface RestaurantDataGateway {
     String save(Restaurant restaurant);
     List<Restaurant> findAll();
     Restaurant findById(ObjectId id);
+    String getRestaurantNameById(ObjectId restId);
     List<Restaurant> findByRestaurantName(String username);
     String getRestaurantNameById(ObjectId restId);
     void updateVerifiedStatus(ObjectId userId, Boolean newStatus);
