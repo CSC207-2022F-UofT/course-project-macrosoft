@@ -1,22 +1,25 @@
-package verify_user_use_case;
+package verify_restaurant_use_case;
 
 import login_use_case.*;
+import org.bson.types.ObjectId;
+import restaurant_homepage_use_case.RestaurantHomepageController;
+import restaurant_homepage_use_case.RestaurantHomepageScreen;
 import screens.LabelTextPanel;
+import verify_user_use_case.VerifyUserController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUserScreenInterface {
-
-    VerifyUserController verifyUserController;
+public class VerifyResScreen extends JFrame implements VerifyResScreenInterface, ActionListener {
+    VerifyResController verifyResController;
 
     JTextField verificationCode = new JTextField(15);
 
-    public VerifyUserScreen(VerifyUserController controller) {
+    public VerifyResScreen(VerifyResController controller) {
 
-        this.verifyUserController = controller;
+        this.verifyResController = controller;
 
         JLabel title = new JLabel("Verify Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -24,17 +27,14 @@ public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUs
         LabelTextPanel verificationCodeInfo = new LabelTextPanel(
                 new JLabel("Verification Code"), verificationCode);
 
-        JButton generateEmail = new JButton("Generate Email");
-        JButton verify = new JButton("Verify");
+        JButton logIn = new JButton("Verify");
         JButton cancel = new JButton("Cancel");
 
         JPanel buttons = new JPanel();
-        buttons.add(generateEmail);
-        buttons.add(verify);
+        buttons.add(logIn);
         buttons.add(cancel);
 
-        generateEmail.addActionListener(this);
-        verify.addActionListener(this);
+        logIn.addActionListener(this);
         cancel.addActionListener(this);
 
         JPanel main = new JPanel();
@@ -54,10 +54,6 @@ public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUs
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Verify")) {
-            verifyUserController.verifyUser(verificationCode.getText());
-        }
-        else if (evt.getActionCommand().equals("Generate Email")) {
-            verifyUserController.generateEmail();
         }
         else if (evt.getActionCommand().equals("Cancel")) {
             this.showLoginScreen();
@@ -80,5 +76,10 @@ public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUs
         userLoginPresenter.setLoginScreen(screen);
 
         screen.getFrame().setVisible(true);
+    }
+
+    public void showRestaurantHomePage(ObjectId restaurantId) {
+        RestaurantHomepageController restaurantHomepageController = new RestaurantHomepageController(restaurantId);
+        RestaurantHomepageScreen restaurantHomepageScreen = new RestaurantHomepageScreen(restaurantHomepageController);
     }
 }

@@ -4,16 +4,19 @@ import org.bson.types.ObjectId;
 
 public class VerifyResController {
     final VerifyResFacade verifyResFacade;
+    private ObjectId currentRestaurantId;
 
-    public VerifyResController(VerifyResFacade verifyResFacade) {
+
+    public VerifyResController(VerifyResFacade verifyResFacade, ObjectId currentRestaurantId) {
         this.verifyResFacade = verifyResFacade;
+        this.currentRestaurantId = currentRestaurantId;
     }
 
-    public int verifyRes(ObjectId currentUser, String code) {
-        return verifyResFacade.verifyRes(currentUser, code);
+    public int verifyRes(String code) {
+        return verifyResFacade.verifyRes(currentRestaurantId, code);
     }
 
-    public void generateEmail(ObjectId restaurantId, String email) {
-        verifyResFacade.generateEmail(restaurantId, email);
+    public void generateEmail() {
+        verifyResFacade.generateEmail(currentRestaurantId);
     }
 }

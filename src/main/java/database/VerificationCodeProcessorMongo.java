@@ -1,5 +1,6 @@
 package database;
 
+import com.mongodb.client.model.Updates;
 import entities.VerificationCode;
 import verify_user_use_case.AddMinutesInteractor;
 import com.mongodb.client.MongoCollection;
@@ -22,7 +23,13 @@ public class VerificationCodeProcessorMongo implements VerificationCodeDataGatew
      * @return
      */
     @Override
-    public String save(VerificationCode verificationCode) {
+    public String save(ObjectId restaurantID, VerificationCode verificationCode) {
+        Document verificationCodeDoc = new Document("restaurantID", restaurantID)
+                .append("code", verificationCode.getCode())
+                .append("createdTime", verificationCode.getCreateDate());
+
+        this.mongoCollectionFetcher.getCollection("Verification").insertOne(verificationCodeDoc);
+
         return null;
     }
 
@@ -54,6 +61,17 @@ public class VerificationCodeProcessorMongo implements VerificationCodeDataGatew
 
         Bson filter = Filters.eq("userID", userId);
         verificationCollection.deleteOne(filter);
+
+        return null;
+    }
+
+    public String update(ObjectId restaurantID, VerificationCode verificationCode) {
+        Bson filter = Filters.eq("restaurantID", restaurantID);
+        Bson update = Updates.combine(
+                Updates.set("code", verificationCode.getCode()),
+                Updates.set("createdTime", verificationCode.getCreateDate()));
+
+        this.mongoCollectionFetcher.getCollection("Verification").updateOne(filter, update);
 
         return null;
     }

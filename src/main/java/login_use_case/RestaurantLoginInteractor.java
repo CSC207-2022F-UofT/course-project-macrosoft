@@ -1,21 +1,34 @@
 package login_use_case;
 
 import database.*;
+import interactors.DBConnection;
+import interactors.MongoConnection;
+import com.mongodb.client.*;
+
+import com.mongodb.client.model.Filters;
+import library.PasswordHasher;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import entities.*;
-import library.PasswordHasher;
 
-public class UserLoginInteractor implements UserLoginInputBoundary {
+public class RestaurantLoginInteractor implements RestaurantLoginInputBoundary{
     private UserLoginPresenter presenter;
 
-    public UserLoginInteractor(UserLoginPresenter presenter) {
+    public RestaurantLoginInteractor(UserLoginPresenter presenter) {
         this.presenter = presenter;
     }
 
-    public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
+    /**
+     * @param requestModel
+     * @return 1000: Success
+     * 1001: Not Verified
+     * 1002: Invalid Credential
+     */
+    public UserLoginResponseModel login(RestaurantLoginRequestModel requestModel) {
         MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
-        UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
+        RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 
         String hashedPassword;
         try {
@@ -27,13 +40,13 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
         AuthInfo authInfo = authInfoDataGateway.getUserByUsernamePassword(requestModel.getUsername(), hashedPassword);
 
         if (authInfo != null) {
-            User user = userDataGateway.findById(authInfo.getUserId());
+            Restaurant restaurant = restaurantDataGateway.findById(authInfo.getUserId());
 
-            if (user == null) {
+            if (restaurant == null) {
                 return presenter.loginFailed(new UserLoginResponseModel(1003, null));
             }
 
-            boolean verified = user.isVerified();
+            boolean verified = restaurant.isVerified();
 
             if (!verified) {
                 return presenter.userNotVerified(new UserLoginResponseModel(1001, authInfo.getUserId()));

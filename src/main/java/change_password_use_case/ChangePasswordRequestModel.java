@@ -2,6 +2,7 @@ package change_password_use_case;
 
 import org.bson.types.ObjectId;
 
+// Use case layer
 public class ChangePasswordRequestModel {
     private ObjectId currentUserId;
     private String oldPassword;

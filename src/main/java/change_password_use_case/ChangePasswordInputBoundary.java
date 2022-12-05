@@ -1,6 +1,6 @@
 package change_password_use_case;
 
-import org.bson.types.ObjectId;
+// Use case layer
 
 public interface ChangePasswordInputBoundary {
     public void changePassword(ChangePasswordRequestModel changePasswordRequestModel);

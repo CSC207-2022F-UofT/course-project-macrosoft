@@ -2,9 +2,12 @@ package login_use_case;
 
 import change_user_info_use_case.*;
 import org.bson.types.ObjectId;
+import restaurant_homepage_use_case.RestaurantHomepageController;
+import restaurant_homepage_use_case.RestaurantHomepageScreen;
 import screens.LabelTextPanel;
 import user_homepage_use_case.UserHomePageScreen;
 import user_homepage_use_case.UserHomepageController;
+import verify_restaurant_use_case.*;
 import verify_user_use_case.*;
 import welcome_use_case.WelcomeScreen;
 
@@ -12,6 +15,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class UserLoginScreen extends JFrame implements ActionListener, UserLoginScreenInterface {
@@ -82,15 +87,18 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
         infoPanel.add(passwordInfo);
 
         // the buttons
-        JButton logIn = new JButton("Log in");
+        JButton userLogIn = new JButton("Log in as User");
+        JButton restaurantLogIn = new JButton("Log in as Restaurant");
         JButton cancel = new JButton("Cancel");
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(logIn);
+        buttonPanel.add(userLogIn);
+        buttonPanel.add(restaurantLogIn);
         buttonPanel.add(cancel);
         buttonPanel.setOpaque(true);
         buttonPanel.setBackground(BG_DARK_GREEN);
         buttonPanel.setBorder(emptyBorder);
-        logIn.addActionListener(this);
+        userLogIn.addActionListener(this);
+        restaurantLogIn.addActionListener(this);
         cancel.addActionListener(this);
 
         // creating the main panel
@@ -110,9 +118,18 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        if (evt.getActionCommand().equals("Log in")) {
+        if (evt.getActionCommand().equals("Log in as User")) {
             try {
                 UserLoginResponseModel userLoginResponseModel = userLoginController.login(username.getText(),
+                        String.valueOf(password.getPassword()));
+                System.out.println(userLoginResponseModel.getResponseCode());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        }
+        if (evt.getActionCommand().equals("Log in as Restaurant")) {
+            try {
+                UserLoginResponseModel userLoginResponseModel = userLoginController.loginAsRestaurant(username.getText(),
                         String.valueOf(password.getPassword()));
                 System.out.println(userLoginResponseModel.getResponseCode());
             } catch (Exception e) {
@@ -123,14 +140,13 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
             WelcomeScreen screen = new WelcomeScreen();
             this.dispose();
         }
-        this.dispose();
     }
 
     @Override
-    public void showVerifiedScreen() {
+    public void showVerifyScreen(ObjectId userId) {
         VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
         VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
-        VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade);
+        VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userId);
         VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
 
         verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
@@ -138,10 +154,31 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
         verifyUserScreen.getFrame().setVisible(true);
     }
 
+    public void showRestaurantVerifyScreen(ObjectId restaurantId) {
+        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
+        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
+        VerifyResController verifyResController = new VerifyResController(verifyResFacade, restaurantId);
+        VerifyResScreenInterface verifyUserScreen = new VerifyResScreen(verifyResController);
+
+        verifyResPresenter.setVerifyResScreenInterface(verifyUserScreen);
+
+        verifyUserScreen.getFrame().setVisible(true);
+    }
+
+    @Override
+    public void showMessage(String message) {
+        showMessageDialog(null, message);
+    }
+
     @Override
     public void showUserHomepage(ObjectId userId) {
         UserHomepageController controller = new UserHomepageController(userId);
         UserHomePageScreen screen = new UserHomePageScreen(controller);
+    }
+
+    public void showRestaurantHomepage(ObjectId restaurantId) {
+        RestaurantHomepageController controller = new RestaurantHomepageController(restaurantId);
+        RestaurantHomepageScreen screen = new RestaurantHomepageScreen(controller);
     }
 
     @Override
