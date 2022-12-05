@@ -1,9 +1,6 @@
 package user_view_menu_use_case;
-import menu_editing_use_case.*;
-import menu_editing_use_case.Screens.AddFoodScreen;
-import menu_editing_use_case.Screens.FoodEditingScreen;
-import menu_editing_use_case.Screens.MenuScreen;
 import org.bson.types.ObjectId;
+import user_shopping_cart_use_case.ShoppingCartSingleton;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -95,6 +92,7 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
             String food_price = menuDic.get("price").get(i).toString();
             String food_category = menuDic.get("category").get(i).toString();
             String food_description = menuDic.get("description").get(i).toString();
+            ObjectId foodId = new ObjectId(menuDic.get("id").get(i).toString());
 
             JLabel name = new JLabel("Name: " + food_name);
             JLabel price = new JLabel("Price: " + food_price);
@@ -102,7 +100,6 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
             JLabel description = new JLabel("Description: " + food_description);
 
             JButton addButton = new JButton("Add to cart");
-            addButton.addActionListener(this);
 
             JPanel quantityPanel = new JPanel();
             JLabel quantityLabel = new JLabel("Enter Quantity: ");
@@ -110,6 +107,14 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
             quantityPanel.setLayout(new GridLayout(1, 2));
             quantityPanel.add(quantityLabel);
             quantityPanel.add(quantityField);
+            addButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int quantity =  Integer.parseInt(quantityField.getText());
+                    ShoppingCartSingleton.addFood(foodId, quantity);
+                }
+            });
+
 
             name.setBorder(emptyBorder2);
             name.setForeground(BG_DARK_GREEN);
@@ -146,9 +151,6 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Exit")){
             this.removeAll();
-        }
-        else if (e.getActionCommand().equals("Add To cart")){
-
         }
     }
 
