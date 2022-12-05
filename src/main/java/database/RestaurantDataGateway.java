@@ -1,5 +1,6 @@
 package database;
 
+import entities.Order;
 import entities.Restaurant;
 import org.bson.types.ObjectId;
 
@@ -13,6 +14,7 @@ public interface RestaurantDataGateway {
     Restaurant findById(ObjectId id);
     String getRestaurantNameById(ObjectId restId);
     List<Restaurant> findByRestaurantName(String username);
+    List<Order> getOrderByResId(ObjectId resId);
     void updateVerifiedStatus(ObjectId userId, Boolean newStatus);
     void updateRestaurantInfo(ObjectId restaurantID, String newName, String newEmail, String newLocation, String newPhone);
     void updateMenuId(ObjectId restaurantId, ObjectId menuId);
