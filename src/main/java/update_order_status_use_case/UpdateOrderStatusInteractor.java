@@ -41,7 +41,7 @@ public class UpdateOrderStatusInteractor implements UpdateOrderStatusInputBounda
         UpdateOrderStatusHelper helper = new UpdateOrderStatusHelper();
         Order newOrder = helper.update(requestModel.getCurOrder(), requestModel.getNewStatus());
         UpdateOrderStatusResponseModel responseModel = new UpdateOrderStatusResponseModel(newOrder);
-        orderDataGateway.save(newOrder); // not sure if I use "save" correctly
+        // orderDataGateway.save(newOrder); // not sure if I use "save" correctly
         return orderPresenter.prepareSuccessView(responseModel);
     }
 
