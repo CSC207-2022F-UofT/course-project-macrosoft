@@ -1,6 +1,8 @@
 package searching_algorithm_use_case;
 
+import database.MongoCollectionFetcher;
 import database.RestaurantDataGateway;
+import database.RestaurantDataMongo;
 
 public class UserSearchRestaurantsInteractor implements UserSearchRestaurantsInputBoundary {
 
@@ -18,8 +20,9 @@ public class UserSearchRestaurantsInteractor implements UserSearchRestaurantsInp
      */
     @Override
     public UserSearchRestaurantsResponseModel search(UserSearchRestaurantsRequestModel requestModel) {
+        RestaurantDataGateway interactor = new RestaurantDataMongo(new MongoCollectionFetcher());
         UserSearchRestaurantsResponseModel responseModel =
-                new UserSearchRestaurantsResponseModel(RestaurantDataGateway.getRestaurantByName(requestModel.getName()));
+                new UserSearchRestaurantsResponseModel(interactor.findByRestaurantName(requestModel.getName()));
 
         return presenter.showRestaurants(responseModel);
     }

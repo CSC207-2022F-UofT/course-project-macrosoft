@@ -3,15 +3,14 @@ package database;
 import entities.Restaurant;
 import org.bson.types.ObjectId;
 
+import java.util.List;
+
 public interface RestaurantDataGateway {
+
     String save(Restaurant restaurant);
-    String delete(Restaurant restaurant);
-    String create(Restaurant restaurant);
-    String deleteByUserId(ObjectId userId);
-
-    static Restaurant getRestaurantByName(String restaurantName) {
-        return null;
-    }
-
-    Restaurant validateAndReadByUser(ObjectId userId);
+    List<Restaurant> findAll();
+    Restaurant findById(ObjectId id);
+    List<Restaurant> findByRestaurantName(String username);
+    void updateVerifiedStatus(ObjectId userId, Boolean newStatus);
+    void UpdateRestaurantInfo(ObjectId restaurantID, String newName, String newEmail, String newLocation, String newPhone);
 }

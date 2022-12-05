@@ -1,18 +1,18 @@
 package order_history_use_case;
 
-import entities.User;
+import org.bson.types.ObjectId;
 
 public class OrderHistoryRequestModel {
-    private User curUser;
-    public OrderHistoryRequestModel(User curUser) {
-        this.curUser = curUser;
+    private ObjectId currentUserId;
+    public OrderHistoryRequestModel(ObjectId currentUserId) {
+        this.currentUserId = currentUserId;
     }
 
-    public User getCurUser() {
-        return curUser;
+    public ObjectId getCurrentUserId() {
+        return currentUserId;
     }
 
-    public void setCurUser(User curUser) {
-        this.curUser = curUser;
+    public void setCurUser(ObjectId currentUserId) {
+        this.currentUserId = currentUserId;
     }
 }

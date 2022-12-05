@@ -8,9 +8,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
-public class OrderHistoryScreen extends JFrame{
+public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterface{
 
     OrderHistoryController orderHistoryController;
 
@@ -21,27 +20,22 @@ public class OrderHistoryScreen extends JFrame{
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
-    public OrderHistoryScreen(OrderHistoryController controller){
+    private JPanel orderDisplayPanel = new JPanel();
+
+    public OrderHistoryPanel(OrderHistoryController controller){
 
         this.orderHistoryController = controller;
 
-        JFrame frame = new JFrame("Order History");
-
-        frame.setLayout(new BorderLayout());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1400,800);
-        frame.setLocationRelativeTo(null);
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(BG_DARK_GREEN);
-        String orderTitle = controller.getOrderHistoryInput().getCurUser().getFirstName() + " " + controller.getOrderHistoryInput().getCurUser().getLastName() + "'s " +  "Order History";
+        String orderTitle = controller.getResponse().getName() + "'s " + "Order History";
         JLabel title = new JLabel(orderTitle);
         title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setBorder(emptyBorder);
         titlePanel.add(title);
 
-        JPanel orderDisplayPanel = new JPanel();
         orderDisplayPanel.setBackground(GREY_WHITE);
         orderDisplayPanel.setBorder(blackline);
         GridLayout layout = new GridLayout(0 ,3);
@@ -57,8 +51,34 @@ public class OrderHistoryScreen extends JFrame{
 
         title.setVerticalAlignment(JLabel.CENTER);
 
-        List<Order> orderList = controller.getOrderHistoryInput().getOrders(new OrderHistoryRequestModel(controller.getOrderHistoryInput().getCurUser())).getOrders();
-        for(Order order : orderList){
+        JLabel orderHistory = new JLabel();
+        orderHistory.setText("You do not have any order history");
+        orderHistory.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 60));
+        orderDisplayPanel.add(orderHistory);
+
+        JPanel right = new JPanel();
+        JPanel left = new JPanel();
+        JPanel bottom = new JPanel();
+
+        right.setPreferredSize(new Dimension(100 ,0));
+        left.setPreferredSize(new Dimension(100 ,0));
+        bottom.setPreferredSize(new Dimension(0 ,100));
+        right.setBackground(BG_DARK_GREEN);
+        left.setBackground(BG_DARK_GREEN);
+        bottom.setBackground(BG_DARK_GREEN);
+
+        this.add(orderHistoryScroll, BorderLayout.CENTER);
+        this.add(titlePanel, BorderLayout.NORTH);
+        this.add(right, BorderLayout.EAST);
+        this.add(left, BorderLayout.WEST);
+        this.add(bottom, BorderLayout.SOUTH);
+
+    }
+
+    @Override
+    public void setOrder(OrderHistoryResponseModel orderHistoryResponseModel) {
+        orderDisplayPanel.removeAll();
+        for(Order order : orderHistoryResponseModel.getOrders()){
             JPanel orderPanel = new JPanel();
             orderPanel.setLayout(new GridLayout(0, 1));
             resIdToNameConvertor convertor = new resIdToNameConvertor();
@@ -79,7 +99,7 @@ public class OrderHistoryScreen extends JFrame{
             viewDetails.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    OrderHistoryDetailScreen detailScreen = new OrderHistoryDetailScreen(controller, order);
+                    OrderHistoryDetailScreen detailScreen = new OrderHistoryDetailScreen(orderHistoryController, order);
                 }
             });
 
@@ -92,24 +112,13 @@ public class OrderHistoryScreen extends JFrame{
             orderDisplayPanel.add(orderPanel);
         }
 
-        JPanel right = new JPanel();
-        JPanel left = new JPanel();
-        JPanel bottom = new JPanel();
+        orderDisplayPanel.revalidate();
+        orderDisplayPanel.repaint();
+    }
 
-        right.setPreferredSize(new Dimension(100 ,0));
-        left.setPreferredSize(new Dimension(100 ,0));
-        bottom.setPreferredSize(new Dimension(0 ,100));
-        right.setBackground(BG_DARK_GREEN);
-        left.setBackground(BG_DARK_GREEN);
-        bottom.setBackground(BG_DARK_GREEN);
-
-        frame.getContentPane().add(orderHistoryScroll, BorderLayout.CENTER);
-        frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
-        frame.getContentPane().add(right, BorderLayout.EAST);
-        frame.getContentPane().add(left, BorderLayout.WEST);
-        frame.getContentPane().add(bottom, BorderLayout.SOUTH);
-
-        frame.setVisible(true);
+    @Override
+    public void updateOrder() {
+        orderHistoryController.getOrders();
     }
 }
 

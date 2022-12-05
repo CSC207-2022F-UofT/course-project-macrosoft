@@ -2,18 +2,20 @@ package searching_algorithm_use_case;
 
 import entities.Restaurant;
 
-public class UserSearchRestaurantsResponseModel {
-    private Restaurant restaurant;
+import java.util.List;
 
-    public UserSearchRestaurantsResponseModel(Restaurant restaurant) {
+public class UserSearchRestaurantsResponseModel {
+    private List<Restaurant> restaurant;
+
+    public UserSearchRestaurantsResponseModel(List<Restaurant> restaurant) {
         this.restaurant = restaurant;
     }
 
-    public Restaurant getRestaurant() {
+    public List<Restaurant> getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
+    public void setRestaurant(List<Restaurant> restaurant) {
         this.restaurant = restaurant;
     }
 }

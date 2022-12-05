@@ -1,32 +1,58 @@
 package order_history_use_case;
 
-import database.OrderDataGateway;
+import database.*;
 import entities.Order;
 import entities.User;
+import org.bson.types.ObjectId;
 
 import java.util.List;
 
 public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
 
     private final OrderHistoryPresenter presenter;
-    private final OrderDataGateway orderDataGateway;
-    private final User user;
 
-    public OrderHistoryInteractor(OrderHistoryPresenter presenter, OrderDataGateway orderDataGateway, User user) {
+    public OrderHistoryInteractor(OrderHistoryPresenter presenter) {
         this.presenter = presenter;
-        this.orderDataGateway = orderDataGateway;
-        this.user = user;
     }
 
     @Override
-    public OrderHistoryResponseModel getOrders(OrderHistoryRequestModel requestModel) {
-        List<Order> orderList = orderDataGateway.findAllByUser(requestModel.getCurUser().getUserId());
-        OrderHistoryResponseModel responseModel = new OrderHistoryResponseModel(orderList);
-        return responseModel;
+    public void displayOrders(OrderHistoryRequestModel requestModel) {
+        MongoCollectionFetcher mongoCollectionFetcher = new MongoCollectionFetcher();
+        OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(mongoCollectionFetcher);
+
+        UserDataGateway userDataGateway = new UserDataProcessorMongo(mongoCollectionFetcher);
+
+        List<Order> orderList = orderDataGateway.findAllByUser(requestModel.getCurrentUserId());
+
+        ObjectId curUserId = requestModel.getCurrentUserId();
+
+        User curUser = userDataGateway.findById(curUserId);
+
+        String name = curUser.getFirstName() + " " + curUser.getLastName();
+
+
+        if(orderList == null){
+            presenter.orderNotFound();
+        }
+        else {
+            OrderHistoryResponseModel responseModel = new OrderHistoryResponseModel(orderList, name);
+            presenter.orderFound(responseModel);
+        }
     }
 
-    @Override
-    public User getCurUser() {
-        return user;
+    public OrderHistoryResponseModel getResponse(ObjectId userId){
+        MongoCollectionFetcher mongoCollectionFetcher = new MongoCollectionFetcher();
+        OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(mongoCollectionFetcher);
+
+        UserDataGateway userDataGateway = new UserDataProcessorMongo(mongoCollectionFetcher);
+
+        List<Order> orderList = orderDataGateway.findAllByUser(userId);
+
+        User curUser = userDataGateway.findById(userId);
+
+        String name = curUser.getFirstName() + " " + curUser.getLastName();
+
+        OrderHistoryResponseModel orderHistoryResponseModel = new OrderHistoryResponseModel(orderList, name);
+        return orderHistoryResponseModel;
     }
 }
