@@ -82,4 +82,11 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
         RestaurantHomepageController restaurantHomepageController = new RestaurantHomepageController(restaurantId);
         RestaurantHomepageScreen restaurantHomepageScreen = new RestaurantHomepageScreen(restaurantHomepageController);
     }
+
+    @Override
+    public void close() {
+        this.dispose();
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package welcome_use_case;
 
 import login_use_case.*;
+import register_use_case.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -70,7 +71,7 @@ public class WelcomeScreen {
 
         actionPanel.setOpaque(false);
         JButton loginButton = new JButton("LOGIN");
-        JButton registerButton = new JButton("REGISTER");
+        JButton registerButton = new JButton("REGISTER AS USER");
         loginButton.setOpaque(false);
         registerButton.setOpaque(false);
         loginButton.setFont(new Font("Serif", Font.BOLD, 15));
@@ -87,6 +88,20 @@ public class WelcomeScreen {
                 UserLoginController userLoginController = new UserLoginController(userLoginInteractor, restaurantLoginInteractor);
                 UserLoginScreenInterface screen = new UserLoginScreen(userLoginController);
                 userLoginPresenter.setLoginScreen(screen);
+                screen.getFrame().setVisible(true);
+
+                frame.dispose();
+            }
+        });
+
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegisterUserPresenter registerUserPresenter = new RegisterUserProcessor(null);
+                RegisterUserInputBoundary registerUserInputBoundary = new RegisterUserInteractor(registerUserPresenter);
+                RegisterUserController registerUserController = new RegisterUserController(registerUserInputBoundary);
+                RegisterUserScreenInterface screen = new RegisterUserScreen(registerUserController);
+                registerUserPresenter.setScreen(screen);
                 screen.getFrame().setVisible(true);
 
                 frame.dispose();
