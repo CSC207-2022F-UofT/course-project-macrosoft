@@ -73,4 +73,8 @@ public class Review{
     public void setLastEditTime(Date lastEditTime) {
         this.lastEditTime = lastEditTime;
     }
+
+    public int getRating() {
+        return rating;
+    }
 }

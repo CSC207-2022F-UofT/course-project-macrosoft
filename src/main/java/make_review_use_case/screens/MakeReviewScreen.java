@@ -1,10 +1,11 @@
-package screens;
+package make_review_use_case.screens;
 
 import entities.Order;
 
 import make_review_use_case.MakeReviewController;
 import datamodels.MakeReviewRequestModel;
 import datamodels.MakeReviewResponseModel;
+import screens.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.*;
