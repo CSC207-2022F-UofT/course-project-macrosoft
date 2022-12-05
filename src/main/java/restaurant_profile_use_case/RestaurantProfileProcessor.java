@@ -1,8 +1,13 @@
 package restaurant_profile_use_case;
 
+
 public class RestaurantProfileProcessor implements RestaurantProfilePresenter{
 
-    RestaurantProfilePanelInterface restaurantProfilePanel;
+    private RestaurantProfilePanelInterface restaurantProfilePanel;
+
+    public RestaurantProfileProcessor(RestaurantProfilePanelInterface restaurantProfilePanel) {
+        this.restaurantProfilePanel = restaurantProfilePanel;
+    }
     @Override
     public void setRestaurantProfilePanel(RestaurantProfilePanelInterface restaurantProfilePanel) {
         this.restaurantProfilePanel = restaurantProfilePanel;
