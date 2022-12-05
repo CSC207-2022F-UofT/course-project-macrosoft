@@ -3,6 +3,7 @@ package register_use_case;
 import interactors.DBConnection;
 import interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
+import library.PasswordHasher;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import com.mongodb.client.result.InsertOneResult;
@@ -40,8 +41,14 @@ public class RegisterRestaurantInteractor {
         InsertOneResult result = dbConnection.getCollection("Restaurants").insertOne(newRestaurantDoc);
 
         BsonValue restID = result.getInsertedId();
+        String hashedPassword;
+        try {
+            hashedPassword = PasswordHasher.toHexString(PasswordHasher.getSHA(password));
+        } catch (Exception e) {
+            return 1;
+        }
         Document newUserAuthInfo = new Document("username", restaurantName)
-                .append("password", password)
+                .append("password", hashedPassword)
                 .append("userID", restID);
         dbConnection.getCollection("AuthInfo").insertOne(newUserAuthInfo);
 
