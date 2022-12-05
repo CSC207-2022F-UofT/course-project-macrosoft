@@ -6,6 +6,7 @@ import org.bson.types.ObjectId;
 public interface UserLoginScreenInterface {
     void showVerifiedScreen();
     void showUserHomepage(ObjectId userId);
+    void showRestaurantHomepage(ObjectId restaurantId);
     void close();
     JFrame getFrame();
 }
