@@ -5,6 +5,8 @@ import entities.Review;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 
 public class ReviewUI extends JFrame {
 
@@ -15,7 +17,7 @@ public class ReviewUI extends JFrame {
 
         setTitle("Review Information");
         setSize(900, 700);
-        setLayout(new GridLayout(5, 2));
+        setLayout(new GridLayout(6, 2));
 
         add(new JLabel("Subject Line:"));
         add(new JTextField(this.rev.getSubjectLine()));
@@ -31,7 +33,21 @@ public class ReviewUI extends JFrame {
         add(new JLabel("Time:"));
         add(new JTextField(this.rev.getLastEditTime().toString()));
 
+        add(new JButton("OK"));
+
         pack();
         setVisible(true);
     }
+    public void OkClicked() {
+        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }
+
+    public void actionPerformed(ActionEvent evt) {
+        System.out.println("Click " + evt.getActionCommand());
+
+        // Dissolve the page when OK clicked
+        if (evt.getActionCommand().equals("OK")) {
+            OkClicked();
+        }
+        }
 }

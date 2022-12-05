@@ -2,6 +2,8 @@ package order_history_use_case;
 
 
 import entities.Order;
+import make_review_use_case.MakeReviewController;
+import make_review_use_case.screens.MakeReviewScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -86,6 +88,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
             JLabel orderTime = new JLabel("Order Time: " + order.getOrderDate());
             JLabel orderStatus = new JLabel("Order Status: " + order.getOrderStatus());
             JButton viewDetails = new JButton("View Details");
+            JButton makeReview = new JButton("Make Review");
 
             viewDetails.setForeground(BG_DARK_GREEN);
 
@@ -100,6 +103,14 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     OrderHistoryDetailScreen detailScreen = new OrderHistoryDetailScreen(orderHistoryController, order);
+                }
+            });
+
+            makeReview.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    MakeReviewController makeReviewController = new MakeReviewController();
+                    MakeReviewScreen makeReviewScreen = new MakeReviewScreen(makeReviewController, order);
                 }
             });
 
