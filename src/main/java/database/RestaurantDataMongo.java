@@ -1,6 +1,9 @@
 package database;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoIterable;
+import com.mongodb.client.model.Collation;
+import com.mongodb.client.model.CollationStrength;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import entities.Restaurant;
@@ -45,15 +48,22 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
     }
 
     @Override
-    public Restaurant findByRestaurantName(String restaurantName) {
+    public List<Restaurant> findByRestaurantName(String restaurantName) {
+        List<Restaurant> resultRestaurants = new ArrayList<>();
+
         MongoCollection restaurantCollection = this.mongoCollectionFetcher.getCollection("Restaurants");
-        // filter by Id
         Bson queryFilter = Filters.eq("name", restaurantName);
 
-        Document doc = (Document) restaurantCollection.find(queryFilter).first();
+        Collation collation = Collation.builder().locale("en").collationStrength(CollationStrength.TERTIARY).build();
+        MongoIterable<Document> results = restaurantCollection.find(queryFilter).collation(collation);
 
-        if (doc != null) {return convertDocumentToRestaurant(doc);}
-        else {return null;}
+        if (results != null) {
+            for(Document resDoc : results){
+                resultRestaurants.add(this.convertDocumentToRestaurant(resDoc));
+            }
+        }
+
+        return resultRestaurants;
     }
 
     @Override
