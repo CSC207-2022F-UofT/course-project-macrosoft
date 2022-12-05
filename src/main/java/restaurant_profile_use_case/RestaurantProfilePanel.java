@@ -1,9 +1,7 @@
 package restaurant_profile_use_case;
 
 import change_password_use_case.*;
-import change_user_info_use_case.*;
-import user_profile_use_case.UserProfileController;
-import user_profile_use_case.UserProfilePanelInterface;
+import change_restaurant_info_use_case.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -20,10 +18,10 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
     private JLabel emailLabel = new JLabel("Email");
     private JLabel locationLabel = new JLabel("Location");
     private JLabel phoneLabel = new JLabel("Phone");
-    private RestaurantProfoleController restaurantProfoleController;
+    private RestaurantProfileController restaurantProfileController;
 
-    public RestaurantProfilePanel(RestaurantProfoleController restaurantProfoleController) {
-        this.restaurantProfoleController = restaurantProfoleController;
+    public RestaurantProfilePanel(RestaurantProfileController restaurantProfileController) {
+        this.restaurantProfileController = restaurantProfileController;
 
         GridLayout gridLayout = new GridLayout(0,1);
 
@@ -101,7 +99,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
 
     @Override
     public void updatePanelData() {
-        RestaurantProfoleController.c();
+        restaurantProfileController.getRestaurantProfile();
     }
 
     public void showChangePasswordScreen() {
@@ -109,7 +107,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         ChangePasswordInputBoundary changePasswordInputBoundary = new ChangePasswordInteractor(changePasswordPresenter);
         ChangePasswordController changePasswordController = new ChangePasswordController(
                 changePasswordInputBoundary,
-                userProfileController.getCurrentUserId());
+                restaurantProfileController.getCurrentRestaurantId());
 
         ChangePasswordScreenInterface changePasswordScreen = new ChangePasswordScreen(changePasswordController);
 
@@ -119,11 +117,11 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
     }
 
     public void showChangeRestaurantInfoScreen() {
-        ChangeRestaurantInfoPresenter changeRestaurantInfoPresenter = new ChangeRestaurantInfoPresenter(null);
-        ChangeRestaurantInfoInputBoundary changeRestaurantInfoInputBoundary = new ChangeRestaurantInfoInputBoundary(changeRestaurantInfoPresenter);
-        ChangeUserInfoController changeUserInfoController = new ChangeUserInfoController(
+        ChangeRestaurantInfoPresenter changeRestaurantInfoPresenter = new ChangeRestaurantInfoProcessor(null);
+        ChangeRestaurantInfoInputBoundary changeRestaurantInfoInputBoundary = new ChangeRestaurantInfoInteractor(changeRestaurantInfoPresenter);
+        ChangeRestaurantInfoController changeRestaurantInfoController = new ChangeRestaurantInfoController(
                 changeRestaurantInfoInputBoundary,
-                restaurantProfoleController.getCurrentRestaurantId());
+                restaurantProfileController.getCurrentRestaurantId());
 
         ChangeRestaurantInfoScreenInterface changeRestaurantInfoScreen = new ChangeRestaurantInfoScreen(changeRestaurantInfoController);
 
