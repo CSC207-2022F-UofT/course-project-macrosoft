@@ -4,16 +4,18 @@ import org.bson.types.ObjectId;
 
 public class VerifyUserController {
     final VerifyUserFacade verifyUserFacade;
+    private ObjectId currentUserId;
 
-    public VerifyUserController(VerifyUserFacade verifyUserFacade) {
+    public VerifyUserController(VerifyUserFacade verifyUserFacade, ObjectId currentUserId) {
         this.verifyUserFacade = verifyUserFacade;
+        this.currentUserId = currentUserId;
     }
 
-    public int verifyUser(ObjectId currentUser, String code) {
-        return verifyUserFacade.verifyUser(currentUser, code);
+    public int verifyUser(String code) {
+        return verifyUserFacade.verifyUser(this.currentUserId, code);
     }
 
-    public void generateEmail(ObjectId userId, String email) {
-        verifyUserFacade.generateEmail(userId, email);
+    public void generateEmail() {
+        verifyUserFacade.generateEmail(this.currentUserId);
     }
 }

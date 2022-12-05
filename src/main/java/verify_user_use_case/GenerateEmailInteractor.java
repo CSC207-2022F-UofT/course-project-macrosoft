@@ -1,5 +1,9 @@
 package verify_user_use_case;
 
+import database.*;
+import entities.Restaurant;
+import entities.User;
+import entities.VerificationCode;
 import interactors.DBConnection;
 import interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
@@ -12,14 +16,15 @@ import java.util.Date;
 import java.util.Random;
 
 public class GenerateEmailInteractor {
-    private static DBConnection connectionManager = new MongoConnection();
-
     /**
      * @param userId: the user id of user
-     * @param email: the email of user
      *
      */
-    public void generateVerificationEmail(ObjectId userId, String email) {
+    public void generateVerificationEmail(ObjectId userId) {
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        VerificationCodeDataGateway dataGateway = new VerificationCodeProcessorMongo(fetcher);
+        UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
+
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
 
@@ -29,20 +34,15 @@ public class GenerateEmailInteractor {
         String existingCode = GetCodeInteractor.getVerificationCode(userId);
 
         if (existingCode.isEmpty()) {
-            Document verificationCodeDoc = new Document("userID", userId)
-                    .append("code", verificationCode)
-                    .append("createdTime", new Date());
-
-            connectionManager.getCollection("Verification").insertOne(verificationCodeDoc);
+            dataGateway.save(userId, new VerificationCode(new Date(), verificationCode));
         } else {
-            Bson filter = Filters.eq("userID", userId);
-            Bson update = Updates.combine(Updates.set("code", verificationCode), Updates.set("createdTime", new Date()));
-
-            connectionManager.getCollection("Verification").updateOne(filter, update);
+            dataGateway.update(userId, new VerificationCode(new Date(), verificationCode));
         }
 
+        User user = userDataGateway.findById(userId);
+
         String emailBody = String.format("Your verification code is: %s\nThis code expire in 5 minutes", verificationCode);
-        SendEmailInteractor.sendEmail(email, "Verify Your Email", emailBody);
+        SendEmailInteractor.sendEmail(user.getEmail(), "Verify Your Email", emailBody);
     }
 
 }
