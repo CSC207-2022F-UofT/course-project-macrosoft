@@ -127,7 +127,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
         }
-        if (evt.getActionCommand().equals("Log in as Restaurant")) {
+        else if (evt.getActionCommand().equals("Log in as Restaurant")) {
             try {
                 UserLoginResponseModel userLoginResponseModel = userLoginController.loginAsRestaurant(username.getText(),
                         String.valueOf(password.getPassword()));

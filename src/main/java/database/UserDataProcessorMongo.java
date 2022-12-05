@@ -1,5 +1,6 @@
 package database;
 
+import com.mongodb.client.result.InsertOneResult;
 import entities.User;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.List;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import org.bson.BsonValue;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
@@ -16,6 +18,21 @@ public class UserDataProcessorMongo implements UserDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
     public UserDataProcessorMongo(MongoCollectionFetcher fetcher) {
         this.mongoCollectionFetcher = fetcher;
+    }
+
+    @Override
+    public ObjectId newUser(String email, String firstName, String lastName) {
+
+        Document newUserDoc = new Document("firstName", firstName)
+                .append("lastName", lastName)
+                .append("email", email)
+                .append("verified", false);
+
+        InsertOneResult result = mongoCollectionFetcher.getCollection("Users").insertOne(newUserDoc);
+
+        BsonValue userID = result.getInsertedId();
+
+        return userID.asObjectId().getValue();
     }
 
     /**
@@ -59,14 +76,13 @@ public class UserDataProcessorMongo implements UserDataGateway {
     /**
      *
      * @param username
-     * @param password
      * @return
      */
     @Override
-    public User findByUsernamePassword(String username, String password) {
+    public User findByUsername(String username) {
         MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
         // filter by Id
-        Bson queryFilter = Filters.eq("username", username);
+        Bson queryFilter = Filters.and(Filters.eq("username", username));
 
         Document doc = (Document) userCollection.find(queryFilter).first();
 

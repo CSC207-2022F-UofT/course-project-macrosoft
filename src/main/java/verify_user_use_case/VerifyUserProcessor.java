@@ -16,6 +16,8 @@ public class VerifyUserProcessor implements VerifyUserPresenter {
     @Override
     public String verifiedSuccess(ObjectId currentUser) {
         // Go to user's homepage and pass the current user
+        this.verifyUserScreen.showUserHomepage(currentUser);
+        this.verifyUserScreen.close();
         return null;
     }
 

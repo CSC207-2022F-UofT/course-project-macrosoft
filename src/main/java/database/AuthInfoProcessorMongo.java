@@ -39,11 +39,15 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
     }
 
     /**
-     * @param order
      * @return
      */
     @Override
-    public String create(Order order) {
+    public String create(String username, String password, ObjectId userId) {
+        Document newUserAuthInfo = new Document("username", username)
+                .append("password", password)
+                .append("userID", userId);
+
+        mongoCollectionFetcher.getCollection("AuthInfo").insertOne(newUserAuthInfo);
         return null;
     }
 
@@ -71,6 +75,13 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
         Bson queryFilter = Filters.and(
                 Filters.eq("userID", userId),
                 Filters.eq("password", password));
+
+        return getAuthInfo(queryFilter);
+    }
+
+    @Override
+    public AuthInfo getUserByUsername(String username) {
+        Bson queryFilter = Filters.eq("username", username);
 
         return getAuthInfo(queryFilter);
     }
