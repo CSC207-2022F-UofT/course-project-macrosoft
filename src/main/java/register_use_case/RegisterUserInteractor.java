@@ -1,5 +1,8 @@
 package register_use_case;
 
+import database.*;
+import entities.AuthInfo;
+import entities.User;
 import interactors.DBConnection;
 import interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
@@ -9,53 +12,48 @@ import org.bson.conversions.Bson;
 import com.mongodb.client.result.InsertOneResult;
 import org.bson.types.BasicBSONList;
 import org.bson.BsonValue;
+import org.bson.types.ObjectId;
 
 
-public class RegisterUserInteractor {
+public class RegisterUserInteractor implements RegisterUserInputBoundary{
 
-    public RegisterUserInteractor() {}
+    private RegisterUserPresenter presenter;
+
+    public RegisterUserInteractor(RegisterUserPresenter presenter) {
+        this.presenter = presenter;
+    }
 
     /**
-     * @param username
-     * @param password
-     * @param firstName
-     * @param lastName
-     * @param email
      * @return 1000: Success
      * 1001: Username Exists
      */
-    public static int registerUser(String username, String password, String firstName, String lastName, String email) {
-        DBConnection dbConnection = new MongoConnection();
-
+    public int registerUser(RegisterUserRequestModel requestModel) {
         // Check if username exists
-        Bson filter = Filters.eq("username", username);
+        Bson filter = Filters.eq("username", requestModel.getUsername());
 
-        if (dbConnection.getCollection("AuthInfo").find(filter).first() != null) {
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
+        AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
+
+        AuthInfo authInfo = authInfoDataGateway.getUserByUsername(requestModel.getUsername());
+
+        if (authInfo != null) {
+            presenter.registerFailed("Username already exist");
             return 1001;
         }
 
-        Document newUserDoc = new Document("firstName", firstName)
-                .append("lastName", lastName)
-                .append("email", email)
-                .append("orders", new BasicBSONList())
-                .append("verified", false);
+        ObjectId userID = userDataGateway.newUser(requestModel.getEmail(), requestModel.getFirstName(), requestModel.getLastName());
 
-        InsertOneResult result = dbConnection.getCollection("Users").insertOne(newUserDoc);
-
-        BsonValue userID = result.getInsertedId();
         String hashedPassword;
         try {
-            hashedPassword = PasswordHasher.toHexString(PasswordHasher.getSHA(password));
+            hashedPassword = PasswordHasher.toHexString(PasswordHasher.getSHA(requestModel.getPassword()));
         } catch (Exception e) {
             return 1;
         }
-        Document newUserAuthInfo = new Document("username", username)
-                .append("password", hashedPassword)
-                .append("userID", userID);
 
+        authInfoDataGateway.create(requestModel.getUsername(), hashedPassword, userID);
 
-        dbConnection.getCollection("AuthInfo").insertOne(newUserAuthInfo);
-
+        presenter.registerSuccessful("Success");
 
         return 1000;
     }
