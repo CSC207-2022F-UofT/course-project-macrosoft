@@ -1,5 +1,6 @@
 package order_history_use_case;
 
+
 public class Main {
     public static void main (String[] args){
 //        LoginUserInteractor i = new LoginUserInteractor();
@@ -12,6 +13,10 @@ public class Main {
 //        OrderHistoryInputBoundary orderHistoryInputBoundary = new OrderHistoryInteractor(presenter, orderDataGateway, curUser);
 //        OrderHistoryController controller = new OrderHistoryController(orderHistoryInputBoundary);
 //
-//        OrderHistoryScreen Screen = new OrderHistoryScreen(controller);
+//
+//        OrderHistoryPresenter presenter = new OrderHistoryProcessor(null);
+//        OrderHistoryPanel Screen = new OrderHistoryPanel(new OrderHistoryController(new OrderHistoryInteractor(presenter), new ObjectId("63335e7abb6cd6599ed6f64b")));
+//        presenter.setOrderHistoryPanel(Screen);
+//        Screen.updateOrder();
     }
 }

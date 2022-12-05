@@ -1,21 +1,31 @@
 package order_history_use_case;
 
-import entities.User;
+import org.bson.types.ObjectId;
 
 public class OrderHistoryController {
-    private final OrderHistoryInputBoundary orderHistoryInput;
+    private final OrderHistoryInputBoundary orderHistoryInteractor;
+    ObjectId currentUserId;
 
-    public OrderHistoryController(OrderHistoryInputBoundary orderHistoryInput) {
-        this.orderHistoryInput = orderHistoryInput;
+    public OrderHistoryController(OrderHistoryInputBoundary orderHistoryInteractor, ObjectId currentUserId) {
+        this.orderHistoryInteractor = orderHistoryInteractor;
+        this.currentUserId = currentUserId;
     }
 
-    public OrderHistoryResponseModel getOrders(User user) {
-        OrderHistoryRequestModel requestModel = new OrderHistoryRequestModel(user);
+    public void getOrders() {
+        if(currentUserId == null){
+            return;
+        }
 
-        return orderHistoryInput.getOrders(requestModel);
+        OrderHistoryRequestModel requestModel = new OrderHistoryRequestModel(this.getCurrentUserId());
+
+        orderHistoryInteractor.displayOrders(requestModel);
     }
 
-    public OrderHistoryInputBoundary getOrderHistoryInput() {
-        return orderHistoryInput;
+    public ObjectId getCurrentUserId() {
+        return currentUserId;
+    }
+
+    public OrderHistoryResponseModel getResponse(){
+        return orderHistoryInteractor.getResponse(currentUserId);
     }
 }

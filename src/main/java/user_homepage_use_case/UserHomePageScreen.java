@@ -30,15 +30,18 @@ public class UserHomePageScreen {
 
         JPanel homePanel = new JPanel();
         JPanel cartPanel = new JPanel();
+        JPanel orderHistoryPanel = new JPanel();
         JPanel profilePanel = new JPanel();
 
         homePanel.setOpaque(true);
         cartPanel.setOpaque(true);
         profilePanel.setOpaque(true);
+        orderHistoryPanel.setOpaque(true);
 
         homePanel.setBackground(GREY_WHITE);
         cartPanel.setBackground(GREY_WHITE);
         profilePanel.setBackground(GREY_WHITE);
+        orderHistoryPanel.setBackground(GREY_WHITE);
 
         JPanel greetingPanel = new JPanel();
         JLabel greetingLabel = new JLabel("Hello");
@@ -49,8 +52,11 @@ public class UserHomePageScreen {
         greetingPanel.setBorder(emptyBorder);
         greetingPanel.add(greetingLabel);
 
+        orderHistoryPanel.setLayout(new BorderLayout());
+
         homePanel.add(greetingPanel);
         profilePanel.add(controller.getUserProfilePanel(controller.getUserId()));
+        orderHistoryPanel.add(controller.getUserOrderHistoryPanel(controller.getUserId()));
 
         JLabel reminderLabel1 = new JLabel("This page will contain the search bar and a list of restaurants");
         JLabel reminderLabel2 = new JLabel("This page will contain the shopping cart(items in cart)");
@@ -70,7 +76,8 @@ public class UserHomePageScreen {
         tabs.setForeground(GREY_WHITE);
 
         tabs.addTab("Home", homePanel);
-        tabs.addTab("cart", cartPanel);
+        tabs.addTab("Cart", cartPanel);
+        tabs.addTab("Order History", orderHistoryPanel);
         tabs.addTab("Profile", profilePanel);
 
         tabs.setTabPlacement(JTabbedPane.BOTTOM);

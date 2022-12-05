@@ -1,9 +1,10 @@
 package order_history_use_case;
 
-import entities.User;
+import org.bson.types.ObjectId;
 
 public interface OrderHistoryInputBoundary {
-    OrderHistoryResponseModel getOrders(OrderHistoryRequestModel requestModel);
+    void displayOrders(OrderHistoryRequestModel requestModel);
 
-    User getCurUser();
+    OrderHistoryResponseModel getResponse(ObjectId userId);
+
 }
