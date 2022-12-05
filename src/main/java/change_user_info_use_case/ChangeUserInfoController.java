@@ -2,6 +2,8 @@ package change_user_info_use_case;
 
 import org.bson.types.ObjectId;
 
+// Interface adapters layer
+
 public class ChangeUserInfoController {
     private ChangeUserInfoInputBoundary interactor;
     private ObjectId currentUserId;

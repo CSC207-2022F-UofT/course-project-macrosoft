@@ -1,5 +1,7 @@
 package change_password_use_case;
 
+// Use case layer
+
 public class ChangePasswordResponseModel {
     private String message;
 
