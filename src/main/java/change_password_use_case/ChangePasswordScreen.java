@@ -1,6 +1,5 @@
 package change_password_use_case;
 
-import login_use_case.UserLoginResponseModel;
 import screens.LabelTextPanel;
 
 import javax.swing.*;
@@ -9,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static javax.swing.JOptionPane.showMessageDialog;
+
+// Frameworks/Drivers layer
 
 public class ChangePasswordScreen extends JFrame implements ChangePasswordScreenInterface, ActionListener {
     /**
@@ -63,7 +64,7 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
     }
 
     /**
-     *
+     * Close this frame
      */
     @Override
     public void close() {
@@ -71,7 +72,8 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
     }
 
     /**
-     *
+     * Displays a prompt message box with
+     * @param message the message to be displayed in the prompt
      */
     @Override
     public void showMessage(String message) {
@@ -79,7 +81,7 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
     }
 
     /**
-     * @return
+     * @return the JFrame representation of this object
      */
     @Override
     public JFrame getFrame() {

@@ -4,6 +4,8 @@ import database.MongoCollectionFetcher;
 import database.UserDataGateway;
 import database.UserDataProcessorMongo;
 
+// Use case layer
+
 public class ChangeUserInfoInteractor implements ChangeUserInfoInputBoundary {
     ChangeUserInfoPresenter presenter;
 
