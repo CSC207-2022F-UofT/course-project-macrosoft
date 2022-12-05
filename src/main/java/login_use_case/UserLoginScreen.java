@@ -2,6 +2,8 @@ package login_use_case;
 
 import change_user_info_use_case.*;
 import org.bson.types.ObjectId;
+import restaurant_homepage_use_case.RestaurantHomepageController;
+import restaurant_homepage_use_case.RestaurantHomepageScreen;
 import screens.LabelTextPanel;
 import user_homepage_use_case.UserHomePageScreen;
 import user_homepage_use_case.UserHomepageController;
@@ -142,6 +144,11 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
     public void showUserHomepage(ObjectId userId) {
         UserHomepageController controller = new UserHomepageController(userId);
         UserHomePageScreen screen = new UserHomePageScreen(controller);
+    }
+
+    public void showRestaurantHomepage(ObjectId restaurantId) {
+        RestaurantHomepageController controller = new RestaurantHomepageController(restaurantId);
+        RestaurantHomepageScreen screen = new RestaurantHomepageScreen(controller);
     }
 
     @Override

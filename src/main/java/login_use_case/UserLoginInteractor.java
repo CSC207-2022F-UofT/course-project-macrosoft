@@ -27,7 +27,13 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
         AuthInfo authInfo = authInfoDataGateway.getUserByUsernamePassword(requestModel.getUsername(), hashedPassword);
 
         if (authInfo != null) {
-            boolean verified = userDataGateway.getVerifiedStatus(authInfo.getUserId());
+            User user = userDataGateway.findById(authInfo.getUserId());
+
+            if (user == null) {
+                return presenter.loginFailed(new UserLoginResponseModel(1003, null));
+            }
+
+            boolean verified = user.isVerified();
 
             if (!verified) {
                 return presenter.notVerified(new UserLoginResponseModel(1001, authInfo.getUserId()));
