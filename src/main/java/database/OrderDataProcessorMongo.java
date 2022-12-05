@@ -1,5 +1,6 @@
 package database;
 
+import entities.Food;
 import entities.Order;
 import entities.OrderItem;
 import interactors.DocumentOrderConverter;
@@ -9,6 +10,8 @@ import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Dictionary;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,30 +22,54 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
     }
 
     /**
-     * @param order
+     * @param orderList
      * @return
      */
     @Override
-    public String save(Order order) {
-        return null;
+    public void save(Dictionary<ObjectId, Integer> orderList) {
+
     }
 
     /**
-     * @param order
+     * @param orderList
      * @return
      */
     @Override
-    public String delete(Order order) {
-        return null;
+    public void delete(Dictionary<ObjectId, Integer> orderList) {
+
     }
 
     /**
-     * @param order
+     * @param orderList
      * @return
      */
     @Override
-    public String create(Order order) {
-        return null;
+    public void create(Dictionary<ObjectId, Integer> orderList, ObjectId resId, ObjectId userId) {
+        FoodDataGateway foodDataGateway = new FoodDataMongo(mongoCollectionFetcher);
+
+        ArrayList<OrderItem> foodItemList = new ArrayList<>();
+        for (ObjectId foodItemId : (List<ObjectId>)orderList.keys()) {
+            int quantity = orderList.get(foodItemId);
+            OrderItem orderItem;
+            Food food = foodDataGateway.getFood(foodItemId, resId);
+            if(food != null){
+                orderItem = new OrderItem(foodItemId, food, quantity);
+                foodItemList.add(orderItem);
+            }
+        }
+
+        Order newOrder = new Order(
+                new ObjectId(),
+                new Date(),
+                resId,
+                userId,
+                foodItemList,
+                "Created");
+
+        Document orderDoc = this.convertOrderToDocument(newOrder);
+
+        mongoCollectionFetcher.getCollection("Orders")
+                .insertOne(orderDoc);
     }
 
     /**

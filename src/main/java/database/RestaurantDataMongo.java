@@ -83,6 +83,17 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
     }
 
     @Override
+    public String getRestaurantNameById(ObjectId restId) {
+        Bson filter = Filters.eq("_id", restId);
+        MongoIterable<Document> restaurants = mongoCollectionFetcher.getCollection("Restaurants").find(filter);
+
+        if(restaurants.first() != null){
+            return restaurants.first().getString("name");
+        }
+        return null;
+    }
+
+    @Override
     public void updateVerifiedStatus(ObjectId restaurantId, Boolean newStatus) {
         MongoCollection restaurantCollection = this.mongoCollectionFetcher.getCollection("Restaurants");
 
