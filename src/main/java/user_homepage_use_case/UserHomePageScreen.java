@@ -14,7 +14,7 @@ public class UserHomePageScreen {
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Color WHITE = new Color(255, 255, 255);
 
-    private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
+    private static final Border emptyBorder = BorderFactory.createEmptyBorder(50, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
