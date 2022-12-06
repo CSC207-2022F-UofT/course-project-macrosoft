@@ -30,8 +30,8 @@ public class MenuEditingController {
     public void remove(ObjectId foodID){
         RemoveFoodRequestModel requestModel = new RemoveFoodRequestModel(resId,
                 remove_input.getMenu(),
-                remove_input.getMenu().findFood(foodID));
-        remove_input.create(requestModel);
+                foodID);
+        remove_input.create(requestModel); //correct
     }
 
 

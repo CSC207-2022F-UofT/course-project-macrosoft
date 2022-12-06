@@ -10,9 +10,9 @@ public class RemoveFoodRequestModel {
 
     private Menu curMenu;
 
-    private Food foodToRemove;
+    private ObjectId foodToRemove;
 
-    public RemoveFoodRequestModel(ObjectId resId, Menu curMenu, Food foodToRemove) {
+    public RemoveFoodRequestModel(ObjectId resId, Menu curMenu, ObjectId foodToRemove) {
         this.resId = resId;
         this.curMenu = curMenu;
         this.foodToRemove = foodToRemove;
@@ -25,7 +25,7 @@ public class RemoveFoodRequestModel {
         this.curMenu = curMenu;
     }
 
-    public Food getFoodToRemove() {
+    public ObjectId getFoodToRemove() {
         return foodToRemove;
     }
 
@@ -37,7 +37,7 @@ public class RemoveFoodRequestModel {
         this.resId = resId;
     }
 
-    public void setFoodToRemove(Food foodToRemove) {
+    public void setFoodToRemove(ObjectId foodToRemove) {
         this.foodToRemove = foodToRemove;
     }
 }
