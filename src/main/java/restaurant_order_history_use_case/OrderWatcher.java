@@ -18,6 +18,7 @@ import java.util.List;
 public class OrderWatcher extends Thread {
     private RestaurantOrderHistoryPresenter presenter;
     private ObjectId restaurantId;
+    private ChangeStreamIterable<Document> changeStream;
 
     public OrderWatcher(RestaurantOrderHistoryPresenter presenter, ObjectId restaurantId) {
         this.presenter = presenter;
@@ -31,8 +32,12 @@ public class OrderWatcher extends Thread {
                 Aggregates.match(Filters.eq("operationType", "insert"))
         );
 
-        ChangeStreamIterable<Document> changeStreamDocuments = fetcher.getCollection("Orders").watch(pipeline).fullDocument(FullDocument.UPDATE_LOOKUP);
-        changeStreamDocuments.forEach(doc -> isRestaurant(doc.getFullDocument(), restaurantId));
+        changeStream = fetcher.getCollection("Orders").watch(pipeline).fullDocument(FullDocument.UPDATE_LOOKUP);
+        changeStream.forEach(doc -> isRestaurant(doc.getFullDocument(), restaurantId));
+    }
+
+    public void interrupt() {
+        changeStream.cursor().close();
     }
 
     public void isRestaurant(Document doc, ObjectId restaurantId) {
