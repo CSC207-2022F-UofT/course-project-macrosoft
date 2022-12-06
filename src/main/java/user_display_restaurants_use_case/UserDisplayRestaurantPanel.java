@@ -39,6 +39,7 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
     }
 
     public void updateRestaurantPanel(HashMap<ObjectId, String> restaurantInfo) {
+
         restaurantPanel = new JPanel(new GridLayout(0, 3));
         restaurantPanel.setOpaque(true);
         restaurantPanel.setBackground(GREY_WHITE);

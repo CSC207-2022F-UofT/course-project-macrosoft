@@ -1,12 +1,5 @@
 package login_use_case;
 
-import verify_user_use_case.VerifyUserScreen;
-import verify_user_use_case.VerifyUserController;
-import verify_user_use_case.VerifyUserFacade;
-
-import javax.swing.*;
-import java.awt.*;
-
 public class UserLoginProcessor implements UserLoginPresenter {
     private UserLoginScreenInterface loginScreen;
 
@@ -24,7 +17,7 @@ public class UserLoginProcessor implements UserLoginPresenter {
 
     public UserLoginResponseModel loginRestSuccess(UserLoginResponseModel response) {
         loginScreen.showMessage("Success");
-        loginScreen.showRestaurantHomepage(response.getUserId());
+        loginScreen.showRestaurantHomepage(response.getUserId(), response.getName());
         loginScreen.close();
         return response;
     }

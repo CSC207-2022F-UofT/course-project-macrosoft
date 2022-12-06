@@ -2,7 +2,7 @@ package database;
 
 import com.mongodb.client.model.Updates;
 import entities.VerificationCode;
-import verify_user_use_case.AddMinutesInteractor;
+import user_verify_use_case.AddMinutesInteractor;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;

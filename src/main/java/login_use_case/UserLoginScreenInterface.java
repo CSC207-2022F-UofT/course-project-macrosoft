@@ -6,7 +6,7 @@ import org.bson.types.ObjectId;
 public interface UserLoginScreenInterface {
     void showVerifyScreen(ObjectId userId);
     void showUserHomepage(ObjectId userId);
-    void showRestaurantHomepage(ObjectId restaurantId);
+    void showRestaurantHomepage(ObjectId restaurantId, String restaurantName);
     void showRestaurantVerifyScreen(ObjectId restaurantId);
     void showMessage(String message);
     void close();

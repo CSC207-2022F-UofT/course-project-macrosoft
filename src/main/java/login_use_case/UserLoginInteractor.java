@@ -30,18 +30,18 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
             User user = userDataGateway.findById(authInfo.getUserId());
 
             if (user == null) {
-                return presenter.loginFailed(new UserLoginResponseModel(1003, null));
+                return presenter.loginFailed(new UserLoginResponseModel(1003, null, null));
             }
 
             boolean verified = user.isVerified();
 
             if (!verified) {
-                return presenter.userNotVerified(new UserLoginResponseModel(1001, authInfo.getUserId()));
+                return presenter.userNotVerified(new UserLoginResponseModel(1001, authInfo.getUsername(), authInfo.getUserId()));
             } else {
-                return presenter.loginSuccess(new UserLoginResponseModel(1000, authInfo.getUserId()));
+                return presenter.loginSuccess(new UserLoginResponseModel(1000, authInfo.getUsername(), authInfo.getUserId()));
             }
         }
 
-        return presenter.loginFailed(new UserLoginResponseModel(1003, null));
+        return presenter.loginFailed(new UserLoginResponseModel(1003, authInfo.getUsername(), null));
     }
 }

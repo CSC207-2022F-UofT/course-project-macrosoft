@@ -1,8 +1,8 @@
 package welcome_use_case;
 
 import login_use_case.*;
-import register_restaurant_use_case.*;
-import register_user_use_case.*;
+import restaurant_register_use_case.*;
+import user_register_use_case.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;

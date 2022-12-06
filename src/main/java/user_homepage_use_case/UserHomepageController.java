@@ -1,6 +1,6 @@
 package user_homepage_use_case;
 
-import order_history_use_case.*;
+import user_order_history_use_case.*;
 import org.bson.types.ObjectId;
 import user_display_restaurants_use_case.*;
 import user_profile_use_case.*;
