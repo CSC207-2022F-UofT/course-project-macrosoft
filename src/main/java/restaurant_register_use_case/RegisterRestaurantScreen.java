@@ -1,34 +1,30 @@
-package login_use_case;
+package restaurant_register_use_case;
 
-import org.bson.types.ObjectId;
-import restaurant_homepage_use_case.RestaurantHomepageController;
-import restaurant_homepage_use_case.RestaurantHomepageScreen;
 import screens.LabelTextPanel;
-import user_homepage_use_case.UserHomePageScreen;
-import user_homepage_use_case.UserHomepageController;
-import restaurant_verify_use_case.*;
-import user_verify_use_case.*;
 import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
-
-public class UserLoginScreen extends JFrame implements ActionListener, UserLoginScreenInterface {
+public class RegisterRestaurantScreen extends JFrame implements RegisterRestaurantScreenInterface, ActionListener {
     /**
      * The username chosen by the user
      */
+    JTextField email = new JTextField(15);
     JTextField username = new JTextField(15);
     /**
      * The password
      */
     JPasswordField password = new JPasswordField(15);
-
-    UserLoginController userLoginController;
+    JTextField restaurantName = new JTextField(15);
+    JTextField location = new JTextField(30);
+    JTextField phone = new JTextField(15);
+    RegisterRestaurantController registerRestaurantController;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
     private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
@@ -47,17 +43,17 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
     /**
      * A window with a title and a JButton.
      */
-    public UserLoginScreen(UserLoginController controller) {
+    public RegisterRestaurantScreen(RegisterRestaurantController controller) {
 
         // set the frame
-        this.userLoginController = controller;
+        this.registerRestaurantController = controller;
         this.setSize(900, 700);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 
-         // the title panel
+        // the title panel
         JPanel titlePanel = new JPanel();
-        JLabel title = new JLabel("Login To Your Account");
+        JLabel title = new JLabel("Register New Account");
         title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -67,12 +63,21 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
 
         //the username and password panel
         JPanel infoPanel = new JPanel();
+        LabelTextPanel emailInfo = new LabelTextPanel(
+                new JLabel("Email"), email);
         LabelTextPanel usernameInfo = new LabelTextPanel(
                 new JLabel("Username"), username);
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Password"), password);
+        LabelTextPanel firstNameInfo = new LabelTextPanel(
+                new JLabel("Restaurant Name"), restaurantName);
+        LabelTextPanel lastNameInfo = new LabelTextPanel(
+                new JLabel("Phone"), phone);
+        emailInfo.setOpaque(true);
         usernameInfo.setOpaque(true);
         passwordInfo.setOpaque(true);
+        firstNameInfo.setOpaque(true);
+        lastNameInfo.setOpaque(true);
         usernameInfo.setBackground(GREY_WHITE);
         passwordInfo.setBackground(GREY_WHITE);
         usernameInfo.setForeground(BG_DARK_GREEN);
@@ -82,22 +87,22 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
         infoPanel.setBackground(GREY_WHITE);
         infoPanel.setBorder(emptyBorder2);
         infoPanel.setLayout(new GridLayout(0, 1));
+        infoPanel.add(emailInfo);
         infoPanel.add(usernameInfo);
         infoPanel.add(passwordInfo);
+        infoPanel.add(firstNameInfo);
+        infoPanel.add(lastNameInfo);
 
         // the buttons
-        JButton userLogIn = new JButton("Log in as User");
-        JButton restaurantLogIn = new JButton("Log in as Restaurant");
+        JButton register = new JButton("Register");
         JButton cancel = new JButton("Cancel");
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(userLogIn);
-        buttonPanel.add(restaurantLogIn);
+        buttonPanel.add(register);
         buttonPanel.add(cancel);
         buttonPanel.setOpaque(true);
         buttonPanel.setBackground(BG_DARK_GREEN);
         buttonPanel.setBorder(emptyBorder);
-        userLogIn.addActionListener(this);
-        restaurantLogIn.addActionListener(this);
+        register.addActionListener(this);
         cancel.addActionListener(this);
 
         // creating the main panel
@@ -117,67 +122,30 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
      * React to a button click that results in evt.
      */
     public void actionPerformed(ActionEvent evt) {
-        if (evt.getActionCommand().equals("Log in as User")) {
+        if (evt.getActionCommand().equals("Register")) {
             try {
-                UserLoginResponseModel userLoginResponseModel = userLoginController.login(username.getText(),
-                        String.valueOf(password.getPassword()));
-                System.out.println(userLoginResponseModel.getResponseCode());
+                registerRestaurantController.register(
+                        restaurantName.getText(),
+                        username.getText(),
+                        String.valueOf(password.getPassword()),
+                        email.getText(),
+                        location.getText(),
+                        phone.getText());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
-        }
-        else if (evt.getActionCommand().equals("Log in as Restaurant")) {
-            try {
-                UserLoginResponseModel userLoginResponseModel = userLoginController.loginAsRestaurant(username.getText(),
-                        String.valueOf(password.getPassword()));
-                System.out.println(userLoginResponseModel.getResponseCode());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
-        }
-        else if (evt.getActionCommand().equals("Cancel")) {
+        } else if (evt.getActionCommand().equals("Cancel")) {
             WelcomeScreen screen = new WelcomeScreen();
             this.dispose();
         }
     }
 
-    @Override
-    public void showVerifyScreen(ObjectId userId) {
-        VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
-        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
-        VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userId);
-        VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
-
-        verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
-
-        verifyUserScreen.getFrame().setVisible(true);
-    }
-
-    public void showRestaurantVerifyScreen(ObjectId restaurantId) {
-        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
-        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
-        VerifyResController verifyResController = new VerifyResController(verifyResFacade, restaurantId);
-        VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
-
-        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
-
-        verifyResScreen.getFrame().setVisible(true);
-    }
-
-    @Override
     public void showMessage(String message) {
         showMessageDialog(null, message);
     }
 
-    @Override
-    public void showUserHomepage(ObjectId userId) {
-        UserHomepageController controller = new UserHomepageController(userId);
-        UserHomePageScreen screen = new UserHomePageScreen(controller);
-    }
-
-    public void showRestaurantHomepage(ObjectId restaurantId, String restaurantName) {
-        RestaurantHomepageController controller = new RestaurantHomepageController(restaurantId);
-        RestaurantHomepageScreen screen = new RestaurantHomepageScreen(controller, restaurantName);
+    public void showWelcomePage() {
+        WelcomeScreen screen = new WelcomeScreen();
     }
 
     @Override

@@ -43,18 +43,18 @@ public class RestaurantLoginInteractor implements RestaurantLoginInputBoundary{
             Restaurant restaurant = restaurantDataGateway.findById(authInfo.getUserId());
 
             if (restaurant == null) {
-                return presenter.loginFailed(new UserLoginResponseModel(1003, null));
+                return presenter.loginFailed(new UserLoginResponseModel(1003, null, null));
             }
 
             boolean verified = restaurant.isVerified();
 
             if (!verified) {
-                return presenter.restaurantNotVerified(new UserLoginResponseModel(1001, authInfo.getUserId()));
+                return presenter.restaurantNotVerified(new UserLoginResponseModel(1001, restaurant.getName(), authInfo.getUserId()));
             } else {
-                return presenter.loginRestSuccess(new UserLoginResponseModel(1000, authInfo.getUserId()));
+                return presenter.loginRestSuccess(new UserLoginResponseModel(1000, restaurant.getName(), authInfo.getUserId()));
             }
         }
 
-        return presenter.loginFailed(new UserLoginResponseModel(1003, null));
+        return presenter.loginFailed(new UserLoginResponseModel(1003, null,null));
     }
 }

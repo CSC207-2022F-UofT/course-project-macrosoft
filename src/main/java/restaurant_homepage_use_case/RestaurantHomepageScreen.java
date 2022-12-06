@@ -19,7 +19,7 @@ public class RestaurantHomepageScreen {
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
-    public RestaurantHomepageScreen(RestaurantHomepageController controller) {
+    public RestaurantHomepageScreen(RestaurantHomepageController controller, String restaurantName) {
         this.controller = controller;
 
         final JFrame frame = new JFrame("Restaurant Homepage");
@@ -42,7 +42,7 @@ public class RestaurantHomepageScreen {
         profilePanel.setBackground(GREY_WHITE);
 
         JPanel greetingPanel = new JPanel();
-        JLabel greetingLabel = new JLabel("Hello~ <username>");
+        JLabel greetingLabel = new JLabel("Hello~ " + restaurantName);
         greetingLabel.setBackground(GREY_WHITE);
         greetingLabel.setForeground(BG_DARK_GREEN);
         greetingLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
