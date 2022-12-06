@@ -37,10 +37,16 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
 
         JLabel title = new JLabel("Review");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 20));
 
         Integer[] ratingChoices = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         this.ratingBox = new JComboBox<>(ratingChoices);
-        ratingBox.setPreferredSize(new Dimension(100, 25));
+        JLabel ratingLabel = new JLabel("Rating:");
+        JPanel ratingPanel = new JPanel();
+        ratingPanel.add(ratingLabel);
+        ratingPanel.add(ratingBox);
+        ratingPanel.setBounds(100, 100,100,50);
+        ratingPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel subjectLabel = new JLabel("Subject:");
         this.subjectArea = new JTextArea();
@@ -73,7 +79,7 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
         main.add(title);
-        main.add(ratingBox);
+        main.add(ratingPanel);
         main.add(subjectPanel);
         main.add(commentPanel);
         main.add(buttons);
@@ -81,6 +87,9 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
 
         this.pack();
         this.setVisible(true);
+
+        // Center the frame on the screen
+        this.setLocationRelativeTo(null);
     }
 
     private Integer parseRating() {

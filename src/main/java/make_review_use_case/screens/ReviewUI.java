@@ -6,6 +6,7 @@ import entities.Review;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 public class ReviewUI extends JFrame {
@@ -20,26 +21,32 @@ public class ReviewUI extends JFrame {
         setLayout(new GridLayout(6, 2));
 
         add(new JLabel("Subject Line:"));
-        add(new JTextField(this.rev.getSubjectLine()));
-
+        add(new JLabel(this.rev.getSubjectLine()));
 
         add(new JLabel("Comment:"));
-        add(new JTextArea(this.rev.getComment()));
+        add(new JLabel(this.rev.getComment()));
 
         add(new JLabel("Rating:"));
         int r = this.rev.getRating();
-        add(new JTextField(String.valueOf(r) + " / 10"));
+        add(new JLabel(String.valueOf(r) + " / 10"));
 
         add(new JLabel("Time:"));
-        add(new JTextField(this.rev.getLastEditTime().toString()));
+        add(new JLabel(this.rev.getLastEditTime().toString()));
 
-        add(new JButton("OK"));
+        JButton ok = new JButton("OK");
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        add(ok);
 
         pack();
         setVisible(true);
+
+        // Center the frame on the screen
+        setLocationRelativeTo(null);
     }
 
-    public void actionPerformed(ActionEvent evt) {
-        this.dispose();
-    }
 }
