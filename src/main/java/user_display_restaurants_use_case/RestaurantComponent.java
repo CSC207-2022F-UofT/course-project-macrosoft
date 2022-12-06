@@ -1,4 +1,4 @@
-package screens;
+package user_display_restaurants_use_case;
 
 import login_use_case.*;
 import org.bson.types.ObjectId;

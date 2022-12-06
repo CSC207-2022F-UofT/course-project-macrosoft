@@ -1,14 +1,10 @@
 package user_display_restaurants_use_case;
 
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.messaging.Message;
-import screens.RestaurantComponent;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 
 public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRestaurantPanelInterface {
