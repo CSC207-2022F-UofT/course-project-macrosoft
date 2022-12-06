@@ -1,5 +1,6 @@
 package database;
 
+import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.InsertOneResult;
 import entities.Food;
 import entities.Order;
@@ -121,6 +122,18 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
             return orders.get(0);
         else
             return null;
+    }
+
+    /**
+     * @param orderId
+     * @param newStatus
+     */
+    @Override
+    public void updateStatus(ObjectId orderId, String newStatus) {
+        Bson queryFilter = Filters.eq("_id", orderId);
+        Bson update = Updates.set("orderStatus", newStatus);
+
+        mongoCollectionFetcher.getCollection("Orders").updateOne(queryFilter, update);
     }
 
     public Order convertDocumentToOrder(Document document) {
