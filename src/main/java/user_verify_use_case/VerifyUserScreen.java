@@ -2,7 +2,7 @@ package user_verify_use_case;
 
 import login_use_case.*;
 import org.bson.types.ObjectId;
-import screens.LabelTextPanel;
+import components.LabelTextPanel;
 import user_homepage_use_case.UserHomePageScreen;
 import user_homepage_use_case.UserHomepageController;
 

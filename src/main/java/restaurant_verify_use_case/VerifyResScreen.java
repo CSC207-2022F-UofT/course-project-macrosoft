@@ -4,7 +4,7 @@ import login_use_case.*;
 import org.bson.types.ObjectId;
 import restaurant_homepage_use_case.RestaurantHomepageController;
 import restaurant_homepage_use_case.RestaurantHomepageScreen;
-import screens.LabelTextPanel;
+import components.LabelTextPanel;
 
 import javax.swing.*;
 import java.awt.*;

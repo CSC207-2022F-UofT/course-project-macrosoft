@@ -1,8 +1,7 @@
 package change_user_info_use_case;
 
-import screens.LabelTextPanel;
+import components.LabelTextPanel;
 
-import javax.imageio.plugins.tiff.TIFFTag;
 import javax.swing.*;
 import javax.swing.border.Border;
 

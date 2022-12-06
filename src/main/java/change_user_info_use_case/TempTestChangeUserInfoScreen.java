@@ -1,6 +1,5 @@
 package change_user_info_use_case;
 
-import change_password_use_case.*;
 import org.bson.types.ObjectId;
 
 public class TempTestChangeUserInfoScreen {

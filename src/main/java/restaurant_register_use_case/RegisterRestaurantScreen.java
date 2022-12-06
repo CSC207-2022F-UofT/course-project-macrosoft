@@ -1,6 +1,6 @@
 package restaurant_register_use_case;
 
-import screens.LabelTextPanel;
+import components.LabelTextPanel;
 import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;

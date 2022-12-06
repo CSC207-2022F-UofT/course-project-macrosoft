@@ -1,13 +1,5 @@
 package TestDatabaseAccessor;
 
-import interactors.DBConnection;
-import interactors.MongoConnection;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.result.InsertOneResult;
-import org.bson.Document;
-
-import org.bson.conversions.Bson;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class TestDatabaseConnection {

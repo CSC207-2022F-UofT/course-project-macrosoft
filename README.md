@@ -10,10 +10,10 @@ More details will be introduced in the next few sections of this document.
 ## How to Run  
 1. Run the file named `AppRun` and the Jframe window will pop out. 
 2. The window can be closed by clicking on the top left/right corner(depending on Mac or Windows) as you would do to all other windows. 
-3. The screens will navigate between each other on click according to their functionalities.
+3. The components will navigate between each other on click according to their functionalities.
 4. **Our program is not finished at this point so it CANNOT run by following the above instruction. Please run each individual screen.**
 
-## screens
+## components
 ### 1. Welcome Screen. 
 [Screenshots to be add]
 This screen is the first screen that shows up when the program is successfully runned. It contains a simple greeting message and two buttons used for register and login.
@@ -48,7 +48,7 @@ Both customers and restaurant owners will have this access to this page, directe
 - For restaurant owners, the order history contains the list of orders that the restaurant has completed, from all customers, sorted by time with the most recent order at the top. 
 - For customers, the order history contains the list of orders that the user has placed, from all restaurants, sorted by time with the most recent order at the top.
 
-### 8. More screens to be added.
+### 8. More components to be added.
 
 ## database
 In this project, we used MongoDB as our database, which is a document-oriented NoSQL database. We created 6 different collections to store our data: 
@@ -61,7 +61,7 @@ In this project, we used MongoDB as our database, which is a document-oriented N
 6. Verification: Stores the verification code that has been set, with the user(id) that receives the code and the time it was requested.
 
 ## Architecture and Design Pattern
-We construct our project in a way that it is consistent with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the pattern MVC Model-View-Controller design pattern. Each use case has its own package and all screens, interactors, presenters and controllers are organized in the package of the by use case.
+We construct our project in a way that it is consistent with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the pattern MVC Model-View-Controller design pattern. Each use case has its own package and all components, interactors, presenters and controllers are organized in the package of the by use case.
 
 ## Use of GitHub features
 1. We use the discussion page to open up the floor for everyone to express their thoughts and ask questions. Important deadlines and decisions are also posted there using the announcement feature. 

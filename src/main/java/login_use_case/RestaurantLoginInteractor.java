@@ -1,14 +1,8 @@
 package login_use_case;
 
 import database.*;
-import interactors.DBConnection;
-import interactors.MongoConnection;
-import com.mongodb.client.*;
 
-import com.mongodb.client.model.Filters;
 import library.PasswordHasher;
-import org.bson.Document;
-import org.bson.conversions.Bson;
 
 import entities.*;
 
