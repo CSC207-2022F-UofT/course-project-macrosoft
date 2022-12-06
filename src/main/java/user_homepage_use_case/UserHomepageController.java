@@ -4,6 +4,8 @@ import order_history_use_case.*;
 import org.bson.types.ObjectId;
 import user_display_restaurants_use_case.*;
 import user_profile_use_case.*;
+import user_shopping_cart_use_case.*;
+
 import javax.swing.*;
 
 public class UserHomepageController {
@@ -50,6 +52,21 @@ public class UserHomepageController {
 
 
         userDisplayRestaurantPresenter.setScreen(screen);
+
+        screen.refreshData();
+
+        return (JPanel) screen;
+    }
+
+    public JPanel getShoppingCartPanel() {
+        ShoppingCartPresenter shoppingCartPresenter = new ShoppingCartProcessor(null);
+        ShoppingCartInputBoundary shoppingCartInputBoundary = new ShoppingCartInteractor(shoppingCartPresenter);
+        ShoppingCartController shoppingCartController = new ShoppingCartController(shoppingCartInputBoundary);
+
+        ShoppingCartPanelInterface screen = new ShoppingCartPanel(shoppingCartController);
+
+
+        shoppingCartPresenter.setScreen(screen);
 
         screen.refreshData();
 
