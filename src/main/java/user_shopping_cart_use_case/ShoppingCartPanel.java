@@ -39,6 +39,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
     }
 
     public void displayShoppingCart(HashMap<String, Integer> cart) {
+        this.remove(shoppingCartPanel);
         this.shoppingCartPanel = new JPanel(new GridLayout(0, 1));
 
         for (String foodName: cart.keySet()) {
@@ -53,5 +54,6 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
         }
 
         this.add(shoppingCartPanel);
+        this.repaint();
     }
 }
