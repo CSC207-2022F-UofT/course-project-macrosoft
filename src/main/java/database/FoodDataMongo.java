@@ -18,6 +18,7 @@ public class FoodDataMongo implements FoodDataGateway{
     public FoodDataMongo(MongoCollectionFetcher mongoCollectionFetcher){
         this.mongoCollectionFetcher = mongoCollectionFetcher;
     }
+
     @Override
     public Food getFood(ObjectId foodId, ObjectId restId) {
         Bson queryFilter = Filters.eq("restaurantId", restId);

@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterface {
     ShoppingCartController controller;
     /**
@@ -27,6 +29,8 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(20, 20, 20, 20);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
+
+    JLabel title;
 
     public ShoppingCartPanel(ShoppingCartController controller) {
         this.controller = controller;
@@ -50,7 +54,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
         checkoutButton.setOpaque(false);
         checkoutButton.setForeground(BG_DARK_GREEN);
 
-        JLabel title = new JLabel("Your Shopping Cart");
+        title = new JLabel("Your Shopping is Empty");
         title.setBorder(emptyBorder2);
         title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         title.setForeground(BG_DARK_GREEN);
@@ -66,7 +70,12 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
             }
         });
 
-
+        checkoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.checkout();
+            }
+        });
 
         shoppingCartPanel.setOpaque(true);
         shoppingCartPanel.setBackground(GREY_WHITE);
@@ -78,7 +87,22 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
         controller.displayShoppingCart();
     }
 
-    public void displayShoppingCart(HashMap<String, HashMap<String, Object>> cart) {
+    /**
+     * @param message
+     */
+    @Override
+    public void showMessage(String message) {
+        showMessageDialog(null, message);
+    }
+
+    public void displayShoppingCart(String restaurantName, HashMap<String, HashMap<String, Object>> cart) {
+        if (restaurantName == null || cart.size() == 0) {
+            title.setText("Your Shopping is Empty");
+        }
+        else {
+            title.setText("Your Shopping Cart with " + restaurantName);
+        }
+
         this.remove(shoppingCartPanel);
         this.shoppingCartPanel = new JPanel(new GridLayout(0, 3));
         this.shoppingCartPanel.setOpaque(true);

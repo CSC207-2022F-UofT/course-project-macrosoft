@@ -5,6 +5,6 @@ import org.bson.types.ObjectId;
 import java.util.HashMap;
 
 public interface ShoppingCartPresenter {
-    public void displayShoppingCart(HashMap<String, HashMap<String, Object>> shoppingCartDisplay);
+    void displayShoppingCart(String restaurantName, HashMap<String, HashMap<String, Object>> shoppingCartDisplay);
     void setScreen(ShoppingCartPanelInterface screen);
 }
