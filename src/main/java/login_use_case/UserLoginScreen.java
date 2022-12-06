@@ -158,11 +158,11 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
         VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
         VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
         VerifyResController verifyResController = new VerifyResController(verifyResFacade, restaurantId);
-        VerifyResScreenInterface verifyUserScreen = new VerifyResScreen(verifyResController);
+        VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
 
-        verifyResPresenter.setVerifyResScreenInterface(verifyUserScreen);
+        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
 
-        verifyUserScreen.getFrame().setVisible(true);
+        verifyResScreen.getFrame().setVisible(true);
     }
 
     @Override

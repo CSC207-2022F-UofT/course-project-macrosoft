@@ -27,13 +27,16 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
         LabelTextPanel verificationCodeInfo = new LabelTextPanel(
                 new JLabel("Verification Code"), verificationCode);
 
+        JButton generateEmail = new JButton("Generate Email");
         JButton logIn = new JButton("Verify");
         JButton cancel = new JButton("Cancel");
 
         JPanel buttons = new JPanel();
+        buttons.add(generateEmail);
         buttons.add(logIn);
         buttons.add(cancel);
 
+        generateEmail.addActionListener(this);
         logIn.addActionListener(this);
         cancel.addActionListener(this);
 
