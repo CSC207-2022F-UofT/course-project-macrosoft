@@ -2,6 +2,7 @@ package restaurant_profile_use_case;
 
 import change_password_use_case.*;
 import change_restaurant_info_use_case.*;
+import restaurant_order_history_use_case.OrderWatcherSingleton;
 import user_shopping_cart_use_case.ShoppingCartSingleton;
 import welcome_use_case.WelcomeScreen;
 
@@ -147,6 +148,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
 
     public void logout() {
         ShoppingCartSingleton.setSingletonInstance(new ShoppingCartSingleton(null, new HashMap<>()));
+        OrderWatcherSingleton.getOrderWatcherSingletonInstance().getOrderWatcher().interrupt();
 
         java.awt.Window win[] = java.awt.Window.getWindows();
         for(int i=0;i<win.length;i++){

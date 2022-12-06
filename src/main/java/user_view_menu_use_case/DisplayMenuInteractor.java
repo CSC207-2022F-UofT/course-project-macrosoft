@@ -13,7 +13,6 @@ public class DisplayMenuInteractor implements DisplayMenuInputBoundary{
         this.presenter = presenter;
     }
 
-
     @Override
     public void displayMenu(DisplayMenuRequestModel requestModel) {
         MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
@@ -25,6 +24,5 @@ public class DisplayMenuInteractor implements DisplayMenuInputBoundary{
 
         DisplayMenuResponseModel responseModel = new DisplayMenuResponseModel(MenuToDicConverter.getMenuDic(curMenu), restName);
         presenter.presentMenu(responseModel);
-
     }
 }

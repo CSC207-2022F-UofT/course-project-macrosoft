@@ -34,4 +34,5 @@ public class RestaurantOrderHistoryController {
     public void setCurrentRestaurantId(ObjectId currentRestaurantId) {
         this.currentRestaurantId = currentRestaurantId;
     }
+
 }

@@ -20,4 +20,8 @@ public class RestaurantOrderHistoryProcessor implements RestaurantOrderHistoryPr
     public void setScreen(RestaurantOrderHistoryPanelInterface screen) {
         this.screen = screen;
     }
+    public void newOrder() {
+        this.screen.showMessage("You have a new order!");
+        this.screen.updateOrder();
+    }
 }
