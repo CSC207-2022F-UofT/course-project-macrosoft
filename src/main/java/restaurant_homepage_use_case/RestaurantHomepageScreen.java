@@ -51,7 +51,7 @@ public class RestaurantHomepageScreen {
         greetingPanel.add(greetingLabel);
 
         homePanel.add(greetingPanel);
-
+        profilePanel.add(controller.getRestaurantProfilePanel(controller.getCurrentRestaurantId()));
 
         JLabel reminderLabel1 = new JLabel("This page will contain the a list of orders in queue");
         JLabel reminderLabel2 = new JLabel("This page will contain the menu editing panel");
@@ -59,7 +59,6 @@ public class RestaurantHomepageScreen {
 
         homePanel.add(reminderLabel1);
         MenuPanel.add(reminderLabel2);
-        profilePanel.add(reminderLabel3);
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.setOpaque(true);
