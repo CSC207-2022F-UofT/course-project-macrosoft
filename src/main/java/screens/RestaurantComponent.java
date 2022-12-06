@@ -2,12 +2,14 @@ package screens;
 
 import login_use_case.*;
 import org.bson.types.ObjectId;
+import user_shopping_cart_use_case.ShoppingCartSingleton;
 import user_view_menu_use_case.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class RestaurantComponent extends JPanel {
 
@@ -33,6 +35,8 @@ public class RestaurantComponent extends JPanel {
                 displayMenuPanel.updatePanelData();
 
                 frame.setVisible(true);
+
+                ShoppingCartSingleton.setSingletonInstance(new ShoppingCartSingleton(restaurantId, new HashMap<>()));
             }
         });
 

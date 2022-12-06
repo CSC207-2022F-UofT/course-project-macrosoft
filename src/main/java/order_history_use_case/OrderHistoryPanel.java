@@ -60,19 +60,19 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
         JPanel left = new JPanel();
         JPanel bottom = new JPanel();
 
-        right.setPreferredSize(new Dimension(100 ,0));
-        left.setPreferredSize(new Dimension(100 ,0));
+        right.setPreferredSize(new Dimension(50 ,0));
+        left.setPreferredSize(new Dimension(50 ,0));
         bottom.setPreferredSize(new Dimension(0 ,100));
         right.setBackground(BG_DARK_GREEN);
         left.setBackground(BG_DARK_GREEN);
         bottom.setBackground(BG_DARK_GREEN);
 
+        this.setLayout(new BorderLayout());
         this.add(orderHistoryScroll, BorderLayout.CENTER);
         this.add(titlePanel, BorderLayout.NORTH);
         this.add(right, BorderLayout.EAST);
         this.add(left, BorderLayout.WEST);
         this.add(bottom, BorderLayout.SOUTH);
-
     }
 
     @Override

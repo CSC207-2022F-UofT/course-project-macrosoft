@@ -6,9 +6,11 @@ import java.util.HashMap;
 
 public class ShoppingCartSingleton {
     public static ShoppingCartSingleton singletonInstance;
-    public static HashMap<ObjectId, Integer> cart;
+    public HashMap<ObjectId, Integer> cart;
+    public ObjectId restaurantId;
 
-    public ShoppingCartSingleton(HashMap<ObjectId, Integer> cart) {
+    public ShoppingCartSingleton(ObjectId restaurantId, HashMap<ObjectId, Integer> cart) {
+        this.restaurantId = restaurantId;
         this.cart = cart;
     }
 
@@ -28,7 +30,15 @@ public class ShoppingCartSingleton {
         this.cart = cart;
     }
 
-    public static void addFood(ObjectId id, int quantity){
+    public void addFood(ObjectId id, int quantity){
         cart.put(id, quantity);
+    }
+
+    public ObjectId getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(ObjectId restaurantId) {
+        this.restaurantId = restaurantId;
     }
 }
