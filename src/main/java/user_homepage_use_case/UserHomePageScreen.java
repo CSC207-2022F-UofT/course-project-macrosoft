@@ -63,7 +63,7 @@ public class UserHomePageScreen {
         JLabel reminderLabel3 = new JLabel("This page will contain user profile page");
         homePanel.add(reminderLabel1);
         homePanel.add(controller.getUserDisplayRestaurantsPanel(controller.getUserId()));
-        cartPanel.add(reminderLabel2);
+        cartPanel.add(controller.getShoppingCartPanel());
         profilePanel.add(reminderLabel3);
 
         UIManager.put("TabbedPane.selected", Color.red);

@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 import java.util.HashMap;
 
 public class ShoppingCartSingleton {
-    public static ShoppingCartSingleton singletonInstance;
+    public static ShoppingCartSingleton singletonInstance = new ShoppingCartSingleton(null, new HashMap<>());
     public HashMap<ObjectId, Integer> cart;
     public ObjectId restaurantId;
 
