@@ -1,5 +1,7 @@
 package restaurant_homepage_use_case;
 
+import com.mongodb.client.ChangeStreamIterable;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 import restaurant_order_history_use_case.*;
 import restaurant_profile_use_case.*;
@@ -22,6 +24,9 @@ public class RestaurantHomepageController {
 
         presenter.setScreen(panel);
         panel.updateOrder();
+
+        OrderWatcherSingleton.setOrderWatcherSingletonInstance(new OrderWatcherSingleton(new OrderWatcher(presenter, currentRestaurantId)));
+        OrderWatcherSingleton.getOrderWatcherSingletonInstance().getOrderWatcher().start();
 
         return (JPanel) panel;
     }

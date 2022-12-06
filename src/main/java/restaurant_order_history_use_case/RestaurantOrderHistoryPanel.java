@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrderHistoryPanelInterface {
 
     RestaurantOrderHistoryController restaurantOrderHistoryController;
@@ -178,5 +180,13 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
     @Override
     public void updateOrder() {
         restaurantOrderHistoryController.getOrders();
+    }
+
+    /**
+     * @param message
+     */
+    @Override
+    public void showMessage(String message) {
+        showMessageDialog(null, message);
     }
 }
