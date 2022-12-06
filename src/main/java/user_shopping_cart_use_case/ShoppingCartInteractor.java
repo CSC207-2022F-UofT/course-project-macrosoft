@@ -25,12 +25,16 @@ public class ShoppingCartInteractor implements ShoppingCartInputBoundary {
 
         List<Food> menu = menuDataGateway.getMenu(restaurantId).getFoodList();
 
-        HashMap<String, Integer> cartDisplay = new HashMap<>();
+        HashMap<String, HashMap<String, Object>> cartDisplay = new HashMap<>();
 
         for (ObjectId foodId: cart.keySet()) {
             String name = GetFoodNameById(menu, foodId);
             if (!name.isEmpty()) {
-                cartDisplay.put(name, cart.get(foodId));
+
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("id", foodId);
+                map.put("quantity", cart.get(foodId));
+                cartDisplay.put(name, map);
             }
         }
 

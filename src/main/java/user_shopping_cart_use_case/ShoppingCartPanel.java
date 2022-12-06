@@ -1,5 +1,7 @@
 package user_shopping_cart_use_case;
 
+import org.bson.types.ObjectId;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -76,7 +78,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
         controller.displayShoppingCart();
     }
 
-    public void displayShoppingCart(HashMap<String, Integer> cart) {
+    public void displayShoppingCart(HashMap<String, HashMap<String, Object>> cart) {
         this.remove(shoppingCartPanel);
         this.shoppingCartPanel = new JPanel(new GridLayout(0, 3));
         this.shoppingCartPanel.setOpaque(true);
@@ -94,7 +96,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
             foodNameLabel.setFont(new Font("Serif", Font.PLAIN, 15));
             foodNameLabel.setForeground(BG_DARK_GREEN);
 
-            JLabel quantityLabel = new JLabel("Quantity: " + String.valueOf(cart.get(foodName)));
+            JLabel quantityLabel = new JLabel("Quantity: " + String.valueOf(cart.get(foodName).get("quantity")));
             quantityLabel.setFont(new Font("Serif", Font.PLAIN, 15));
             quantityLabel.setForeground(BG_DARK_GREEN);
 
@@ -108,6 +110,14 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
             quantityPanel.setOpaque(false);
 
             JButton deleteButton = new JButton("Delete");
+
+            deleteButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    controller.deleteItem((ObjectId) cart.get(foodName).get("id"));
+                    controller.displayShoppingCart();
+                }
+            });
 
             itemPanel.add(namePanel);
             itemPanel.add(quantityPanel);
