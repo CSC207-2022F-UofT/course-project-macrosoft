@@ -14,7 +14,7 @@ public class GetCodeInteractor {
      * @return: return verification code or nothing
      */
     public static String getVerificationCode(ObjectId userId) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         VerificationCode verificationCode = verificationCodeDataGateway.validateAndReadByUser(userId);
 

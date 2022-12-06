@@ -18,7 +18,7 @@ public class UserProfileInteractor implements UserProfileInputBoundary {
      */
     @Override
     public void displayUserProfile(UserProfileRequestModel userProfileRequestModel) {
-        MongoCollectionFetcher mongoCollectionFetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
         UserDataGateway userDataGateway = new UserDataProcessorMongo(mongoCollectionFetcher);
 
         User user = userDataGateway.findById(userProfileRequestModel.getUserId());

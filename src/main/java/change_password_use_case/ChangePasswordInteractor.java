@@ -24,7 +24,7 @@ public class ChangePasswordInteractor implements ChangePasswordInputBoundary {
     @Override
     public void changePassword(ChangePasswordRequestModel changePasswordRequestModel) {
         // Initialize the database access gateway
-        MongoCollectionFetcher mongoCollectionFetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(mongoCollectionFetcher);
 
         // Hash the password before the query so they match the password stored in the database
@@ -47,11 +47,13 @@ public class ChangePasswordInteractor implements ChangePasswordInputBoundary {
         // Display failed message if the user has entered the wrong original password
         if (authInfo == null) {
             ChangePasswordResponseModel responseModel = new ChangePasswordResponseModel("Invalid original password");
+
             presenter.changePasswordFailed(responseModel);
         }
         // Display failed message if the new password and confirmation doesn't match
         else if (!changePasswordRequestModel.getNewPassword().equals(changePasswordRequestModel.getConfirmNewPassword())) {
             ChangePasswordResponseModel responseModel = new ChangePasswordResponseModel("New password does not match");
+
             presenter.changePasswordFailed(responseModel);
         }
         // Change the password and display prompt if success
@@ -59,6 +61,7 @@ public class ChangePasswordInteractor implements ChangePasswordInputBoundary {
             authInfoDataGateway.setNewPassword(changePasswordRequestModel.getCurrentUserId(), hashedNewPassword);
 
             ChangePasswordResponseModel responseModel = new ChangePasswordResponseModel("Password change success");
+
             presenter.changePasswordSuccess(responseModel);
         }
     }

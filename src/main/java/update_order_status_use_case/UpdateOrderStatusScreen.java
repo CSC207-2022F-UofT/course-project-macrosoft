@@ -9,7 +9,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatusScreenInterface, ActionListener {
 
-    String[] OrderStatus = {"Order Received", "Preparing Order", "Ready For Pickup", "Picked Up", "Order Complete"};
+    String[] OrderStatus = {"Order Received", "Preparing Order", "Ready For Pickup", "Picked Up", "Order Complete", "Cancelled"};
     private JComboBox comboBox = new JComboBox(OrderStatus);
     UpdateOrderStatusController updateOrderStatusController;
 

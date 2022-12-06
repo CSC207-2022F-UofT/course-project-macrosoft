@@ -15,7 +15,7 @@ public class RestaurantProfileIneractor implements RestaurantProfileInputBoundar
      */
     @Override
     public void displayRestaurantProfile(RestaurantProfileRequestModel restaurantProfileRequestModel) {
-        MongoCollectionFetcher mongoCollectionFetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(mongoCollectionFetcher);
 
         Restaurant restaurant = restaurantDataGateway.findById(restaurantProfileRequestModel.getRestaurantID());

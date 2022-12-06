@@ -17,7 +17,7 @@ public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoun
      * 1001: Username Exists
      */
     public int registerRestaurant(RegisterRestaurantRequestModel requestModel) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
         MenuDataGateway menuDataGateway = new MenuDataMongo(fetcher);

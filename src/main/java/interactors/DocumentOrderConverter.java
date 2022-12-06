@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class DocumentOrderConverter {
     public static Order convertDocumentToOrder(Document document) {
-        FoodDataGateway foodDataGateway = new FoodDataMongo(new MongoCollectionFetcher());
+        FoodDataGateway foodDataGateway = new FoodDataMongo(MongoCollectionFetcher.getFetcher());
         List<OrderItem> items = document.getList("items", Document.class)
                 .stream()
                 .map(doc ->

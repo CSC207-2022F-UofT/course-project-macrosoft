@@ -19,7 +19,7 @@ public class VerifyResInteractor {
      * 1002: Expired or code doesn't exist
      */
     public int verifyRes(ObjectId restaurantId, String code) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 

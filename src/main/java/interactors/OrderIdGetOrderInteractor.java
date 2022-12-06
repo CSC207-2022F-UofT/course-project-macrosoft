@@ -11,7 +11,7 @@ import org.bson.types.ObjectId;
 
 public class OrderIdGetOrderInteractor implements OrderIdGetOrderInputBoundary {
     public IdGetOrderResponseModel getOrder(IdGetOrderRequestModel requestModel) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
 
         ObjectId id = new ObjectId(requestModel.getOrderId());

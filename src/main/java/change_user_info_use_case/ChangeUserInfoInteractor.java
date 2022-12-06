@@ -18,7 +18,7 @@ public class ChangeUserInfoInteractor implements ChangeUserInfoInputBoundary {
         if (requestModel.getUserId() == null) presenter.changeUserInfoFailed("Invalid user");
 
         try {
-            MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+            MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
             UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
 
             userDataGateway.UpdateUserInfo(

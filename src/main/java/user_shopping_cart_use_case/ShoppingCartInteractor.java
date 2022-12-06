@@ -15,7 +15,7 @@ public class ShoppingCartInteractor implements ShoppingCartInputBoundary {
     }
 
     public void displayShoppingCart() {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         MenuDataGateway menuDataGateway = new MenuDataMongo(fetcher);
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 

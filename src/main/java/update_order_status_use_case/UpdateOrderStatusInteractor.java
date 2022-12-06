@@ -32,7 +32,7 @@ public class UpdateOrderStatusInteractor implements UpdateOrderStatusInputBounda
     @Override
     public void updateOrderStatus(UpdateOrderStatusRequestModel requestModel) {
         try {
-            MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+            MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
             OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
 
             orderDataGateway.updateStatus(requestModel.getObjectId(), requestModel.getNewStatus());

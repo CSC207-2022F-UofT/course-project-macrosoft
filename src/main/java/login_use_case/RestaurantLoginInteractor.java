@@ -26,7 +26,7 @@ public class RestaurantLoginInteractor implements RestaurantLoginInputBoundary{
      * 1002: Invalid Credential
      */
     public UserLoginResponseModel login(RestaurantLoginRequestModel requestModel) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 

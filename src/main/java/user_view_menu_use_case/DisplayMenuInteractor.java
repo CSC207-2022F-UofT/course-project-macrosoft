@@ -16,7 +16,7 @@ public class DisplayMenuInteractor implements DisplayMenuInputBoundary{
 
     @Override
     public void displayMenu(DisplayMenuRequestModel requestModel) {
-        MongoCollectionFetcher mongoCollectionFetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
         MenuDataGateway menu_gateway = new MenuDataMongo(mongoCollectionFetcher);
         RestaurantDataGateway rest_gateway = new RestaurantDataMongo(mongoCollectionFetcher);
 

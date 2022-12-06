@@ -17,7 +17,7 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
 
     @Override
     public void displayOrders(OrderHistoryRequestModel requestModel) {
-        MongoCollectionFetcher mongoCollectionFetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(mongoCollectionFetcher);
 
         UserDataGateway userDataGateway = new UserDataProcessorMongo(mongoCollectionFetcher);
@@ -41,7 +41,7 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
     }
 
     public OrderHistoryResponseModel getResponse(ObjectId userId) {
-        MongoCollectionFetcher mongoCollectionFetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(mongoCollectionFetcher);
 
         UserDataGateway userDataGateway = new UserDataProcessorMongo(mongoCollectionFetcher);
