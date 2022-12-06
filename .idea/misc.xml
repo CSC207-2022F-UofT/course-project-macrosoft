@@ -9,6 +9,7 @@
     <option name="modulesWithSuppressedNotConfigured">
       <set>
         <option value="course-project-macrosoft" />
+        <option value="project" />
       </set>
     </option>
   </component>

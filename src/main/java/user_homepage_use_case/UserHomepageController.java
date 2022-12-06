@@ -2,6 +2,7 @@ package user_homepage_use_case;
 
 import order_history_use_case.*;
 import org.bson.types.ObjectId;
+import user_display_restaurants_use_case.*;
 import user_profile_use_case.*;
 import javax.swing.*;
 
@@ -39,6 +40,22 @@ public class UserHomepageController {
 
         return (JPanel) orderHistoryPanel;
     }
+
+    public JPanel getUserDisplayRestaurantsPanel(ObjectId userId) {
+        UserDisplayRestaurantPresenter userDisplayRestaurantPresenter = new UserDisplayRestaurantProcessor(null);
+        UserDisplayRestaurantInputBoundary userDisplayRestaurantInteractor = new UserDisplayRestaurantInteractor(userDisplayRestaurantPresenter);
+        UserDisplayRestaurantController userDisplayRestaurantController = new UserDisplayRestaurantController(userDisplayRestaurantInteractor);
+
+        UserDisplayRestaurantPanelInterface screen = new UserDisplayRestaurantPanel(userDisplayRestaurantController);
+
+
+        userDisplayRestaurantPresenter.setScreen(screen);
+
+        screen.refreshData();
+
+        return (JPanel) screen;
+    }
+
     public ObjectId getUserId() {
         return userId;
     }

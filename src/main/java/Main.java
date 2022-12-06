@@ -1,3 +1,7 @@
+import database.MongoCollectionFetcher;
+import database.RestaurantDataGateway;
+import database.RestaurantDataMongo;
+
 public class Main {
     public static void main(String[] args) {
 
