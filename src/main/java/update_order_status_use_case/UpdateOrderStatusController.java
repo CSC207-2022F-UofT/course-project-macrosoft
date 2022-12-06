@@ -2,22 +2,22 @@ package update_order_status_use_case;
 
 // Interface Adaptors Layer
 
+import org.bson.types.ObjectId;
+
 public class UpdateOrderStatusController {
 
-    final UpdateOrderStatusInputBoundary StatusInput;
+    final UpdateOrderStatusInputBoundary interactor;
 
-    public UpdateOrderStatusController(UpdateOrderStatusInputBoundary StatusInput) {
-        this.StatusInput = StatusInput;
+    public UpdateOrderStatusController(UpdateOrderStatusInputBoundary interactor) {
+        this.interactor = interactor;
     }
 
-    public UpdateOrderStatusResponseModel create(String newStatus) {
-        UpdateOrderStatusRequestModel requestModel =
-                new UpdateOrderStatusRequestModel(StatusInput.getCurOrder(), newStatus);
-        return StatusInput.create(requestModel);
+    public void updateOrderStatus(ObjectId orderId ,String newStatus) {
+        interactor.updateOrderStatus(orderId, newStatus);
     }
 
     public UpdateOrderStatusInputBoundary getStatusInput() {
-        return StatusInput;
+        return interactor;
     }
 
 

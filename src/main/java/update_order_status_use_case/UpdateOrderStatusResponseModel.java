@@ -6,18 +6,18 @@ import entities.*;
 
 public class UpdateOrderStatusResponseModel {
 
-    private Order newOrder;
+    private Order curOrder;
 
-    public UpdateOrderStatusResponseModel(Order newOrder) {
-        this.newOrder = newOrder;
+    public UpdateOrderStatusResponseModel(Order curOrder) {
+        this.curOrder = curOrder;
     }
 
     public Order getCurOrder() {
-        return newOrder;
+        return curOrder;
     }
 
-    public void setNewOrder(Order newOrder) {
-        this.newOrder = newOrder;
+    public void setCurOrder(Order newOrder) {
+        this.curOrder = curOrder;
     }
 
 }

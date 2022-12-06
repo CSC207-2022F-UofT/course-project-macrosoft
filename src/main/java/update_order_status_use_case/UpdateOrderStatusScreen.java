@@ -2,6 +2,7 @@ package update_order_status_use_case;
 
 // Frameworks & Driver Layer
 
+import org.bson.types.ObjectId;
 import update_order_status_use_case.UpdateOrderStatusController;
 
 import javax.swing.*;
@@ -49,7 +50,7 @@ public class UpdateOrderStatusScreen extends JFrame implements ActionListener{
         orderPanel.setLayout(layout);
         orderPanel.setBorder(emptyBorder1);
 
-        HashMap<String, List> ordersDic = controller.getStatusInput().getOrderDic();
+        HashMap<String, List> ordersDic = controller.interactor.getOrderDic();
 
         for(int i = 0; i < ordersDic.get("_id").size(); i++) {
 
@@ -61,7 +62,20 @@ public class UpdateOrderStatusScreen extends JFrame implements ActionListener{
             JLabel orderTime = new JLabel("Order Time: " + ordersDic.get("orderTime").get(i));
             JLabel userId = new JLabel("User Id: " + ordersDic.get("userID").get(i));
             JLabel orderItems = new JLabel("Order Id: " + ordersDic.get("items").get(i));
-            JComboBox orderStatus = new JComboBox();
+            String[] status = {"Confirming Order", "Order Received", "Preparing", "Ready For Pickup", "Order Complete"};
+            JComboBox orderStatus = new JComboBox(status);
+            orderStatus.setSelectedIndex(0);
+
+            ObjectId curId = new ObjectId(ordersDic.get("orderTime").get(i).toString());
+            ActionListener cbActionListener = new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                String newStatus = orderStatus.getSelectedItem().toString();
+                controller.updateOrderStatus(curId, newStatus);
+                }
+            };
+
+
 
             orderId.setBorder(emptyBorder2);
             orderTime.setBorder(emptyBorder2);

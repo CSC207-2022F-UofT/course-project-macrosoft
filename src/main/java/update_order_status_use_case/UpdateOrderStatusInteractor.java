@@ -2,8 +2,11 @@ package update_order_status_use_case;
 
 // Application Business Rules Layer
 
+import database.MongoCollectionFetcher;
 import database.OrderDataGateway;
+import database.OrderDataProcessorMongo;
 import entities.*;
+import org.bson.types.ObjectId;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +23,9 @@ public class UpdateOrderStatusInteractor implements UpdateOrderStatusInputBounda
 
     private Order curOrder;
 
+    private ObjectId orderId;
+
+
     private Restaurant curRes;
 
 
@@ -30,21 +36,23 @@ public class UpdateOrderStatusInteractor implements UpdateOrderStatusInputBounda
         this.curOrder = curOrder;
     }
 
+    @Override
+    public UpdateOrderStatusResponseModel create(UpdateOrderStatusRequestModel requestModel) {
+        return null;
+    }
+
     /**
      *
      * @param requestModel
      * @return
      */
 
-    @Override
-    public UpdateOrderStatusResponseModel create(UpdateOrderStatusRequestModel requestModel) {
+    public void updateOrderStatus(ObjectId orderId, String newStatus) {
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
 
-        requestModel.getCurOrder().setOrderStatus(requestModel.getNewStatus());
-        // UpdateOrderStatusHelper helper = new UpdateOrderStatusHelper();
-        // Order newOrder = helper.update(requestModel.getCurOrder(), requestModel.getNewStatus());
-        UpdateOrderStatusResponseModel responseModel = new UpdateOrderStatusResponseModel(requestModel.getCurOrder());
-        // orderDataGateway.save(newOrder); // not sure if I use "save" correctly
-        return orderPresenter.prepareSuccessView(responseModel);
+        orderDataGateway.updateOrderStatus(orderId, newStatus);
+
     }
 
     public List<Order> getOrders() {
@@ -61,7 +69,7 @@ public class UpdateOrderStatusInteractor implements UpdateOrderStatusInputBounda
 
     public HashMap<String, List> getOrderDic() {
         HashMap<String, List> orderDic = new HashMap<>();
-        List<Order> orderList = getOrders();
+        List<Order> orderList = this.getOrders();
 
         List<String> timeList = new ArrayList<>();
         List<String> userIdList = new ArrayList();
