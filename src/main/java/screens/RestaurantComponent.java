@@ -22,11 +22,13 @@ public class RestaurantComponent extends JPanel {
     private static final Color WHITE = new Color(255, 255, 255);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
-    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
+    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(10, 20, 10, 20);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
     public RestaurantComponent(JLabel label, ObjectId restaurantId) {
         JButton detailButton = new JButton("Detail");
+        detailButton.setForeground(BG_DARK_GREEN);
+        detailButton.setFont(new Font("Serif", Font.PLAIN, 15));
 
         detailButton.addActionListener(new ActionListener() {
             @Override
@@ -52,9 +54,11 @@ public class RestaurantComponent extends JPanel {
             }
         });
 
+        this.setLayout(new GridLayout(3, 1));
         this.add(label);
         this.add(detailButton);
         this.setOpaque(true);
         this.setBackground(GREY_WHITE);
+        this.setBorder(emptyBorder2);
     }
 }

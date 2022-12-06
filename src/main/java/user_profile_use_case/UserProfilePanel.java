@@ -13,8 +13,9 @@ import java.awt.event.ActionListener;
 public class UserProfilePanel extends JPanel implements UserProfilePanelInterface {
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(200, 0, 20, 0);
+    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 20, 0);
 
+    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private JLabel nameLabel = new JLabel("Name");
     private JLabel emailLabel = new JLabel("Email");
     private UserProfileController userProfileController;
@@ -22,20 +23,50 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
     public UserProfilePanel(UserProfileController userProfileController) {
         this.userProfileController = userProfileController;
 
-        GridLayout gridLayout = new GridLayout(0,1);
+        this.setOpaque(true);
+        this.setBackground(GREY_WHITE);
 
-        JPanel centrePanel = new JPanel(gridLayout);
-        centrePanel.setOpaque(false);
-        nameLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        this.setLayout(new BorderLayout());
+
+        JPanel titlePanel = new JPanel();
+        JLabel titleLabel = new JLabel("User Profile");
+        titleLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        titleLabel.setForeground(BG_DARK_GREEN);
+        titlePanel.add(titleLabel);
+        titlePanel.setOpaque(true);
+        titlePanel.setBackground(GREY_WHITE);
+        titlePanel.setBorder(emptyBorder2);
+
+        this.add(titlePanel, BorderLayout.NORTH);
+
+        JPanel centrePanel = new JPanel();
+        centrePanel.setLayout(new GridLayout(6, 1));
+        centrePanel.setOpaque(true);
+        centrePanel.setBackground(BG_DARK_GREEN);
+
+        JPanel namePanel = new JPanel();
+        namePanel.setOpaque(false);
+        nameLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         nameLabel.setForeground(GREY_WHITE);
-        nameLabel.setBorder(emptyBorder3);
-        centrePanel.add(nameLabel);
-        emailLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
-        emailLabel.setForeground(GREY_WHITE);
-        emailLabel.setBorder(emptyBorder3);
-        centrePanel.add(emailLabel);
+        namePanel.setBorder(emptyBorder3);
+        namePanel.add(nameLabel);
+        centrePanel.add(namePanel);
 
-        this.add(centrePanel, BorderLayout.CENTER);
+        JPanel emailPanel = new JPanel();
+        emailPanel.setOpaque(false);
+        emailLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+        emailLabel.setForeground(GREY_WHITE);
+        emailPanel.setBorder(emptyBorder3);
+        emailPanel.add(emailLabel);
+        centrePanel.add(emailPanel);
+
+        JPanel containCentre = new JPanel();
+        containCentre.setOpaque(false);
+        containCentre.setLayout(new BorderLayout());
+        containCentre.add(centrePanel, BorderLayout.CENTER);
+        containCentre.setBorder(emptyBorder2);
+
+        this.add(containCentre, BorderLayout.CENTER);
 
         // Add button panel
         LayoutManager gridLayout1 = new GridLayout(0,2);
@@ -64,6 +95,9 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
             }
         });
         buttonsPanel.add(changePasswordPanel);
+
+        buttonsPanel.setBorder(emptyBorder2);
+        buttonsPanel.setOpaque(false);
 
         this.add(buttonsPanel, BorderLayout.SOUTH);
     }

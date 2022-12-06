@@ -46,6 +46,7 @@ public class UserHomePageScreen {
         //set the layout of the panels
         homePanel.setLayout(new BorderLayout());
         orderHistoryPanel.setLayout(new BorderLayout());
+        profilePanel.setLayout(new BorderLayout());
 
         //the greeting message on the first page
         JPanel greetingPanel = new JPanel();
@@ -57,12 +58,11 @@ public class UserHomePageScreen {
         greetingPanel.setBorder(emptyBorder);
         greetingPanel.add(greetingLabel);
 
-        JLabel reminderLabel2 = new JLabel("This page will contain the shopping cart(items in cart)");
         homePanel.add(greetingPanel, BorderLayout.NORTH);
         homePanel.add(controller.getUserDisplayRestaurantsPanel(controller.getUserId()), BorderLayout.CENTER);
         profilePanel.add(controller.getUserProfilePanel(controller.getUserId()));
         orderHistoryPanel.add(controller.getUserOrderHistoryPanel(controller.getUserId()));
-        cartPanel.add(reminderLabel2);
+        cartPanel.add(controller.getShoppingCartPanel());
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.setOpaque(true);
