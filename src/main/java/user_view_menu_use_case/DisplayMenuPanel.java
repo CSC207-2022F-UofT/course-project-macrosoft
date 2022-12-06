@@ -24,6 +24,8 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
     private DisplayMenuController controller;
 
     private JLabel nameLabel = new JLabel();
+    private JLabel addLabel = new JLabel();
+    private JLabel phoneLabel = new JLabel();
 
     private JPanel foodPanel = new JPanel();
 
@@ -31,13 +33,23 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
         this.controller = controller;
         this.setLayout(new BorderLayout());
 
-        JPanel resNamePanel = new JPanel();
+        JPanel resNamePanel = new JPanel(new GridLayout(0, 1));
         resNamePanel.setBackground(BG_DARK_GREEN);
 
         nameLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         nameLabel.setForeground(GREY_WHITE);
         nameLabel.setBorder(emptyBorder);
         resNamePanel.add(this.nameLabel);
+
+        addLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        addLabel.setForeground(GREY_WHITE);
+        addLabel.setBorder(emptyBorder);
+        resNamePanel.add(this.addLabel);
+
+        phoneLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        phoneLabel.setForeground(GREY_WHITE);
+        phoneLabel.setBorder(emptyBorder);
+        resNamePanel.add(this.phoneLabel);
 
         foodPanel.setBackground(GREY_WHITE);
         foodPanel.setBorder(blackLine);
@@ -76,7 +88,23 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
     @Override
     public void updateNameLabel(String newName) {
         nameLabel.setText(newName);
+    }
 
+
+    /**
+     * @param newAddress
+     */
+    @Override
+    public void updateAddressLabel(String newAddress) {
+        addLabel.setText(newAddress);
+    }
+
+    /**
+     * @param newPhone
+     */
+    @Override
+    public void updatePhoneLabel(String newPhone) {
+        phoneLabel.setText(newPhone);
     }
 
     @Override
