@@ -155,4 +155,18 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
 
         return doc;
     }
+
+    @Override
+    public void updateOrderStatus(ObjectId orderId, String newStatus) {
+        Bson queryFilter = Filters.eq("_id", orderId);
+
+        Document curOrder = (Document) mongoCollectionFetcher.getCollection("Orders")
+                .find(queryFilter)
+                .first();
+
+        mongoCollectionFetcher.getCollection("Orders").deleteOne(queryFilter);
+        Order newOrder = convertDocumentToOrder(curOrder);
+        newOrder.setOrderStatus(newStatus);
+        mongoCollectionFetcher.getCollection("Orders").insertOne(convertOrderToDocument(newOrder));
+    }
 }

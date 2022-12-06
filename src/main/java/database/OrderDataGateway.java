@@ -13,4 +13,6 @@ public interface OrderDataGateway {
     List<Order> findAllByUser(ObjectId userId);
     List<Order> findAllByRestaurant(ObjectId restaurantId);
     Order findById(ObjectId id);
+
+    void updateOrderStatus(ObjectId orderId, String newStatus);
 }
