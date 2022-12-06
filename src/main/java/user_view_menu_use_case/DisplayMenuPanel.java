@@ -110,8 +110,7 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
             addButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    int quantity =  Integer.parseInt(quantityField.getText());
-                    ShoppingCartSingleton.addFood(foodId, quantity);
+                    controller.addItem(foodId, quantityField.getText());
                 }
             });
 
