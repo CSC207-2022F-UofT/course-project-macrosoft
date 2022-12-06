@@ -21,7 +21,7 @@ public class VerifyResInteractor {
     public int verifyRes(ObjectId restaurantId, String code) {
         MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
-        UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
+        RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 
         String actualCode = GetCodeInteractor.getVerificationCode(restaurantId);
 
@@ -34,7 +34,7 @@ public class VerifyResInteractor {
         }
 
         verificationCodeDataGateway.deleteByUserId(restaurantId);
-        userDataGateway.updateVerifiedStatus(restaurantId, true);
+        restaurantDataGateway.updateVerifiedStatus(restaurantId, true);
 
         presenter.verifiedSuccess(restaurantId);
         return 1000;

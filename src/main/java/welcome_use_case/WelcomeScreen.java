@@ -1,7 +1,8 @@
 package welcome_use_case;
 
 import login_use_case.*;
-import register_use_case.*;
+import register_restaurant_use_case.*;
+import register_user_use_case.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -72,12 +73,16 @@ public class WelcomeScreen {
         actionPanel.setOpaque(false);
         JButton loginButton = new JButton("LOGIN");
         JButton registerButton = new JButton("REGISTER AS USER");
+        JButton registerAsRestButton = new JButton("REGISTER AS RESTAURANT");
+        registerAsRestButton.setOpaque(false);
         loginButton.setOpaque(false);
         registerButton.setOpaque(false);
         loginButton.setFont(new Font("Serif", Font.BOLD, 15));
         registerButton.setFont(new Font("Serif", Font.BOLD, 15));
+        registerAsRestButton.setFont(new Font("Serif", Font.BOLD, 15));
         loginButton.setForeground(BG_DARK_GREEN);
         registerButton.setForeground(BG_DARK_GREEN);
+        registerAsRestButton.setForeground(BG_DARK_GREEN);
 
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -108,9 +113,23 @@ public class WelcomeScreen {
             }
         });
 
+        registerAsRestButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegisterRestaurantPresenter registerRestaurantPresenter = new RegisterRestaurantProcessor(null);
+                RegisterRestaurantInputBoundary registerRestaurantInputBoundary = new RegisterRestaurantInteractor(registerRestaurantPresenter);
+                RegisterRestaurantController registerRestaurantController = new RegisterRestaurantController(registerRestaurantInputBoundary);
+                RegisterRestaurantScreenInterface screen = new RegisterRestaurantScreen(registerRestaurantController);
+                registerRestaurantPresenter.setScreen(screen);
+                screen.getFrame().setVisible(true);
+
+                frame.dispose();
+            }
+        });
 
         actionPanel.add(loginButton);
         actionPanel.add(registerButton);
+        actionPanel.add(registerAsRestButton);
         actionPanel.setBorder(emptyBorder4);
 
         JLabel placeTaker3 = new JLabel();

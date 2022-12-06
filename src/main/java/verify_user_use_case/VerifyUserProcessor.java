@@ -26,6 +26,7 @@ public class VerifyUserProcessor implements VerifyUserPresenter {
      */
     @Override
     public String verifiedFailed() {
+        verifyUserScreen.showMessage("Failed");
         return null;
     }
 

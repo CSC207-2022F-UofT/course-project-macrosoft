@@ -6,6 +6,7 @@ import com.mongodb.client.model.Collation;
 import com.mongodb.client.model.CollationStrength;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.InsertOneResult;
 import entities.Restaurant;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -19,6 +20,21 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
     public RestaurantDataMongo(MongoCollectionFetcher fetcher) {
         this.mongoCollectionFetcher = fetcher;
     }
+
+    @Override
+    public ObjectId newRestaurant(String name, String email, String location, String phone) {
+        Document newRestaurantDoc = new Document("name", name)
+                .append("email", email)
+                .append("location", location)
+                .append("phone", phone)
+                .append("menu", null)
+                .append("verified", false);
+
+        InsertOneResult result = this.mongoCollectionFetcher.getCollection("Restaurants").insertOne(newRestaurantDoc);
+
+        return result.getInsertedId().asObjectId().getValue();
+    }
+
     @Override
     public String save(Restaurant restaurant) {
         this.mongoCollectionFetcher.getCollection("Restaurants").insertOne(convertRestaurantToDocument(restaurant));
@@ -87,7 +103,7 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
     }
 
     @Override
-    public void UpdateRestaurantInfo(ObjectId restaurantID, String newName, String newEmail, String newLocation, String newPhone) {
+    public void updateRestaurantInfo(ObjectId restaurantID, String newName, String newEmail, String newLocation, String newPhone) {
         MongoCollection restaurantCollection = this.mongoCollectionFetcher.getCollection("Restaurants");
 
         List<Bson> updates = new ArrayList<>();
@@ -103,6 +119,13 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         Bson update = Updates.combine(updates);
 
         restaurantCollection.updateOne(queryFilter, update);
+    }
+
+    public void updateMenuId(ObjectId restaurantId, ObjectId menuId) {
+        Bson queryFilter = Filters.eq("_id", restaurantId);
+        Bson updates = Updates.set("menu", menuId);
+
+        this.mongoCollectionFetcher.getCollection("Restaurants").updateOne(queryFilter, updates);
     }
 
 

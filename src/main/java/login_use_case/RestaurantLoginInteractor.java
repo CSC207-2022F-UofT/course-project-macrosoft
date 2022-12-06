@@ -49,9 +49,9 @@ public class RestaurantLoginInteractor implements RestaurantLoginInputBoundary{
             boolean verified = restaurant.isVerified();
 
             if (!verified) {
-                return presenter.userNotVerified(new UserLoginResponseModel(1001, authInfo.getUserId()));
+                return presenter.restaurantNotVerified(new UserLoginResponseModel(1001, authInfo.getUserId()));
             } else {
-                return presenter.loginSuccess(new UserLoginResponseModel(1000, authInfo.getUserId()));
+                return presenter.loginRestSuccess(new UserLoginResponseModel(1000, authInfo.getUserId()));
             }
         }
 

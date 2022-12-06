@@ -17,7 +17,7 @@ public class ChangeRestaurantInfoInteractor implements ChangeRestaurantInfoInput
             MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
             RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 
-            restaurantDataGateway.UpdateRestaurantInfo(
+            restaurantDataGateway.updateRestaurantInfo(
                     requestModel.getRestaurantId(),
                     requestModel.getNewName(),
                     requestModel.getNewEmail(),

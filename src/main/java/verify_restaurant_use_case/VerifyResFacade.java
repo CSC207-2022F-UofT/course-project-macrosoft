@@ -11,7 +11,7 @@ public class VerifyResFacade {
     }
 
     public void generateEmail(ObjectId restaurantID) {
-        verify_restaurant_use_case.GenerateEmailInteractor generateEmailInteractor = new GenerateEmailInteractor(presenter);
+        GenerateEmailInteractor generateEmailInteractor = new GenerateEmailInteractor(presenter);
         generateEmailInteractor.generateVerificationEmail(restaurantID);
     }
 
