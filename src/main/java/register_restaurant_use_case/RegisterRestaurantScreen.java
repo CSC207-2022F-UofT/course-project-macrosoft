@@ -126,10 +126,10 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
         if (evt.getActionCommand().equals("Register")) {
             try {
                 registerRestaurantController.register(
-                        email.getText(),
+                        restaurantName.getText(),
                         username.getText(),
                         String.valueOf(password.getPassword()),
-                        restaurantName.getText(),
+                        email.getText(),
                         location.getText(),
                         phone.getText());
             } catch (Exception e) {

@@ -23,8 +23,8 @@ public class VerificationCodeProcessorMongo implements VerificationCodeDataGatew
      * @return
      */
     @Override
-    public String save(ObjectId restaurantID, VerificationCode verificationCode) {
-        Document verificationCodeDoc = new Document("restaurantID", restaurantID)
+    public String save(ObjectId userId, VerificationCode verificationCode) {
+        Document verificationCodeDoc = new Document("userID", userId)
                 .append("code", verificationCode.getCode())
                 .append("createdTime", verificationCode.getCreateDate());
 
@@ -66,7 +66,7 @@ public class VerificationCodeProcessorMongo implements VerificationCodeDataGatew
     }
 
     public String update(ObjectId restaurantID, VerificationCode verificationCode) {
-        Bson filter = Filters.eq("restaurantID", restaurantID);
+        Bson filter = Filters.eq("userID", restaurantID);
         Bson update = Updates.combine(
                 Updates.set("code", verificationCode.getCode()),
                 Updates.set("createdTime", verificationCode.getCreateDate()));

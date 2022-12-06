@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUserScreenInterface {
 
     VerifyUserController verifyUserController;
@@ -89,6 +91,10 @@ public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUs
     public void showUserHomepage(ObjectId userId) {
         UserHomepageController controller = new UserHomepageController(userId);
         UserHomePageScreen screen = new UserHomePageScreen(controller);
+    }
+
+    public void showMessage(String message) {
+        showMessageDialog(null, message);
     }
 
     @Override

@@ -28,6 +28,7 @@ public class VerifyResProcessor implements VerifyResPresenter {
      */
     @Override
     public String verifiedFailed() {
+        verifyResScreenInterface.showMessage("Failed");
         return null;
     }
 

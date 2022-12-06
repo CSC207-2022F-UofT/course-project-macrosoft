@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class VerifyResScreen extends JFrame implements VerifyResScreenInterface, ActionListener {
     VerifyResController verifyResController;
 
@@ -88,6 +90,10 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
     public void showRestaurantHomePage(ObjectId restaurantId) {
         RestaurantHomepageController restaurantHomepageController = new RestaurantHomepageController(restaurantId);
         RestaurantHomepageScreen restaurantHomepageScreen = new RestaurantHomepageScreen(restaurantHomepageController);
+    }
+
+    public void showMessage(String message) {
+        showMessageDialog(null, message);
     }
 
     @Override

@@ -5,5 +5,6 @@ public interface UserLoginPresenter {
     UserLoginResponseModel loginFailed(UserLoginResponseModel response);
     UserLoginResponseModel userNotVerified(UserLoginResponseModel response);
     UserLoginResponseModel restaurantNotVerified(UserLoginResponseModel response);
+    UserLoginResponseModel loginRestSuccess(UserLoginResponseModel response);
     void setLoginScreen(UserLoginScreenInterface loginScreen);
 }
