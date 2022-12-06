@@ -20,9 +20,9 @@ public class DisplayMenuInteractor implements DisplayMenuInputBoundary{
         RestaurantDataGateway rest_gateway = new RestaurantDataMongo(mongoCollectionFetcher);
 
         Menu curMenu = menu_gateway.getMenu(requestModel.getRestId());
-        String restName = rest_gateway.getRestaurantNameById(requestModel.getRestId());
+        Restaurant rest = rest_gateway.findById(requestModel.getRestId());
 
-        DisplayMenuResponseModel responseModel = new DisplayMenuResponseModel(MenuToDicConverter.getMenuDic(curMenu), restName);
+        DisplayMenuResponseModel responseModel = new DisplayMenuResponseModel(MenuToDicConverter.getMenuDic(curMenu), rest.getName(), rest.getLocation(), rest.getPhone());
         presenter.presentMenu(responseModel);
     }
 }

@@ -19,6 +19,8 @@ public class DisplayMenuProcessor implements DisplayMenuPresenter{
     @Override
     public void presentMenu(DisplayMenuResponseModel responseModel) {
         displayMenuPanel.updateNameLabel(responseModel.getRestName());
+        displayMenuPanel.updateAddressLabel(responseModel.getRestAddress());
+        displayMenuPanel.updatePhoneLabel(responseModel.getRestPhone());
         displayMenuPanel.updateMenuPanel(responseModel.getMenuDic());
     }
 }
