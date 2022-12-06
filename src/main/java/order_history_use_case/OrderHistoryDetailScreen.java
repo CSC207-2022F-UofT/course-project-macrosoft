@@ -102,7 +102,7 @@ public class OrderHistoryDetailScreen {
         JLabel totalOrderPrice = new JLabel("Total: $" + String.valueOf(totalPrice));
         totalOrderPrice.setHorizontalTextPosition(JLabel.CENTER);
         totalOrderPrice.setForeground(GREY_WHITE);
-        totalOrderPrice.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 60));
+        totalOrderPrice.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         totalPanel.add(totalOrderPrice);
 
         JPanel right = new JPanel();
