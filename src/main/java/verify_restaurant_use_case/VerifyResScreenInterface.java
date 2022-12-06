@@ -9,5 +9,4 @@ public interface VerifyResScreenInterface {
     void showLoginScreen();
     void showRestaurantHomePage(ObjectId restaurantId);
     void close();
-    void showMessage(String message);
 }

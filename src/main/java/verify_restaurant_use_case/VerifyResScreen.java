@@ -12,8 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static javax.swing.JOptionPane.showMessageDialog;
-
 public class VerifyResScreen extends JFrame implements VerifyResScreenInterface, ActionListener {
     VerifyResController verifyResController;
 
@@ -29,16 +27,13 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
         LabelTextPanel verificationCodeInfo = new LabelTextPanel(
                 new JLabel("Verification Code"), verificationCode);
 
-        JButton generateEmail = new JButton("Generate Email");
         JButton logIn = new JButton("Verify");
         JButton cancel = new JButton("Cancel");
 
         JPanel buttons = new JPanel();
-        buttons.add(generateEmail);
         buttons.add(logIn);
         buttons.add(cancel);
 
-        generateEmail.addActionListener(this);
         logIn.addActionListener(this);
         cancel.addActionListener(this);
 
@@ -59,10 +54,6 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Verify")) {
-            verifyResController.verifyRes(verificationCode.getText());
-        }
-        else if (evt.getActionCommand().equals("Generate Email")) {
-            verifyResController.generateEmail();
         }
         else if (evt.getActionCommand().equals("Cancel")) {
             this.showLoginScreen();
@@ -90,10 +81,6 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
     public void showRestaurantHomePage(ObjectId restaurantId) {
         RestaurantHomepageController restaurantHomepageController = new RestaurantHomepageController(restaurantId);
         RestaurantHomepageScreen restaurantHomepageScreen = new RestaurantHomepageScreen(restaurantHomepageController);
-    }
-
-    public void showMessage(String message) {
-        showMessageDialog(null, message);
     }
 
     @Override

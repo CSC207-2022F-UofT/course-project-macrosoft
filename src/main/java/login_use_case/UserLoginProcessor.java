@@ -22,13 +22,6 @@ public class UserLoginProcessor implements UserLoginPresenter {
         return response;
     }
 
-    public UserLoginResponseModel loginRestSuccess(UserLoginResponseModel response) {
-        loginScreen.showMessage("Success");
-        loginScreen.showRestaurantHomepage(response.getUserId());
-        loginScreen.close();
-        return response;
-    }
-
     @Override
     public UserLoginResponseModel loginFailed(UserLoginResponseModel response) {
         loginScreen.showMessage("Failed");

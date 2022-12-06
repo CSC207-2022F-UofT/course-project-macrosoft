@@ -8,5 +8,4 @@ public interface VerifyUserScreenInterface {
     JFrame getFrame();
     void showUserHomepage(ObjectId userId);
     void close();
-    void showMessage(String message);
 }
