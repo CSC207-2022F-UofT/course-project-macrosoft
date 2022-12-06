@@ -3,7 +3,7 @@ package login_use_case;
 import org.bson.types.ObjectId;
 import restaurant_homepage_use_case.RestaurantHomepageController;
 import restaurant_homepage_use_case.RestaurantHomepageScreen;
-import screens.LabelTextPanel;
+import components.LabelTextPanel;
 import user_homepage_use_case.UserHomePageScreen;
 import user_homepage_use_case.UserHomepageController;
 import restaurant_verify_use_case.*;

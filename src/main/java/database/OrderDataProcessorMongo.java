@@ -5,7 +5,6 @@ import com.mongodb.client.result.InsertOneResult;
 import entities.Food;
 import entities.Order;
 import entities.OrderItem;
-import interactors.DocumentOrderConverter;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -79,7 +78,7 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
 
         mongoCollectionFetcher.getCollection("Orders")
                 .find(queryFilter)
-                .map(doc -> DocumentOrderConverter.convertDocumentToOrder((Document) doc))
+                .map(doc -> convertDocumentToOrder((Document) doc))
                 .forEach(order -> orders.add((Order) order));
 
         return orders;

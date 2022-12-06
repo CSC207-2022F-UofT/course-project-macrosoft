@@ -1,6 +1,6 @@
 package change_password_use_case;
 
-import screens.LabelTextPanel;
+import components.LabelTextPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
