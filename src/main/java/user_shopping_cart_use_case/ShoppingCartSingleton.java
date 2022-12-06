@@ -16,9 +16,6 @@ public class ShoppingCartSingleton {
         return singletonInstance;
     }
 
-    public static void setSingletonInstance(ShoppingCartSingleton singletonInstance) {
-        ShoppingCartSingleton.singletonInstance = singletonInstance;
-    }
 
     public HashMap<ObjectId, Integer> getCart() {
         return cart;
