@@ -62,6 +62,7 @@ public class UserHomePageScreen {
         JLabel reminderLabel2 = new JLabel("This page will contain the shopping cart(items in cart)");
         JLabel reminderLabel3 = new JLabel("This page will contain user profile page");
         homePanel.add(reminderLabel1);
+        homePanel.add(controller.getUserDisplayRestaurantsPanel(controller.getUserId()));
         cartPanel.add(reminderLabel2);
         profilePanel.add(reminderLabel3);
 
