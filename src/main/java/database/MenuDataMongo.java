@@ -19,6 +19,14 @@ public class MenuDataMongo implements MenuDataGateway{
         this.mongoCollectionFetcher = mongoCollectionFetcher;
     }
 
+    @Override
+    public ObjectId newMenu(ObjectId restaurantId) {
+        Document newMenuDoc = new Document("restaurantId", restaurantId)
+                .append("Food", new ArrayList<>());
+
+        return this.mongoCollectionFetcher.getCollection("Menus").insertOne(newMenuDoc).getInsertedId().asObjectId().getValue();
+    }
+
     /**
      *
      * @param curRes

@@ -54,6 +54,10 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
     @Override
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Verify")) {
+            verifyResController.verifyRes(verificationCode.getText());
+        }
+        else if (evt.getActionCommand().equals("Generate Email")) {
+            verifyResController.generateEmail();
         }
         else if (evt.getActionCommand().equals("Cancel")) {
             this.showLoginScreen();

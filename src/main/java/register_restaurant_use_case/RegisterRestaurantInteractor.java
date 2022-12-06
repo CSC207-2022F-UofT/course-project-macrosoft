@@ -1,8 +1,6 @@
-package register_use_case;
+package register_restaurant_use_case;
 
 import database.*;
-import entities.AuthInfo;
-import entities.User;
 import interactors.DBConnection;
 import interactors.MongoConnection;
 import com.mongodb.client.model.Filters;
@@ -10,39 +8,35 @@ import library.PasswordHasher;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import com.mongodb.client.result.InsertOneResult;
-import org.bson.types.BasicBSONList;
 import org.bson.BsonValue;
 import org.bson.types.ObjectId;
 
+public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoundary{
 
-public class RegisterUserInteractor implements RegisterUserInputBoundary{
-
-    private RegisterUserPresenter presenter;
-
-    public RegisterUserInteractor(RegisterUserPresenter presenter) {
+    private RegisterRestaurantPresenter presenter;
+    public RegisterRestaurantInteractor(RegisterRestaurantPresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
+     * @param requestModel
      * @return 1000: Success
      * 1001: Username Exists
      */
-    public int registerUser(RegisterUserRequestModel requestModel) {
-        // Check if username exists
-        Bson filter = Filters.eq("username", requestModel.getUsername());
-
+    public int registerRestaurant(RegisterRestaurantRequestModel requestModel) {
         MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
-        UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
+        RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
+        MenuDataGateway menuDataGateway = new MenuDataMongo(fetcher);
 
-        AuthInfo authInfo = authInfoDataGateway.getUserByUsername(requestModel.getUsername());
-
-        if (authInfo != null) {
+        if (authInfoDataGateway.getUserByUsername(requestModel.getUsername()) != null) {
             presenter.registerFailed("Username already exist");
             return 1001;
         }
 
-        ObjectId userID = userDataGateway.newUser(requestModel.getEmail(), requestModel.getFirstName(), requestModel.getLastName());
+
+
+        ObjectId restID = restaurantDataGateway.newRestaurant(requestModel.getRestaurantName(), requestModel.getEmail(), requestModel.getLocation(), requestModel.getPhone());
 
         String hashedPassword;
         try {
@@ -51,12 +45,14 @@ public class RegisterUserInteractor implements RegisterUserInputBoundary{
             return 1;
         }
 
-        authInfoDataGateway.create(requestModel.getUsername(), hashedPassword, userID);
+        authInfoDataGateway.create(requestModel.getUsername(), hashedPassword, restID);
+
+        ObjectId menuId = menuDataGateway.newMenu(restID);
+
+        restaurantDataGateway.updateMenuId(restID, menuId);
 
         presenter.registerSuccessful("Success");
 
         return 1000;
     }
-
-
 }

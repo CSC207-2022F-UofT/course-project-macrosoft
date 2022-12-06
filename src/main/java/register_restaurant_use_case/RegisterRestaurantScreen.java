@@ -1,13 +1,7 @@
-package register_use_case;
+package register_restaurant_use_case;
 
-import org.bson.types.ObjectId;
-import restaurant_homepage_use_case.RestaurantHomepageController;
-import restaurant_homepage_use_case.RestaurantHomepageScreen;
+import register_user_use_case.RegisterUserController;
 import screens.LabelTextPanel;
-import user_homepage_use_case.UserHomePageScreen;
-import user_homepage_use_case.UserHomepageController;
-import verify_restaurant_use_case.*;
-import verify_user_use_case.*;
 import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
@@ -18,7 +12,7 @@ import java.awt.event.ActionListener;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
-public class RegisterUserScreen extends JFrame implements RegisterUserScreenInterface, ActionListener {
+public class RegisterRestaurantScreen extends JFrame implements RegisterRestaurantScreenInterface, ActionListener {
     /**
      * The username chosen by the user
      */
@@ -28,9 +22,10 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
      * The password
      */
     JPasswordField password = new JPasswordField(15);
-    JTextField firstName = new JTextField(15);
-    JTextField lastName = new JTextField(15);
-    RegisterUserController registerUserController;
+    JTextField restaurantName = new JTextField(15);
+    JTextField location = new JTextField(30);
+    JTextField phone = new JTextField(15);
+    RegisterRestaurantController registerRestaurantController;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
     private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
@@ -49,10 +44,10 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
     /**
      * A window with a title and a JButton.
      */
-    public RegisterUserScreen(RegisterUserController controller) {
+    public RegisterRestaurantScreen(RegisterRestaurantController controller) {
 
         // set the frame
-        this.registerUserController = controller;
+        this.registerRestaurantController = controller;
         this.setSize(900, 700);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -76,9 +71,9 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
         LabelTextPanel passwordInfo = new LabelTextPanel(
                 new JLabel("Password"), password);
         LabelTextPanel firstNameInfo = new LabelTextPanel(
-                new JLabel("First Name"), firstName);
+                new JLabel("Restaurant Name"), restaurantName);
         LabelTextPanel lastNameInfo = new LabelTextPanel(
-                new JLabel("Last Name"), lastName);
+                new JLabel("Phone"), phone);
         emailInfo.setOpaque(true);
         usernameInfo.setOpaque(true);
         passwordInfo.setOpaque(true);
@@ -130,17 +125,17 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Register")) {
             try {
-                registerUserController.registerUser(
+                registerRestaurantController.register(
                         email.getText(),
                         username.getText(),
                         String.valueOf(password.getPassword()),
-                        firstName.getText(),
-                        lastName.getText());
+                        restaurantName.getText(),
+                        location.getText(),
+                        phone.getText());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
-        }
-        else if (evt.getActionCommand().equals("Cancel")) {
+        } else if (evt.getActionCommand().equals("Cancel")) {
             WelcomeScreen screen = new WelcomeScreen();
             this.dispose();
         }
