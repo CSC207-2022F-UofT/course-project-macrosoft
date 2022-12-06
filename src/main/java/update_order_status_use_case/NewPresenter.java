@@ -8,5 +8,7 @@ public interface NewPresenter {
     void orderFound(NewResponseModel newResponseModel);
     void orderNotFound();
 
+    NewResponseModel prepareSuccessView(NewResponseModel responsModel);
+
     void setOrderPanel(NewPanelInterface newPanelInterface);
 }

@@ -8,6 +8,8 @@ import order_history_use_case.resIdToNameConvertor;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,7 +28,6 @@ public class NewScreen {
     public NewScreen(NewController controller, Order curOrder) {
         this.controller = controller;
         this.curOrder = curOrder;
-
 
         resIdToNameConvertor convertor = new resIdToNameConvertor();
         JFrame frame = new JFrame("Order details");
@@ -74,7 +75,18 @@ public class NewScreen {
             JLabel orderTime = new JLabel("Order Time: " + ordersDic.get("orderTime").get(i));
             JLabel userId = new JLabel("User Id: " + ordersDic.get("userID").get(i));
             JLabel orderItems = new JLabel("Order Id: " + ordersDic.get("items").get(i));
-            JComboBox orderStatus = new JComboBox();
+
+            String[] status = {"Confirming Order", "Order Received", "Preparing", "Ready For Pickup", "Order Complete"};
+            JComboBox orderStatus = new JComboBox(status);
+            orderStatus.setSelectedIndex(0);
+
+            orderStatus.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+
 
             orderId.setBorder(emptyBorder2);
             orderTime.setBorder(emptyBorder2);
@@ -87,6 +99,8 @@ public class NewScreen {
             panel.add(userId);
             panel.add(orderItems);
             panel.add(orderStatus);
+
+            // orderStatus.addActionListener();
 
             orderDisplayDetailPanel.add(panel);
         }
@@ -111,4 +125,5 @@ public class NewScreen {
 
         frame.setVisible(true);
     }
+
 }

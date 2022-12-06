@@ -44,6 +44,7 @@ public class NewInteractor implements NewInputBoundary{
         }
     }
 
+
     public NewResponseModel getResponse(ObjectId resId){
         MongoCollectionFetcher Fetcher = new MongoCollectionFetcher();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(Fetcher);
