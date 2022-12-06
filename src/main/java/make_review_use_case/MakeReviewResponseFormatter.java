@@ -7,7 +7,6 @@ public class MakeReviewResponseFormatter implements MakeReviewPresenter {
     @Override
     public MakeReviewResponseModel prepareSuccessView(MakeReviewResponseModel response) {
         ReviewUI ui = new ReviewUI(response);
-
         return null;
     }
 

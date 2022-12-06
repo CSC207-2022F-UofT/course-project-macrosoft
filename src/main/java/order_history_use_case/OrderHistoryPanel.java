@@ -110,7 +110,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     MakeReviewController makeReviewController = new MakeReviewController();
-                    MakeReviewScreen makeReviewScreen = new MakeReviewScreen(makeReviewController, order);
+                    new MakeReviewScreen(makeReviewController, order);
                 }
             });
 
@@ -118,6 +118,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
             orderPanel.add(orderTime);
             orderPanel.add(orderStatus);
             orderPanel.add(viewDetails);
+            orderPanel.add(makeReview);
 
 
             orderDisplayPanel.add(orderPanel);

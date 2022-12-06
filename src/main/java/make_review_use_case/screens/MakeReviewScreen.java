@@ -19,9 +19,9 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
 
     MakeReviewController makeReviewController;
 
-    JTextField subjectField;
-    JTextField commentField;
-    JComboBox<Integer> rating;
+    JTextArea subjectArea;
+    JTextArea commentArea;
+    JComboBox<Integer> ratingBox;
 
     Order curOrder;
 
@@ -33,21 +33,30 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         this.makeReviewController = controller;
         this.curOrder = curOrder;
 
-        this.setSize(900, 700);
+        this.setPreferredSize(new Dimension(700,500));
 
         JLabel title = new JLabel("Review");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         Integer[] ratingChoices = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        this.rating = new JComboBox<>(ratingChoices);
+        this.ratingBox = new JComboBox<>(ratingChoices);
+        ratingBox.setPreferredSize(new Dimension(100, 25));
 
         JLabel subjectLabel = new JLabel("Subject:");
-        this.subjectField = new JTextField("");
-        LabelTextPanel subjectPanel = new LabelTextPanel(subjectLabel, subjectField);
+        this.subjectArea = new JTextArea();
+        subjectArea.setColumns(50);
+        subjectArea.setRows(2);
+        JPanel subjectPanel = new JPanel();
+        subjectPanel.add(subjectLabel);
+        subjectPanel.add(subjectArea);
 
         JLabel commentLabel = new JLabel("Comment:");
-        this.commentField = new JTextField("");
-        LabelTextPanel commentPanel = new LabelTextPanel(commentLabel, commentField);
+        this.commentArea = new JTextArea();
+        commentArea.setColumns(50);
+        commentArea.setRows(10);
+        JPanel commentPanel = new JPanel();
+        commentPanel.add(commentLabel);
+        commentPanel.add(commentArea);
 
 
         JButton save = new JButton("Save");
@@ -64,24 +73,26 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
         main.add(title);
+        main.add(ratingBox);
         main.add(subjectPanel);
         main.add(commentPanel);
         main.add(buttons);
         this.setContentPane(main);
 
         this.pack();
+        this.setVisible(true);
     }
 
     private Integer parseRating() {
-        return (Integer) this.rating.getSelectedItem();
+        return (Integer) this.ratingBox.getSelectedItem();
     }
 
     private String parseSubject() {
-        return this.subjectField.getText();
+        return this.subjectArea.getText();
     }
 
     private String parseComment() {
-        return this.subjectField.getText();
+        return this.commentArea.getText();
     }
 
     /**
@@ -106,6 +117,8 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
 
                 // pass request to controller to get a response
                 MakeReviewResponseModel response = makeReviewController.makeReview(request);
+
+                this.dispose();
 
 
 

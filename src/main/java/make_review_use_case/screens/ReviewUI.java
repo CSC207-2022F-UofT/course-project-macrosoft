@@ -38,16 +38,8 @@ public class ReviewUI extends JFrame {
         pack();
         setVisible(true);
     }
-    public void OkClicked() {
-        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-    }
 
     public void actionPerformed(ActionEvent evt) {
-        System.out.println("Click " + evt.getActionCommand());
-
-        // Dissolve the page when OK clicked
-        if (evt.getActionCommand().equals("OK")) {
-            OkClicked();
-        }
-        }
+        this.dispose();
+    }
 }
