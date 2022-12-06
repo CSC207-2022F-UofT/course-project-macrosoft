@@ -3,12 +3,15 @@ package user_profile_use_case;
 import change_password_use_case.*;
 import change_user_info_use_case.*;
 import org.bson.types.ObjectId;
+import user_shopping_cart_use_case.ShoppingCartSingleton;
+import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class UserProfilePanel extends JPanel implements UserProfilePanelInterface {
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
@@ -69,7 +72,7 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         this.add(containCentre, BorderLayout.CENTER);
 
         // Add button panel
-        LayoutManager gridLayout1 = new GridLayout(0,2);
+        LayoutManager gridLayout1 = new GridLayout(0,3);
         JPanel buttonsPanel = new JPanel(gridLayout1);
 
         JButton changeInfoButton = new JButton("Change Info");
@@ -84,17 +87,29 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         });
         buttonsPanel.add(changeInfoButton);
 
-        JButton changePasswordPanel = new JButton("Change Password");
-        changePasswordPanel.setOpaque(false);
-        changePasswordPanel.setFont(new Font("Serif", Font.BOLD, 15));
-        changePasswordPanel.setForeground(BG_DARK_GREEN);
-        changePasswordPanel.addActionListener(new ActionListener() {
+        JButton changePasswordButton = new JButton("Change Password");
+        changePasswordButton.setOpaque(false);
+        changePasswordButton.setFont(new Font("Serif", Font.BOLD, 15));
+        changePasswordButton.setForeground(BG_DARK_GREEN);
+        changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 showChangePasswordScreen();
             }
         });
-        buttonsPanel.add(changePasswordPanel);
+        buttonsPanel.add(changePasswordButton);
+
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.setOpaque(false);
+        logoutButton.setFont(new Font("Serif", Font.BOLD, 15));
+        logoutButton.setForeground(BG_DARK_GREEN);
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                logout();
+            }
+        });
+        buttonsPanel.add(logoutButton);
 
         buttonsPanel.setBorder(emptyBorder2);
         buttonsPanel.setOpaque(false);
@@ -145,5 +160,16 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         changeUserInfoPresenter.setScreen(changeUserInfoScreen);
 
         changeUserInfoScreen.getFrame().setVisible(true);
+    }
+
+    public void logout() {
+        ShoppingCartSingleton.setSingletonInstance(new ShoppingCartSingleton(null, new HashMap<>()));
+
+        java.awt.Window win[] = java.awt.Window.getWindows();
+        for(int i=0;i<win.length;i++){
+            win[i].dispose();
+        }
+
+        WelcomeScreen screen = new WelcomeScreen();
     }
 }
