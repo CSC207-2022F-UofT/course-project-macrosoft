@@ -13,7 +13,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
     }
 
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
         UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
 

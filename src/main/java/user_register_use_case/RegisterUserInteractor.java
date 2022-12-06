@@ -24,7 +24,7 @@ public class RegisterUserInteractor implements RegisterUserInputBoundary{
         // Check if username exists
         Bson filter = Filters.eq("username", requestModel.getUsername());
 
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
 

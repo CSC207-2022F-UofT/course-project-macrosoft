@@ -9,7 +9,7 @@ import org.bson.types.ObjectId;
 
 public class resIdToNameConvertor {
     public String getResNameById(ObjectId resId){
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         Bson queryFilter = Filters.eq("_id", resId);
         MongoIterable<Document> mongoIterable = fetcher.getCollection("Restaurants")
                 .find(queryFilter);

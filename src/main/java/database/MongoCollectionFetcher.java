@@ -13,10 +13,21 @@ public class MongoCollectionFetcher {
     private MongoClient client;
     private MongoDatabase database;
 
-    public MongoCollection getCollection(String collectionName) {
+    private static MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+
+    public MongoCollectionFetcher() {
         client = MongoClients.create(uri);
         database = client.getDatabase("SkipTheLine");
+    }
+
+    public MongoCollection getCollection(String collectionName) {
 
         return database.getCollection(collectionName);
+    }
+
+    public static MongoCollectionFetcher getFetcher() { return fetcher; }
+
+    public void close() {
+        client.close();
     }
 }

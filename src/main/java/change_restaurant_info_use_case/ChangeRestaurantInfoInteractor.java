@@ -14,7 +14,7 @@ public class ChangeRestaurantInfoInteractor implements ChangeRestaurantInfoInput
         if (requestModel.getRestaurantId() == null) presenter.changeRestaurantInfoFailed("Invalid restaurant");
 
         try {
-            MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+            MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
             RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 
             restaurantDataGateway.updateRestaurantInfo(

@@ -92,7 +92,6 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
      */
     @Override
     public String setNewPassword(ObjectId userId, String newPassword) {
-
         Bson query = Filters.eq("userID", userId);
         Bson updates = Updates.set("password", newPassword);
 

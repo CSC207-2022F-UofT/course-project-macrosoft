@@ -2,12 +2,15 @@ package restaurant_profile_use_case;
 
 import change_password_use_case.*;
 import change_restaurant_info_use_case.*;
+import user_shopping_cart_use_case.ShoppingCartSingleton;
+import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class RestaurantProfilePanel extends JPanel implements RestaurantProfilePanelInterface {
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
@@ -47,7 +50,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         this.add(centrePanel, BorderLayout.CENTER);
 
         // Add button panel
-        LayoutManager gridLayout1 = new GridLayout(0,2);
+        LayoutManager gridLayout1 = new GridLayout(0,3);
         JPanel buttonsPanel = new JPanel(gridLayout1);
 
         JButton changeInfoButton = new JButton("Change Info");
@@ -62,17 +65,29 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         });
         buttonsPanel.add(changeInfoButton);
 
-        JButton changePasswordPanel = new JButton("Change Password");
-        changePasswordPanel.setOpaque(false);
-        changePasswordPanel.setFont(new Font("Serif", Font.BOLD, 15));
-        changePasswordPanel.setForeground(BG_DARK_GREEN);
-        changePasswordPanel.addActionListener(new ActionListener() {
+        JButton changePasswordButton = new JButton("Change Password");
+        changePasswordButton.setOpaque(false);
+        changePasswordButton.setFont(new Font("Serif", Font.BOLD, 15));
+        changePasswordButton.setForeground(BG_DARK_GREEN);
+        changePasswordButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 showChangePasswordScreen();
             }
         });
-        buttonsPanel.add(changePasswordPanel);
+        buttonsPanel.add(changePasswordButton);
+
+        JButton logoutButton = new JButton("Logout");
+        logoutButton.setOpaque(false);
+        logoutButton.setFont(new Font("Serif", Font.BOLD, 15));
+        logoutButton.setForeground(BG_DARK_GREEN);
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                logout();
+            }
+        });
+        buttonsPanel.add(logoutButton);
 
         this.add(buttonsPanel, BorderLayout.SOUTH);
     }
@@ -128,5 +143,16 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         changeRestaurantInfoPresenter.setScreen(changeRestaurantInfoScreen);
 
         changeRestaurantInfoScreen.getFrame().setVisible(true);
+    }
+
+    public void logout() {
+        ShoppingCartSingleton.setSingletonInstance(new ShoppingCartSingleton(null, new HashMap<>()));
+
+        java.awt.Window win[] = java.awt.Window.getWindows();
+        for(int i=0;i<win.length;i++){
+            win[i].dispose();
+        }
+
+        WelcomeScreen screen = new WelcomeScreen();
     }
 }

@@ -19,7 +19,7 @@ public class VerifyUserInteractor {
      * 1002: Expired or code doesn't exist
      */
     public int verifyUser(ObjectId userId, String code) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
 

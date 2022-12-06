@@ -13,7 +13,7 @@ public class GetCodeInteractor {
      * @return restaurantID return verification code or nothing
      */
     public static String getVerificationCode(ObjectId restaurantID) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         VerificationCode verificationCode = verificationCodeDataGateway.validateAndReadByUser(restaurantID);
         if (verificationCode == null) return "";

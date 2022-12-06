@@ -25,7 +25,7 @@ public class GenerateEmailInteractor {
      *
      */
     public void generateVerificationEmail(ObjectId restaurantID) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway dataGateway = new VerificationCodeProcessorMongo(fetcher);
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 

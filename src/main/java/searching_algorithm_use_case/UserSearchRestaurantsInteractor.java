@@ -20,7 +20,7 @@ public class UserSearchRestaurantsInteractor implements UserSearchRestaurantsInp
      */
     @Override
     public UserSearchRestaurantsResponseModel search(UserSearchRestaurantsRequestModel requestModel) {
-        RestaurantDataGateway interactor = new RestaurantDataMongo(new MongoCollectionFetcher());
+        RestaurantDataGateway interactor = new RestaurantDataMongo(MongoCollectionFetcher.getFetcher());
         UserSearchRestaurantsResponseModel responseModel =
                 new UserSearchRestaurantsResponseModel(interactor.findByRestaurantName(requestModel.getName()));
 

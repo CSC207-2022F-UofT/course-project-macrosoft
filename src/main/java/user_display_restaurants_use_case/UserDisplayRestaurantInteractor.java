@@ -19,7 +19,7 @@ public class UserDisplayRestaurantInteractor implements UserDisplayRestaurantInp
     }
 
     public void displayAllRestaurants() {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 
         List<Restaurant> restaurantList = restaurantDataGateway.findAll();

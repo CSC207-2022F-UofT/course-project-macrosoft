@@ -9,7 +9,7 @@ import datamodels.MakeReviewResponseModel;
 
 public class MakeReviewController {
     public MakeReviewResponseModel makeReview(MakeReviewRequestModel request) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         ReviewDataGateway gateway = new ReviewDataProcessorMongo(fetcher);
 
         MakeReviewPresenter presenter = new MakeReviewResponseFormatter();

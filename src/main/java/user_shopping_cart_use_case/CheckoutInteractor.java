@@ -26,7 +26,7 @@ public class CheckoutInteractor implements CheckoutInputBoundary {
             presenter.checkoutFailed("Your shopping cart is empty");
         }
 
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
         FoodDataGateway foodDataGateway = new FoodDataMongo(fetcher);
 

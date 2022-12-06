@@ -14,7 +14,7 @@ public class GenerateEmailInteractor {
      *
      */
     public void generateVerificationEmail(ObjectId userId) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway dataGateway = new VerificationCodeProcessorMongo(fetcher);
         UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
 

@@ -21,7 +21,7 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
      */
     @Override
     public void getOrders(ObjectId restaurantId) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
         UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
 
@@ -50,7 +50,7 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
      */
     @Override
     public void getUnfufilledOrders(ObjectId restaurantId) {
-        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
         UserDataGateway userDataGateway = new UserDataProcessorMongo(fetcher);
 
@@ -59,7 +59,7 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
         ArrayList<HashMap<String, Object>> orderInfos = new ArrayList<>();
 
         for (Order order: orders) {
-            if (order.getOrderStatus().equals("Order Complete")) continue;
+            if (order.getOrderStatus().equals("Order Complete") || order.getOrderStatus().equals("Cancelled")) continue;
 
             HashMap<String, Object> orderInfo = new HashMap<>();
             orderInfo.put("ID", order.getOrderID());
