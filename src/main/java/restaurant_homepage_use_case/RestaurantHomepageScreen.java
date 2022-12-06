@@ -41,16 +41,7 @@ public class RestaurantHomepageScreen {
         MenuPanel.setBackground(GREY_WHITE);
         profilePanel.setBackground(GREY_WHITE);
 
-        JPanel greetingPanel = new JPanel();
-        JLabel greetingLabel = new JLabel("Hello~ " + restaurantName);
-        greetingLabel.setBackground(GREY_WHITE);
-        greetingLabel.setForeground(BG_DARK_GREEN);
-        greetingLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
-        greetingPanel.setBackground(GREY_WHITE);
-        greetingPanel.setBorder(emptyBorder);
-        greetingPanel.add(greetingLabel);
-
-        homePanel.add(greetingPanel);
+        homePanel.add(controller.getRestaurantOrderHistoryPanel(restaurantName));
         profilePanel.add(controller.getRestaurantProfilePanel(controller.getCurrentRestaurantId()));
 
         JLabel reminderLabel1 = new JLabel("This page will contain the a list of orders in queue");

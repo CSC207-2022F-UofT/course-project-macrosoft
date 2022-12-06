@@ -38,7 +38,7 @@ public class CheckoutInteractor implements CheckoutInputBoundary {
             orderItems.add(orderItem);
         }
 
-        Order order = new Order(null, new Date(), requestModel.getRestaurantId(), requestModel.getUserId(), orderItems, "Created");
+        Order order = new Order(null, new Date(), requestModel.getRestaurantId(), requestModel.getUserId(), orderItems, "Order Received");
 
         ObjectId newOrderId = orderDataGateway.create(order);
 
