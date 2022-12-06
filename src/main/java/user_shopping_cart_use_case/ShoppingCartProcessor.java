@@ -11,8 +11,8 @@ public class ShoppingCartProcessor implements ShoppingCartPresenter {
     }
 
     @Override
-    public void displayShoppingCart(HashMap<String, HashMap<String, Object>> shoppingCartDisplay) {
-        screen.displayShoppingCart(shoppingCartDisplay);
+    public void displayShoppingCart(String restaurantName, HashMap<String, HashMap<String, Object>> shoppingCartDisplay) {
+        screen.displayShoppingCart(restaurantName, shoppingCartDisplay);
     }
 
     public void setScreen(ShoppingCartPanelInterface screen) {

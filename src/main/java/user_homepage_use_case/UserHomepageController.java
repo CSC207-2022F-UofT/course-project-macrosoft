@@ -60,12 +60,14 @@ public class UserHomepageController {
 
     public JPanel getShoppingCartPanel() {
         ShoppingCartPresenter shoppingCartPresenter = new ShoppingCartProcessor(null);
+        CheckoutPresenter checkoutPresenter = new CheckoutProcessor(null);
         ShoppingCartInputBoundary shoppingCartInputBoundary = new ShoppingCartInteractor(shoppingCartPresenter);
-        ShoppingCartController shoppingCartController = new ShoppingCartController(shoppingCartInputBoundary);
+        CheckoutInputBoundary checkoutInputBoundary = new CheckoutInteractor(checkoutPresenter);
+        ShoppingCartController shoppingCartController = new ShoppingCartController(shoppingCartInputBoundary, checkoutInputBoundary, userId);
 
         ShoppingCartPanelInterface screen = new ShoppingCartPanel(shoppingCartController);
 
-
+        checkoutPresenter.setScreen(screen);
         shoppingCartPresenter.setScreen(screen);
 
         screen.refreshData();

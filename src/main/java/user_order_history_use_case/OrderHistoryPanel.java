@@ -32,11 +32,25 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(BG_DARK_GREEN);
         String orderTitle = controller.getResponse().getName() + "'s " + "Order History";
+
         JLabel title = new JLabel(orderTitle);
         title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setBorder(emptyBorder);
+
+        JButton refreshButton = new JButton("Refresh");
+        refreshButton.setOpaque(false);
+        refreshButton.setForeground(BG_DARK_GREEN);
+
         titlePanel.add(title);
+        titlePanel.add(refreshButton);
+
+        refreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                orderHistoryController.getOrders();
+            }
+        });
 
         orderDisplayPanel.setBackground(GREY_WHITE);
         orderDisplayPanel.setBorder(blackline);

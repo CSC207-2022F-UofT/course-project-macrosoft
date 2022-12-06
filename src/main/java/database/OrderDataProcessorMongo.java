@@ -1,5 +1,7 @@
 package database;
 
+import com.mongodb.client.result.InsertOneResult;
+import entities.Food;
 import entities.Order;
 import entities.OrderItem;
 import interactors.DocumentOrderConverter;
@@ -41,8 +43,12 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
      * @return
      */
     @Override
-    public String create(Order order) {
-        return null;
+    public ObjectId create(Order order) {
+        Document newOrder = convertOrderToDocument(order);
+
+        InsertOneResult result = this.mongoCollectionFetcher.getCollection("Orders").insertOne(newOrder);
+
+        return result.getInsertedId().asObjectId().getValue();
     }
 
     /**
@@ -137,22 +143,25 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
     }
 
     public Document convertOrderToDocument(Order order) {
-        List<Document> items = order.getItems().stream()
-                // filter out OrderItems
-                .filter(c -> c instanceof OrderItem)
-                // cast each OrderItem
-                .map(c -> (OrderItem) c)
-                // map each OrderItem to a Document
-                .map(c -> new Document("foodItemID", c.getFoodItemID()).append("numberOfItem", c.getNumberOfItem()))
-                // use the toList Collector to collect all Documents in the map into a List
+        List<Document> items = order.getItems()
+                .stream()
+                .map(food -> new Document("numberOfItem", food.getNumberOfItem()).
+                        append("food", convertFoodToDoc(food.getFood())).
+                        append("foodItemID", food.getFoodItemID()))
                 .collect(Collectors.toList());
 
-        Document doc = new Document("orderDate", order.getOrderDate())
-                .append("restaurantID", order.getRestaurantID())
+
+        return new Document("restaurantID", order.getRestaurantID())
                 .append("userID", order.getUserID())
                 .append("items", items)
-                .append("orderStatus", order.getOrderStatus());
+                .append("orderStatus", order.getOrderStatus())
+                .append("orderDate", order.getOrderDate());
+    }
 
-        return doc;
+    public Document convertFoodToDoc(Food curFood){
+        return new Document("name", curFood.getName())
+                .append("description", curFood.getDescription())
+                .append("category", curFood.getCategory())
+                .append("price", curFood.getPrice());
     }
 }

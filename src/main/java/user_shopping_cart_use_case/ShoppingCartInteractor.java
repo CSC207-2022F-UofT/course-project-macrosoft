@@ -1,8 +1,6 @@
 package user_shopping_cart_use_case;
 
-import database.MenuDataGateway;
-import database.MenuDataMongo;
-import database.MongoCollectionFetcher;
+import database.*;
 import entities.Food;
 import org.bson.types.ObjectId;
 
@@ -19,9 +17,17 @@ public class ShoppingCartInteractor implements ShoppingCartInputBoundary {
     public void displayShoppingCart() {
         MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
         MenuDataGateway menuDataGateway = new MenuDataMongo(fetcher);
+        RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
 
         ObjectId restaurantId = ShoppingCartSingleton.getSingletonInstance().getRestaurantId();
         HashMap<ObjectId, Integer> cart = ShoppingCartSingleton.getSingletonInstance().getCart();
+
+        if (restaurantId == null) {
+            presenter.displayShoppingCart(null, new HashMap<>());
+            return;
+        }
+
+        String restaurantName = restaurantDataGateway.getRestaurantNameById(restaurantId);
 
         List<Food> menu = menuDataGateway.getMenu(restaurantId).getFoodList();
 
@@ -38,7 +44,7 @@ public class ShoppingCartInteractor implements ShoppingCartInputBoundary {
             }
         }
 
-        presenter.displayShoppingCart(cartDisplay);
+        presenter.displayShoppingCart(restaurantName, cartDisplay);
     }
 
     public String GetFoodNameById(List<Food> menu, ObjectId foodId) {
