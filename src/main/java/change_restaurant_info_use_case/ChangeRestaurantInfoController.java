@@ -14,7 +14,7 @@ public class ChangeRestaurantInfoController {
 
 
     public void changeRestaurantInfo(String name, String email, String location, String phone) {
-        ChangeRestaurantInfoRequestModel requestModel = new ChangeRestaurantInfoRequestModel(this.currentRestaurantId, name, email, location, phone);
+        ChangeRestaurantInfoRequestModel requestModel = new ChangeRestaurantInfoRequestModel(this.currentRestaurantId, null, null, null, null);
         if (!name.isEmpty()) requestModel.setNewName(name);
         if (!email.isEmpty()) requestModel.setNewEmail(email);
         if (!location.isEmpty()) requestModel.setNewLocation(location);
