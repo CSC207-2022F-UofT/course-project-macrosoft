@@ -1,12 +1,6 @@
 package menu_editing_use_case;
 
-import database.MenuDataGateway;
-import database.MenuDataMongo;
-import database.MongoCollectionFetcher;
-import entities.Restaurant;
-import login_use_case.RestaurantLoginInteractor;
-import menu_editing_use_case.Screens.MenuEditingResponseFormatter;
-import menu_editing_use_case.Screens.MenuScreen;
+import org.bson.types.ObjectId;
 
 public class Main {
 
@@ -15,14 +9,11 @@ public class Main {
 //        RestaurantLoginInteractor i = new RestaurantLoginInteractor();
 //        i.login("yinuo's res", "cptbtptp");
 //        Restaurant curRes = RestaurantLoginInteractor.getCurrentRestaurant();
-//
-//        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
-//        MenuDataGateway gateway = new MenuDataMongo(fetcher);
-//
-//        MenuEditingPresenter presenter = new MenuEditingResponseFormatter();
-//        AddFoodInputBoundary interactor_add = new MenuEditingInteractor(presenter,gateway, curRes);
-//        RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(presenter,gateway, curRes);
-//        MenuEditingController controller = new MenuEditingController(interactor_add, interactor_remove);
+        ObjectId resId = new ObjectId("63797394ee00665db6a0a950");
+
+        AddFoodInputBoundary interactor_add = new MenuEditingInteractor(resId);
+        RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(resId);
+        MenuEditingController controller = new MenuEditingController(interactor_add, interactor_remove, resId);
 //
 //        MenuScreen Screen = new MenuScreen(controller, presenter);
 

@@ -31,7 +31,6 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
         restaurantPanel.setOpaque(true);
         restaurantPanel.setBackground(GREY_WHITE);
 
-//        this.add(restaurantPanel);
     }
 
     public void refreshData() {

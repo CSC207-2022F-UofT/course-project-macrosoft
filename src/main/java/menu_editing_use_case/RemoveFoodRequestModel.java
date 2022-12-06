@@ -1,18 +1,19 @@
 package menu_editing_use_case;
 import entities.*;
+import org.bson.types.ObjectId;
 
 // Application Business Rules Layer
 
 public class RemoveFoodRequestModel {
 
-    private Restaurant curRes;
+    ObjectId resId;
 
     private Menu curMenu;
 
     private Food foodToRemove;
 
-    public RemoveFoodRequestModel(Restaurant curRes, Menu curMenu, Food foodToRemove) {
-        this.curRes = curRes;
+    public RemoveFoodRequestModel(ObjectId resId, Menu curMenu, Food foodToRemove) {
+        this.resId = resId;
         this.curMenu = curMenu;
         this.foodToRemove = foodToRemove;
     }
@@ -28,12 +29,12 @@ public class RemoveFoodRequestModel {
         return foodToRemove;
     }
 
-    public Restaurant getCurRes() {
-        return curRes;
+    public ObjectId getResId() {
+        return resId;
     }
 
-    public void setCurRes(Restaurant curRes) {
-        this.curRes = curRes;
+    public void setResId(ObjectId resId) {
+        this.resId = resId;
     }
 
     public void setFoodToRemove(Food foodToRemove) {

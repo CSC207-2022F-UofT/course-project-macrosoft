@@ -5,14 +5,15 @@ package menu_editing_use_case;
 import java.util.HashMap;
 import java.util.List;
 import entities.*;
+import org.bson.types.ObjectId;
 
 public interface AddFoodInputBoundary {
 
-    MenuEditingResponseModel create(AddFoodRequestModel requestModel);
+    void create(AddFoodRequestModel requestModel);
 
     Menu getMenu();
 
-    Restaurant getCurRes();
+    ObjectId getResId();
 
     HashMap<String, List> getMenuDic();
 

@@ -37,7 +37,6 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
 
         this.restaurantOrderHistoryController = controller;
 
-
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(BG_DARK_GREEN);
         String orderTitle = restaurantName + "'s Order History";
@@ -75,7 +74,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
 
         orderDisplayPanel.setBackground(GREY_WHITE);
         orderDisplayPanel.setBorder(blackline);
-        GridLayout layout = new GridLayout(0 ,3);
+        GridLayout layout = new GridLayout(0 ,2);
         layout.setVgap(40);
         layout.setHgap(40);
         orderDisplayPanel.setLayout(layout);
@@ -93,23 +92,23 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         orderHistory.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 60));
         orderDisplayPanel.add(orderHistory);
 
-        JPanel right = new JPanel();
-        JPanel left = new JPanel();
-        JPanel bottom = new JPanel();
-
-        right.setPreferredSize(new Dimension(50 ,0));
-        left.setPreferredSize(new Dimension(50 ,0));
-        bottom.setPreferredSize(new Dimension(0 ,100));
-        right.setBackground(BG_DARK_GREEN);
-        left.setBackground(BG_DARK_GREEN);
-        bottom.setBackground(BG_DARK_GREEN);
+//        JPanel right = new JPanel();
+//        JPanel left = new JPanel();
+//        JPanel bottom = new JPanel();
+//
+//        right.setPreferredSize(new Dimension(50 ,0));
+//        left.setPreferredSize(new Dimension(50 ,0));
+//        bottom.setPreferredSize(new Dimension(0 ,100));
+//        right.setBackground(BG_DARK_GREEN);
+//        left.setBackground(BG_DARK_GREEN);
+//        bottom.setBackground(BG_DARK_GREEN);
 
         this.setLayout(new BorderLayout());
         this.add(orderHistoryScroll, BorderLayout.CENTER);
         this.add(titlePanel, BorderLayout.NORTH);
-        this.add(right, BorderLayout.EAST);
-        this.add(left, BorderLayout.WEST);
-        this.add(bottom, BorderLayout.SOUTH);
+//        this.add(right, BorderLayout.EAST);
+//        this.add(left, BorderLayout.WEST);
+//        this.add(bottom, BorderLayout.SOUTH);
     }
 
     @Override
@@ -126,6 +125,8 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
             JLabel orderStatus = new JLabel("Order Status: " + orderInfo.get("Status"));
             JButton viewDetails = new JButton("View Details");
             JButton setStatus = new JButton("Set Status");
+            viewDetails.setForeground(BG_DARK_GREEN);
+            setStatus.setForeground(BG_DARK_GREEN);
 
             viewDetails.setForeground(BG_DARK_GREEN);
 

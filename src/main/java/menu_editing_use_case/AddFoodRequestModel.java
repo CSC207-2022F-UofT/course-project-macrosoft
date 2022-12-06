@@ -1,11 +1,12 @@
 package menu_editing_use_case;
 import entities.*;
+import org.bson.types.ObjectId;
 
 //Application Business Rule layer
 
 public class AddFoodRequestModel {
 
-    private Restaurant curRes;
+    private ObjectId resId;
     private Menu curMenu;
 
     private String name;
@@ -16,8 +17,8 @@ public class AddFoodRequestModel {
 
     private float price;
 
-    public AddFoodRequestModel(Restaurant curRes, Menu curMenu, String name, String category, String description, float price) {
-        this.curRes = curRes;
+    public AddFoodRequestModel(ObjectId resId, Menu curMenu, String name, String category, String description, float price) {
+        this.resId = resId;
         this.curMenu = curMenu;
         this.name = name;
         this.category = category;
@@ -65,12 +66,12 @@ public class AddFoodRequestModel {
         this.price = price;
     }
 
-    public Restaurant getCurRes() {
-        return curRes;
+    public ObjectId getResId() {
+        return resId;
     }
 
-    public void setCurRes(Restaurant curRes) {
-        this.curRes = curRes;
+    public void setResId(ObjectId resId) {
+        this.resId = resId;
     }
 }
 

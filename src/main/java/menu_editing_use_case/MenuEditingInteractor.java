@@ -3,6 +3,8 @@ package menu_editing_use_case;
 // Application Business Rules Layer
 
 import database.MenuDataGateway;
+import database.MenuDataMongo;
+import database.MongoCollectionFetcher;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
@@ -13,14 +15,13 @@ import entities.*;
 
 public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodInputBoundary{
 
-    final MenuEditingPresenter menuPresenter;
-    final MenuDataGateway menuDataGateway;
-    Restaurant curRes;
+    ObjectId resId;
 
-    public MenuEditingInteractor(MenuEditingPresenter menuPresenter, MenuDataGateway menuDataGateway, Restaurant curRes) {
-        this.menuPresenter = menuPresenter;
-        this.menuDataGateway = menuDataGateway;
-        this.curRes = curRes;
+    MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+    MenuDataGateway menuDataGateway = new MenuDataMongo(fetcher);
+
+    public MenuEditingInteractor(ObjectId resId) {
+        this.resId = resId;
     }
 
     /**
@@ -30,7 +31,7 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
      */
 
     @Override
-    public MenuEditingResponseModel create(AddFoodRequestModel requestModel){
+    public void create(AddFoodRequestModel requestModel){
         AddFoodHelper helper = new AddFoodHelper();
         Menu newMenu = helper.add(requestModel.getCurMenu(),
                 requestModel.getName(),
@@ -38,31 +39,22 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
                 requestModel.getCategory(),
                 requestModel.getPrice());
 
-        menuDataGateway.setMenu(requestModel.getCurRes(), newMenu);
-        MenuEditingResponseModel responseModel = new MenuEditingResponseModel(getMenuDic());
-
-        return menuPresenter.prepareSuccessView(responseModel);
+        menuDataGateway.setMenu(requestModel.getResId(), newMenu);
     };
 
     @Override
-    public MenuEditingResponseModel create(RemoveFoodRequestModel requestModel){
+    public void create(RemoveFoodRequestModel requestModel){
         RemoveFoodHelper helper = new RemoveFoodHelper();
         Menu newMenu = helper.remove(requestModel.getCurMenu(), requestModel.getFoodToRemove());
 
-        menuDataGateway.setMenu(requestModel.getCurRes(), newMenu);
+        menuDataGateway.setMenu(requestModel.getResId(), newMenu);
 
-        MenuEditingResponseModel responseModel = new MenuEditingResponseModel(getMenuDic());
-
-        return menuPresenter.prepareSuccessView(responseModel);
     }
 
     public Menu getMenu(){
-        return menuDataGateway.getMenu(curRes);
+        return menuDataGateway.getMenu(resId);
     }
 
-    public Restaurant getCurRes() {
-        return curRes;
-    }
 
     public HashMap<String, List> getMenuDic(){
         HashMap<String, List> menuDic = new HashMap<>();
@@ -91,4 +83,12 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
         return menuDic;
     }
 
+    @Override
+    public ObjectId getResId() {
+        return resId;
+    }
+
+    public void setResId(ObjectId resId) {
+        this.resId = resId;
+    }
 }

@@ -29,43 +29,24 @@ public class MenuDataMongo implements MenuDataGateway{
 
     /**
      *
-     * @param curRes
+     * @param resId
      * @param newMenu
      */
     @Override
-    public void setMenu(Restaurant curRes, Menu newMenu){
-        Bson filter = Filters.eq("restaurantId", curRes.getRestaurantID());
+    public void setMenu(ObjectId resId, Menu newMenu){
+        Bson filter = Filters.eq("restaurantId", resId);
         mongoCollectionFetcher.getCollection("Menus").deleteOne(filter);
         Document newMenuDoc = convertMenuToDoc(newMenu);
         mongoCollectionFetcher.getCollection("Menus").insertOne(newMenuDoc);
     }
 
+
     /**
      *
-     * @param curRes
+     * @param restId
      * @return
      */
     @Override
-    public Menu getMenu(Restaurant curRes) {
-
-        ObjectId restId = curRes.getRestaurantID();
-        Bson queryFilter = Filters.and(
-                Filters.eq("restaurantId", restId));
-
-        MongoIterable<Document> menus = mongoCollectionFetcher.getCollection("Menus").find(queryFilter);
-
-        if (menus.first() != null) {
-            Document menuDoc = menus.first();
-            return convertDocToMenu(menuDoc);
-        } else {
-            Document newMenuDoc = new Document("restaurantId", restId);
-            newMenuDoc.append("Food", new ArrayList<>());
-            InsertOneResult result = mongoCollectionFetcher.getCollection("Menus").insertOne(newMenuDoc);
-
-            return convertDocToMenu(newMenuDoc);
-        }
-    }
-
     public Menu getMenu(ObjectId restId){
         Bson queryFilter = Filters.and(
                 Filters.eq("restaurantId", restId));

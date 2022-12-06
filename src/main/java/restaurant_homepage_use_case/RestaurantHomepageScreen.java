@@ -23,10 +23,8 @@ public class RestaurantHomepageScreen {
         this.controller = controller;
 
         final JFrame frame = new JFrame("Restaurant Homepage");
-
         frame.setSize(900, 700);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLayout(new CardLayout());
         frame.setLocationRelativeTo(null);
 
         JPanel homePanel = new JPanel();
@@ -36,20 +34,17 @@ public class RestaurantHomepageScreen {
         homePanel.setOpaque(true);
         MenuPanel.setOpaque(true);
         profilePanel.setOpaque(true);
-
         homePanel.setBackground(GREY_WHITE);
         MenuPanel.setBackground(GREY_WHITE);
         profilePanel.setBackground(GREY_WHITE);
 
-        homePanel.add(controller.getRestaurantOrderHistoryPanel(restaurantName));
-        profilePanel.add(controller.getRestaurantProfilePanel(controller.getCurrentRestaurantId()));
+        homePanel.setLayout(new BorderLayout());
+        MenuPanel.setLayout(new BorderLayout());
+        profilePanel.setLayout(new BorderLayout());
 
-        JLabel reminderLabel1 = new JLabel("This page will contain the a list of orders in queue");
-        JLabel reminderLabel2 = new JLabel("This page will contain the menu editing panel");
-        JLabel reminderLabel3 = new JLabel("This page will contain restaurant profile page");
-
-        homePanel.add(reminderLabel1);
-        MenuPanel.add(reminderLabel2);
+        homePanel.add(controller.getRestaurantOrderHistoryPanel(restaurantName), BorderLayout.CENTER);
+        MenuPanel.add(controller.getMenuPanel(controller.getCurrentRestaurantId()), BorderLayout.CENTER);
+        profilePanel.add(controller.getRestaurantProfilePanel(controller.getCurrentRestaurantId()), BorderLayout.CENTER);
 
         JTabbedPane tabs = new JTabbedPane();
         tabs.setOpaque(true);

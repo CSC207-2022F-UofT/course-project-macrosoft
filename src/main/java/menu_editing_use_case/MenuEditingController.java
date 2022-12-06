@@ -9,26 +9,29 @@ public class MenuEditingController {
     final AddFoodInputBoundary add_input;
     final RemoveFoodInputBoundary remove_input;
 
-    public MenuEditingController(AddFoodInputBoundary add_input, RemoveFoodInputBoundary remove_input) {
+    ObjectId resId;
+
+    public MenuEditingController(AddFoodInputBoundary add_input, RemoveFoodInputBoundary remove_input, ObjectId resId) {
         this.add_input = add_input;
         this.remove_input = remove_input;
+        this.resId = resId;
     }
 
-    public MenuEditingResponseModel create(String name, String description, String category, float price){
-        AddFoodRequestModel requestModel = new AddFoodRequestModel(add_input.getCurRes(),
+    public void add(String name, String description, String category, float price){
+        AddFoodRequestModel requestModel = new AddFoodRequestModel(resId,
                 add_input.getMenu(),
                 name,
                 description,
                 category,
                 price);
-        return add_input.create(requestModel);
+        add_input.create(requestModel);
     }
 
-    public MenuEditingResponseModel create(ObjectId foodID){
-        RemoveFoodRequestModel requestModel = new RemoveFoodRequestModel(remove_input.getCurRes(),
+    public void remove(ObjectId foodID){
+        RemoveFoodRequestModel requestModel = new RemoveFoodRequestModel(resId,
                 remove_input.getMenu(),
                 remove_input.getMenu().findFood(foodID));
-        return remove_input.create(requestModel);
+        remove_input.create(requestModel);
     }
 
 
