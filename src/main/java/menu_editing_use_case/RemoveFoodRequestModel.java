@@ -10,7 +10,7 @@ public class RemoveFoodRequestModel {
 
     private Menu curMenu;
 
-    private ObjectId foodToRemove;
+    final private ObjectId foodToRemove;
 
     public RemoveFoodRequestModel(ObjectId resId, Menu curMenu, ObjectId foodToRemove) {
         this.resId = resId;

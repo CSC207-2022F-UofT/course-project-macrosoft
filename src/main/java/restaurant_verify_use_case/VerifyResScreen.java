@@ -72,11 +72,19 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
         return this;
     }
 
+    /**
+     * initiate a new login screen
+     */
     public void showLoginScreen() {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createLoginSreen();
     }
 
+    /**
+     * initiate a new restaurant homepage
+     * @param restaurantId  id of the current restaurant
+     * @param restaurantName name of the current restaurant
+     */
     public void showRestaurantHomePage(ObjectId restaurantId, String restaurantName) {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createRestaurantHomepageScreen(restaurantId, restaurantName);

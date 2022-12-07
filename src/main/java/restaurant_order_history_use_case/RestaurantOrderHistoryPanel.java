@@ -22,14 +22,16 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
-    private static final Border blackline = BorderFactory.createLineBorder(Color.black);
+    private static final Border blackLine = BorderFactory.createLineBorder(Color.black);
 
-    private JPanel orderDisplayPanel = new JPanel();
+    private final JPanel orderDisplayPanel = new JPanel();
 
     public RestaurantOrderHistoryPanel(RestaurantOrderHistoryController controller, String restaurantName){
 
+        // initialize the controller
         this.restaurantOrderHistoryController = controller;
 
+        // initialize the panel
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(BG_DARK_GREEN);
         String orderTitle = restaurantName + "'s Order History";
@@ -39,6 +41,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         title.setForeground(GREY_WHITE);
         title.setBorder(emptyBorder);
 
+        // the buttons
         JButton refreshButton = new JButton("Refresh");
         refreshButton.setOpaque(false);
         refreshButton.setForeground(BG_DARK_GREEN);
@@ -52,6 +55,10 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         titlePanel.add(showCurrentOrdersButton);
 
         refreshButton.addActionListener(new ActionListener() {
+            /**
+             * calls the restaurant order history controller to get orders.
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 restaurantOrderHistoryController.getOrders();
@@ -59,20 +66,26 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         });
 
         showCurrentOrdersButton.addActionListener(new ActionListener() {
+            /**
+             * calls the restaurant history order controller
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 restaurantOrderHistoryController.getUnfufilledOrders();
             }
         });
 
+        // color and design of the panel
         orderDisplayPanel.setBackground(GREY_WHITE);
-        orderDisplayPanel.setBorder(blackline);
+        orderDisplayPanel.setBorder(blackLine);
         GridLayout layout = new GridLayout(0 ,2);
         layout.setVgap(40);
         layout.setHgap(40);
         orderDisplayPanel.setLayout(layout);
         orderDisplayPanel.setBorder(emptyBorder);
 
+        // add a new scroll pane
         JScrollPane orderHistoryScroll = new JScrollPane(orderDisplayPanel);
         orderHistoryScroll.setBorder(emptyBorder2);
         orderHistoryScroll.setBackground(BG_DARK_GREEN);
@@ -85,26 +98,13 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         orderHistory.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 60));
         orderDisplayPanel.add(orderHistory);
 
-//        JPanel right = new JPanel();
-//        JPanel left = new JPanel();
-//        JPanel bottom = new JPanel();
-//
-//        right.setPreferredSize(new Dimension(50 ,0));
-//        left.setPreferredSize(new Dimension(50 ,0));
-//        bottom.setPreferredSize(new Dimension(0 ,100));
-//        right.setBackground(BG_DARK_GREEN);
-//        left.setBackground(BG_DARK_GREEN);
-//        bottom.setBackground(BG_DARK_GREEN);
-
         this.setLayout(new BorderLayout());
         this.add(orderHistoryScroll, BorderLayout.CENTER);
         this.add(titlePanel, BorderLayout.NORTH);
-//        this.add(right, BorderLayout.EAST);
-//        this.add(left, BorderLayout.WEST);
-//        this.add(bottom, BorderLayout.SOUTH);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void setOrder(ArrayList<HashMap<String, Object>> orderInfos) {
         orderDisplayPanel.removeAll();
 
@@ -132,6 +132,10 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
             orderStatus.setBorder(emptyBorder2);
 
             viewDetails.addActionListener(new ActionListener() {
+                /**
+                 * calls the screen factory to create a new order details screen
+                 * @param e the event to be processed
+                 */
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     ScreenFactory screenFactory = new ScreenFactory();
@@ -140,6 +144,10 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
             });
 
             setStatus.addActionListener(new ActionListener() {
+                /**
+                 * set the status of orders
+                 * @param e the event to be processed
+                 */
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     showEditOrderStatusScreen((ObjectId) orderInfo.get("ID"));
@@ -161,6 +169,10 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         orderDisplayPanel.repaint();
     }
 
+    /**
+     * initiate a new edit order status screen
+     * @param orderId id of the current order
+     */
     public void showEditOrderStatusScreen(ObjectId orderId) {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createUpdateOrderStatusScreen(orderId);
@@ -172,7 +184,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
     }
 
     /**
-     * @param message
+     * @param message resulting message to display to the users.
      */
     @Override
     public void showMessage(String message) {

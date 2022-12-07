@@ -13,25 +13,20 @@ public class AddFoodScreen {
     MenuEditingController menuEditingController;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Color WHITE = new Color(255, 255, 255);
-
-    private static final Border emptyBorder = BorderFactory.createEmptyBorder(10, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(5, 15, 5, 15);
     private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 0, 0);
 
     public AddFoodScreen(MenuEditingController controller){
-
+        // initialize the controller
         this.menuEditingController = controller;
 
+        // create a new window
         JFrame frame = new JFrame();
-
         frame.setSize(300, 500);
         frame.setLayout(new GridLayout(0, 1));
 
+        // initialize and set size & dimension of a title panel
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel("Add Food Item");
         title.setFont(new Font("Serif", Font.PLAIN, 40));
@@ -41,6 +36,7 @@ public class AddFoodScreen {
         titlePanel.setBorder(emptyBorder3);
         titlePanel.setBackground(BG_DARK_GREEN);
 
+        // name, description, category, price panel
         JPanel namePanel = new JPanel();
         JPanel descriptionPanel = new JPanel();
         JPanel categoryPanel = new JPanel();
@@ -81,11 +77,13 @@ public class AddFoodScreen {
         categoryLabel.setForeground(GREY_WHITE);
         priceLabel.setForeground(GREY_WHITE);
 
+        //text field for users to enter information
         JTextField nameField = new JTextField();
         JTextField descriptionField = new JTextField();
         JTextField categoryField = new JTextField();
         JTextField priceField = new JTextField();
 
+        //add the text field to panels
         namePanel.add(nameLabel);
         namePanel.add(nameField);
         descriptionPanel.add(descriptionLabel);
@@ -95,6 +93,7 @@ public class AddFoodScreen {
         pricePanel.add(priceLabel);
         pricePanel.add(priceField);
 
+        // create a button panel.
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(true);
         buttonPanel.setBackground(BG_DARK_GREEN);
@@ -103,19 +102,28 @@ public class AddFoodScreen {
         JButton finishButton = new JButton("Add To Menu");
         finishButton.setOpaque(true);
         finishButton.setBackground(BG_DARK_GREEN);
+
+        // adding action listener to the finish button
         finishButton.addActionListener(new ActionListener() {
+            /**
+             * calls the menu editing controller to add a new food with given information.
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 menuEditingController.add(nameField.getText(),
                         descriptionField.getText(),
                         categoryField.getText(),
                         Float.parseFloat(priceField.getText()));
+                // close the frame after done
                 frame.dispose();
             }
         });
 
+        // add finish button to the panel
         buttonPanel.add(finishButton);
 
+        // add everything to the frame
         frame.add(titlePanel);
         frame.add(namePanel);
         frame.add(categoryPanel);

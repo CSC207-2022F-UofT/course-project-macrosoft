@@ -6,8 +6,6 @@ import org.bson.types.ObjectId;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,10 +18,11 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
-    private static final Border blackline = BorderFactory.createLineBorder(Color.black);
+    private static final Border blackLine = BorderFactory.createLineBorder(Color.black);
 
-    private JPanel orderDisplayPanel = new JPanel();
+    private final JPanel orderDisplayPanel = new JPanel();
 
+    @SuppressWarnings("Unchecked")
     public OrderHistoryPanel(OrderHistoryController controller){
 
         this.orderHistoryController = controller;
@@ -50,22 +49,12 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
         titlePanel.add(refreshButton);
         titlePanel.add(filterButton);
 
-        refreshButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                orderHistoryController.getOrders();
-            }
-        });
+        refreshButton.addActionListener(e -> orderHistoryController.getOrders());
 
-        filterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                orderHistoryController.getCurrentOrder();
-            }
-        });
+        filterButton.addActionListener(e -> orderHistoryController.getCurrentOrder());
 
         orderDisplayPanel.setBackground(GREY_WHITE);
-        orderDisplayPanel.setBorder(blackline);
+        orderDisplayPanel.setBorder(blackLine);
         GridLayout layout = new GridLayout(0 ,2);
         layout.setVgap(40);
         layout.setHgap(40);
@@ -90,6 +79,11 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
         this.add(titlePanel, BorderLayout.NORTH);
     }
 
+    /**
+     * set the order panel
+     * @param orderHistoryResponseModel response model
+     */
+    @SuppressWarnings("unchecked")
     @Override
     public void setOrder(OrderHistoryResponseModel orderHistoryResponseModel) {
         orderDisplayPanel.removeAll();
@@ -105,29 +99,21 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
             JButton makeReview = new JButton("Make Review");
 
             viewDetails.setForeground(BG_DARK_GREEN);
-
             id.setForeground(BG_DARK_GREEN);
-            id.setBorder(emptyBorder2);
             resName.setForeground(BG_DARK_GREEN);
-            resName.setBorder(emptyBorder2);
             orderTime.setForeground(BG_DARK_GREEN);
-            orderTime.setBorder(emptyBorder2);
             orderStatus.setForeground(BG_DARK_GREEN);
+
+            id.setBorder(emptyBorder2);
+            resName.setBorder(emptyBorder2);
+            orderTime.setBorder(emptyBorder2);
             orderStatus.setBorder(emptyBorder2);
 
-            viewDetails.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new OrderHistoryDetailScreen((ArrayList<HashMap<String, Object>>) order.get("orderItems"));
-                }
-            });
+            viewDetails.addActionListener(e -> new OrderHistoryDetailScreen((ArrayList<HashMap<String, Object>>) order.get("orderItems")));
 
-            makeReview.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ScreenFactory screenFactory = new ScreenFactory();
-                    screenFactory.createMakeReviewScreen((ObjectId) order.get("orderId"));
-                }
+            makeReview.addActionListener(e -> {
+                ScreenFactory screenFactory = new ScreenFactory();
+                screenFactory.createMakeReviewScreen((ObjectId) order.get("orderId"));
             });
 
             orderPanel.add(id);

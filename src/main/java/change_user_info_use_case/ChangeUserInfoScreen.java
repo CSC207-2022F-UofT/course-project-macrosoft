@@ -32,12 +32,15 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
     ChangeUserInfoController controller;
 
     public ChangeUserInfoScreen(ChangeUserInfoController controller) {
+        // Initialize the controller
         this.controller = controller;
 
+        // position and size of the current frame
         this.setSize(900, 700);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(GREY_WHITE);
 
+        // panel that contains the title
         JPanel titlePanel = new JPanel();
         titlePanel.setOpaque(true);
         titlePanel.setBackground(GREY_WHITE);
@@ -48,6 +51,7 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         titlePanel.add(title);
 
+        //information labels and panels
         JLabel firstLabel = new JLabel("New First Name");
         firstLabel.setFont(new Font("Serif", Font.PLAIN, 15));
         firstLabel.setForeground(BG_DARK_GREEN);
@@ -60,10 +64,12 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
         emailLabel.setFont(new Font("Serif", Font.PLAIN, 15));
         emailLabel.setForeground(BG_DARK_GREEN);
 
+        //panels that contains the text field for users to enter information
         LabelTextPanel firstNameInfo = new LabelTextPanel(firstLabel, newFirstName);
         LabelTextPanel lastNameInfo = new LabelTextPanel(lastLabel, newLastName);
         LabelTextPanel emailInfo = new LabelTextPanel(emailLabel, newEmail);
 
+        // design of the panels
         firstNameInfo.setOpaque(true);
         lastNameInfo.setOpaque(true);
         emailInfo.setOpaque(true);
@@ -71,6 +77,7 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
         lastNameInfo.setBackground(GREY_WHITE);
         emailInfo.setBackground(GREY_WHITE);
 
+        //action buttons
         JButton save = new JButton("Save");
         JButton cancel = new JButton("Cancel");
 
@@ -80,14 +87,17 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
         buttons.setOpaque(true);
         buttons.setBackground(GREY_WHITE);
 
+        // add action listeners to the buttons
         save.addActionListener(this);
         cancel.addActionListener(this);
 
+        //initiate the main panel and set the size and position of it.
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
         main.setOpaque(true);
         main.setBackground(GREY_WHITE);
 
+        // information panel
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new GridLayout(5, 1));
         infoPanel.add(firstNameInfo);
@@ -95,6 +105,7 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
         infoPanel.add(emailInfo);
         infoPanel.setOpaque(false);
 
+        // add everything to the main panel.
         main.add(titlePanel);
         main.add(infoPanel);
         main.add(buttons);
@@ -111,7 +122,7 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
     }
 
     /**
-     * @param message
+     * @param message resulting message to display
      */
     @Override
     public void showMessage(String message) {
