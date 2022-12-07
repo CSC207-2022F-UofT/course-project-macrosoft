@@ -19,6 +19,8 @@ public class DisplayMenuController {
     }
 
     public void addItem(ObjectId foodId, String quantity) {
+        if (quantity.isEmpty()) return;
+
         int quantityInt = Integer.parseInt(quantity);
         ShoppingCartSingleton.getSingletonInstance().addFood(foodId, quantityInt);
     }
