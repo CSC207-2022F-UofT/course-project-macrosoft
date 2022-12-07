@@ -1,22 +1,14 @@
 package test_update_order_status_use_case;
 
 import database.*;
-import entities.Food;
 import entities.Order;
-import entities.OrderItem;
 import org.bson.types.ObjectId;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import update_order_status_use_case.*;
-import user_verify_use_case.GetCodeInteractor;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 
 public class UpdateOrderStatusInteractorTest {
 
@@ -28,19 +20,46 @@ public class UpdateOrderStatusInteractorTest {
     }
 
     @Test
-    public void testUpdateOrderStatus() {
+    public void testUpdateOrderStatusChange() {
         ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
-        String newStatus = "Order Cancelled";
+        String newStatus = "Order Received";
 
         UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
         UpdateOrderStatusPresenter presenter = new UpdateOrderStatusProcessor(null);
         UpdateOrderStatusInteractor interactor = new UpdateOrderStatusInteractor(presenter);
-        String expected = "Order Cancelled";
+        String expected = "Order Received";
         interactor.updateOrderStatus(request);
         assertEquals(interactor.getOrderStatus(orderId), expected);
     }
 
-     // delete the created order from database after the test have been run
+    @Test
+    public void testUpdateOrderStatusRemainTheSame() {
+        ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
+        String newStatus = "Confirming Order";
+
+        UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
+        UpdateOrderStatusPresenter presenter = new UpdateOrderStatusProcessor(null);
+        UpdateOrderStatusInteractor interactor = new UpdateOrderStatusInteractor(presenter);
+        String expected = "Confirming Order";
+        interactor.updateOrderStatus(request);
+        assertEquals(interactor.getOrderStatus(orderId), expected);
+    }
+
+    @Test
+    public void testUpdateOrderStatusSkipMultipleStatus() {
+        ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
+        String newStatus = "Ready For Pickup";
+
+        UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
+        UpdateOrderStatusPresenter presenter = new UpdateOrderStatusProcessor(null);
+        UpdateOrderStatusInteractor interactor = new UpdateOrderStatusInteractor(presenter);
+        String expected = "Ready For Pickup";
+        interactor.updateOrderStatus(request);
+        assertEquals(interactor.getOrderStatus(orderId), expected);
+    }
+
+
+    // delete the created order from database after the test have been run
      @AfterEach
      void tearDown() {
          ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
