@@ -14,11 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class is responsible for all interactions with the MongoDB database
+ * related to reviews.
+ */
 public class ReviewDataProcessorMongo implements ReviewDataGateway{
     MongoCollectionFetcher mongoCollectionFetcher;
 
     public ReviewDataProcessorMongo(MongoCollectionFetcher fetcher) {this.mongoCollectionFetcher = fetcher;}
 
+    /**
+     * Saves a review to the database
+     * @param review the review to be saved
+     */
     @Override
     public String save(Review review) {
         Document newDoc = new Document("comment", review.getComment())
@@ -33,16 +41,19 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
         return result.getInsertedId().asObjectId().getValue().toHexString();
     }
 
-    @Override
-    public String delete(Review review) {
-        return null;
-    }
-
+    /**
+     * Creates a new review in the database
+     * @param review the review to be created
+     */
     @Override
     public String create(Review review) {
         return null;
     }
 
+    /**
+     * Finds all reviews in the database
+     * @return a list of all reviews in the database
+     */
     @Override
     public List<Review> findAll() {
         List<Review> reviews = new ArrayList<>();
@@ -70,16 +81,11 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
         return reviews;
     }
 
-    @Override
-    public Review findByOrderId(ObjectId OrderID) {
-        Bson filter = Filters.eq("OrderID", OrderID);
-        List<Review> result = findAllByQueryFilter(filter);
-        if (result.size() > 0){
-            return result.get(0);
-        }
-        else {return null;}
-    }
-
+    /**
+     * Finds a review by id
+     * @param id the id of a review
+     * @return the review with the given id
+     */
     @Override
     public Review findById(ObjectId id) {
         Bson filter = Filters.eq("_id", id);
@@ -90,6 +96,11 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
         else {return null;}
     }
 
+    /**
+     * Converts a document object to a review object
+     * @param document the document to be converted
+     * @return the review representation of the document
+     */
     public static Review convertDocumentToReview(Document document) {
         List<Path> picPathList = document.getList("picPathList", String.class)
                 .stream()
@@ -105,6 +116,11 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
                 document.getDate("lastEditTime"));
     }
 
+    /**
+     * Converts a review object to a document object
+     * @param review the review to be converted
+     * @return the document representation of the review
+     */
     public static Document convertReviewToDocument(Review review) {
         List<String> picPaths = review.getPicPathList()
                 .stream() // a stream of Path objects

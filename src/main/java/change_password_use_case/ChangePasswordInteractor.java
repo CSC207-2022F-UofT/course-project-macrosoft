@@ -10,16 +10,26 @@ import java.security.NoSuchAlgorithmException;
 
 // Use case layer
 
+/**
+ * This class is the interactor for the change password use case.
+ */
 public class ChangePasswordInteractor implements ChangePasswordInputBoundary {
 
-    private ChangePasswordPresenter presenter;
+    private final ChangePasswordPresenter presenter;
 
+    /**
+     * Constructor for ChangePasswordInteractor
+     *
+     * @param presenter the change password presenter
+     */
     public ChangePasswordInteractor(ChangePasswordPresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
-     * @param changePasswordRequestModel
+     * Change the password of the current user
+     *
+     * @param changePasswordRequestModel the change password request model
      */
     @Override
     public void changePassword(ChangePasswordRequestModel changePasswordRequestModel) {

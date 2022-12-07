@@ -3,6 +3,7 @@ package change_password_use_case;
 import org.bson.types.ObjectId;
 
 public class TempTestChangePasswordScreen {
+
     public static void main(String[] args) {
         ChangePasswordPresenter changePasswordPresenter = new ChangePasswordProcessor(null);
         ChangePasswordInputBoundary changePasswordInputBoundary = new ChangePasswordInteractor(changePasswordPresenter);
