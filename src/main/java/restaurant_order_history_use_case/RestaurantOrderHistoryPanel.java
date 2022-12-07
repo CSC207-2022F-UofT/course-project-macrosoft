@@ -1,14 +1,8 @@
 package restaurant_order_history_use_case;
 
-import entities.Order;
 import org.bson.types.ObjectId;
 import update_order_status_use_case.*;
-import user_make_review_use_case.MakeReviewController;
-import user_make_review_use_case.screens.MakeReviewScreen;
-import user_order_history_use_case.OrderHistoryController;
 import user_order_history_use_case.OrderHistoryDetailScreen;
-import user_order_history_use_case.OrderHistoryResponseModel;
-import user_order_history_use_case.resIdToNameConvertor;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -118,7 +112,6 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         for(HashMap<String, Object> orderInfo : orderInfos){
             JPanel orderPanel = new JPanel();
             orderPanel.setLayout(new GridLayout(0, 1));
-            resIdToNameConvertor convertor = new resIdToNameConvertor();
             JLabel orderId = new JLabel("ID: " + orderInfo.get("ID"));
             JLabel userName = new JLabel("User Name: " + orderInfo.get("Name"));
             JLabel orderTime = new JLabel("Order Time: " + orderInfo.get("Time"));
@@ -142,7 +135,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
             viewDetails.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    new OrderHistoryDetailScreen((ArrayList<HashMap<String, Object>>) orderInfo.get("OrderItems"));
                 }
             });
 

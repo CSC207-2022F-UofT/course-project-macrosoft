@@ -1,5 +1,6 @@
 package database;
 
+import com.mongodb.client.result.InsertOneResult;
 import entities.Review;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
@@ -20,7 +21,16 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
 
     @Override
     public String save(Review review) {
-        return null;
+        Document newDoc = new Document("comment", review.getComment())
+                .append("orderID", review.getOrderID())
+                .append("picPathList", review.getPicPathList())
+                .append("subjectLine", review.getSubjectLine())
+                .append("lastEditTime", review.getLastEditTime())
+                .append("rating", review.getRating());
+
+        InsertOneResult result = this.mongoCollectionFetcher.getCollection("Reviews").insertOne(newDoc);
+
+        return result.getInsertedId().asObjectId().getValue().toHexString();
     }
 
     @Override

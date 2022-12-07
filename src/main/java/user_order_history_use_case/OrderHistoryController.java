@@ -21,11 +21,16 @@ public class OrderHistoryController {
         orderHistoryInteractor.displayOrders(requestModel);
     }
 
+    public void getCurrentOrder() {
+        if(currentUserId == null){
+            return;
+        }
+
+        OrderHistoryRequestModel requestModel = new OrderHistoryRequestModel(this.getCurrentUserId());
+
+        orderHistoryInteractor.displayCurrentOrders(requestModel);
+    }
     public ObjectId getCurrentUserId() {
         return currentUserId;
-    }
-
-    public OrderHistoryResponseModel getResponse(){
-        return orderHistoryInteractor.getResponse(currentUserId);
     }
 }

@@ -4,7 +4,6 @@ import org.bson.types.ObjectId;
 
 public interface OrderHistoryInputBoundary {
     void displayOrders(OrderHistoryRequestModel requestModel);
-
-    OrderHistoryResponseModel getResponse(ObjectId userId);
+    void displayCurrentOrders(OrderHistoryRequestModel requestModel);
 
 }

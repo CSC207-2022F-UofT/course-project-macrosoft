@@ -1,13 +1,13 @@
-package datamodels;
+package user_make_review_use_case;
 
-import entities.Order;
+import org.bson.types.ObjectId;
 
 import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
 
 public class MakeReviewRequestModel {
-    Order curOrder;
+    ObjectId curOrder;
 
     private int rating;  // 0-10
     private String comment;
@@ -15,7 +15,7 @@ public class MakeReviewRequestModel {
     private String subjectLine;
     private Date lastEditTime;
 
-    public MakeReviewRequestModel(Order curOrder, int rating, String comment, List<Path> picPathList, String subjectLine, Date lastEditTime) {
+    public MakeReviewRequestModel(ObjectId curOrder, int rating, String comment, List<Path> picPathList, String subjectLine, Date lastEditTime) {
         this.curOrder = curOrder;
         this.rating = rating;
         this.comment = comment;
@@ -24,11 +24,11 @@ public class MakeReviewRequestModel {
         this.lastEditTime = lastEditTime;
     }
 
-    public Order getCurOrder() {
+    public ObjectId getCurOrder() {
         return curOrder;
     }
 
-    public void setCurOrder(Order curOrder) {
+    public void setCurOrder(ObjectId curOrder) {
         this.curOrder = curOrder;
     }
 

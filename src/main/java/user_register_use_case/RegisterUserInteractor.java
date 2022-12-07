@@ -21,6 +21,11 @@ public class RegisterUserInteractor implements RegisterUserInputBoundary{
      * 1001: Username Exists
      */
     public int registerUser(RegisterUserRequestModel requestModel) {
+        if (!requestModel.getEmail().matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")) {
+            presenter.registerFailed("Invalid email");
+            return 1002;
+        }
+
         // Check if username exists
         Bson filter = Filters.eq("username", requestModel.getUsername());
 
