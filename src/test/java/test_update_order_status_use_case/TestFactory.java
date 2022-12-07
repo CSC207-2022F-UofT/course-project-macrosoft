@@ -26,7 +26,7 @@ public class TestFactory {
         ArrayList<OrderItem> items = new ArrayList<>();
         items.add(0, o1);
 
-        String orderStatus = new String("Ready For Pickup");
+        String orderStatus = new String("Confirming Order");
         Date orderDate = new Date();
 
         Order order = new Order(orderId, orderDate, restaurantId, userId, items, orderStatus);
