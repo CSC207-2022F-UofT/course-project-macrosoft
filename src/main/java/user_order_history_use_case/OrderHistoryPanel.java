@@ -1,5 +1,6 @@
 package user_order_history_use_case;
 
+import org.bson.types.ObjectId;
 import user_make_review_use_case.*;
 import user_make_review_use_case.MakeReviewScreen;
 
@@ -127,7 +128,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
                 public void actionPerformed(ActionEvent e) {
                     MakeReviewPresenter presenter = new MakeReviewResponseFormatter();
                     MakeReviewInputBoundary inputBoundary = new ReviewInteractor(presenter);
-                    MakeReviewController makeReviewController = new MakeReviewController(inputBoundary, orderHistoryController.getCurrentUserId());
+                    MakeReviewController makeReviewController = new MakeReviewController(inputBoundary, (ObjectId) order.get("orderId"));
                     MakeReviewScreen screen = new MakeReviewScreen(makeReviewController);
                     screen.setVisible(true);
                 }
