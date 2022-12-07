@@ -1,17 +1,17 @@
-//package update_order_status_use_case;
+package update_order_status_use_case;
 //
-//import database.MongoCollectionFetcher;
-//import database.OrderDataGateway;
-//import database.OrderDataProcessorMongo;
-//import entities.Order;
-//import entities.Restaurant;
-//import login_use_case.LoginRestaurantInteractor;
+// import database.MongoCollectionFetcher;
+// import database.OrderDataGateway;
+// import database.OrderDataProcessorMongo;
+// import entities.Order;
+// import entities.Restaurant;
+// import login_use_case.LoginRestaurantInteractor;
 //
 //import java.util.List;
-//
-//public class Main {
-//
-//    public static void main(String[] args) {
+
+public class Main {
+
+    public static void main(String[] args) {
 //        LoginRestaurantInteractor i = new LoginRestaurantInteractor();
 //        i.login("yinuo's res", "cptbtptp");
 //        Restaurant curRes = LoginRestaurantInteractor.getCurrentRestaurant();
@@ -24,7 +24,7 @@
 //        UpdateOrderStatusInputBoundary interactor = new UpdateOrderStatusInteractor(presenter, gateway,curOrder.get(0));
 //        UpdateOrderStatusController controller = new UpdateOrderStatusController(interactor);
 //        UpdateOrderStatusScreen screen = new UpdateOrderStatusScreen(controller);
-//
-//        }
-//
-//    }
+
+        }
+
+    }

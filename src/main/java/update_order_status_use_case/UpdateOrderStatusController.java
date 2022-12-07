@@ -6,18 +6,31 @@ import org.bson.types.ObjectId;
 
 public class UpdateOrderStatusController {
 
-    final UpdateOrderStatusInputBoundary interactor;
+    final UpdateOrderStatusInputBoundary updateInteractor;
 
-    public UpdateOrderStatusController(UpdateOrderStatusInputBoundary interactor) {
-        this.interactor = interactor;
+    private ObjectId orderId;
+
+    public UpdateOrderStatusController(UpdateOrderStatusInputBoundary updateInteractor, ObjectId orderId) {
+        this.updateInteractor = updateInteractor;
+        this.orderId = orderId;
     }
 
-    public void updateOrderStatus(ObjectId orderId ,String newStatus) {
-        interactor.updateOrderStatus(orderId, newStatus);
+    public void updateOrderStatus(String newStatus) {
+        UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(this.orderId, newStatus);
+
+        this.updateInteractor.updateOrderStatus(request);
+    }
+
+//    public void updateOrderStatus(ObjectId orderId ,String newStatus) {
+//        this.updateInteractor.updateOrderStatus(orderId, newStatus);
+//    }
+
+    public ObjectId getOrderId() {
+        return this.orderId;
     }
 
     public UpdateOrderStatusInputBoundary getStatusInput() {
-        return interactor;
+        return this.updateInteractor;
     }
 
 
