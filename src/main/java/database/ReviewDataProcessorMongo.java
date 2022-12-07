@@ -42,15 +42,6 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
     }
 
     /**
-     * Deletes a review from the database
-     * @param review the review to be deleted
-     */
-    @Override
-    public String delete(Review review) {
-        return null;
-    }
-
-    /**
      * Creates a new review in the database
      * @param review the review to be created
      */
@@ -88,21 +79,6 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
                 .forEach(review -> reviews.add((Review) review));
 
         return reviews;
-    }
-
-    /**
-     * Finds a review by order id
-     * @param OrderID the id of a order
-     * @return the review with the given order id
-     */
-    @Override
-    public Review findByOrderId(ObjectId OrderID) {
-        Bson filter = Filters.eq("OrderID", OrderID);
-        List<Review> result = findAllByQueryFilter(filter);
-        if (result.size() > 0){
-            return result.get(0);
-        }
-        else {return null;}
     }
 
     /**

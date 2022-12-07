@@ -27,18 +27,7 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
         return null;
     }
 
-    /**
-     * @param order
-     * @return
-     */
-    @Override
-    public String delete(Order order) {
-        return null;
-    }
 
-    /**
-     * @return
-     */
     @Override
     public String create(String username, String password, ObjectId userId) {
         Document newUserAuthInfo = new Document("username", username)
