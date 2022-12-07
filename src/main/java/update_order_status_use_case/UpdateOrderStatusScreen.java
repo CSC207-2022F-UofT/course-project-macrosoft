@@ -5,6 +5,8 @@ package update_order_status_use_case;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
+
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatusScreenInterface, ActionListener {
@@ -16,7 +18,7 @@ public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatus
 
     private JComboBox comboBox = new JComboBox(orderStatus);
 
-    public UpdateOrderStatusScreen(UpdateOrderStatusController controller) {
+    public UpdateOrderStatusScreen(UpdateOrderStatusController controller, String default_status) {
         this.controller = controller;
 
         JPanel panel = new JPanel();
@@ -33,6 +35,7 @@ public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatus
         this.pack();
 
         comboBox.addActionListener(this);
+        comboBox.setSelectedItem(default_status);
     }
 
     @Override
@@ -57,6 +60,7 @@ public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatus
     @Override
     public void actionPerformed(ActionEvent e) {
         JComboBox comboBox = (JComboBox) e.getSource();
-        this.controller.updateOrderStatus(comboBox.getSelectedItem().toString());
+        String status = comboBox.getSelectedItem().toString();
+        this.controller.updateOrderStatus(status);
     }
 }

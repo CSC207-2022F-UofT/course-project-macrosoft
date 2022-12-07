@@ -165,7 +165,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         UpdateOrderStatusPresenter orderStatusPresenter = new UpdateOrderStatusProcessor(null);
         UpdateOrderStatusInputBoundary orderStatusInteractor = new UpdateOrderStatusInteractor(orderStatusPresenter);
         UpdateOrderStatusController orderStatusController = new UpdateOrderStatusController(orderStatusInteractor, orderId);
-        UpdateOrderStatusScreenInterface screen = new UpdateOrderStatusScreen(orderStatusController);
+        UpdateOrderStatusScreenInterface screen = new UpdateOrderStatusScreen(orderStatusController, orderStatusInteractor.getOrderStatus(orderId));
 
         orderStatusPresenter.setScreen(screen);
         screen.getFrame().setVisible(true);

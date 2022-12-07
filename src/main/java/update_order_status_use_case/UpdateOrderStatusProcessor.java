@@ -1,23 +1,17 @@
 package update_order_status_use_case;
 
-public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter {
-    UpdateOrderStatusScreenInterface screen;
+// Interface adapter layer
 
-    public UpdateOrderStatusProcessor(UpdateOrderStatusScreenInterface screen) {
+public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter{
+
+    private UpdateOrderStatusScreenInterface screen;
+    public  UpdateOrderStatusProcessor(UpdateOrderStatusScreenInterface screen) {
         this.screen = screen;
     }
-
     public UpdateOrderStatusScreenInterface getScreen() {
         return screen;
     }
 
-    public void setScreen(UpdateOrderStatusScreenInterface screen) {
-        this.screen = screen;
-    }
-
-    /**
-     * @return
-     */
     @Override
     public UpdateOrderStatusResponseModel prepareSuccessView() {
         screen.close();
@@ -25,11 +19,19 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter {
     }
 
     /**
-     * @param message
+     * @param str
      * @return
      */
+
     @Override
-    public UpdateOrderStatusResponseModel prepareFailView(String message) {
+    public UpdateOrderStatusResponseModel prepareFailView(String str) {
         return null;
     }
+
+    @Override
+    public void setScreen(UpdateOrderStatusScreenInterface screen) {
+        this.screen = screen;
+    }
+
+
 }

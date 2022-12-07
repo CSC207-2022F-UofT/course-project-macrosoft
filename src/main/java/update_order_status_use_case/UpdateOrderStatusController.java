@@ -16,9 +16,9 @@ public class UpdateOrderStatusController {
     }
 
     public void updateOrderStatus(String newStatus) {
-        UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(this.orderId, newStatus);
+        UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
 
-        this.updateInteractor.updateOrderStatus(request);
+        updateInteractor.updateOrderStatus(request);
     }
 
 //    public void updateOrderStatus(ObjectId orderId ,String newStatus) {
@@ -26,11 +26,11 @@ public class UpdateOrderStatusController {
 //    }
 
     public ObjectId getOrderId() {
-        return this.orderId;
+        return orderId;
     }
 
     public UpdateOrderStatusInputBoundary getStatusInput() {
-        return this.updateInteractor;
+        return updateInteractor;
     }
 
 
