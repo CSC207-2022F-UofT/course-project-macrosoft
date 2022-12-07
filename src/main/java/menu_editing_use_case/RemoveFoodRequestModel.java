@@ -37,7 +37,4 @@ public class RemoveFoodRequestModel {
         this.resId = resId;
     }
 
-    public void setFoodToRemove(ObjectId foodToRemove) {
-        this.foodToRemove = foodToRemove;
-    }
 }
