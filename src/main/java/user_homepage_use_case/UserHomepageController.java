@@ -46,7 +46,8 @@ public class UserHomepageController {
     public JPanel getUserDisplayRestaurantsPanel(ObjectId userId) {
         UserDisplayRestaurantPresenter userDisplayRestaurantPresenter = new UserDisplayRestaurantProcessor(null);
         UserDisplayRestaurantInputBoundary userDisplayRestaurantInteractor = new UserDisplayRestaurantInteractor(userDisplayRestaurantPresenter);
-        UserDisplayRestaurantController userDisplayRestaurantController = new UserDisplayRestaurantController(userDisplayRestaurantInteractor);
+        UserSearchRestaurantInputBoundary userSearchRestaurantInteractor = new UserSearchRestaurantInteractor(userDisplayRestaurantPresenter);
+        UserDisplayRestaurantController userDisplayRestaurantController = new UserDisplayRestaurantController(userDisplayRestaurantInteractor, userSearchRestaurantInteractor);
 
         UserDisplayRestaurantPanelInterface screen = new UserDisplayRestaurantPanel(userDisplayRestaurantController);
 

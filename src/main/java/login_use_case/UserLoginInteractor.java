@@ -21,7 +21,7 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
         try {
             hashedPassword = PasswordHasher.toHexString(PasswordHasher.getSHA(requestModel.getPassword()));
         } catch (Exception e) {
-            return null;
+            return presenter.loginFailed(new UserLoginResponseModel(1003, null, null));
         }
 
         AuthInfo authInfo = authInfoDataGateway.getUserByUsernamePassword(requestModel.getUsername(), hashedPassword);
@@ -42,6 +42,6 @@ public class UserLoginInteractor implements UserLoginInputBoundary {
             }
         }
 
-        return presenter.loginFailed(new UserLoginResponseModel(1003, authInfo.getUsername(), null));
+        return presenter.loginFailed(new UserLoginResponseModel(1003, null, null));
     }
 }

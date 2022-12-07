@@ -68,10 +68,10 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         List<Restaurant> resultRestaurants = new ArrayList<>();
 
         MongoCollection restaurantCollection = this.mongoCollectionFetcher.getCollection("Restaurants");
-        Bson queryFilter = Filters.eq("name", restaurantName);
+        Bson queryFilter = Filters.regex("name", ".*" + restaurantName + ".*", "i");
 
-        Collation collation = Collation.builder().locale("en").collationStrength(CollationStrength.TERTIARY).build();
-        MongoIterable<Document> results = restaurantCollection.find(queryFilter).collation(collation);
+        Collation collation = Collation.builder().locale("en").collationStrength(CollationStrength.SECONDARY).build();
+        MongoIterable<Document> results = restaurantCollection.find(queryFilter);
 
         if (results != null) {
             for(Document resDoc : results){

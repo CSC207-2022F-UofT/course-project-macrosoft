@@ -24,7 +24,7 @@ public class UserLoginProcessor implements UserLoginPresenter {
 
     @Override
     public UserLoginResponseModel loginFailed(UserLoginResponseModel response) {
-        loginScreen.showMessage("Failed");
+        loginScreen.showMessage("Login Failed");
         return response;
     }
 
