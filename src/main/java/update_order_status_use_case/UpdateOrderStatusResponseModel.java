@@ -13,11 +13,11 @@ public class UpdateOrderStatusResponseModel {
     }
 
     public Order getCurOrder() {
-        return curOrder;
+        return this.curOrder;
     }
 
     public void setCurOrder(Order newOrder) {
-        this.curOrder = curOrder;
+        this.curOrder = newOrder;
     }
 
 }

@@ -6,27 +6,24 @@ import org.bson.types.ObjectId;
 
 public class UpdateOrderStatusRequestModel {
 
-    private ObjectId objectId;
+    private ObjectId orderId;
     private String newStatus;
 
-    public UpdateOrderStatusRequestModel(ObjectId objectId, String newStatus) {
-        this.objectId = objectId;
+    public UpdateOrderStatusRequestModel(ObjectId orderId, String newStatus) {
+        this.orderId = orderId;
         this.newStatus = newStatus;
     }
 
-    public ObjectId getObjectId() {
-        return objectId;
-    }
+    public ObjectId getCurOrderId() {return this.orderId;}
 
-    public void setObjectId(ObjectId objectId) {
-        this.objectId = objectId;
-    }
+    public String getNewStatus() {return this.newStatus;}
 
-    public String getNewStatus() {
-        return newStatus;
-    }
 
-    public void setNewStatus(String newStatus) {
-        this.newStatus = newStatus;
-    }
+
+
+
+
+
+
+
 }
