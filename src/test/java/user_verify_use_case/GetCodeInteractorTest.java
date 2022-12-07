@@ -1,7 +1,6 @@
 package user_verify_use_case;
 
 import database.MongoCollectionFetcher;
-import entities.User;
 import entities.VerificationCode;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
