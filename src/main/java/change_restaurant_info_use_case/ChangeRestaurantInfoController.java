@@ -2,6 +2,11 @@ package change_restaurant_info_use_case;
 
 import org.bson.types.ObjectId;
 
+// Interface adapters layer
+
+/**
+ * This class is the controller for the change restaurant info use case.
+ */
 public class ChangeRestaurantInfoController {
     private ChangeRestaurantInfoInputBoundary interactor;
     private ObjectId currentRestaurantId;

@@ -2,6 +2,9 @@ package change_password_use_case;
 
 // Interface adapters layer
 
+/**
+ * This class is the processor which implements the presenter interface for the change password use case.
+ */
 public class ChangePasswordProcessor implements ChangePasswordPresenter {
 
     private ChangePasswordScreenInterface changePasswordScreenInterface;
@@ -12,6 +15,7 @@ public class ChangePasswordProcessor implements ChangePasswordPresenter {
 
     /**
      * Handles the case when change password is successful
+     *
      * @param responseModel the response model from interactor
      */
     @Override
@@ -24,6 +28,7 @@ public class ChangePasswordProcessor implements ChangePasswordPresenter {
 
     /**
      * Handles the case when change password failed
+     *
      * @param responseModel the response model from interactor
      */
     @Override
@@ -32,6 +37,11 @@ public class ChangePasswordProcessor implements ChangePasswordPresenter {
         this.changePasswordScreenInterface.showMessage(responseModel.getMessage());
     }
 
+    /**
+     * Sets the change password screen interface
+     *
+     * @param changePasswordScreenInterface the change password screen interface
+     */
     @Override
     public void setChangePasswordScreenInterface(ChangePasswordScreenInterface changePasswordScreenInterface) {
         this.changePasswordScreenInterface = changePasswordScreenInterface;

@@ -15,12 +15,22 @@ import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RestaurantDataMongo implements RestaurantDataGateway{
+public class RestaurantDataMongo implements RestaurantDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
+
     public RestaurantDataMongo(MongoCollectionFetcher fetcher) {
         this.mongoCollectionFetcher = fetcher;
     }
 
+    /**
+     * Gets the id of a new restaurant
+     *
+     * @param name     the name of the new restaurant
+     * @param email    the email of the new restaurant
+     * @param location the location of the new restaurant
+     * @param phone    the phone number of the new restaurant
+     * @return the id of the new restaurant
+     */
     @Override
     public ObjectId newRestaurant(String name, String email, String location, String phone) {
         Document newRestaurantDoc = new Document("name", name)
@@ -35,12 +45,21 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         return result.getInsertedId().asObjectId().getValue();
     }
 
+    /**
+     * Saves a restaurant to the database
+     *
+     * @param restaurant the restaurant to be saved
+     */
     @Override
-    public String save(Restaurant restaurant) {
+    public void save(Restaurant restaurant) {
         this.mongoCollectionFetcher.getCollection("Restaurants").insertOne(convertRestaurantToDocument(restaurant));
-        return null;
     }
 
+    /**
+     * Finds all restaurants in the database
+     *
+     * @return a list of all restaurants in the database
+     */
     @Override
     public List<Restaurant> findAll() {
         List<Restaurant> lst = new ArrayList<>();
@@ -50,6 +69,12 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         return lst;
     }
 
+    /**
+     * Finds a restaurant by its id
+     *
+     * @param id the id of the restaurant
+     * @return the restaurant with the given id
+     */
     @Override
     public Restaurant findById(ObjectId id) {
         MongoCollection restaurantCollection = this.mongoCollectionFetcher.getCollection("Restaurants");
@@ -59,10 +84,19 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
 
         Document doc = (Document) restaurantCollection.find(queryFilter).first();
 
-        if (doc != null) {return convertDocumentToRestaurant(doc);}
-        else {return null;}
+        if (doc != null) {
+            return convertDocumentToRestaurant(doc);
+        } else {
+            return null;
+        }
     }
 
+    /**
+     * Finds a restaurant by its name
+     *
+     * @param restaurantName the name of the restaurant
+     * @return a list of restaurants with the given name
+     */
     @Override
     public List<Restaurant> findByRestaurantName(String restaurantName) {
         List<Restaurant> resultRestaurants = new ArrayList<>();
@@ -74,7 +108,7 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         MongoIterable<Document> results = restaurantCollection.find(queryFilter);
 
         if (results != null) {
-            for(Document resDoc : results){
+            for (Document resDoc : results) {
                 resultRestaurants.add(this.convertDocumentToRestaurant(resDoc));
             }
         }
@@ -82,6 +116,12 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         return resultRestaurants;
     }
 
+    /**
+     * Updates the verified status of a restaurant
+     *
+     * @param restaurantId the id of the restaurant to be updated
+     * @param newStatus    the new verified status of the restaurant
+     */
     @Override
     public void updateVerifiedStatus(ObjectId restaurantId, Boolean newStatus) {
         MongoCollection restaurantCollection = this.mongoCollectionFetcher.getCollection("Restaurants");
@@ -91,17 +131,32 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         restaurantCollection.updateOne(queryFilter, update);
     }
 
+    /**
+     * Finds the restaurant name by the restaurant id.
+     *
+     * @param restId the restaurant id
+     * @return String the restaurant name found by the id
+     */
     @Override
     public String getRestaurantNameById(ObjectId restId) {
         Bson filter = Filters.eq("_id", restId);
         MongoIterable<Document> restaurants = mongoCollectionFetcher.getCollection("Restaurants").find(filter);
 
-        if(restaurants.first() != null){
+        if (restaurants.first() != null) {
             return restaurants.first().getString("name");
         }
         return null;
     }
 
+    /**
+     * Updates the information of a restaurant
+     *
+     * @param restaurantID the id of the restaurant to be updated
+     * @param newName      the new name of the restaurant
+     * @param newEmail     the new email of the restaurant
+     * @param newLocation  the new location of the restaurant
+     * @param newPhone     the new phone number of the restaurant
+     */
     @Override
     public void updateRestaurantInfo(ObjectId restaurantID, String newName, String newEmail, String newLocation, String newPhone) {
         MongoCollection restaurantCollection = this.mongoCollectionFetcher.getCollection("Restaurants");
@@ -121,6 +176,12 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         restaurantCollection.updateOne(queryFilter, update);
     }
 
+    /**
+     * Updates the menu of a restaurant based on the restaurant id and the menu id
+     *
+     * @param restaurantId the id of the restaurant to be updated
+     * @param menuId       the id of the menu to be added to the restaurant
+     */
     public void updateMenuId(ObjectId restaurantId, ObjectId menuId) {
         Bson queryFilter = Filters.eq("_id", restaurantId);
         Bson updates = Updates.set("menu", menuId);
@@ -128,8 +189,12 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         this.mongoCollectionFetcher.getCollection("Restaurants").updateOne(queryFilter, updates);
     }
 
-
-
+    /**
+     * Converts a document object to a restaurant
+     *
+     * @param document the document to be converted
+     * @return the restaurant representation of the document
+     */
     public Restaurant convertDocumentToRestaurant(Document document) {
         return new Restaurant(document.getObjectId("_id"),
                 document.getString("name"),
@@ -140,6 +205,12 @@ public class RestaurantDataMongo implements RestaurantDataGateway{
         );
     }
 
+    /**
+     * Converts a restaurant to a document object
+     *
+     * @param restaurant the restaurant to be converted
+     * @return the document representation of the restaurant
+     */
     public Document convertRestaurantToDocument(Restaurant restaurant) {
         return new Document("_id", restaurant.getRestaurantID())
                 .append("name", restaurant.getName())

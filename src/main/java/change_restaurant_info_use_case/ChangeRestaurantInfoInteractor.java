@@ -9,6 +9,10 @@ public class ChangeRestaurantInfoInteractor implements ChangeRestaurantInfoInput
         this.presenter = presenter;
     }
 
+    /**
+     * Change restaurant information
+     * @param requestModel
+     */
     @Override
     public void changeRestaurantInfo(ChangeRestaurantInfoRequestModel requestModel) {
         if (requestModel.getRestaurantId() == null) presenter.changeRestaurantInfoFailed("Invalid restaurant");
