@@ -28,6 +28,8 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
                 .append("lastEditTime", review.getLastEditTime())
                 .append("rating", review.getRating());
 
+//        Document newDoc = convertReviewToDocument(review);
+
         InsertOneResult result = this.mongoCollectionFetcher.getCollection("Reviews").insertOne(newDoc);
 
         return result.getInsertedId().asObjectId().getValue().toHexString();

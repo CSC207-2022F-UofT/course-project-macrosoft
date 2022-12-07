@@ -42,17 +42,17 @@ public class TestMakeReviewUseCase {
         // check database to see if the review has been saved
         MongoCollectionFetcher f = new MongoCollectionFetcher();
         ReviewDataGateway g = new ReviewDataProcessorMongo(f);
-        Review o = g.findByOrderId(orderId);
+        Review review = g.findByOrderId(orderId);
 
-        assertEquals(o.getOrderID(), orderId);
-        assertEquals(o.getRating(), rating);
-        assertEquals(o.getComment(), comment);
-        assertEquals(o.getSubjectLine(), subject);
-        assertEquals(o.getLastEditTime(), d);
-        assertEquals(o.getPicPathList(), p);
+        assertTrue(review != null);
+        assertTrue(review.getReviewID() != null);
 
-
-        assertTrue(o.getReviewID() != null);
+        assertEquals(review.getOrderID(), orderId);
+        assertEquals(review.getRating(), rating);
+        assertEquals(review.getComment(), comment);
+        assertEquals(review.getSubjectLine(), subject);
+        assertEquals(review.getLastEditTime(), d);
+        assertEquals(review.getPicPathList(), p);
 
     }
 
