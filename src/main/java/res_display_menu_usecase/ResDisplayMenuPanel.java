@@ -82,6 +82,7 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 controller.displayMenuPage();
             }
         });
@@ -98,7 +99,6 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
     @Override
     public void updateNameLabel(String newName) {
         nameLabel.setText(newName);
-
     }
 
     @Override
@@ -126,6 +126,7 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     menuEditingController.remove(foodId);
+                    controller.displayMenuPage();
                 }
             });
 
@@ -159,6 +160,9 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
 
             foodPanel.add(f);
         }
+
+        foodPanel.repaint();
+        foodPanel.revalidate();
     }
 
     @Override

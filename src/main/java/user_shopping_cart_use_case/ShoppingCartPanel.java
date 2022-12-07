@@ -154,5 +154,6 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
 
         this.add(shoppingCartPanel);
         this.repaint();
+        this.revalidate();
     }
 }

@@ -17,6 +17,11 @@ public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoun
      * 1001: Username Exists
      */
     public int registerRestaurant(RegisterRestaurantRequestModel requestModel) {
+        if (!requestModel.getEmail().matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")) {
+            presenter.registerFailed("Invalid email");
+            return 1002;
+        }
+
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
@@ -26,7 +31,6 @@ public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoun
             presenter.registerFailed("Username already exist");
             return 1001;
         }
-
 
 
         ObjectId restID = restaurantDataGateway.newRestaurant(requestModel.getRestaurantName(), requestModel.getEmail(), requestModel.getLocation(), requestModel.getPhone());
