@@ -1,10 +1,17 @@
 import database.MongoCollectionFetcher;
 import database.RestaurantDataGateway;
 import database.RestaurantDataMongo;
+import entities.Restaurant;
 
 public class Main {
     public static void main(String[] args) {
 
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
+
+        for (Restaurant restaurant: restaurantDataGateway.findByRestaurantName("McD")) {
+            System.out.println(restaurant.getName());
+        }
 //        // Build the main program window
 //        JFrame application = new JFrame("Login Example");
 //        CardLayout cardLayout = new CardLayout();

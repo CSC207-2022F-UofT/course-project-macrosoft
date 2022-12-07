@@ -1,10 +1,13 @@
 package user_display_restaurants_use_case;
 
+import login_use_case.*;
 import org.bson.types.ObjectId;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRestaurantPanelInterface {
@@ -24,13 +27,38 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(20, 20, 20, 20);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
+    JTextField searchTextBar;
+
+    JScrollPane resScrollPanel;
     public UserDisplayRestaurantPanel(UserDisplayRestaurantController controller) {
         this.controller = controller;
 
-        this.setLayout(new GridLayout(0, 1));
+        JPanel searchPanel = new JPanel();
+        searchTextBar = new JTextField(15);
+        JButton searchButton = new JButton();
+
+        searchButton.addActionListener(e -> {
+            controller.searchRestaurant(searchTextBar.getText());
+        });
+
+        searchPanel.add(searchTextBar);
+        searchPanel.add(searchButton);
+
+        searchPanel.setMaximumSize(new Dimension(this.getWidth(), 50));
+
         restaurantPanel.setOpaque(true);
         restaurantPanel.setBackground(GREY_WHITE);
 
+        this.setLayout(new BorderLayout());
+
+        this.add(searchPanel, BorderLayout.NORTH);
+
+        resScrollPanel = new JScrollPane(restaurantPanel);
+        resScrollPanel.setOpaque(true);
+        resScrollPanel.setBackground(GREY_WHITE);
+        restaurantPanel.setBackground(GREY_WHITE);
+        resScrollPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        resScrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     }
 
     public void refreshData() {
@@ -39,10 +67,7 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
 
     public void updateRestaurantPanel(HashMap<ObjectId, String> restaurantInfo) {
 
-        restaurantPanel = new JPanel(new GridLayout(0, 3));
-        restaurantPanel.setOpaque(true);
-        restaurantPanel.setBackground(GREY_WHITE);
-        restaurantPanel.setBorder(emptyBorder);
+        restaurantPanel.removeAll();
 
         for (ObjectId restId : restaurantInfo.keySet()) {
             JLabel restLabel = new JLabel(restaurantInfo.get(restId));
@@ -53,13 +78,7 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
             restaurantPanel.add(new RestaurantComponent(restLabel, restId));
         }
 
-
-        JScrollPane resScrollPanel = new JScrollPane(restaurantPanel);
-        resScrollPanel.setOpaque(true);
-        resScrollPanel.setBackground(GREY_WHITE);
-        restaurantPanel.setBackground(GREY_WHITE);
-        resScrollPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-        resScrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        this.add(resScrollPanel);
+        restaurantPanel.repaint();
+        restaurantPanel.revalidate();
     }
 }

@@ -12,7 +12,7 @@ public interface RestaurantDataGateway {
     List<Restaurant> findAll();
     Restaurant findById(ObjectId id);
     String getRestaurantNameById(ObjectId restId);
-    List<Restaurant> findByRestaurantName(String username);
+    List<Restaurant> findByRestaurantName(String restaurantName);
     void updateVerifiedStatus(ObjectId userId, Boolean newStatus);
     void updateRestaurantInfo(ObjectId restaurantID, String newName, String newEmail, String newLocation, String newPhone);
     void updateMenuId(ObjectId restaurantId, ObjectId menuId);
