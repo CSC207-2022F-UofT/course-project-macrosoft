@@ -1,4 +1,4 @@
-package TestDatabaseAccessor;
+package test_data_base_accessor;
 
 import org.junit.jupiter.api.Test;
 
