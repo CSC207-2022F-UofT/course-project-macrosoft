@@ -12,16 +12,16 @@ public class Main {
 
         ObjectId resId = new ObjectId("63797394ee00665db6a0a950");
 //
-        AddFoodInputBoundary interactor_add = new MenuEditingInteractor(resId);
-        RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(resId);
-        MenuEditingController controller = new MenuEditingController(interactor_add, interactor_remove, resId);
+//        AddFoodInputBoundary interactor_add = new MenuEditingInteractor(resId);
+//        RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(resId);
+//        MenuEditingController controller = new MenuEditingController(interactor_add, interactor_remove, resId);
 
 //        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
 //        MenuDataGateway gateway = new MenuDataMongo(fetcher);
 //        Menu curMenu = gateway.getMenu(resId);
 //        Food foodToRemove = curMenu.findFood(new ObjectId("638fc76bb234bf7bbfa00314"));
 
-        controller.remove(new ObjectId("638fc50904aca70a22d15326"));
+//        controller.remove(new ObjectId("638fc50904aca70a22d15326"));
 
 //        RemoveFoodRequestModel requestModel = new RemoveFoodRequestModel(resId, curMenu, foodToRemove);
 //        interactor_remove.create(requestModel);
