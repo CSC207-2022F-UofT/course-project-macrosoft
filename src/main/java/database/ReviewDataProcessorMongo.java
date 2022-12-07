@@ -18,14 +18,23 @@ import java.util.stream.Collectors;
  * This class is responsible for all interactions with the MongoDB database
  * related to reviews.
  */
-public class ReviewDataProcessorMongo implements ReviewDataGateway{
+public class ReviewDataProcessorMongo implements ReviewDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
 
-    public ReviewDataProcessorMongo(MongoCollectionFetcher fetcher) {this.mongoCollectionFetcher = fetcher;}
+    /**
+     * Constructor for ReviewDataProcessorMongo
+     *
+     * @param fetcher the fetcher for the collection
+     */
+    public ReviewDataProcessorMongo(MongoCollectionFetcher fetcher) {
+        this.mongoCollectionFetcher = fetcher;
+    }
 
     /**
      * Saves a review to the database
+     *
      * @param review the review to be saved
+     * @return the id of the review
      */
     @Override
     public String save(Review review) {
@@ -41,36 +50,23 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
         return result.getInsertedId().asObjectId().getValue().toHexString();
     }
 
-    /**
-     * Creates a new review in the database
-     * @param review the review to be created
-     */
-    @Override
-    public String create(Review review) {
-        return null;
-    }
 
     /**
-     * Finds all reviews in the database
-     * @return a list of all reviews in the database
+     * Gets review collection from the database
+     *
+     * @return the Monga collection
      */
-    @Override
-    public List<Review> findAll() {
-        List<Review> reviews = new ArrayList<>();
-
-        getReviewCollection()
-                .find()
-                .map(doc -> convertDocumentToReview((Document) doc))
-                .forEach(review -> reviews.add((Review) review));
-
-        return reviews;
-    }
-
-    private MongoCollection getReviewCollection(){
+    private MongoCollection getReviewCollection() {
         return mongoCollectionFetcher.getCollection("Reviews");
     }
 
-    private List<Review> findAllByQueryFilter(Bson queryFilter){
+    /**
+     * Finds all reviews by query filter
+     *
+     * @param queryFilter the query filter
+     * @return a list of reviews
+     */
+    private List<Review> findAllByQueryFilter(Bson queryFilter) {
         List<Review> reviews = new ArrayList<>();
 
         getReviewCollection()
@@ -83,6 +79,7 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
 
     /**
      * Finds a review by id
+     *
      * @param id the id of a review
      * @return the review with the given id
      */
@@ -90,14 +87,16 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
     public Review findById(ObjectId id) {
         Bson filter = Filters.eq("_id", id);
         List<Review> result = findAllByQueryFilter(filter);
-        if (result.size() > 0){
+        if (result.size() > 0) {
             return result.get(0);
+        } else {
+            return null;
         }
-        else {return null;}
     }
 
     /**
      * Converts a document object to a review object
+     *
      * @param document the document to be converted
      * @return the review representation of the document
      */
@@ -118,6 +117,7 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway{
 
     /**
      * Converts a review object to a document object
+     *
      * @param review the review to be converted
      * @return the document representation of the review
      */
