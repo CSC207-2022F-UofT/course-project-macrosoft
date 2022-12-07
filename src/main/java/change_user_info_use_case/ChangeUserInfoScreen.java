@@ -13,15 +13,8 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreenInterface, ActionListener {
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Color WHITE = new Color(255, 255, 255);
-
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(100, 30, 30, 30);
-    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
-    private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
     /**
      * The username chosen by the user
