@@ -2,6 +2,7 @@ package restaurant_order_history_use_case;
 
 import org.bson.types.ObjectId;
 import update_order_status_use_case.*;
+import user_order_history_use_case.OrderHistoryDetailScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -134,7 +135,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
             viewDetails.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    new OrderHistoryDetailScreen((ArrayList<HashMap<String, Object>>) orderInfo.get("OrderItems"));
                 }
             });
 

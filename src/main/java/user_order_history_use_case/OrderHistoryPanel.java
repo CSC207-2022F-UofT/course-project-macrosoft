@@ -42,13 +42,25 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
         refreshButton.setOpaque(false);
         refreshButton.setForeground(BG_DARK_GREEN);
 
+        JButton filterButton = new JButton("Show Current Orders");
+        filterButton.setOpaque(false);
+        filterButton.setForeground(BG_DARK_GREEN);
+
         titlePanel.add(title);
         titlePanel.add(refreshButton);
+        titlePanel.add(filterButton);
 
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 orderHistoryController.getOrders();
+            }
+        });
+
+        filterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                orderHistoryController.getCurrentOrder();
             }
         });
 
@@ -81,6 +93,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
     @Override
     public void setOrder(OrderHistoryResponseModel orderHistoryResponseModel) {
         orderDisplayPanel.removeAll();
+
         for(HashMap<String, Object> order : orderHistoryResponseModel.getOrders()){
             JPanel orderPanel = new JPanel();
             orderPanel.setLayout(new GridLayout(0, 1));
@@ -105,7 +118,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
             viewDetails.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    OrderHistoryDetailScreen detailScreen = new OrderHistoryDetailScreen(orderHistoryController, (ArrayList<HashMap<String, Object>>) order.get("orderItems"));
+                    new OrderHistoryDetailScreen((ArrayList<HashMap<String, Object>>) order.get("orderItems"));
                 }
             });
 

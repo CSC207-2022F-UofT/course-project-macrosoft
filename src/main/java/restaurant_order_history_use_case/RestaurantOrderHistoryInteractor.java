@@ -2,6 +2,7 @@ package restaurant_order_history_use_case;
 
 import database.*;
 import entities.Order;
+import entities.OrderItem;
 import entities.User;
 import org.bson.types.ObjectId;
 
@@ -37,6 +38,21 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
             orderInfo.put("Name", user.getFirstName() + " " + user.getLastName());
             orderInfo.put("Time", order.getOrderDate());
             orderInfo.put("Status", order.getOrderStatus());
+
+            ArrayList<HashMap<String, Object>> foods = new ArrayList<>();
+
+            for (OrderItem food: order.getItems()) {
+                HashMap<String, Object> item = new HashMap<>();
+                item.put("name", food.getFood().getName());
+                item.put("description", food.getFood().getDescription());
+                item.put("category", food.getFood().getCategory());
+                item.put("count", food.getNumberOfItem());
+                item.put("price", food.getPrice());
+
+                foods.add(item);
+            }
+
+            orderInfo.put("OrderItems", foods);
 
             orderInfos.add(orderInfo);
         }

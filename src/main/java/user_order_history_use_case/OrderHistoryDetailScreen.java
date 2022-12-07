@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OrderHistoryDetailScreen {
-    OrderHistoryController controller;
-
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
@@ -23,8 +21,8 @@ public class OrderHistoryDetailScreen {
 
     JPanel orderDisplayDetailPanel;
 
-    public OrderHistoryDetailScreen(OrderHistoryController controller, ArrayList<HashMap<String, Object>> infos){
-        this.controller = controller;
+    public OrderHistoryDetailScreen(ArrayList<HashMap<String, Object>> infos){
+
 
         JFrame frame = new JFrame("Order details");
 
