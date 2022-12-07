@@ -30,7 +30,6 @@ public class ReviewUI extends JFrame {
         add(ok);
 
         pack();
-        setVisible(true);
 
         // Center the frame on the screen
         setLocationRelativeTo(null);
