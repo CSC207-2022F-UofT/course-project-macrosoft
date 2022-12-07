@@ -9,6 +9,15 @@ import org.bson.types.ObjectId;
  */
 public interface AuthInfoDataGateway {
     /**
+     * Creates a new authentication information
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @param userId  the id of the user
+     */
+    void create(String username, String password, ObjectId userId);
+
+    /**
      * Gets user by username and password
      *
      * @param username the username of the user

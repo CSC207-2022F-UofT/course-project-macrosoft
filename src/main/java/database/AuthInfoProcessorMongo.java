@@ -28,6 +28,22 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway {
     }
 
     /**
+     * Creates a new authentication information
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @param userId  the id of the user
+     */
+    @Override
+    public void create(String username, String password, ObjectId userId) {
+        Document newUserAuthInfo = new Document("username", username)
+                .append("password", password)
+                .append("userID", userId);
+
+        mongoCollectionFetcher.getCollection("AuthInfo").insertOne(newUserAuthInfo);
+    }
+
+    /**
      * Gets user by username and password
      *
      * @param username the username of the user
