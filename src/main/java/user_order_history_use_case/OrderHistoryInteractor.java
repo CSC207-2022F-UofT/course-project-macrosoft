@@ -59,7 +59,7 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
                     item.put("description", food.getFood().getDescription());
                     item.put("category", food.getFood().getCategory());
                     item.put("count", food.getNumberOfItem());
-                    item.put("price", food.getPrice());
+                    item.put("price", food.getFood().getPrice());
 
                     foods.add(item);
                 }
