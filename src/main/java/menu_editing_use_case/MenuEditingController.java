@@ -34,12 +34,4 @@ public class MenuEditingController {
         remove_input.create(requestModel); //correct
     }
 
-
-    public AddFoodInputBoundary getAdd_input() {
-        return add_input;
-    }
-
-    public RemoveFoodInputBoundary getRemove_input() {
-        return remove_input;
-    }
 }

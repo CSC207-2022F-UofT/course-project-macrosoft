@@ -10,6 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MenuEditingTest {
 
+    /**
+     * We are only testing part of the methods because the rest are just getters and setters.
+     */
+
     @Test
     public void testEditMenu() {
 

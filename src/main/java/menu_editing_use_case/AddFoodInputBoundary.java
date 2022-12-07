@@ -15,7 +15,5 @@ public interface AddFoodInputBoundary {
 
     ObjectId getResId();
 
-    HashMap<String, List> getMenuDic();
-
 
 }
