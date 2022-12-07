@@ -1,10 +1,8 @@
 package restaurant_profile_use_case;
 
-import change_password_use_case.*;
-import change_restaurant_info_use_case.*;
+import components.ScreenFactory;
 import restaurant_order_history_use_case.OrderWatcherSingleton;
 import user_shopping_cart_use_case.ShoppingCartSingleton;
-import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -159,31 +157,13 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
     }
 
     public void showChangePasswordScreen() {
-        ChangePasswordPresenter changePasswordPresenter = new ChangePasswordProcessor(null);
-        ChangePasswordInputBoundary changePasswordInputBoundary = new ChangePasswordInteractor(changePasswordPresenter);
-        ChangePasswordController changePasswordController = new ChangePasswordController(
-                changePasswordInputBoundary,
-                restaurantProfileController.getCurrentRestaurantId());
-
-        ChangePasswordScreenInterface changePasswordScreen = new ChangePasswordScreen(changePasswordController);
-
-        changePasswordPresenter.setChangePasswordScreenInterface(changePasswordScreen);
-
-        changePasswordScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createChangePasswordScreen(restaurantProfileController.getCurrentRestaurantId());
     }
 
     public void showChangeRestaurantInfoScreen() {
-        ChangeRestaurantInfoPresenter changeRestaurantInfoPresenter = new ChangeRestaurantInfoProcessor(null);
-        ChangeRestaurantInfoInputBoundary changeRestaurantInfoInputBoundary = new ChangeRestaurantInfoInteractor(changeRestaurantInfoPresenter);
-        ChangeRestaurantInfoController changeRestaurantInfoController = new ChangeRestaurantInfoController(
-                changeRestaurantInfoInputBoundary,
-                restaurantProfileController.getCurrentRestaurantId());
-
-        ChangeRestaurantInfoScreenInterface changeRestaurantInfoScreen = new ChangeRestaurantInfoScreen(changeRestaurantInfoController);
-
-        changeRestaurantInfoPresenter.setScreen(changeRestaurantInfoScreen);
-
-        changeRestaurantInfoScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createChangeRestaurantInfoScreen(restaurantProfileController.getCurrentRestaurantId());
     }
 
     public void logout() {
@@ -195,6 +175,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
             win[i].dispose();
         }
 
-        WelcomeScreen screen = new WelcomeScreen();
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createWelcomeScreen();
     }
 }

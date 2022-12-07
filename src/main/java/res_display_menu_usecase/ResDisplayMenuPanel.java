@@ -1,8 +1,7 @@
 package res_display_menu_usecase;
 
-import menu_editing_use_case.*;
-import menu_editing_use_case.Screens.AddFoodScreen;
-import menu_editing_use_case.Screens.FoodEditingScreen;
+import components.ScreenFactory;
+import menu_editing_use_case.MenuEditingController;
 import org.bson.types.ObjectId;
 
 import javax.swing.*;
@@ -25,13 +24,16 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
     private static final Border blackLine = BorderFactory.createLineBorder(Color.black);
 
     private ResDisplayMenuController controller;
+    private MenuEditingController menuEditingController;
 
     private JLabel nameLabel = new JLabel();
 
     private JPanel foodPanel = new JPanel();
 
-    public ResDisplayMenuPanel(ResDisplayMenuController controller) {
+    public ResDisplayMenuPanel(ResDisplayMenuController controller, MenuEditingController menuEditingController) {
         this.controller = controller;
+        this.menuEditingController = menuEditingController;
+
         this.setLayout(new BorderLayout());
 
         JPanel resNamePanel = new JPanel();
@@ -72,12 +74,8 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
         addFoodButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                AddFoodInputBoundary interactor_add = new MenuEditingInteractor(controller.getRestId());
-                RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(controller.getRestId());
-                MenuEditingController controller1 = new MenuEditingController(interactor_add, interactor_remove, controller.getRestId());
-
-                AddFoodScreen screen = new AddFoodScreen(controller1);
+                ScreenFactory screenFactory = new ScreenFactory();
+                screenFactory.createAddFoodScreen(controller.getRestId());
             }
         });
         refreshButton.setForeground(BG_DARK_GREEN);
@@ -112,26 +110,22 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
             JPanel f = new JPanel();
             f.setLayout(new GridLayout(0, 1));
 
-            String food_name = menuDic.get("name").get(i).toString();
-            String food_price = menuDic.get("price").get(i).toString();
-            String food_category = menuDic.get("category").get(i).toString();
-            String food_description = menuDic.get("description").get(i).toString();
+            String foodName = menuDic.get("name").get(i).toString();
+            String foodPrice = menuDic.get("price").get(i).toString();
+            String foodCategory = menuDic.get("category").get(i).toString();
+            String foodDescription = menuDic.get("description").get(i).toString();
             ObjectId foodId = new ObjectId(menuDic.get("id").get(i).toString());
 
-            JLabel name = new JLabel("Name: " + food_name);
-            JLabel price = new JLabel("Price: " + food_price);
-            JLabel category = new JLabel("Category: " + food_category);
-            JLabel description = new JLabel("Description: " + food_description);
+            JLabel name = new JLabel("Name: " + foodName);
+            JLabel price = new JLabel("Price: " + foodPrice);
+            JLabel category = new JLabel("Category: " + foodCategory);
+            JLabel description = new JLabel("Description: " + foodDescription);
 
             JButton delete = new JButton("Delete");
             delete.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    AddFoodInputBoundary interactor_add = new MenuEditingInteractor(controller.getRestId());
-                    RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(controller.getRestId());
-                    MenuEditingController controller1 = new MenuEditingController(interactor_add, interactor_remove, controller.getRestId());
-
-                    controller1.remove(foodId);
+                    menuEditingController.remove(foodId);
                 }
             });
 
@@ -139,11 +133,8 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
             edit.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    AddFoodInputBoundary interactor_add = new MenuEditingInteractor(controller.getRestId());
-                    RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(controller.getRestId());
-                    MenuEditingController controller1 = new MenuEditingController(interactor_add, interactor_remove, controller.getRestId());
-
-                    FoodEditingScreen screen = new FoodEditingScreen(controller1, food_name, food_category, food_description, food_price, foodId);
+                    ScreenFactory screenFactory = new ScreenFactory();
+                    screenFactory.createFoodEditingScreen(controller.getRestId(), foodName, foodCategory, foodDescription, foodPrice, foodId);
                 }
             });
 

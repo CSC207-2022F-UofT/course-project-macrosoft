@@ -1,7 +1,7 @@
 package user_register_use_case;
 
 import components.LabelTextPanel;
-import welcome_use_case.WelcomeScreen;
+import components.ScreenFactory;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -134,7 +134,7 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
             }
         }
         else if (evt.getActionCommand().equals("Cancel")) {
-            WelcomeScreen screen = new WelcomeScreen();
+            showWelcomePage();
             this.dispose();
         }
     }
@@ -144,7 +144,8 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
     }
 
     public void showWelcomePage() {
-        WelcomeScreen screen = new WelcomeScreen();
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createWelcomeScreen();
     }
 
     @Override

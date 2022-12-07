@@ -3,7 +3,6 @@ package user_display_restaurants_use_case;
 import org.bson.types.ObjectId;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class UserDisplayRestaurantProcessor implements UserDisplayRestaurantPresenter {
     UserDisplayRestaurantPanelInterface screen;

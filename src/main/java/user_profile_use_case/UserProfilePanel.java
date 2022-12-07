@@ -1,10 +1,7 @@
 package user_profile_use_case;
 
-import change_password_use_case.*;
-import change_user_info_use_case.*;
-import org.bson.types.ObjectId;
+import components.ScreenFactory;
 import user_shopping_cart_use_case.ShoppingCartSingleton;
-import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -134,31 +131,13 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
     }
 
     public void showChangePasswordScreen() {
-        ChangePasswordPresenter changePasswordPresenter = new ChangePasswordProcessor(null);
-        ChangePasswordInputBoundary changePasswordInputBoundary = new ChangePasswordInteractor(changePasswordPresenter);
-        ChangePasswordController changePasswordController = new ChangePasswordController(
-                changePasswordInputBoundary,
-                userProfileController.getCurrentUserId());
-
-        ChangePasswordScreenInterface changePasswordScreen = new ChangePasswordScreen(changePasswordController);
-
-        changePasswordPresenter.setChangePasswordScreenInterface(changePasswordScreen);
-
-        changePasswordScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createChangePasswordScreen(userProfileController.getCurrentUserId());
     }
 
     public void showChangeUserInfoScreen() {
-        ChangeUserInfoPresenter changeUserInfoPresenter = new ChangeUserInfoProcessor(null);
-        ChangeUserInfoInputBoundary changeUserInfoInputBoundary = new ChangeUserInfoInteractor(changeUserInfoPresenter);
-        ChangeUserInfoController changeUserInfoController = new ChangeUserInfoController(
-                changeUserInfoInputBoundary,
-                userProfileController.getCurrentUserId());
-
-        ChangeUserInfoScreenInterface changeUserInfoScreen = new ChangeUserInfoScreen(changeUserInfoController);
-
-        changeUserInfoPresenter.setScreen(changeUserInfoScreen);
-
-        changeUserInfoScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createChangeUserInfoScreen(userProfileController.getCurrentUserId());
     }
 
     public void logout() {
@@ -169,6 +148,7 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
             win[i].dispose();
         }
 
-        WelcomeScreen screen = new WelcomeScreen();
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createWelcomeScreen();
     }
 }

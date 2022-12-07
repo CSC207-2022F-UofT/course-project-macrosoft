@@ -1,9 +1,8 @@
 package user_display_restaurants_use_case;
 
-import login_use_case.*;
+import components.ScreenFactory;
 import org.bson.types.ObjectId;
 import user_shopping_cart_use_case.ShoppingCartSingleton;
-import user_view_menu_use_case.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -33,21 +32,13 @@ public class RestaurantComponent extends JPanel {
         detailButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DisplayMenuPresenter presenter = new DisplayMenuProcessor(null);
-                DisplayMenuInputBoundary interactor = new DisplayMenuInteractor(presenter);
-                DisplayMenuController controller = new DisplayMenuController(interactor, restaurantId);
+                ScreenFactory screenFactory = new ScreenFactory();
+                JPanel displayMenuPanel = screenFactory.createUserDisplayMenu(restaurantId);
 
                 final JFrame frame = new JFrame();
                 frame.setSize(900, 900);
                 frame.setLocationRelativeTo(null);
-
-                DisplayMenuPanelInterface displayMenuPanel = new DisplayMenuPanel(controller);
-
-                frame.add((JPanel)displayMenuPanel);
-
-                presenter.setDisplayMenuPanel(displayMenuPanel);
-                displayMenuPanel.updatePanelData();
-
+                frame.add(displayMenuPanel);
                 frame.setVisible(true);
 
                 ShoppingCartSingleton.setSingletonInstance(new ShoppingCartSingleton(restaurantId, new HashMap<>()));

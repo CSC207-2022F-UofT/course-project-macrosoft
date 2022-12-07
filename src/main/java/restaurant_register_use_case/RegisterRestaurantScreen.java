@@ -1,7 +1,7 @@
 package restaurant_register_use_case;
 
 import components.LabelTextPanel;
-import welcome_use_case.WelcomeScreen;
+import components.ScreenFactory;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -135,7 +135,8 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
         } else if (evt.getActionCommand().equals("Cancel")) {
-            WelcomeScreen screen = new WelcomeScreen();
+            showWelcomePage();
+
             this.dispose();
         }
     }
@@ -145,7 +146,8 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
     }
 
     public void showWelcomePage() {
-        WelcomeScreen screen = new WelcomeScreen();
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createWelcomeScreen();
     }
 
     @Override
