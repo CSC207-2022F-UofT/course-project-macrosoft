@@ -15,13 +15,16 @@ import java.util.Date;
 
 public class TestFactory {
 
+    // a helper for implementing test cases, avoiding repetition of codings ( bloaters )
+    // setting up a order that has order id "63335f66bb6cd6599ed6f64d";
+
     public static Order getOrder() {
         ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
         ObjectId restaurantId = new ObjectId("63797394ee00665db6a0a950");
         ObjectId userId = new ObjectId("63335e7abb6cd6599ed6f64b");
 
         ObjectId foodId = new ObjectId("1");
-        Food food = new Food("a","b", "c",12, foodId);
+        Food food = new Food("a", "b", "c", 12, foodId);
         OrderItem o1 = new OrderItem(foodId, food, 10);
         ArrayList<OrderItem> items = new ArrayList<>();
         items.add(0, o1);
@@ -36,12 +39,5 @@ public class TestFactory {
         gateway.save(order);
 
         return order;
-    }
-
-
-    public static UpdateOrderStatusPresenter getPresenter(){
-        UpdateOrderStatusPresenter presenter = new UpdateOrderStatusProcessor(null);
-
-        return presenter;
     }
 }

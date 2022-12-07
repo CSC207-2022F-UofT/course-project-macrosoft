@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UpdateOrderStatusInteractorTest {
 
-    // setting up a order that has order id "63335f66bb6cd6599ed6f64d";
+
 
     @BeforeEach
     void setUp() {
