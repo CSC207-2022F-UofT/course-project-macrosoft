@@ -24,8 +24,4 @@ public class OrderHistoryController {
     public ObjectId getCurrentUserId() {
         return currentUserId;
     }
-
-    public OrderHistoryResponseModel getResponse(){
-        return orderHistoryInteractor.getResponse(currentUserId);
-    }
 }

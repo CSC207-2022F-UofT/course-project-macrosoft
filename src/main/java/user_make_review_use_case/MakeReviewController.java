@@ -3,20 +3,26 @@ package user_make_review_use_case;
 import database.MongoCollectionFetcher;
 import database.ReviewDataGateway;
 import database.ReviewDataProcessorMongo;
-import datamodels.MakeReviewRequestModel;
-import datamodels.MakeReviewResponseModel;
+import org.bson.types.ObjectId;
+
+import java.nio.file.Path;
+import java.util.Date;
+import java.util.List;
 
 
 public class MakeReviewController {
-    public MakeReviewResponseModel makeReview(MakeReviewRequestModel request) {
-        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
-        ReviewDataGateway gateway = new ReviewDataProcessorMongo(fetcher);
+    MakeReviewInputBoundary reviewInteractor;
+    ObjectId currentId;
 
-        MakeReviewPresenter presenter = new MakeReviewResponseFormatter();
-        MakeReviewInputBoundary i = new ReviewInteractor(gateway, presenter);
+    public MakeReviewController(MakeReviewInputBoundary reviewInteractor, ObjectId currentId) {
+        this.reviewInteractor = reviewInteractor;
+        this.currentId = currentId;
+    }
 
-        MakeReviewResponseModel response = i.makeReview(request);
+    public MakeReviewResponseModel makeReview(int rating, String comment, List<Path> picPathList, String subjectLine, Date lastEditTime) {
 
-        return response;
+        MakeReviewRequestModel requestMode = new MakeReviewRequestModel(currentId, rating, comment, picPathList, subjectLine, lastEditTime);
+
+        return  reviewInteractor.makeReview(requestMode);
     }
 }

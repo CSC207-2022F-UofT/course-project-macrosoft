@@ -1,6 +1,6 @@
-package user_make_review_use_case.screens;
+package user_make_review_use_case;
 
-import datamodels.MakeReviewResponseModel;
+import user_make_review_use_case.MakeReviewResponseModel;
 import entities.Review;
 
 import javax.swing.*;

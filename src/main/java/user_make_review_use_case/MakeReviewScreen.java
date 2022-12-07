@@ -1,10 +1,10 @@
-package user_make_review_use_case.screens;
+package user_make_review_use_case;
 
 import entities.Order;
 
 import user_make_review_use_case.MakeReviewController;
-import datamodels.MakeReviewRequestModel;
-import datamodels.MakeReviewResponseModel;
+import user_make_review_use_case.MakeReviewRequestModel;
+import user_make_review_use_case.MakeReviewResponseModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,10 +27,9 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
     /**
      * A window with text input fields and buttons for user to input review info for an order
      */
-    public MakeReviewScreen(MakeReviewController controller, Order curOrder) {
+    public MakeReviewScreen(MakeReviewController controller) {
 
         this.makeReviewController = controller;
-        this.curOrder = curOrder;
 
         this.setPreferredSize(new Dimension(700,500));
 
@@ -85,7 +84,6 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         this.setContentPane(main);
 
         this.pack();
-        this.setVisible(true);
 
         // Center the frame on the screen
         this.setLocationRelativeTo(null);
@@ -120,15 +118,9 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
                 ArrayList<Path> lst = new ArrayList<>();
                 Date d = new Date();
 
-                // generate request based on model, dependency injection
-                MakeReviewRequestModel request = new MakeReviewRequestModel(curOrder, r, c, lst, s, d);
-
-                // pass request to controller to get a response
-                MakeReviewResponseModel response = makeReviewController.makeReview(request);
+                makeReviewController.makeReview(r, c, lst, s, d);
 
                 this.dispose();
-
-
 
             } catch (NullPointerException e) {  // error: certain required fields are empty
                 JOptionPane.showMessageDialog(this,

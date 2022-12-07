@@ -1,15 +1,15 @@
 package user_order_history_use_case;
 
-
-import entities.Order;
-import user_make_review_use_case.MakeReviewController;
-import user_make_review_use_case.screens.MakeReviewScreen;
+import user_make_review_use_case.*;
+import user_make_review_use_case.MakeReviewScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterface{
 
@@ -31,7 +31,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(BG_DARK_GREEN);
-        String orderTitle = controller.getResponse().getName() + "'s " + "Order History";
+        String orderTitle = "Order History";
 
         JLabel title = new JLabel(orderTitle);
         title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
@@ -81,18 +81,20 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
     @Override
     public void setOrder(OrderHistoryResponseModel orderHistoryResponseModel) {
         orderDisplayPanel.removeAll();
-        for(Order order : orderHistoryResponseModel.getOrders()){
+        for(HashMap<String, Object> order : orderHistoryResponseModel.getOrders()){
             JPanel orderPanel = new JPanel();
             orderPanel.setLayout(new GridLayout(0, 1));
-            resIdToNameConvertor convertor = new resIdToNameConvertor();
-            JLabel resName = new JLabel("Restaurant Name: " + convertor.getResNameById(order.getRestaurantID()));
-            JLabel orderTime = new JLabel("Order Time: " + order.getOrderDate());
-            JLabel orderStatus = new JLabel("Order Status: " + order.getOrderStatus());
+            JLabel id = new JLabel("ID: " + order.get("orderId"));
+            JLabel resName = new JLabel("Restaurant Name: " + order.get("restaurantName"));
+            JLabel orderTime = new JLabel("Order Time: " + order.get("orderTime"));
+            JLabel orderStatus = new JLabel("Order Status: " + order.get("orderStatus"));
             JButton viewDetails = new JButton("View Details");
             JButton makeReview = new JButton("Make Review");
 
             viewDetails.setForeground(BG_DARK_GREEN);
 
+            id.setForeground(BG_DARK_GREEN);
+            id.setBorder(emptyBorder2);
             resName.setForeground(BG_DARK_GREEN);
             resName.setBorder(emptyBorder2);
             orderTime.setForeground(BG_DARK_GREEN);
@@ -103,18 +105,22 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
             viewDetails.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    OrderHistoryDetailScreen detailScreen = new OrderHistoryDetailScreen(orderHistoryController, order);
+                    OrderHistoryDetailScreen detailScreen = new OrderHistoryDetailScreen(orderHistoryController, (ArrayList<HashMap<String, Object>>) order.get("orderItems"));
                 }
             });
 
             makeReview.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    MakeReviewController makeReviewController = new MakeReviewController();
-                    new MakeReviewScreen(makeReviewController, order);
+                    MakeReviewPresenter presenter = new MakeReviewResponseFormatter();
+                    MakeReviewInputBoundary inputBoundary = new ReviewInteractor(presenter);
+                    MakeReviewController makeReviewController = new MakeReviewController(inputBoundary, orderHistoryController.getCurrentUserId());
+                    MakeReviewScreen screen = new MakeReviewScreen(makeReviewController);
+                    screen.setVisible(true);
                 }
             });
 
+            orderPanel.add(id);
             orderPanel.add(resName);
             orderPanel.add(orderTime);
             orderPanel.add(orderStatus);

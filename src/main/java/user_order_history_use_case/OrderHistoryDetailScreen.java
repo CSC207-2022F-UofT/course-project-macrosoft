@@ -6,10 +6,11 @@ import entities.OrderItem;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OrderHistoryDetailScreen {
     OrderHistoryController controller;
-    Order curOrder;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
@@ -18,12 +19,13 @@ public class OrderHistoryDetailScreen {
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
-    public OrderHistoryDetailScreen (OrderHistoryController controller, Order curOrder){
+    private JLabel totalOrderPrice;
+
+    JPanel orderDisplayDetailPanel;
+
+    public OrderHistoryDetailScreen(OrderHistoryController controller, ArrayList<HashMap<String, Object>> infos){
         this.controller = controller;
-        this.curOrder = curOrder;
 
-
-        resIdToNameConvertor convertor = new resIdToNameConvertor();
         JFrame frame = new JFrame("Order details");
 
         frame.setLayout(new BorderLayout());
@@ -33,14 +35,14 @@ public class OrderHistoryDetailScreen {
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(BG_DARK_GREEN);
 
-        JLabel title = new JLabel(convertor.getResNameById(curOrder.getRestaurantID()));
+        JLabel title = new JLabel();
         title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setBorder(emptyBorder);
         titlePanel.add(title);
 
 
-        JPanel orderDisplayDetailPanel = new JPanel();
+        orderDisplayDetailPanel = new JPanel();
         orderDisplayDetailPanel.setBackground(GREY_WHITE);
         orderDisplayDetailPanel.setBorder(blackline);
         GridLayout layout = new GridLayout(0 ,3);
@@ -56,20 +58,55 @@ public class OrderHistoryDetailScreen {
 
         title.setVerticalAlignment(JLabel.CENTER);
 
+        JPanel totalPanel = new JPanel();
+        totalPanel.setBackground(BG_DARK_GREEN);
+
+        totalOrderPrice = new JLabel("Total: $" + 0.0);
+        totalOrderPrice.setHorizontalTextPosition(JLabel.CENTER);
+        totalOrderPrice.setForeground(GREY_WHITE);
+        totalOrderPrice.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        totalPanel.add(totalOrderPrice);
+
+        JPanel right = new JPanel();
+        JPanel left = new JPanel();
+        JPanel bottom = new JPanel();
+
+        right.setPreferredSize(new Dimension(50 ,0));
+        left.setPreferredSize(new Dimension(50 ,0));
+        right.setBackground(BG_DARK_GREEN);
+        left.setBackground(BG_DARK_GREEN);
+
+        frame.getContentPane().add(orderHistoryDetailScroll, BorderLayout.CENTER);
+        frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
+        frame.getContentPane().add(totalPanel, BorderLayout.SOUTH);
+        frame.getContentPane().add(right, BorderLayout.EAST);
+        frame.getContentPane().add(left, BorderLayout.WEST);
+
+        displayOrderDetail(infos);
+
+        frame.setVisible(true);
+    }
+
+    public void setTotal(double totalPrice) {
+        totalOrderPrice.setText("Total: $" + totalPrice);
+    }
+
+    public void displayOrderDetail(ArrayList<HashMap<String, Object>> orderInfos) {
+        orderDisplayDetailPanel.removeAll();
 
         double totalPrice = 0;
 
-        for(OrderItem orderItem : curOrder.getItems()){
+        for(HashMap<String, Object> info : orderInfos){
             JPanel foodPanel = new JPanel();
             foodPanel.setBackground(Color.lightGray);
             foodPanel.setLayout(new GridLayout(0, 1));
-            JLabel foodName = new JLabel("Name: " + orderItem.getFood().getName());
-            JLabel description = new JLabel("Description: " + orderItem.getFood().getDescription());
-            JLabel category = new JLabel("Category: " + orderItem.getFood().getCategory());
-            JLabel numOfItem = new JLabel("Number Of Items: " + String.valueOf(orderItem.getNumberOfItem()));
-            double pricePerItem = orderItem.getFood().getPrice() * orderItem.getNumberOfItem();
-            JLabel pricePerFood = new JLabel("Price per Item: $" + String.valueOf(orderItem.getFood().getPrice()));
-            JLabel price = new JLabel("Price In Total: $" + String.valueOf(pricePerItem));
+            JLabel foodName = new JLabel("Name: " + info.getOrDefault("name", ""));
+            JLabel description = new JLabel("Description: " + info.getOrDefault("description", ""));
+            JLabel category = new JLabel("Category: " + info.getOrDefault("category", ""));
+            JLabel numOfItem = new JLabel("Number Of Items: " + info.getOrDefault("count", ""));
+            double pricePerItem = (Float) info.getOrDefault("price", 0) * (Integer) info.getOrDefault("count", 0);
+            JLabel pricePerFood = new JLabel("Price per Item: $" + info.getOrDefault("price", 0));
+            JLabel price = new JLabel("Price In Total: $" + pricePerItem);
             totalPrice += pricePerItem;
 
             foodName.setForeground(BG_DARK_GREEN);
@@ -97,30 +134,6 @@ public class OrderHistoryDetailScreen {
             orderDisplayDetailPanel.add(foodPanel);
         }
 
-        JPanel totalPanel = new JPanel();
-        totalPanel.setBackground(BG_DARK_GREEN);
-
-        JLabel totalOrderPrice = new JLabel("Total: $" + String.valueOf(totalPrice));
-        totalOrderPrice.setHorizontalTextPosition(JLabel.CENTER);
-        totalOrderPrice.setForeground(GREY_WHITE);
-        totalOrderPrice.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
-        totalPanel.add(totalOrderPrice);
-
-        JPanel right = new JPanel();
-        JPanel left = new JPanel();
-        JPanel bottom = new JPanel();
-
-        right.setPreferredSize(new Dimension(50 ,0));
-        left.setPreferredSize(new Dimension(50 ,0));
-        right.setBackground(BG_DARK_GREEN);
-        left.setBackground(BG_DARK_GREEN);
-
-        frame.getContentPane().add(orderHistoryDetailScroll, BorderLayout.CENTER);
-        frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
-        frame.getContentPane().add(totalPanel, BorderLayout.SOUTH);
-        frame.getContentPane().add(right, BorderLayout.EAST);
-        frame.getContentPane().add(left, BorderLayout.WEST);
-
-        frame.setVisible(true);
+        setTotal(totalPrice);
     }
 }
