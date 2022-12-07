@@ -20,10 +20,12 @@ public class CheckoutInteractor implements CheckoutInputBoundary {
     public void checkout(CheckoutRequestModel requestModel) {
         if (requestModel.getUserId() == null) {
             presenter.checkoutFailed("User invalid");
+            return;
         }
 
         if (requestModel.getRestaurantId() == null || requestModel.getCart().size() == 0) {
             presenter.checkoutFailed("Your shopping cart is empty");
+            return;
         }
 
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
