@@ -11,37 +11,28 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
+/**
+ * This class is responsible for all interactions with the MongoDB database
+ * related to authentication information.
+ */
+public class AuthInfoProcessorMongo implements AuthInfoDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
 
+    /**
+     * Constructor for AuthInfoProcessorMongo
+     *
+     * @param fetcher the fetcher for the collection
+     */
     public AuthInfoProcessorMongo(MongoCollectionFetcher fetcher) {
         this.mongoCollectionFetcher = fetcher;
     }
 
     /**
-     * @param order
-     * @return
-     */
-    @Override
-    public String save(Order order) {
-        return null;
-    }
-
-
-    @Override
-    public String create(String username, String password, ObjectId userId) {
-        Document newUserAuthInfo = new Document("username", username)
-                .append("password", password)
-                .append("userID", userId);
-
-        mongoCollectionFetcher.getCollection("AuthInfo").insertOne(newUserAuthInfo);
-        return null;
-    }
-
-    /**
-     * @param username
-     * @param password
-     * @return
+     * Gets user by username and password
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return the user
      */
     @Override
     public AuthInfo getUserByUsernamePassword(String username, String password) {
@@ -53,9 +44,11 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
     }
 
     /**
-     * @param userId
-     * @param password
-     * @return
+     * Get user by user id and password
+     *
+     * @param userId   the id of the user
+     * @param password the password of the user
+     * @return the user
      */
     @Override
     public AuthInfo getUserByUserIdPassword(ObjectId userId, String password) {
@@ -66,6 +59,12 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
         return getAuthInfo(queryFilter);
     }
 
+    /**
+     * Gets user by username
+     *
+     * @param username the username of the user
+     * @return the user
+     */
     @Override
     public AuthInfo getUserByUsername(String username) {
         Bson queryFilter = Filters.eq("username", username);
@@ -74,8 +73,11 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
     }
 
     /**
-     * @param userId
-     * @param newPassword
+     * Sets a new password for a user
+     *
+     * @param userId      the id of the user
+     * @param newPassword the new password
+     * @return a string shows the result
      */
     @Override
     public String setNewPassword(ObjectId userId, String newPassword) {
@@ -92,6 +94,12 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway{
         }
     }
 
+    /**
+     * Gets the AuthInfo from the database
+     *
+     * @param queryFilter the filter for the query
+     * @return the AuthInfo
+     */
     private AuthInfo getAuthInfo(Bson queryFilter) {
         MongoIterable<Document> users = mongoCollectionFetcher.getCollection("AuthInfo").find(queryFilter);
 

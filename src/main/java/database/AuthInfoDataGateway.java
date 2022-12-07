@@ -9,19 +9,37 @@ import org.bson.types.ObjectId;
  */
 public interface AuthInfoDataGateway {
     /**
-     * Save the AuthInfo to the database.
-     * @param order the order
-     * @return
+     * Gets user by username and password
+     *
+     * @param username the username of the user
+     * @param password the password of the user
+     * @return the user
      */
-    String save(Order order);
-    String create(String username, String password, ObjectId userId);
     AuthInfo getUserByUsernamePassword(String username, String password);
-    AuthInfo getUserByUserIdPassword(ObjectId userId, String password);
-    String setNewPassword(ObjectId userId, String newPassword);
+
     /**
-     * Get the AuthInfo by the user name.
-     * @param username the user name
-     * @return AuthInfo the AuthInfo
+     * Get user by user id and password
+     *
+     * @param userId   the id of the user
+     * @param password the password of the user
+     * @return the user
+     */
+    AuthInfo getUserByUserIdPassword(ObjectId userId, String password);
+
+    /**
+     * Sets a new password for a user
+     *
+     * @param userId      the id of the user
+     * @param newPassword the new password
+     * @return a string shows the result
+     */
+    String setNewPassword(ObjectId userId, String newPassword);
+
+    /**
+     * Gets user by username
+     *
+     * @param username the username of the user
+     * @return the user
      */
     AuthInfo getUserByUsername(String username);
 }

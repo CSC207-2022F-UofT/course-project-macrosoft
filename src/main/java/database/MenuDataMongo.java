@@ -1,4 +1,5 @@
 package database;
+
 import entities.*;
 import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
@@ -11,14 +12,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MenuDataMongo implements MenuDataGateway{
+/**
+ * This class is responsible for all interactions with the MongoDB database
+ * related to menus.
+ */
+public class MenuDataMongo implements MenuDataGateway {
 
     MongoCollectionFetcher mongoCollectionFetcher;
 
+    /**
+     * Constructor for MenuDataMongo
+     *
+     * @param mongoCollectionFetcher the fetcher for the collection
+     */
     public MenuDataMongo(MongoCollectionFetcher mongoCollectionFetcher) {
         this.mongoCollectionFetcher = mongoCollectionFetcher;
     }
 
+    /**
+     * Gets menu id by restaurant id
+     *
+     * @param restaurantId the restaurant id
+     * @return the menu id of the restaurant
+     */
     @Override
     public ObjectId newMenu(ObjectId restaurantId) {
         Document newMenuDoc = new Document("restaurantId", restaurantId)
@@ -28,26 +44,27 @@ public class MenuDataMongo implements MenuDataGateway{
     }
 
     /**
+     * Sets the menu of a restaurant
      *
-     * @param resId
-     * @param newMenu
+     * @param resId   the restaurant id
+     * @param newMenu the new menu
      */
     @Override
-    public void setMenu(ObjectId resId, Menu newMenu){
+    public void setMenu(ObjectId resId, Menu newMenu) {
         Bson filter = Filters.eq("restaurantId", resId);
         mongoCollectionFetcher.getCollection("Menus").deleteOne(filter);
         Document newMenuDoc = convertMenuToDoc(newMenu);
         mongoCollectionFetcher.getCollection("Menus").insertOne(newMenuDoc);
     }
 
-
     /**
+     * Gets menu by restaurant id
      *
-     * @param restId
-     * @return
+     * @param restId the restaurant id
+     * @return the menu with the given restaurant id
      */
     @Override
-    public Menu getMenu(ObjectId restId){
+    public Menu getMenu(ObjectId restId) {
         Bson queryFilter = Filters.and(
                 Filters.eq("restaurantId", restId));
 
@@ -66,31 +83,29 @@ public class MenuDataMongo implements MenuDataGateway{
     }
 
     /**
+     * Converts a menu to a document
      *
-     * @param curMenu
-     * @return
+     * @param curMenu the menu to convert
+     * @return the document
      */
-
-    public Document convertMenuToDoc(Menu curMenu){
+    public Document convertMenuToDoc(Menu curMenu) {
         List<Document> foodDocLst = new ArrayList<>();
-        for(Food curFood: curMenu.getFoodList()){
+        for (Food curFood : curMenu.getFoodList()) {
             foodDocLst.add(convertFoodToDoc(curFood));
         }
 
-//        return new Document("restaurantId", curMenu.getRestaurantId())
-//                .append("Food", foodDocLst);
         return new Document("_id", curMenu.getMenuId())
                 .append("restaurantId", curMenu.getRestaurantId())
                 .append("Food", foodDocLst);
     }
 
     /**
+     * Converts a document to a menu
      *
-     * @param menuDoc
-     * @return
+     * @param menuDoc the document to convert
+     * @return the menu
      */
-
-    public Menu convertDocToMenu(Document menuDoc){
+    public Menu convertDocToMenu(Document menuDoc) {
 
         List<Food> foodList = menuDoc.getList("Food", Document.class).
                 stream()
@@ -102,13 +117,13 @@ public class MenuDataMongo implements MenuDataGateway{
     }
 
     /**
+     * Converts a document to a food
      *
-     * @param foodDoc
-     * @return
+     * @param foodDoc the document to convert
+     * @return the food
      */
-
-    public Food convertDocToFood(Document foodDoc){
-        if (foodDoc.isEmpty()){
+    public Food convertDocToFood(Document foodDoc) {
+        if (foodDoc.isEmpty()) {
             return null;
         }
         return new Food(foodDoc.getString("name"),
@@ -119,12 +134,12 @@ public class MenuDataMongo implements MenuDataGateway{
     }
 
     /**
+     * Converts a food to a document
      *
-     * @param curFood
-     * @return
+     * @param curFood the food to convert
+     * @return the document
      */
-
-    public Document convertFoodToDoc(Food curFood){
+    public Document convertFoodToDoc(Food curFood) {
         return new Document("_id", curFood.getItemID())
                 .append("name", curFood.getName())
                 .append("description", curFood.getDescription())

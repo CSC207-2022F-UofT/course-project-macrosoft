@@ -14,12 +14,30 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
+/**
+ * This class is responsible for all interactions with the MongoDB database
+ * related to users.
+ */
 public class UserDataProcessorMongo implements UserDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
+
+    /**
+     * Constructor for UserDataProcessorMongo
+     *
+     * @param fetcher the fetcher for the collection
+     */
     public UserDataProcessorMongo(MongoCollectionFetcher fetcher) {
         this.mongoCollectionFetcher = fetcher;
     }
 
+    /**
+     * Creates a new user
+     *
+     * @param email     the email of the user
+     * @param firstName the first name of the user
+     * @param lastName  the last name of the user
+     * @return the id of the new user
+     */
     @Override
     public ObjectId newUser(String email, String firstName, String lastName) {
 
@@ -36,29 +54,10 @@ public class UserDataProcessorMongo implements UserDataGateway {
     }
 
     /**
-     * insert the User into MongoDB as a document
-     * @param user
-     * @return
-     */
-    @Override
-    public String save(User user) {
-        this.mongoCollectionFetcher.getCollection("Users").insertOne(convertUserToDocument(user));
-        return null;
-    }
-
-    @Override
-    public List<User> findAll() {
-        List<User> lst = new ArrayList<>();
-        this.mongoCollectionFetcher.getCollection("Users")
-                .find()  // finds all documents in an iterator
-                .forEach(doc -> lst.add(convertDocumentToUser((Document) doc)));
-        return lst;
-    }
-
-    /**
+     * Gets a user from the database by id
      *
-     * @param id
-     * @return
+     * @param id the id of the user
+     * @return the user
      */
     @Override
     public User findById(ObjectId id) {
@@ -69,31 +68,18 @@ public class UserDataProcessorMongo implements UserDataGateway {
 
         Document doc = (Document) userCollection.find(queryFilter).first();
 
-        if (doc != null) {return convertDocumentToUser(doc);}
-        else {return null;}
+        if (doc != null) {
+            return convertDocumentToUser(doc);
+        } else {
+            return null;
+        }
     }
 
     /**
+     * Updates verified status of a user
      *
-     * @param username
-     * @return
-     */
-    @Override
-    public User findByUsername(String username) {
-        MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
-        // filter by Id
-        Bson queryFilter = Filters.and(Filters.eq("username", username));
-
-        Document doc = (Document) userCollection.find(queryFilter).first();
-
-        if (doc != null) {return convertDocumentToUser(doc);}
-        else {return null;}
-    }
-
-    /**
-     * @param userId
-     * @param newStatus
-     * @return
+     * @param userId    the id of the user
+     * @param newStatus the new status
      */
     @Override
     public void updateVerifiedStatus(ObjectId userId, Boolean newStatus) {
@@ -105,9 +91,11 @@ public class UserDataProcessorMongo implements UserDataGateway {
     }
 
     /**
-     * @param newFirstName
-     * @param newLastName
-     * @param newEmail
+     * Updates the information of a user
+     *
+     * @param newFirstName the new first name
+     * @param newLastName  the new last name
+     * @param newEmail     the new email
      */
     @Override
     public void UpdateUserInfo(ObjectId userId, String newFirstName, String newLastName, String newEmail) {
@@ -127,16 +115,12 @@ public class UserDataProcessorMongo implements UserDataGateway {
         userCollection.updateOne(queryFilter, update);
     }
 
-    @Override
-    public boolean getVerifiedStatus(ObjectId userId) {
-        MongoCollection userCollection = this.mongoCollectionFetcher.getCollection("Users");
-        Bson queryFilter = Filters.eq("_id", userId);
-
-        Document doc = (Document) userCollection.find(queryFilter).first();
-
-        return doc.getBoolean("verified");
-    }
-
+    /**
+     * Converts a document to a user
+     *
+     * @param document the document to convert
+     * @return the user
+     */
     public User convertDocumentToUser(Document document) {
         return new User(document.getString("firstName"),
                 document.getString("lastName"),
@@ -145,10 +129,4 @@ public class UserDataProcessorMongo implements UserDataGateway {
                 document.getBoolean("verified")
         );
     }
-
-    public Document convertUserToDocument(User user) {
-        return null;
-    }
-
-
 }
