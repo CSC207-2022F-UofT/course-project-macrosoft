@@ -177,7 +177,8 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Exit")){
-            this.removeAll();
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            frame.dispose();
         }
     }
 

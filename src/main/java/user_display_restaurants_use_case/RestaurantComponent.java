@@ -38,7 +38,7 @@ public class RestaurantComponent extends JPanel {
                 DisplayMenuController controller = new DisplayMenuController(interactor, restaurantId);
 
                 final JFrame frame = new JFrame();
-                frame.setSize(900, 700);
+                frame.setSize(900, 900);
                 frame.setLocationRelativeTo(null);
 
                 DisplayMenuPanelInterface displayMenuPanel = new DisplayMenuPanel(controller);
