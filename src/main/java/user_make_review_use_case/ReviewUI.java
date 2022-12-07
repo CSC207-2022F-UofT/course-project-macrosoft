@@ -1,7 +1,6 @@
 package user_make_review_use_case;
 
-import user_make_review_use_case.MakeReviewResponseModel;
-import entities.Review;
+import org.bson.types.ObjectId;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,27 +9,16 @@ import java.awt.event.ActionListener;
 
 public class ReviewUI extends JFrame {
 
-    Review rev;
+    String rev;
 
     public ReviewUI(MakeReviewResponseModel successResponse) {
-        this.rev = successResponse.getReview();
+        this.rev = successResponse.getReviewId();
 
         setTitle("Review Information");
         setSize(900, 700);
-        setLayout(new GridLayout(6, 2));
+        setLayout(new GridLayout(0, 1));
 
-        add(new JLabel("Subject Line:"));
-        add(new JLabel(this.rev.getSubjectLine()));
-
-        add(new JLabel("Comment:"));
-        add(new JLabel(this.rev.getComment()));
-
-        add(new JLabel("Rating:"));
-        int r = this.rev.getRating();
-        add(new JLabel(String.valueOf(r) + " / 10"));
-
-        add(new JLabel("Time:"));
-        add(new JLabel(this.rev.getLastEditTime().toString()));
+        add(new JLabel("Review Id: " + rev));
 
         JButton ok = new JButton("OK");
         ok.addActionListener(new ActionListener() {
@@ -47,5 +35,4 @@ public class ReviewUI extends JFrame {
         // Center the frame on the screen
         setLocationRelativeTo(null);
     }
-
 }
