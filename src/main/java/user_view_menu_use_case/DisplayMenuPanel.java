@@ -1,6 +1,5 @@
 package user_view_menu_use_case;
 import org.bson.types.ObjectId;
-import user_shopping_cart_use_case.ShoppingCartSingleton;
 
 import javax.swing.*;
 import javax.swing.border.Border;

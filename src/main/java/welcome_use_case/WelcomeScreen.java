@@ -1,8 +1,6 @@
 package welcome_use_case;
 
-import login_use_case.*;
-import restaurant_register_use_case.*;
-import user_register_use_case.*;
+import components.ScreenFactory;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -87,13 +85,8 @@ public class WelcomeScreen {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UserLoginPresenter userLoginPresenter = new UserLoginProcessor(null);
-                UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginPresenter);
-                RestaurantLoginInputBoundary restaurantLoginInteractor = new RestaurantLoginInteractor(userLoginPresenter);
-                UserLoginController userLoginController = new UserLoginController(userLoginInteractor, restaurantLoginInteractor);
-                UserLoginScreenInterface screen = new UserLoginScreen(userLoginController);
-                userLoginPresenter.setLoginScreen(screen);
-                screen.getFrame().setVisible(true);
+                ScreenFactory screenFactory = new ScreenFactory();
+                screenFactory.createLoginSreen();
 
                 frame.dispose();
             }
@@ -102,12 +95,8 @@ public class WelcomeScreen {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegisterUserPresenter registerUserPresenter = new RegisterUserProcessor(null);
-                RegisterUserInputBoundary registerUserInputBoundary = new RegisterUserInteractor(registerUserPresenter);
-                RegisterUserController registerUserController = new RegisterUserController(registerUserInputBoundary);
-                RegisterUserScreenInterface screen = new RegisterUserScreen(registerUserController);
-                registerUserPresenter.setScreen(screen);
-                screen.getFrame().setVisible(true);
+                ScreenFactory screenFactory = new ScreenFactory();
+                screenFactory.createUserRegisterScreen();
 
                 frame.dispose();
             }
@@ -116,12 +105,8 @@ public class WelcomeScreen {
         registerAsRestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegisterRestaurantPresenter registerRestaurantPresenter = new RegisterRestaurantProcessor(null);
-                RegisterRestaurantInputBoundary registerRestaurantInputBoundary = new RegisterRestaurantInteractor(registerRestaurantPresenter);
-                RegisterRestaurantController registerRestaurantController = new RegisterRestaurantController(registerRestaurantInputBoundary);
-                RegisterRestaurantScreenInterface screen = new RegisterRestaurantScreen(registerRestaurantController);
-                registerRestaurantPresenter.setScreen(screen);
-                screen.getFrame().setVisible(true);
+                ScreenFactory screenFactory = new ScreenFactory();
+                screenFactory.createRestaurantRegisterScreen();
 
                 frame.dispose();
             }

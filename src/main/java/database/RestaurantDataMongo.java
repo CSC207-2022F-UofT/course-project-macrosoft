@@ -2,8 +2,6 @@ package database;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoIterable;
-import com.mongodb.client.model.Collation;
-import com.mongodb.client.model.CollationStrength;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.InsertOneResult;
@@ -104,7 +102,6 @@ public class RestaurantDataMongo implements RestaurantDataGateway {
         MongoCollection restaurantCollection = this.mongoCollectionFetcher.getCollection("Restaurants");
         Bson queryFilter = Filters.regex("name", ".*" + restaurantName + ".*", "i");
 
-        Collation collation = Collation.builder().locale("en").collationStrength(CollationStrength.SECONDARY).build();
         MongoIterable<Document> results = restaurantCollection.find(queryFilter);
 
         if (results != null) {

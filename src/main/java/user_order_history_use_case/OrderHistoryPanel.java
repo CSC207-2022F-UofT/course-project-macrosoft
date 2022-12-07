@@ -1,8 +1,7 @@
 package user_order_history_use_case;
 
+import components.ScreenFactory;
 import org.bson.types.ObjectId;
-import user_make_review_use_case.*;
-import user_make_review_use_case.MakeReviewScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -126,11 +125,8 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
             makeReview.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    MakeReviewPresenter presenter = new MakeReviewResponseFormatter();
-                    MakeReviewInputBoundary inputBoundary = new ReviewInteractor(presenter);
-                    MakeReviewController makeReviewController = new MakeReviewController(inputBoundary, (ObjectId) order.get("orderId"));
-                    MakeReviewScreen screen = new MakeReviewScreen(makeReviewController);
-                    screen.setVisible(true);
+                    ScreenFactory screenFactory = new ScreenFactory();
+                    screenFactory.createMakeReviewScreen((ObjectId) order.get("orderId"));
                 }
             });
 

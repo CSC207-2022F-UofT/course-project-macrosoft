@@ -1,9 +1,7 @@
 package restaurant_verify_use_case;
 
-import login_use_case.*;
+import components.ScreenFactory;
 import org.bson.types.ObjectId;
-import restaurant_homepage_use_case.RestaurantHomepageController;
-import restaurant_homepage_use_case.RestaurantHomepageScreen;
 import components.LabelTextPanel;
 
 import javax.swing.*;
@@ -75,20 +73,13 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
     }
 
     public void showLoginScreen() {
-        UserLoginPresenter userLoginPresenter = new UserLoginProcessor(null);
-        UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginPresenter);
-        RestaurantLoginInputBoundary restaurantLoginInteractor = new RestaurantLoginInteractor(userLoginPresenter);
-        UserLoginController userLoginController = new UserLoginController(userLoginInteractor, restaurantLoginInteractor);
-        UserLoginScreenInterface screen = new UserLoginScreen(userLoginController);
-
-        userLoginPresenter.setLoginScreen(screen);
-
-        screen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createLoginSreen();
     }
 
     public void showRestaurantHomePage(ObjectId restaurantId, String restaurantName) {
-        RestaurantHomepageController restaurantHomepageController = new RestaurantHomepageController(restaurantId);
-        RestaurantHomepageScreen restaurantHomepageScreen = new RestaurantHomepageScreen(restaurantHomepageController, restaurantName);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createRestaurantHomepageScreen(restaurantId, restaurantName);
     }
 
     public void showMessage(String message) {

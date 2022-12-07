@@ -42,7 +42,6 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
         this.controller = controller;
 
         this.setSize(900, 700);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(GREY_WHITE);
 

@@ -1,11 +1,5 @@
 package user_make_review_use_case;
 
-import entities.Order;
-
-import user_make_review_use_case.MakeReviewController;
-import user_make_review_use_case.MakeReviewRequestModel;
-import user_make_review_use_case.MakeReviewResponseModel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,16 +7,11 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
 
-
 public class MakeReviewScreen extends JFrame implements ActionListener {
-
     MakeReviewController makeReviewController;
-
     JTextArea subjectArea;
     JTextArea commentArea;
     JComboBox<Integer> ratingBox;
-
-    Order curOrder;
 
     /**
      * A window with text input fields and buttons for user to input review info for an order
@@ -61,7 +50,6 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         JPanel commentPanel = new JPanel();
         commentPanel.add(commentLabel);
         commentPanel.add(commentArea);
-
 
         JButton save = new JButton("Save");
         JButton discard = new JButton("Discard");

@@ -1,14 +1,8 @@
 package login_use_case;
 
+import components.ScreenFactory;
 import org.bson.types.ObjectId;
-import restaurant_homepage_use_case.RestaurantHomepageController;
-import restaurant_homepage_use_case.RestaurantHomepageScreen;
 import components.LabelTextPanel;
-import user_homepage_use_case.UserHomePageScreen;
-import user_homepage_use_case.UserHomepageController;
-import restaurant_verify_use_case.*;
-import user_verify_use_case.*;
-import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -136,32 +130,21 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
             }
         }
         else if (evt.getActionCommand().equals("Cancel")) {
-            WelcomeScreen screen = new WelcomeScreen();
-            this.dispose();
+            ScreenFactory screenFactory = new ScreenFactory();
+            screenFactory.createWelcomeScreen();
+            this.close();
         }
     }
 
     @Override
     public void showVerifyScreen(ObjectId userId) {
-        VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
-        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
-        VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userId);
-        VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
-
-        verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
-
-        verifyUserScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createVerifyUserScreen(userId);
     }
 
     public void showRestaurantVerifyScreen(ObjectId restaurantId) {
-        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
-        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
-        VerifyResController verifyResController = new VerifyResController(verifyResFacade, restaurantId);
-        VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
-
-        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
-
-        verifyResScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createVerifyRestaurantScreen(restaurantId);
     }
 
     @Override
@@ -171,13 +154,13 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
 
     @Override
     public void showUserHomepage(ObjectId userId) {
-        UserHomepageController controller = new UserHomepageController(userId);
-        UserHomePageScreen screen = new UserHomePageScreen(controller);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createUserHomepageScreen(userId);
     }
 
     public void showRestaurantHomepage(ObjectId restaurantId, String restaurantName) {
-        RestaurantHomepageController controller = new RestaurantHomepageController(restaurantId);
-        RestaurantHomepageScreen screen = new RestaurantHomepageScreen(controller, restaurantName);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createRestaurantHomepageScreen(restaurantId, restaurantName);
     }
 
     @Override
