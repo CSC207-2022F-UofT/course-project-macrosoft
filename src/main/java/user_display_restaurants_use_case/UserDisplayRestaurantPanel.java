@@ -76,7 +76,6 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
             restLabel.setForeground(BG_DARK_GREEN);
             restLabel.setFont(new Font("Serif", Font.PLAIN, 17));
             restLabel.setHorizontalAlignment(SwingConstants.CENTER);
-//            restLabel.setAlignmentX(CENTER_ALIGNMENT);
             restaurantPanel.add(new RestaurantComponent(restLabel, restId));
         }
 

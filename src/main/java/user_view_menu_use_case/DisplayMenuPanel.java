@@ -19,6 +19,7 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
+    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(0, 20, 0, 10);
     private static final Border blackLine = BorderFactory.createLineBorder(Color.black);
 
     private DisplayMenuController controller;
@@ -33,20 +34,22 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
         this.controller = controller;
         this.setLayout(new BorderLayout());
 
-        JPanel resNamePanel = new JPanel(new GridLayout(0, 1));
+        JPanel resNamePanel = new JPanel(new GridLayout(1, 3));
+        resNamePanel.setBorder(emptyBorder3);
         resNamePanel.setBackground(BG_DARK_GREEN);
+        resNamePanel.setAlignmentX(CENTER_ALIGNMENT);
 
         nameLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         nameLabel.setForeground(GREY_WHITE);
         nameLabel.setBorder(emptyBorder);
         resNamePanel.add(this.nameLabel);
 
-        addLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        addLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 15));
         addLabel.setForeground(GREY_WHITE);
         addLabel.setBorder(emptyBorder);
         resNamePanel.add(this.addLabel);
 
-        phoneLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        phoneLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 15));
         phoneLabel.setForeground(GREY_WHITE);
         phoneLabel.setBorder(emptyBorder);
         resNamePanel.add(this.phoneLabel);
@@ -72,7 +75,6 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
         buttonPanel.setBackground(BG_DARK_GREEN);
         buttonPanel.setBorder(emptyBorder);
 
-
         JButton finishButton = new JButton("Exit");
         finishButton.addActionListener(this);
 
@@ -82,7 +84,6 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
         this.add(resNamePanel, BorderLayout.NORTH);
         this.add(menuScroll, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
-
     }
 
     @Override
@@ -96,7 +97,7 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
      */
     @Override
     public void updateAddressLabel(String newAddress) {
-        addLabel.setText(newAddress);
+        addLabel.setText("Address: " + newAddress);
     }
 
     /**
@@ -104,7 +105,7 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
      */
     @Override
     public void updatePhoneLabel(String newPhone) {
-        phoneLabel.setText(newPhone);
+        phoneLabel.setText("Phone: " + newPhone);
     }
 
     @Override
