@@ -57,8 +57,8 @@ class GetCodeInteractorTest {
     @Test
     void getVerificationCodeFalse() {
         String actual = "";
-        ObjectId userID = new ObjectId("638fd7e653160338d10413b9");
-        assertTrue(GetCodeInteractor.getVerificationCode(userID).equals(actual));
+        ObjectId resID = new ObjectId("638fd7e653160338d10413b9");
+        assertTrue(GetCodeInteractor.getVerificationCode(resID).equals(actual));
     }
 
 
