@@ -21,7 +21,6 @@ public class MongoCollectionFetcher {
     }
 
     public MongoCollection getCollection(String collectionName) {
-
         return database.getCollection(collectionName);
     }
 

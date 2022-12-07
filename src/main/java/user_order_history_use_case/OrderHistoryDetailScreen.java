@@ -58,6 +58,7 @@ public class OrderHistoryDetailScreen {
 
 
         double totalPrice = 0;
+
         for(OrderItem orderItem : curOrder.getItems()){
             JPanel foodPanel = new JPanel();
             foodPanel.setBackground(Color.lightGray);
