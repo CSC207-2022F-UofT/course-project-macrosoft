@@ -1,8 +1,7 @@
 package restaurant_homepage_use_case;
 
-import com.mongodb.client.ChangeStreamIterable;
-import org.bson.Document;
 import org.bson.types.ObjectId;
+import res_display_menu_usecase.*;
 import restaurant_order_history_use_case.*;
 import restaurant_profile_use_case.*;
 
@@ -41,6 +40,18 @@ public class RestaurantHomepageController {
         panel.updatePanelData();
 
         return (JPanel)panel;
+    }
+
+    public JPanel getMenuPanel(ObjectId currentRestaurantId){
+        ResDisplayMenuPresenter presenter = new ResDisplayMenuProcessor(null);
+        ResDisplayMenuInputBoundary interactor = new ResDisplayMenuInteractor(presenter);
+        ResDisplayMenuController controller = new ResDisplayMenuController(interactor, currentRestaurantId);
+
+        ResDisplayMenuPanelInterface displayMenuPanel = new ResDisplayMenuPanel(controller);
+        presenter.setDisplayMenuPanel(displayMenuPanel);
+        displayMenuPanel.updatePanelData();
+
+        return (JPanel)displayMenuPanel;
     }
 
     public ObjectId getCurrentRestaurantId() {

@@ -16,7 +16,8 @@ import java.util.HashMap;
 public class RestaurantProfilePanel extends JPanel implements RestaurantProfilePanelInterface {
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(200, 0, 20, 0);
+    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 20, 0);
+    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(30, 30, 30, 30);
 
     private JLabel nameLabel = new JLabel("Name");
     private JLabel emailLabel = new JLabel("Email");
@@ -27,28 +28,65 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
     public RestaurantProfilePanel(RestaurantProfileController restaurantProfileController) {
         this.restaurantProfileController = restaurantProfileController;
 
-        GridLayout gridLayout = new GridLayout(0,1);
+        this.setOpaque(true);
+        this.setBackground(GREY_WHITE);
+        this.setLayout(new BorderLayout());
 
-        JPanel centrePanel = new JPanel(gridLayout);
-        centrePanel.setOpaque(false);
-        nameLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        JPanel titlePanel = new JPanel();
+        JLabel titleLabel = new JLabel("Restaurant Profile");
+        titleLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        titleLabel.setForeground(BG_DARK_GREEN);
+        titlePanel.add(titleLabel);
+        titlePanel.setOpaque(true);
+        titlePanel.setBackground(GREY_WHITE);
+        titlePanel.setBorder(emptyBorder2);
+
+        this.add(titlePanel, BorderLayout.NORTH);
+
+        JPanel centrePanel = new JPanel();
+        centrePanel.setLayout(new GridLayout(6, 1));
+        centrePanel.setOpaque(true);
+        centrePanel.setBackground(BG_DARK_GREEN);
+
+        JPanel namePanel = new JPanel();
+        namePanel.setOpaque(false);
+        nameLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         nameLabel.setForeground(GREY_WHITE);
-        nameLabel.setBorder(emptyBorder3);
-        centrePanel.add(nameLabel);
-        emailLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        namePanel.setBorder(emptyBorder3);
+        namePanel.add(nameLabel);
+        centrePanel.add(namePanel);
+
+        JPanel emailPanel = new JPanel();
+        emailPanel.setOpaque(false);
+        emailLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         emailLabel.setForeground(GREY_WHITE);
-        emailLabel.setBorder(emptyBorder3);
-        centrePanel.add(emailLabel);
-        locationLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        emailPanel.setBorder(emptyBorder3);
+        emailPanel.add(emailLabel);
+        centrePanel.add(emailPanel);
+
+        JPanel locationPanel = new JPanel();
+        locationPanel.setOpaque(false);
+        locationLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         locationLabel.setForeground(GREY_WHITE);
         locationLabel.setBorder(emptyBorder3);
-        centrePanel.add(locationLabel);
-        phoneLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        locationPanel.add(locationLabel);
+        centrePanel.add(locationPanel);
+
+        JPanel phonePanel = new JPanel();
+        phonePanel.setOpaque(false);
+        phoneLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         phoneLabel.setForeground(GREY_WHITE);
         phoneLabel.setBorder(emptyBorder3);
-        centrePanel.add(phoneLabel);
+        phonePanel.add(phoneLabel);
+        centrePanel.add(phonePanel);
 
-        this.add(centrePanel, BorderLayout.CENTER);
+        JPanel containCentre = new JPanel();
+        containCentre.setOpaque(false);
+        containCentre.setLayout(new BorderLayout());
+        containCentre.add(centrePanel, BorderLayout.CENTER);
+        containCentre.setBorder(emptyBorder2);
+
+        this.add(containCentre, BorderLayout.CENTER);
 
         // Add button panel
         LayoutManager gridLayout1 = new GridLayout(0,3);
@@ -89,6 +127,8 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
             }
         });
         buttonsPanel.add(logoutButton);
+        buttonsPanel.setBorder(emptyBorder2);
+        buttonsPanel.setOpaque(false);
 
         this.add(buttonsPanel, BorderLayout.SOUTH);
     }

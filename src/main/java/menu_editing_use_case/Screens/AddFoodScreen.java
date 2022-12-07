@@ -19,10 +19,11 @@ public class AddFoodScreen {
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Color WHITE = new Color(255, 255, 255);
 
-    private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
-    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
+    private static final Border emptyBorder = BorderFactory.createEmptyBorder(10, 30, 30, 30);
+    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(5, 15, 5, 15);
+    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 0, 0);
 
-    public AddFoodScreen(MenuEditingController controller, JPanel menuPanel){
+    public AddFoodScreen(MenuEditingController controller){
 
         this.menuEditingController = controller;
 
@@ -34,13 +35,26 @@ public class AddFoodScreen {
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel("Add Food Item");
         title.setFont(new Font("Serif", Font.PLAIN, 40));
+        title.setForeground(GREY_WHITE);
         titlePanel.add(title);
-
+        titlePanel.setOpaque(true);
+        titlePanel.setBorder(emptyBorder3);
+        titlePanel.setBackground(BG_DARK_GREEN);
 
         JPanel namePanel = new JPanel();
         JPanel descriptionPanel = new JPanel();
         JPanel categoryPanel = new JPanel();
         JPanel pricePanel = new JPanel();
+
+        namePanel.setOpaque(true);
+        descriptionPanel.setOpaque(true);
+        categoryPanel.setOpaque(true);
+        pricePanel.setOpaque(true);
+
+        namePanel.setBackground(BG_DARK_GREEN);
+        descriptionPanel.setBackground(BG_DARK_GREEN);
+        categoryPanel.setBackground(BG_DARK_GREEN);
+        pricePanel.setBackground(BG_DARK_GREEN);
 
         namePanel.setLayout(new GridLayout(1, 2));
         descriptionPanel.setLayout(new GridLayout(1, 2));
@@ -57,6 +71,16 @@ public class AddFoodScreen {
         JLabel categoryLabel = new JLabel("CATEGORY");
         JLabel priceLabel = new JLabel("PRICE");
 
+        nameLabel.setFont(new Font("Serif", Font.PLAIN, 15));
+        descriptionLabel.setFont(new Font("Serif", Font.PLAIN, 15));
+        categoryLabel.setFont(new Font("Serif", Font.PLAIN, 15));
+        priceLabel.setFont(new Font("Serif", Font.PLAIN, 15));
+
+        nameLabel.setForeground(GREY_WHITE);
+        descriptionLabel.setForeground(GREY_WHITE);
+        categoryLabel.setForeground(GREY_WHITE);
+        priceLabel.setForeground(GREY_WHITE);
+
         JTextField nameField = new JTextField();
         JTextField descriptionField = new JTextField();
         JTextField categoryField = new JTextField();
@@ -71,11 +95,18 @@ public class AddFoodScreen {
         pricePanel.add(priceLabel);
         pricePanel.add(priceField);
 
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setOpaque(true);
+        buttonPanel.setBackground(BG_DARK_GREEN);
+        buttonPanel.setBorder(emptyBorder3);
+
         JButton finishButton = new JButton("Add To Menu");
+        finishButton.setOpaque(true);
+        finishButton.setBackground(BG_DARK_GREEN);
         finishButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuEditingController.create(nameField.getText(),
+                menuEditingController.add(nameField.getText(),
                         descriptionField.getText(),
                         categoryField.getText(),
                         Float.parseFloat(priceField.getText()));
@@ -83,12 +114,14 @@ public class AddFoodScreen {
             }
         });
 
+        buttonPanel.add(finishButton);
+
         frame.add(titlePanel);
         frame.add(namePanel);
         frame.add(categoryPanel);
         frame.add(descriptionPanel);
         frame.add(pricePanel);
-        frame.add(finishButton);
+        frame.add(buttonPanel);
 
         frame.setVisible(true);
 

@@ -46,8 +46,9 @@ public class Menu {
         this.foodList.add(newFood);
     }
 
-    public void removeFoodItem(Food delFood){
-        this.foodList.remove(delFood);
+    public void removeFoodItem(ObjectId delFood){
+        Food food = findFood(delFood);
+        this.foodList.remove(food);
     }
 
     public Food findFood(ObjectId foodId){

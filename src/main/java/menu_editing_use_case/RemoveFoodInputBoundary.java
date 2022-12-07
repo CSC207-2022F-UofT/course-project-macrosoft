@@ -4,12 +4,14 @@ package menu_editing_use_case;
 
 import entities.Menu;
 import entities.Restaurant;
+import org.bson.types.ObjectId;
 
 public interface RemoveFoodInputBoundary {
 
-    MenuEditingResponseModel create(RemoveFoodRequestModel requestModel);
+    void create(RemoveFoodRequestModel requestModel);
 
     Menu getMenu();
 
-    Restaurant getCurRes();
+    ObjectId getResId();
+
 }

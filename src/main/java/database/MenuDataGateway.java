@@ -6,9 +6,7 @@ public interface MenuDataGateway {
 
     ObjectId newMenu(ObjectId restaurantId);
 
-    void setMenu(Restaurant curRes, Menu newMenu);
-
-    Menu getMenu(Restaurant curRes);
+    void setMenu(ObjectId id, Menu newMenu);
 
     Menu getMenu(ObjectId RestId);
 }

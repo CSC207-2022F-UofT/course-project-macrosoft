@@ -28,7 +28,6 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
 
         this.setOpaque(true);
         this.setBackground(GREY_WHITE);
-
         this.setLayout(new BorderLayout());
 
         JPanel titlePanel = new JPanel();

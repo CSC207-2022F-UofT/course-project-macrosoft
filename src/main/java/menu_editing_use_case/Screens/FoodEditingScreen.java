@@ -106,8 +106,8 @@ public class FoodEditingScreen {
         finishButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.create(name, description, category, Float.parseFloat(price));
-                controller.create(id);
+                controller.add(name, description, category, Float.parseFloat(price));
+                controller.remove(id);
                 frame.dispose();
             }
         });
