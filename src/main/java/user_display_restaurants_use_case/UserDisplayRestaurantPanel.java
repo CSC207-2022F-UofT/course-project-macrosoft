@@ -35,7 +35,7 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
 
         JPanel searchPanel = new JPanel();
         searchTextBar = new JTextField(15);
-        JButton searchButton = new JButton();
+        JButton searchButton = new JButton("Search");
 
         searchButton.addActionListener(e -> {
             controller.searchRestaurant(searchTextBar.getText());
@@ -59,6 +59,8 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
         restaurantPanel.setBackground(GREY_WHITE);
         resScrollPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         resScrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        this.add(resScrollPanel);
     }
 
     public void refreshData() {
