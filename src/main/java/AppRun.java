@@ -1,6 +1,6 @@
 import components.ScreenFactory;
 
-public class Main {
+public class AppRun {
     public static void main(String[] args) {
 
         ScreenFactory screenFactory = new ScreenFactory();
