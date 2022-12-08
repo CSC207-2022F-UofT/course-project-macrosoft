@@ -7,6 +7,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+/**
+ * The class for order history detail screen
+ */
 public class OrderHistoryDetailScreen {
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
@@ -19,6 +23,10 @@ public class OrderHistoryDetailScreen {
 
     JPanel orderDisplayDetailPanel;
 
+    /**
+     * A window with all the ordered food displayed in single panel respectively along with the total price for the order
+     * @param infos A list of all the info needed for each ordered food, including name, price per item/ price in total, category, description and number of items
+     */
     public OrderHistoryDetailScreen(ArrayList<HashMap<String, Object>> infos){
 
 
@@ -85,10 +93,21 @@ public class OrderHistoryDetailScreen {
         frame.setVisible(true);
     }
 
+    /**
+     * Set the total price for each order
+     *
+     * @param totalPrice the total price for each order
+     */
     public void setTotal(double totalPrice) {
         totalOrderPrice.setText("Total: $" + totalPrice);
     }
 
+
+    /**
+     * Display the order details, including name, price per item/ price in total, category, description and number of items
+     *
+     * @param orderInfos A list of info needed for each item, including name, price per item/ price in total, category, description and number of items
+     */
     public void displayOrderDetail(ArrayList<HashMap<String, Object>> orderInfos) {
         orderDisplayDetailPanel.removeAll();
 
