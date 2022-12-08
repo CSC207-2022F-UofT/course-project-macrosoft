@@ -13,6 +13,7 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
     JTextArea commentArea;
     JComboBox<Integer> ratingBox;
 
+
     /**
      * A window with text input fields and buttons for user to input review info for an order
      */
@@ -20,11 +21,15 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
 
         this.makeReviewController = controller;
 
-        this.setPreferredSize(new Dimension(700,500));
+//        this.setPreferredSize(new Dimension(700,500));
+        this.setLocationRelativeTo(null);
 
+        JPanel titlePanel = new JPanel();
+        titlePanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         JLabel title = new JLabel("Review");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 20));
+        titlePanel.add(title);
 
         Integer[] ratingChoices = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         this.ratingBox = new JComboBox<>(ratingChoices);
@@ -37,17 +42,21 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
 
         JLabel subjectLabel = new JLabel("Subject:");
         this.subjectArea = new JTextArea();
-        subjectArea.setColumns(50);
+        subjectArea.setColumns(30);
         subjectArea.setRows(2);
         JPanel subjectPanel = new JPanel();
+        subjectPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
+        subjectPanel.setLayout(new GridLayout(2, 1));
         subjectPanel.add(subjectLabel);
         subjectPanel.add(subjectArea);
 
         JLabel commentLabel = new JLabel("Comment:");
         this.commentArea = new JTextArea();
-        commentArea.setColumns(50);
+        commentArea.setColumns(30);
         commentArea.setRows(10);
         JPanel commentPanel = new JPanel();
+        commentPanel.setLayout(new GridLayout(2, 1));
+        commentPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
         commentPanel.add(commentLabel);
         commentPanel.add(commentArea);
 
@@ -64,7 +73,7 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
-        main.add(title);
+        main.add(titlePanel);
         main.add(ratingPanel);
         main.add(subjectPanel);
         main.add(commentPanel);

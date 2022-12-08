@@ -25,6 +25,7 @@ public class AddFoodScreen {
         JFrame frame = new JFrame();
         frame.setSize(300, 500);
         frame.setLayout(new GridLayout(0, 1));
+        frame.setResizable(false);
 
         // initialize and set size & dimension of a title panel
         JPanel titlePanel = new JPanel();

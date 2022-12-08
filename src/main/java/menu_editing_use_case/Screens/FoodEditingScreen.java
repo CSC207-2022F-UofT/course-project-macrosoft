@@ -35,6 +35,7 @@ public class FoodEditingScreen {
         JFrame frame = new JFrame();
         frame.setSize(300, 500);
         frame.setLayout(new GridLayout(0, 1));
+        frame.setResizable(false);
 
         // title panel
         JPanel titlePanel = new JPanel();
