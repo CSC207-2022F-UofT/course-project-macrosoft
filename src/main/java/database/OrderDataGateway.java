@@ -9,12 +9,30 @@ import java.util.List;
  * Gateway for the Order entity to Database.
  */
 public interface OrderDataGateway {
+
+    /**
+     * Save an order
+     *
+     * @param order
+     * @return null
+     */
+    void save(Order order);
+
+    /**
+     * delete an order
+     *
+     * @param orderId
+     * @return
+     */
+    void deleteByOrderId(ObjectId orderId);
+
     /**
      * Creates a new order
      *
      * @param order the order to create
      * @return the id of the new order
      */
+
     ObjectId create(Order order);
 
     /**

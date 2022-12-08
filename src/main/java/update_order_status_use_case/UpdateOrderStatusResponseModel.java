@@ -4,20 +4,37 @@ package update_order_status_use_case;
 
 import entities.*;
 
+/**
+ * This class is the response model of the update order status use case.
+ */
 public class UpdateOrderStatusResponseModel {
 
-    private Order newOrder;
+    private Order curOrder;
 
-    public UpdateOrderStatusResponseModel(Order newOrder) {
-        this.newOrder = newOrder;
+    /**
+     * Constructor for UpdateOrderStatusResponseModel
+     *
+     * @param curOrder Order current order
+     */
+    public UpdateOrderStatusResponseModel(Order curOrder) {
+        this.curOrder = curOrder;
     }
 
+    /**
+     * Get current order
+     *
+     * @return Order current order
+     */
     public Order getCurOrder() {
-        return newOrder;
+        return this.curOrder;
     }
 
-    public void setNewOrder(Order newOrder) {
-        this.newOrder = newOrder;
+    /**
+     * Set new order as current order
+     *
+     * @param newOrder Order new order
+     */
+    public void setCurOrder(Order newOrder) {
+        this.curOrder = newOrder;
     }
-
 }

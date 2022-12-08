@@ -1,16 +1,32 @@
 package update_order_status_use_case;
 
 // Interface Adaptors Layer
-/*
-presenter of the use case
- */
 
+/**
+ * This interface if the presenter for update order status use case.
+ */
 public interface UpdateOrderStatusPresenter {
 
+    /**
+     * This method prepare success view for the update order status use case.
+     *
+     * @return null
+     */
     void prepareSuccessView();
 
-    void prepareFailView(String message);
+    /**
+     * This method prepare fail view for the update order status use case.
+     *
+     * @param str String fail message
+     *
+     * @return null
+     */
+    void prepareFailView(String str);
 
+    /**
+     * This method set screen for the update order status use case.
+     *
+     * @param screen UpdateOrderStatusScreenInterface current screen
+     */
     void setScreen(UpdateOrderStatusScreenInterface screen);
-
 }

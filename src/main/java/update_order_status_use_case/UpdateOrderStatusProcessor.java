@@ -1,31 +1,37 @@
 package update_order_status_use_case;
 
-public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter {
-    UpdateOrderStatusScreenInterface screen;
+// Interface adapter layer
 
-    public UpdateOrderStatusProcessor(UpdateOrderStatusScreenInterface screen) {
+/**
+ * This class is the processor which implements presenter of update order status use case.
+ */
+public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter{
+
+    private UpdateOrderStatusScreenInterface screen;
+
+    /**
+     * Constructor for UpdateOrderStatusProcessor
+     *
+     * @param screen UpdateOrderStatusScreenInterface current screen
+     */
+    public  UpdateOrderStatusProcessor(UpdateOrderStatusScreenInterface screen) {
         this.screen = screen;
     }
 
     /**
-     * return the current screen
-     * @return this screen
+     * Get current screen
+     *
+     * @return UpdateOrderStatusScreenInterface current screen
      */
     public UpdateOrderStatusScreenInterface getScreen() {
         return screen;
     }
 
     /**
-     * set the current screen
-     * @param screen new screen
-     */
-    public void setScreen(UpdateOrderStatusScreenInterface screen) {
-        this.screen = screen;
-    }
-
-
-    /**
-     * when update order status success, close the screen
+     * This method override the same method in the presenter.
+     * Handle the case when update order status is successful.
+     *
+     * @return null
      */
     @Override
     public void prepareSuccessView() {
@@ -33,11 +39,25 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter {
     }
 
     /**
-     * when update order status failed
-     * @param message display the message
+     * This method override the same method in the presenter.
+     * Handle the case when update order status is failed.
+     *
+     * @param str String fail message
+     *
+     * @return null
      */
     @Override
-    public void prepareFailView(String message) {
+    public void prepareFailView(String str) {
+    }
 
+    /**
+     * This method override the same method in the presenter.
+     * Set the screen
+     *
+     * @param screen UpdateOrderStatusScreenInterface current screen
+     */
+    @Override
+    public void setScreen(UpdateOrderStatusScreenInterface screen) {
+        this.screen = screen;
     }
 }
