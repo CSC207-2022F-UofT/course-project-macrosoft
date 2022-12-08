@@ -109,7 +109,7 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary {
         } else {
             orderList = orderList
                     .stream()
-                    .filter(order -> (!order.getOrderStatus().equals("Order Complete") && !order.getOrderStatus().equals("Cancelled")))
+                    .filter(order -> (!order.getOrderStatus().equals("Order Complete") && !order.getOrderStatus().equals("Order Cancelled")))
                     .collect(Collectors.toList());
 
             ArrayList<HashMap<String, Object>> result = new ArrayList<>();
