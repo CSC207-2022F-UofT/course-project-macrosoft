@@ -1,4 +1,8 @@
 package user_register_use_case;
+/*
+  interface of the screen
+  the RegisterUserScreen implements it
+ */
 
 import javax.swing.*;
 

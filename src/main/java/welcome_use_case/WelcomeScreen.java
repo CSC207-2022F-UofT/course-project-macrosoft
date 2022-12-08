@@ -1,7 +1,5 @@
 package welcome_use_case;
 
-import components.ScreenFactory;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -18,7 +16,7 @@ public class WelcomeScreen {
     private static final Border emptyBorder4 = BorderFactory.createEmptyBorder(10, 0, 0, 10);
 
 
-    public WelcomeScreen() {
+    public WelcomeScreen(WelcomeScreenController controller) {
 
         // creating the window
         final JFrame frame = new JFrame();
@@ -83,8 +81,7 @@ public class WelcomeScreen {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScreenFactory screenFactory = new ScreenFactory();
-                screenFactory.createLoginSreen();
+                controller.getLoginScreen();
 
                 frame.dispose();
             }
@@ -97,8 +94,7 @@ public class WelcomeScreen {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScreenFactory screenFactory = new ScreenFactory();
-                screenFactory.createUserRegisterScreen();
+                controller.getRegisterUserScreen();
 
                 frame.dispose();
             }
@@ -111,9 +107,8 @@ public class WelcomeScreen {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScreenFactory screenFactory = new ScreenFactory();
-                screenFactory.createRestaurantRegisterScreen();
 
+                controller.getRegisterRestaurantScreen();
                 frame.dispose();
             }
         });

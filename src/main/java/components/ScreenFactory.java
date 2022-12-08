@@ -25,6 +25,7 @@ import user_shopping_cart_use_case.*;
 import user_verify_use_case.*;
 import user_view_menu_use_case.*;
 import welcome_use_case.WelcomeScreen;
+import welcome_use_case.WelcomeScreenController;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -34,7 +35,9 @@ import java.util.HashMap;
 
 public class ScreenFactory {
     public void createWelcomeScreen() {
-        WelcomeScreen screen = new WelcomeScreen();
+
+        WelcomeScreenController controller = new WelcomeScreenController();
+        WelcomeScreen screen = new WelcomeScreen(controller);
     }
 
     public void createLoginSreen() {
