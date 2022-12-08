@@ -8,14 +8,19 @@ public class DisplayMenuProcessor implements DisplayMenuPresenter{
         this.displayMenuPanel = displayMenuPanel;
     }
 
-    public DisplayMenuPanelInterface getDisplayMenuPanel() {
-        return displayMenuPanel;
-    }
 
+    /**
+     * set the panel to the given panel
+     * @param displayMenuPanel new panel
+     */
     public void setDisplayMenuPanel(DisplayMenuPanelInterface displayMenuPanel) {
         this.displayMenuPanel = displayMenuPanel;
     }
 
+    /**
+     * update panel information according to the given response model
+     * @param responseModel response model
+     */
     @Override
     public void presentMenu(DisplayMenuResponseModel responseModel) {
         displayMenuPanel.updateNameLabel(responseModel.getRestName());

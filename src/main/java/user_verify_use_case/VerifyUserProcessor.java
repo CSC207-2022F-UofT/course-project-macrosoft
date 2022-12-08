@@ -9,27 +9,30 @@ public class VerifyUserProcessor implements VerifyUserPresenter {
         this.verifyUserScreen = verifyUserScreen;
     }
 
+
     /**
-     * @param currentUser
-     * @return
+     * when verification success, create a new homepage for the current user, close the verification window.
+     * @param currentUser user id
      */
     @Override
-    public String verifiedSuccess(ObjectId currentUser) {
+    public void verifiedSuccess(ObjectId currentUser) {
         // Go to user's homepage and pass the current user
         this.verifyUserScreen.showUserHomepage(currentUser);
         this.verifyUserScreen.close();
-        return null;
     }
 
     /**
-     * @return
+     * when verification failed, show a message
      */
     @Override
-    public String verifiedFailed() {
+    public void verifiedFailed() {
         verifyUserScreen.showMessage("Failed");
-        return null;
     }
 
+    /**
+     * set the current screen to the given screen
+     * @param verifyUserScreen new screen
+     */
     public void setVerifyUserScreen(VerifyUserScreenInterface verifyUserScreen) {
         this.verifyUserScreen = verifyUserScreen;
     }

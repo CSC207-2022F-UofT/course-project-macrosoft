@@ -37,7 +37,7 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
      */
     JPasswordField confirmNewPassword = new JPasswordField(15);
 
-    private ChangePasswordController changePasswordController;
+    private final ChangePasswordController changePasswordController;
 
     public ChangePasswordScreen(ChangePasswordController controller) {
 
@@ -46,8 +46,8 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
 
         // Set the position and size of the screen
         this.setSize(900, 700);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
         //Background color of the screen
         this.getContentPane().setBackground(GREY_WHITE);

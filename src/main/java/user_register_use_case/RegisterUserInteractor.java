@@ -26,6 +26,11 @@ public class RegisterUserInteractor implements RegisterUserInputBoundary{
             return 1002;
         }
 
+        if (requestModel.getUsername().length() < 6) {
+            presenter.registerFailed("Username Too Short");
+            return 1002;
+        }
+
         // Check if username exists
         Bson filter = Filters.eq("username", requestModel.getUsername());
 

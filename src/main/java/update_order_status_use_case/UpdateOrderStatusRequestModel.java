@@ -4,29 +4,43 @@ package update_order_status_use_case;
 
 import org.bson.types.ObjectId;
 
+/**
+ * This class is the request model of the update order status use case.
+ */
 public class UpdateOrderStatusRequestModel {
 
-    private ObjectId objectId;
+    private ObjectId orderId;
     private String newStatus;
 
-    public UpdateOrderStatusRequestModel(ObjectId objectId, String newStatus) {
-        this.objectId = objectId;
+    /**
+     * Constructor for UpdateOrderStatusRequestModel
+     *
+     * @param orderId ObjectId order id of current order
+     * @param newStatus String new order status of current order
+     */
+    public UpdateOrderStatusRequestModel(ObjectId orderId, String newStatus) {
+        this.orderId = orderId;
         this.newStatus = newStatus;
     }
 
-    public ObjectId getObjectId() {
-        return objectId;
-    }
+    /**
+     * Get current order id
+     * @return ObjectId current order id
+     */
+    public ObjectId getCurOrderId() {return this.orderId;}
 
-    public void setObjectId(ObjectId objectId) {
-        this.objectId = objectId;
-    }
+    /**
+     * Get new order status of current order
+     * @return String new order status
+     */
+    public String getNewStatus() {return this.newStatus;}
 
-    public String getNewStatus() {
-        return newStatus;
-    }
 
-    public void setNewStatus(String newStatus) {
-        this.newStatus = newStatus;
-    }
+
+
+
+
+
+
+
 }

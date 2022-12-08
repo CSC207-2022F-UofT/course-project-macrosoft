@@ -31,6 +31,7 @@ public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaura
         this.setSize(900, 700);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(GREY_WHITE);
+        this.setResizable(false);
 
         // initialize the title panel
         JPanel titlePanel = new JPanel();
@@ -124,7 +125,7 @@ public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaura
 
     /**
      * display the result as a message to the user.
-     * @param message
+     * @param message message to display
      */
     @Override
     public void showMessage(String message) {
@@ -133,7 +134,7 @@ public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaura
 
     /**
      * return this frame.
-     * @return
+     * @return this frame
      */
     @Override
     public JFrame getFrame() {

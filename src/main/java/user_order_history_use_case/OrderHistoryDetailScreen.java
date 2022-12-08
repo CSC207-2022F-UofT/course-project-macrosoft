@@ -19,7 +19,7 @@ public class OrderHistoryDetailScreen {
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
-    private JLabel totalOrderPrice;
+    private final JLabel totalOrderPrice;
 
     JPanel orderDisplayDetailPanel;
 
@@ -35,16 +35,17 @@ public class OrderHistoryDetailScreen {
         frame.setLayout(new BorderLayout());
         frame.setSize(900,700);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBackground(BG_DARK_GREEN);
 
-        JLabel title = new JLabel();
+        JLabel title = new JLabel("Order Details");
         title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setBorder(emptyBorder);
         titlePanel.add(title);
-
+        titlePanel.setBorder(emptyBorder);
 
         orderDisplayDetailPanel = new JPanel();
         orderDisplayDetailPanel.setBackground(GREY_WHITE);
@@ -59,6 +60,7 @@ public class OrderHistoryDetailScreen {
         orderHistoryDetailScroll.setBorder(emptyBorder2);
         orderHistoryDetailScroll.setBackground(BG_DARK_GREEN);
         orderHistoryDetailScroll.setVerticalScrollBarPolicy((ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS));
+        orderHistoryDetailScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         title.setVerticalAlignment(JLabel.CENTER);
 
@@ -68,12 +70,12 @@ public class OrderHistoryDetailScreen {
         totalOrderPrice = new JLabel("Total: $" + 0.0);
         totalOrderPrice.setHorizontalTextPosition(JLabel.CENTER);
         totalOrderPrice.setForeground(GREY_WHITE);
-        totalOrderPrice.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        totalOrderPrice.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 30));
         totalPanel.add(totalOrderPrice);
+        totalPanel.setBorder(emptyBorder);
 
         JPanel right = new JPanel();
         JPanel left = new JPanel();
-        JPanel bottom = new JPanel();
 
         right.setPreferredSize(new Dimension(50 ,0));
         left.setPreferredSize(new Dimension(50 ,0));

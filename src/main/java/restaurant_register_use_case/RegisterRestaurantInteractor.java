@@ -22,6 +22,11 @@ public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoun
             return 1002;
         }
 
+        if (requestModel.getUsername().length() < 6) {
+            presenter.registerFailed("Username Too Short");
+            return 1002;
+        }
+
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);

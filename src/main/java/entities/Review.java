@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class Review {
     private final ObjectId orderID;
+
+    private final ObjectId reviewID;
     private final int rating;  // 0-10
     private final String comment;
     private final List<Path> picPathList;
@@ -30,6 +32,7 @@ public class Review {
      * @param lastEditTime the last edit time
      */
     public Review(ObjectId reviewID, ObjectId orderID, int rating, String comment, String subjectLine, List<Path> picPathList, Date lastEditTime) {
+        this.reviewID = reviewID;
         this.orderID = orderID;
         this.rating = rating;
         this.comment = comment;
@@ -90,5 +93,9 @@ public class Review {
      */
     public int getRating() {
         return rating;
+    }
+
+    public ObjectId getReviewID() {
+        return reviewID;
     }
 }

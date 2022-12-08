@@ -70,10 +70,18 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
         passwordInfo.setOpaque(true);
         firstNameInfo.setOpaque(true);
         lastNameInfo.setOpaque(true);
+
         usernameInfo.setBackground(GREY_WHITE);
         passwordInfo.setBackground(GREY_WHITE);
+        emailInfo.setBackground(GREY_WHITE);
+        firstNameInfo.setBackground(GREY_WHITE);
+        lastNameInfo.setBackground(GREY_WHITE);
+
         usernameInfo.setForeground(BG_DARK_GREEN);
         passwordInfo.setForeground(BG_DARK_GREEN);
+        emailInfo.setForeground(GREY_WHITE);
+        firstNameInfo.setForeground(GREY_WHITE);
+        lastNameInfo.setForeground(GREY_WHITE);
 
         infoPanel.setOpaque(true);
         infoPanel.setBackground(GREY_WHITE);

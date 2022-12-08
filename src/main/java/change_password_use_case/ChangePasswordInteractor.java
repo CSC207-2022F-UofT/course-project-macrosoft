@@ -37,7 +37,7 @@ public class ChangePasswordInteractor implements ChangePasswordInputBoundary {
         MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(mongoCollectionFetcher);
 
-        // Hash the password before the query so they match the password stored in the database
+        // Hash the password before the query, so they match the password stored in the database
         String hashedOriginalPassword;
         String hashedNewPassword;
         try {
