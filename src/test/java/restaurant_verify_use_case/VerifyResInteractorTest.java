@@ -14,6 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VerifyResInteractorTest {
 
+    static {
+        System.setProperty("java.awt.headless", "false");
+    }
+
     // setting up a test document in our database
     @BeforeEach
     void setUp() {

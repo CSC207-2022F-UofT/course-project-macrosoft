@@ -13,6 +13,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class VerifyUserInteractorTest {
+
+    static {
+        System.setProperty("java.awt.headless", "false");
+    }
+
     // setting up a test document in our database
     @BeforeEach
     void setUp() {

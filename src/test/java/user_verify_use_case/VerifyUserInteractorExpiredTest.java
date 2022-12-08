@@ -13,6 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VerifyUserInteractorExpiredTest {
 
+    static {
+        System.setProperty("java.awt.headless", "false");
+    }
+
     //setting up test document in the database
     @BeforeEach
     void setUp() {
