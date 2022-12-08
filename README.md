@@ -15,7 +15,8 @@ More details will be introduced in the next few sections of this document.
 
 ## Screens and Features
 ### 1. Welcome Screen. 
-<p align="center"><img align="left" width="600" alt="Screen Shot 2022-12-07 at 11 12 06 PM" src="https://user-images.githubusercontent.com/94703030/206354816-cd6a17a9-a21d-4b03-9e46-1c5ca493a2d8.png">
+
+<img width="968" alt="Screen Shot 2022-12-08 at 4 04 27 PM" src="https://user-images.githubusercontent.com/94703030/206567356-c56a689e-ecb0-4c43-969e-7db6cc672e7d.png">
 
 - This screen is the first screen that shows up when the program is successfully runned. 
 - It contains a simple greeting message and two buttons used for register and login. 
@@ -24,12 +25,12 @@ More details will be introduced in the next few sections of this document.
 - Note that the login is case sensitive, that means try logging in as a restaurant with the user crediential will fail.
 - You can try to register new account or login with our sample account given in the table below: 
 
+<p align="center">
+
 |               | Restaurant    | User          |
 | ------------  | ------------- | ------------- |
 | username      | yinuo's res   | 123456        |
-| password      | davidlin123   | lzy123456     |
-
-</p>
+| password      | davidlin123   | lzy123456     | </p>
 
 ### 2. Login/Register Window.
 
@@ -40,11 +41,15 @@ More details will be introduced in the next few sections of this document.
 - Closing the message dialog will direct you to the homepage (Restaurant homepage or User homepage).
 - New Account registration is also divided by the type of user, with the screenshot on the left corresponding to user registeration, and the one onthe right is restaurant registeration, which requires a set of different information.
 
-<img width="335" alt="Screen Shot 2022-12-07 at 11 14 27 PM" src="https://user-images.githubusercontent.com/94703030/206357847-85d26431-c018-44d9-87fe-59d68b340545.png"><img width="335" alt="Screen Shot 2022-12-07 at 11 29 40 PM" src="https://user-images.githubusercontent.com/94703030/206367001-96e30765-6ce8-4d36-9307-5dffa647ecee.png"><img width="335" alt="Screen Shot 2022-12-07 at 11 29 46 PM" src="https://user-images.githubusercontent.com/94703030/206357881-bf26ab4a-967b-44da-a55a-1400b90367cb.png">
+![Untitled_Artwork](https://user-images.githubusercontent.com/94703030/206567856-9a92f0e1-6e37-4fbc-829a-4c39b8f4ebeb.png)
+
 
 ### 3. Verification Window.
 - New users need to verify their account before using this platform. In this window, users can request a verification code being sent to their entered email. After the user has reviewed the code and entered it into the field provided, it will be compared with the code sent. Successful match will change the status of the account to "verified". 
-- Note that the verification code expires in 5 minutes from the time it was issued. 
+- Note that the verification code expires in 5 minutes from the time it was issued。
+- Entering incorrect or expired verification code will not pass the verification.
+
+<img width="859" alt="Screen Shot 2022-12-08 at 4 16 54 PM" src="https://user-images.githubusercontent.com/94703030/206569373-ad43c9bb-5a2d-4309-b61c-490b80065845.png">
 
 ### 4. Restaurant/Customer homepage. 
 <img width="335" alt="Screen Shot 2022-12-08 at 12 13 58 AM" src="https://user-images.githubusercontent.com/94703030/206364282-10ae2399-f5a7-44af-834e-b8335696677b.png"><img width="335" alt="Screen Shot 2022-12-08 at 12 28 05 AM" src="https://user-images.githubusercontent.com/94703030/206365453-837d706a-2037-42e1-b18a-8f5394d5bbc8.png"><img width="335" alt="Screen Shot 2022-12-08 at 12 28 10 AM" src="https://user-images.githubusercontent.com/94703030/206364364-79dfd52d-b40e-452a-8d54-6451a8c0fb8e.png">
@@ -79,7 +84,7 @@ In this project, we used MongoDB as our database, which is a document-oriented N
 6. Verification: Stores the verification code that has been set, with the user(id) that receives the code and the time it was requested.
 
 ## Architecture and Design Pattern
-We construct our project in a way that it is consistent with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the pattern MVC Model-View-Controller design pattern. Each use case has its own package and all components, interactors, presenters and controllers are organized in the package of the by use case.
+We construct our project in a way that it is consistent with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the pattern MVPC Model-View-Presenter-Controller design pattern. Each use case has its own package and all components, interactors, presenters and controllers are organized in the package of the by use case.
 
 ## Future Enhencements
 - Payment System.
