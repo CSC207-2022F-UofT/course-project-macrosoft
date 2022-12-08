@@ -24,8 +24,8 @@ public class MenuEditingController {
         AddFoodRequestModel requestModel = new AddFoodRequestModel(resId,
                 add_input.getMenu(),
                 name,
-                description,
                 category,
+                description,
                 price);
         add_input.create(requestModel);
     }

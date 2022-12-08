@@ -10,6 +10,7 @@ import java.util.List;
 
 public class ResMenuToDicConverter {
 
+    @SuppressWarnings("rawtypes")
     public static HashMap<String, List> getMenuDic(Menu curMenu){
         HashMap<String, List> menuDic = new HashMap<>();
         List<Food> foodLst = curMenu.getFoodList();

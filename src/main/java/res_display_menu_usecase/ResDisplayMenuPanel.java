@@ -22,9 +22,7 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
 
     final private ResDisplayMenuController controller;
     final private MenuEditingController menuEditingController;
-
     final private JLabel nameLabel = new JLabel();
-
     final private JPanel foodPanel = new JPanel();
 
     public ResDisplayMenuPanel(ResDisplayMenuController controller, MenuEditingController menuEditingController) {
@@ -87,7 +85,6 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 controller.displayMenuPage();
             }
         });
@@ -116,7 +113,6 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
 
             JPanel f = new JPanel();
             f.setLayout(new GridLayout(0, 1));
-
 
             JButton delete = new JButton("Delete");
 
