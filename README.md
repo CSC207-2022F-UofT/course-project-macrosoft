@@ -1,4 +1,4 @@
-# Welcome to FOODQUE
+# Welcome to FOODQEE
 
 Are you a food lover who is looking to try some new restaurants? Are you a restaurant owner who is seeking more customers? Have you ever been annoyed by the huge line up to your favorite food truck or the unpleasant wait you have to stand by in cold winter? If any of these applies to you, Skip-the-Line is here to help! 
 
