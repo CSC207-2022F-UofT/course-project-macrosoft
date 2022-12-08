@@ -38,12 +38,8 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway {
      */
     @Override
     public String save(Review review) {
-        Document newDoc = new Document("comment", review.getComment())
-                .append("orderID", review.getOrderID())
-                .append("picPathList", review.getPicPathList())
-                .append("subjectLine", review.getSubjectLine())
-                .append("lastEditTime", review.getLastEditTime())
-                .append("rating", review.getRating());
+
+        Document newDoc = convertReviewToDocument(review);
 
         InsertOneResult result = this.mongoCollectionFetcher.getCollection("Reviews").insertOne(newDoc);
 
@@ -60,22 +56,6 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway {
         return mongoCollectionFetcher.getCollection("Reviews");
     }
 
-    /**
-     * Finds all reviews by query filter
-     *
-     * @param queryFilter the query filter
-     * @return a list of reviews
-     */
-    private List<Review> findAllByQueryFilter(Bson queryFilter) {
-        List<Review> reviews = new ArrayList<>();
-
-        getReviewCollection()
-                .find(queryFilter)
-                .map(doc -> convertDocumentToReview((Document) doc))
-                .forEach(review -> reviews.add((Review) review));
-
-        return reviews;
-    }
 
     /**
      * Finds a review by id
@@ -86,12 +66,27 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway {
     @Override
     public Review findById(ObjectId id) {
         Bson filter = Filters.eq("_id", id);
-        List<Review> result = findAllByQueryFilter(filter);
-        if (result.size() > 0) {
-            return result.get(0);
-        } else {
-            return null;
+
+        Document doc = (Document) getReviewCollection().find(filter).first();
+        if (doc != null){
+            return convertDocumentToReview(doc);
         }
+        else {return null;}
+    }
+
+    /**
+     * find the review given the orderID
+     * @param OrderID the id of an order
+     * @return review object if it exists, else null
+     */
+    @Override
+    public Review findByOrderId(ObjectId OrderID) {
+        Bson filter = Filters.eq("orderID", OrderID);
+        Document doc = (Document) getReviewCollection().find(filter).first();
+        if (doc != null){
+            return convertDocumentToReview(doc);
+        }
+        else {return null;}
     }
 
     /**
@@ -101,10 +96,7 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway {
      * @return the review representation of the document
      */
     public static Review convertDocumentToReview(Document document) {
-        List<Path> picPathList = document.getList("picPathList", String.class)
-                .stream()
-                .map(Paths::get)// Paths.get() method is applied to each string
-                .collect(Collectors.toList());
+        List<Path> picPathList = null;
 
         return new Review(document.getObjectId("_id"),  // auto-generated ObjectId field "_id" for review by DB, used as reviewID
                 document.getObjectId("orderID"),
@@ -122,15 +114,13 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway {
      * @return the document representation of the review
      */
     public static Document convertReviewToDocument(Review review) {
-        List<String> picPaths = review.getPicPathList()
-                .stream() // a stream of Path objects
-                .map(Path::toString)  // convert to a stream of strings
-                .collect(Collectors.toList());  // collect into List
 
-        return new Document("comment", review.getComment())  // no need for init ObjectId, as DB will auto-generate _id
+        // no need for init ObjectId, as DB will auto-generate _id
+        return new Document("comment", review.getComment())
                 .append("orderID", review.getOrderID())
-                .append("picPathList", picPaths)
+                .append("picPathList", review.getPicPathList())
                 .append("subjectLine", review.getSubjectLine())
-                .append("lastEditTime", review.getLastEditTime());
+                .append("lastEditTime", review.getLastEditTime())
+                .append("rating", review.getRating());
     }
 }
