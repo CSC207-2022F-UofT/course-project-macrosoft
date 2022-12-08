@@ -12,8 +12,8 @@ public class VerifyUserInteractor {
     }
 
     /**
-     * @param userId
-     * @param code
+     * @param userId : the id of the user
+     * @param code : the code
      * @return 1000: Success
      * 1001: Entered Incorrect Code
      * 1002: Expired or code doesn't exist
