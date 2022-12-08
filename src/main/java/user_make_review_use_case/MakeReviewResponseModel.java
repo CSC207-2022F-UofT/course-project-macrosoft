@@ -1,7 +1,5 @@
 package user_make_review_use_case;
 
-import org.bson.types.ObjectId;
-
 public class MakeReviewResponseModel {
     // response data model: a Review object
 

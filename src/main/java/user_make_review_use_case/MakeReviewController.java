@@ -1,8 +1,5 @@
 package user_make_review_use_case;
 
-import database.MongoCollectionFetcher;
-import database.ReviewDataGateway;
-import database.ReviewDataProcessorMongo;
 import org.bson.types.ObjectId;
 
 import java.nio.file.Path;
