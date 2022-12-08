@@ -9,7 +9,7 @@ public class AddFoodHelper {
 
     /** This method adds a Food object to the list of food in the given Menu Object.
      *
-     * @param curMenu the current menu to be modifyed.
+     * @param curMenu the current menu to be modified.
      * @param name name of the added food.
      * @param description description of the added food.
      * @param category category of the added food.

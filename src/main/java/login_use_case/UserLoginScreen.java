@@ -25,17 +25,10 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
     UserLoginController userLoginController;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Color WHITE = new Color(255, 255, 255);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(50, 30, 0, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 100, 0, 100);
-    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 20, 0);
-    private static final Border emptyBorder4 = BorderFactory.createEmptyBorder(10, 0, 0, 10);
-    private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
 
     /**
@@ -136,38 +129,66 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
         }
     }
 
+    /**
+     * Initiate a new user verify screen through the screen factory.
+     * @param userId id of the current user. type: ObjectId
+     */
     @Override
     public void showVerifyScreen(ObjectId userId) {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createVerifyUserScreen(userId);
     }
 
+    /**
+     * Initiate a new restaurant verify screen through the screen factory.
+     * @param restaurantId id of the current restaurant. type: ObjectId
+     */
     public void showRestaurantVerifyScreen(ObjectId restaurantId) {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createVerifyRestaurantScreen(restaurantId);
     }
 
+    /**
+     * display the message for login result
+     * @param message message to display
+     */
     @Override
     public void showMessage(String message) {
         showMessageDialog(null, message);
     }
 
+    /**
+     * display the user homepage, called after successfully logged in
+     * @param userId if of the current user
+     */
     @Override
     public void showUserHomepage(ObjectId userId) {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createUserHomepageScreen(userId);
     }
 
+    /**
+     * display the restaurant homepage, called after successfully logged in
+     * @param restaurantId  id of the current restaurant
+     * @param restaurantName   name of the current restaurant
+     */
     public void showRestaurantHomepage(ObjectId restaurantId, String restaurantName) {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createRestaurantHomepageScreen(restaurantId, restaurantName);
     }
 
+    /**
+     * close this screen
+     */
     @Override
     public void close() {
         this.dispose();
     }
 
+    /**
+     * return this frame
+     * @return the current frame
+     */
     @Override
     public JFrame getFrame() {
         return this;

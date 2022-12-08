@@ -13,24 +13,30 @@ public class FoodEditingScreen {
     MenuEditingController controller;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Color WHITE = new Color(255, 255, 255);
-
-    private static final Border emptyBorder = BorderFactory.createEmptyBorder(10, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(5, 15, 5, 15);
     private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 0, 0);
 
+    /**
+     * constructor of the screen
+     * @param controller an instance of MenuEditingController
+     * @param name name of the food to add, string
+     * @param category category of the food to add, string
+     * @param description description of the food to add, string
+     * @param price price of the food to add, string
+     * @param id id of the current user that make this action
+     */
     public FoodEditingScreen(MenuEditingController controller, String name, String category, String description, String price, ObjectId id) {
 
+        // initialize the controller
         this.controller = controller;
-        JFrame frame = new JFrame();
 
+        // create a new screen
+        JFrame frame = new JFrame();
         frame.setSize(300, 500);
         frame.setLayout(new GridLayout(0, 1));
 
+        // title panel
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel("Edit Food Item");
         title.setFont(new Font("Serif", Font.ITALIC|Font.BOLD, 35));
@@ -40,6 +46,7 @@ public class FoodEditingScreen {
         titlePanel.setBorder(emptyBorder3);
         titlePanel.setBackground(BG_DARK_GREEN);
 
+        // information panels
         JPanel namePanel = new JPanel();
         JPanel descriptionPanel = new JPanel();
         JPanel categoryPanel = new JPanel();
@@ -94,6 +101,7 @@ public class FoodEditingScreen {
         pricePanel.add(priceLabel);
         pricePanel.add(priceField);
 
+        // button panels
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(true);
         buttonPanel.setBackground(BG_DARK_GREEN);
@@ -104,6 +112,10 @@ public class FoodEditingScreen {
         finishButton.setBackground(BG_DARK_GREEN);
 
         finishButton.addActionListener(new ActionListener() {
+            /**
+             * calls the controller to remove the original food, and add a new food.
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.add(name, description, category, Float.parseFloat(price));
@@ -114,6 +126,7 @@ public class FoodEditingScreen {
 
         buttonPanel.add(finishButton);
 
+        // add everything to the frame
         frame.add(titlePanel);
         frame.add(namePanel);
         frame.add(categoryPanel);

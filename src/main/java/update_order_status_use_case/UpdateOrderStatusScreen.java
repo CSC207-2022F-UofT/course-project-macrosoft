@@ -4,13 +4,14 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import static javax.swing.JOptionPane.showMessageDialog;
 
+@SuppressWarnings("rawtypes")
 public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatusScreenInterface, ActionListener {
 
     String[] OrderStatus = {"Order Received", "Preparing Order", "Ready For Pickup", "Picked Up", "Order Complete", "Cancelled"};
-    private JComboBox comboBox = new JComboBox(OrderStatus);
     UpdateOrderStatusController updateOrderStatusController;
 
     public UpdateOrderStatusScreen(UpdateOrderStatusController updateOrderStatusController) {
@@ -23,6 +24,7 @@ public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatus
 
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
         panel.setLayout(new GridLayout(0,1));
+        JComboBox<String> comboBox = new JComboBox<>(OrderStatus);
         panel.add(comboBox);
         panel.add(label);
 
@@ -33,11 +35,15 @@ public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatus
         comboBox.addActionListener(this);
     }
 
+    /**
+     * update the status of the current by choices in the combo box
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JComboBox comboBox = (JComboBox) e.getSource();
 
-        this.updateOrderStatusController.updateOrderStatus(comboBox.getSelectedItem().toString());
+        this.updateOrderStatusController.updateOrderStatus(Objects.requireNonNull(comboBox.getSelectedItem()).toString());
     }
 
     @Override
@@ -46,7 +52,7 @@ public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatus
     }
 
     /**
-     * @return
+     * @return this frame
      */
     @Override
     public JFrame getFrame() {
