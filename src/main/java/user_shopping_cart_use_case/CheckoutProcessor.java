@@ -9,6 +9,10 @@ public class CheckoutProcessor implements CheckoutPresenter {
         this.screen = screen;
     }
 
+    /**
+     * when checkout success, display a message, create a new instance of the shopping cart singleton
+     * @param message result message
+     */
     @Override
     public void checkoutSuccess(String message) {
         screen.showMessage(message);
@@ -16,6 +20,10 @@ public class CheckoutProcessor implements CheckoutPresenter {
         screen.refreshData();
     }
 
+    /**
+     * when checkout failed, show a message
+     * @param message result message
+     */
     @Override
     public void checkoutFailed(String message) {
         screen.showMessage(message);

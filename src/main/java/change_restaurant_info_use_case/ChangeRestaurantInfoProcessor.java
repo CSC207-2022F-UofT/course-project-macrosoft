@@ -12,7 +12,7 @@ public class ChangeRestaurantInfoProcessor implements ChangeRestaurantInfoPresen
     }
 
     /**
-     * @param message
+     * @param message success message
      */
     @Override
     public void changeRestaurantInfoSuccess(String message) {
@@ -21,17 +21,25 @@ public class ChangeRestaurantInfoProcessor implements ChangeRestaurantInfoPresen
     }
 
     /**
-     * @param message
+     * @param message failed message
      */
     @Override
     public void changeRestaurantInfoFailed(String message) {
         this.screen.showMessage(message);
     }
 
+    /**
+     * return the current screen
+     * @return this screen
+     */
     public ChangeRestaurantInfoScreenInterface getScreen() {
         return screen;
     }
 
+    /**
+     * set the scrent screen to the given new screen
+     * @param screen new screen
+     */
     public void setScreen(ChangeRestaurantInfoScreenInterface screen) {
         this.screen = screen;
     }

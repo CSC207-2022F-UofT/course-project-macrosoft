@@ -8,11 +8,19 @@ public class RegisterRestaurantProcessor implements RegisterRestaurantPresenter 
         this.screen = screen;
     }
 
+    /**
+     * when registration failed, display a message
+     * @param message result message
+     */
     @Override
     public void registerFailed(String message) {
         screen.showMessage(message);
     }
 
+    /**
+     * when the registration passes, display a message
+     * @param message result message
+     */
     @Override
     public void registerSuccessful(String message) {
         screen.showMessage(message);
@@ -20,6 +28,10 @@ public class RegisterRestaurantProcessor implements RegisterRestaurantPresenter 
         screen.close();
     }
 
+    /**
+     * set the screen
+     * @param screen new screen
+     */
     @Override
     public void setScreen(RegisterRestaurantScreenInterface screen) {
         this.screen = screen;

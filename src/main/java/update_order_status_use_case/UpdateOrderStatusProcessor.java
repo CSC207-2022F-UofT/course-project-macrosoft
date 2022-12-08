@@ -7,29 +7,37 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter {
         this.screen = screen;
     }
 
+    /**
+     * return the current screen
+     * @return this screen
+     */
     public UpdateOrderStatusScreenInterface getScreen() {
         return screen;
     }
 
+    /**
+     * set the current screen
+     * @param screen new screen
+     */
     public void setScreen(UpdateOrderStatusScreenInterface screen) {
         this.screen = screen;
     }
 
+
     /**
-     * @return
+     * when update order status success, close the screen
      */
     @Override
-    public UpdateOrderStatusResponseModel prepareSuccessView() {
+    public void prepareSuccessView() {
         screen.close();
-        return null;
     }
 
     /**
-     * @param message
-     * @return
+     * when update order status failed
+     * @param message display the message
      */
     @Override
-    public UpdateOrderStatusResponseModel prepareFailView(String message) {
-        return null;
+    public void prepareFailView(String message) {
+
     }
 }

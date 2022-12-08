@@ -2,6 +2,9 @@ package login_use_case;
 
 import javax.swing.*;
 import org.bson.types.ObjectId;
+/*
+The interface of the user login screen
+ */
 
 public interface UserLoginScreenInterface {
     void showVerifyScreen(ObjectId userId);

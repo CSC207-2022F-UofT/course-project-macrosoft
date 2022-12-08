@@ -24,6 +24,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(20, 20, 20, 20);
+    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(0, 20, 0, 20);
 
     JLabel title;
 
@@ -103,13 +104,14 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
             title.setText("Your Shopping Cart is Empty");
         }
         else {
-            title.setText("Your Shopping Cart with " + restaurantName);
+            title.setText("Shopping Cart: " + restaurantName);
         }
 
         this.remove(shoppingCartPanel);
         this.shoppingCartPanel = new JPanel(new GridLayout(0, 3));
         this.shoppingCartPanel.setOpaque(true);
         this.shoppingCartPanel.setBackground(GREY_WHITE);
+        this.shoppingCartPanel.setBorder(emptyBorder3);
 
         for (String foodName: cart.keySet()) {
             JPanel itemPanel = new JPanel();

@@ -1,7 +1,5 @@
 package welcome_use_case;
 
-import components.ScreenFactory;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -18,7 +16,7 @@ public class WelcomeScreen {
     private static final Border emptyBorder4 = BorderFactory.createEmptyBorder(10, 0, 0, 10);
 
 
-    public WelcomeScreen() {
+    public WelcomeScreen(WelcomeScreenController controller) {
 
         // creating the window
         final JFrame frame = new JFrame();
@@ -26,14 +24,13 @@ public class WelcomeScreen {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.setLocationRelativeTo(null);
-
+        frame.setResizable(false);
 
         // set up the main content panel
         JPanel mainContentPanel = new JPanel();
         mainContentPanel.setBackground(BG_DARK_GREEN);
         mainContentPanel.setLayout(new BorderLayout());
         mainContentPanel.setOpaque(true);
-
 
         // creating the centre panel
         JPanel centrePanel = new JPanel();
@@ -55,23 +52,21 @@ public class WelcomeScreen {
 
         // creating the login/register panel
         JPanel actionPanel = new JPanel();
-        actionPanel.setLayout(new GridLayout(1, 6));
-
-        JLabel placeTaker1 = new JLabel();
-        actionPanel.add(placeTaker1);
-        JLabel placeTaker2 = new JLabel();
-        actionPanel.add(placeTaker2);
+        actionPanel.setLayout(new GridLayout(1, 3));
 
         actionPanel.setOpaque(false);
         JButton loginButton = new JButton("LOGIN");
         JButton registerButton = new JButton("REGISTER AS USER");
         JButton registerAsRestButton = new JButton("REGISTER AS RESTAURANT");
+
         registerAsRestButton.setOpaque(false);
         loginButton.setOpaque(false);
         registerButton.setOpaque(false);
+
         loginButton.setFont(new Font("Serif", Font.BOLD, 15));
         registerButton.setFont(new Font("Serif", Font.BOLD, 15));
         registerAsRestButton.setFont(new Font("Serif", Font.BOLD, 15));
+
         loginButton.setForeground(BG_DARK_GREEN);
         registerButton.setForeground(BG_DARK_GREEN);
         registerAsRestButton.setForeground(BG_DARK_GREEN);
@@ -83,9 +78,7 @@ public class WelcomeScreen {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScreenFactory screenFactory = new ScreenFactory();
-                screenFactory.createLoginSreen();
-
+                controller.getLoginScreen();
                 frame.dispose();
             }
         });
@@ -97,9 +90,7 @@ public class WelcomeScreen {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScreenFactory screenFactory = new ScreenFactory();
-                screenFactory.createUserRegisterScreen();
-
+                controller.getRegisterUserScreen();
                 frame.dispose();
             }
         });
@@ -111,9 +102,7 @@ public class WelcomeScreen {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                ScreenFactory screenFactory = new ScreenFactory();
-                screenFactory.createRestaurantRegisterScreen();
-
+                controller.getRegisterRestaurantScreen();
                 frame.dispose();
             }
         });
@@ -123,10 +112,6 @@ public class WelcomeScreen {
         actionPanel.add(registerAsRestButton);
         actionPanel.setBorder(emptyBorder4);
 
-        JLabel placeTaker3 = new JLabel();
-        actionPanel.add(placeTaker3);
-        JLabel placeTaker4 = new JLabel();
-        actionPanel.add(placeTaker4);
         centrePanel.add(actionPanel);
 
         // add everything tho the main content panel
