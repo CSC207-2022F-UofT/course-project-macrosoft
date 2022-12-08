@@ -20,6 +20,7 @@ public class UserHomePageScreen {
         frame.setSize(900, 700);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
         // create the panels of each tab
         JPanel homePanel = new JPanel();
