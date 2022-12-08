@@ -6,13 +6,26 @@ import database.UserDataProcessorMongo;
 
 // Use case layer
 
+/**
+ * This class is the interactor for the change user information use case.
+ */
 public class ChangeUserInfoInteractor implements ChangeUserInfoInputBoundary {
     ChangeUserInfoPresenter presenter;
 
+    /**
+     * Constructor for ChangeUserInfoInteractor
+     *
+     * @param presenter the presenter
+     */
     public ChangeUserInfoInteractor(ChangeUserInfoPresenter presenter) {
         this.presenter = presenter;
     }
 
+    /**
+     * Change the user information
+     *
+     * @param requestModel the request model
+     */
     @Override
     public void changeUserInfo(ChangeUserInfoRequestModel requestModel) {
         if (requestModel.getUserId() == null) presenter.changeUserInfoFailed("Invalid user");

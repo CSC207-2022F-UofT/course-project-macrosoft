@@ -6,9 +6,9 @@ package change_password_use_case;
  * This class is the presenter for the change password use case.
  */
 public interface ChangePasswordPresenter {
-    public void changePasswordSuccess(ChangePasswordResponseModel responseModel);
+    void changePasswordSuccess(ChangePasswordResponseModel responseModel);
 
-    public void changePasswordFailed(ChangePasswordResponseModel responseModel);
+    void changePasswordFailed(ChangePasswordResponseModel responseModel);
 
-    public void setChangePasswordScreenInterface(ChangePasswordScreenInterface changePasswordScreenInterface);
+    void setChangePasswordScreenInterface(ChangePasswordScreenInterface changePasswordScreenInterface);
 }
