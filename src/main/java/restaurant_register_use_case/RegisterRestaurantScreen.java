@@ -66,16 +66,29 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
                 new JLabel("Restaurant Name"), restaurantName);
         LabelTextPanel lastNameInfo = new LabelTextPanel(
                 new JLabel("Phone"), phone);
+        LabelTextPanel locationInfo = new LabelTextPanel(
+                new JLabel("Location"), location);
 
         emailInfo.setOpaque(true);
         usernameInfo.setOpaque(true);
         passwordInfo.setOpaque(true);
         firstNameInfo.setOpaque(true);
         lastNameInfo.setOpaque(true);
+        locationInfo.setOpaque(true);
+
         usernameInfo.setBackground(GREY_WHITE);
         passwordInfo.setBackground(GREY_WHITE);
+        emailInfo.setBackground(GREY_WHITE);
+        firstNameInfo.setBackground(GREY_WHITE);
+        lastNameInfo.setBackground(GREY_WHITE);
+        locationInfo.setBackground(GREY_WHITE);
+
         usernameInfo.setForeground(BG_DARK_GREEN);
         passwordInfo.setForeground(BG_DARK_GREEN);
+        emailInfo.setForeground(GREY_WHITE);
+        firstNameInfo.setForeground(GREY_WHITE);
+        lastNameInfo.setForeground(GREY_WHITE);
+        locationInfo.setForeground(GREY_WHITE);
 
         infoPanel.setOpaque(true);
         infoPanel.setBackground(GREY_WHITE);
@@ -86,6 +99,7 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
         infoPanel.add(passwordInfo);
         infoPanel.add(firstNameInfo);
         infoPanel.add(lastNameInfo);
+        infoPanel.add(locationInfo);
 
         // the buttons
         JButton register = new JButton("Register");
