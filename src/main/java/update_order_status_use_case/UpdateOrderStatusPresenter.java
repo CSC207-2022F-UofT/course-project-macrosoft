@@ -12,7 +12,7 @@ public interface UpdateOrderStatusPresenter {
      *
      * @return null
      */
-    UpdateOrderStatusResponseModel prepareSuccessView();
+    void prepareSuccessView();
 
     /**
      * This method prepare fail view for the update order status use case.
@@ -21,7 +21,7 @@ public interface UpdateOrderStatusPresenter {
      *
      * @return null
      */
-    UpdateOrderStatusResponseModel prepareFailView(String str);
+    void prepareFailView(String str);
 
     /**
      * This method set screen for the update order status use case.

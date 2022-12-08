@@ -47,8 +47,7 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter{
      * @return null
      */
     @Override
-    public UpdateOrderStatusResponseModel prepareFailView(String str) {
-        return null;
+    public void prepareFailView(String str) {
     }
 
     /**
