@@ -13,7 +13,6 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
     JTextArea commentArea;
     JComboBox<Integer> ratingBox;
 
-
     /**
      * A window with text input fields and buttons for user to input review info for an order
      */

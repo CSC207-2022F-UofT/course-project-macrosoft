@@ -24,4 +24,12 @@ public interface ReviewDataGateway {
      * @return the review with the given id
      */
     Review findById(ObjectId id);
+
+    /**
+     * Finds a review by its linked orderId
+     * @param id orderId
+     * @return the review with the given orderId
+     */
+    Review findByOrderId(ObjectId id);
+
 }

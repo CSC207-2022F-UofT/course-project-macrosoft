@@ -7,6 +7,10 @@ public class ReviewUI extends JFrame {
 
     String rev;
 
+    /**
+     * a screen used to present the ID of review saved
+     * @param successResponse
+     */
     public ReviewUI(MakeReviewResponseModel successResponse) {
         this.rev = successResponse.getReviewId();
 
@@ -21,7 +25,6 @@ public class ReviewUI extends JFrame {
         add(ok);
 
         pack();
-        setVisible(true);
 
         // Center the frame on the screen
         setLocationRelativeTo(null);
