@@ -16,59 +16,59 @@ class VerifyResInteractorTest {
 
 
     // setting up a test document in our database
-//    @BeforeEach
-//    void setUp() {
-//
-//        ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
-//        long millis = System.currentTimeMillis();
-//        java.util.Date date = new java.util.Date(millis);
-//        VerificationCode code = new VerificationCode(date,"898912");
-//
-//        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
-//        VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
-//        verificationCodeDataGateway.save(resID, code);
-//    }
-//    // removing the test document from database after tests are run
-//    @AfterEach
-//    void tearDown() {
-//        ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
-//        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
-//        VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
-//        verificationCodeDataGateway.deleteByUserId(resID);
-//    }
-//    // testing verify restaurant interactor with a valid code
-//    @Test
-//    void testVerifyResValid() {
-//        ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
-//        int actual = 1000;
-//        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
-//        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
-//        VerifyResController verifyResController = new VerifyResController(verifyResFacade, resID);
-//        VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
-//
-//        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
-//
-//        verifyResScreen.getFrame().setVisible(true);
-//
-//        VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResPresenter);
-//        assertEquals(verifyResInteractor.verifyRes(resID,"898912"), actual);
-//
-//    }
-//    // testing verify Res interactor with an invalid code
-//    @Test
-//    void testVerifyResInvalid() {
-//        ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
-//        int actual = 1001;
-//        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
-//        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
-//        VerifyResController verifyResController = new VerifyResController(verifyResFacade, resID);
-//        VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
-//
-//        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
-//        verifyResScreen.getFrame().setVisible(true);
-//
-//        VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResPresenter);
-//        assertEquals(verifyResInteractor.verifyRes(resID,"898911"), actual);
-//
-//    }
+    @BeforeEach
+    void setUp() {
+
+        ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
+        long millis = System.currentTimeMillis();
+        java.util.Date date = new java.util.Date(millis);
+        VerificationCode code = new VerificationCode(date,"898912");
+
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
+        VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
+        verificationCodeDataGateway.save(resID, code);
+    }
+    // removing the test document from database after tests are run
+    @AfterEach
+    void tearDown() {
+        ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
+        MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
+        VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
+        verificationCodeDataGateway.deleteByUserId(resID);
+    }
+    // testing verify restaurant interactor with a valid code
+    @Test
+    void testVerifyResValid() {
+        ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
+        int actual = 1000;
+        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
+        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
+        VerifyResController verifyResController = new VerifyResController(verifyResFacade, resID);
+        VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
+
+        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
+
+        verifyResScreen.getFrame().setVisible(true);
+
+        VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResPresenter);
+        assertEquals(verifyResInteractor.verifyRes(resID,"898912"), actual);
+
+    }
+    // testing verify Res interactor with an invalid code
+    @Test
+    void testVerifyResInvalid() {
+        ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
+        int actual = 1001;
+        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
+        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
+        VerifyResController verifyResController = new VerifyResController(verifyResFacade, resID);
+        VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
+
+        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
+        verifyResScreen.getFrame().setVisible(true);
+
+        VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResPresenter);
+        assertEquals(verifyResInteractor.verifyRes(resID,"898911"), actual);
+
+    }
 }
