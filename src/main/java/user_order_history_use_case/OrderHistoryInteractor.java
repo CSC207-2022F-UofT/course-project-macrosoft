@@ -14,31 +14,14 @@ import java.util.stream.Collectors;
 // Use case layer
 // Single Responsibility: Display orders
 
-
-/**
- * This class is the interactor for the user get order history use case.
- */
 public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
-
 
     private final OrderHistoryPresenter presenter;
 
-
-    /**
-     * Constructor for the order history interactor
-     *
-     * @param presenter the order history presenter
-     */
     public OrderHistoryInteractor(OrderHistoryPresenter presenter) {
         this.presenter = presenter;
     }
 
-
-    /**
-     * Display all the user order history
-     *
-     * @param requestModel the request model
-     */
     @Override
     public void displayOrders(OrderHistoryRequestModel requestModel) {
         MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
@@ -91,12 +74,6 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
         }
     }
 
-
-    /**
-     * Display all the user ongoing orders
-     *
-     * @param requestModel the request model
-     */
     public void displayCurrentOrders(OrderHistoryRequestModel requestModel) {
         MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(mongoCollectionFetcher);
