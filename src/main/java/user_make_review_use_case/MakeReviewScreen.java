@@ -20,15 +20,14 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
     public MakeReviewScreen(MakeReviewController controller) {
 
         this.makeReviewController = controller;
-
-//        this.setPreferredSize(new Dimension(700,500));
         this.setLocationRelativeTo(null);
+
 
         JPanel titlePanel = new JPanel();
         titlePanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
-        JLabel title = new JLabel("Review");
+        JLabel title = new JLabel("How's This Order?");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 20));
+        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 30));
         titlePanel.add(title);
 
         Integer[] ratingChoices = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -53,7 +52,7 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         JLabel commentLabel = new JLabel("Comment:");
         this.commentArea = new JTextArea();
         commentArea.setColumns(30);
-        commentArea.setRows(10);
+        commentArea.setRows(6);
         JPanel commentPanel = new JPanel();
         commentPanel.setLayout(new GridLayout(2, 1));
         commentPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
@@ -64,6 +63,7 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         JButton discard = new JButton("Discard");
 
         JPanel buttons = new JPanel();
+        buttons.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         buttons.add(save);
         buttons.add(discard);
 

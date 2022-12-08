@@ -69,7 +69,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
         title.setVerticalAlignment(JLabel.CENTER);
 
         JLabel orderHistory = new JLabel();
-        orderHistory.setText("You do not have any order history");
+        orderHistory.setText("You do not have any orders.");
         orderHistory.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 60));
         orderDisplayPanel.add(orderHistory);
 
@@ -99,6 +99,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
             JButton makeReview = new JButton("Make Review");
 
             viewDetails.setForeground(BG_DARK_GREEN);
+            makeReview.setForeground(BG_DARK_GREEN);
             id.setForeground(BG_DARK_GREEN);
             resName.setForeground(BG_DARK_GREEN);
             orderTime.setForeground(BG_DARK_GREEN);
