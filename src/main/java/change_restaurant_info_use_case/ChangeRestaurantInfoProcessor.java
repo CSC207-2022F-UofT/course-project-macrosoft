@@ -1,6 +1,9 @@
 package change_restaurant_info_use_case;
 
-public class ChangeRestaurantInfoProcessor implements ChangeRestaurantInfoPresenter{
+/**
+ * This class is the processor for the change restaurant informatoin use case.
+ */
+public class ChangeRestaurantInfoProcessor implements ChangeRestaurantInfoPresenter {
     ChangeRestaurantInfoScreenInterface screen;
 
 

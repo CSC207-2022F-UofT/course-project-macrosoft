@@ -8,17 +8,11 @@ public class UserHomePageScreen {
     UserHomepageController controller;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Color WHITE = new Color(255, 255, 255);
-
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(50, 30, 30, 30);
-    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
-    private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
     public UserHomePageScreen(UserHomepageController controller) {
+
         this.controller = controller;
 
         // set up the frame.
@@ -26,6 +20,7 @@ public class UserHomePageScreen {
         frame.setSize(900, 700);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
 
         // create the panels of each tab
         JPanel homePanel = new JPanel();
@@ -58,6 +53,7 @@ public class UserHomePageScreen {
         greetingPanel.setBorder(emptyBorder);
         greetingPanel.add(greetingLabel);
 
+        // add panels
         homePanel.add(greetingPanel, BorderLayout.NORTH);
         homePanel.add(controller.getUserDisplayRestaurantsPanel(controller.getUserId()), BorderLayout.CENTER);
         profilePanel.add(controller.getUserProfilePanel(controller.getUserId()));

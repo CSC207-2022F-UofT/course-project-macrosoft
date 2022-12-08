@@ -27,6 +27,7 @@ class GetCodeInteractorTest {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         verificationCodeDataGateway.save(resID, code);
+
     }
 
     // removing the test restaurant from the database after the tests have been run

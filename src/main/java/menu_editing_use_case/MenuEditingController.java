@@ -5,6 +5,9 @@ import org.bson.types.ObjectId;
 
 // Interface Adapters layer
 
+/**
+ * This class is the presenter for the add food use case.
+ */
 public class MenuEditingController {
     final AddFoodInputBoundary add_input;
     final RemoveFoodInputBoundary remove_input;
@@ -34,12 +37,4 @@ public class MenuEditingController {
         remove_input.create(requestModel); //correct
     }
 
-
-    public AddFoodInputBoundary getAdd_input() {
-        return add_input;
-    }
-
-    public RemoveFoodInputBoundary getRemove_input() {
-        return remove_input;
-    }
 }

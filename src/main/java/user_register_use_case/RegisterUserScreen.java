@@ -1,7 +1,7 @@
 package user_register_use_case;
 
 import components.LabelTextPanel;
-import welcome_use_case.WelcomeScreen;
+import components.ScreenFactory;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -26,17 +26,10 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
     RegisterUserController registerUserController;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Color WHITE = new Color(255, 255, 255);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(50, 30, 0, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 100, 0, 100);
-    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 20, 0);
-    private static final Border emptyBorder4 = BorderFactory.createEmptyBorder(10, 0, 0, 10);
-    private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
 
     /**
@@ -134,24 +127,40 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
             }
         }
         else if (evt.getActionCommand().equals("Cancel")) {
-            WelcomeScreen screen = new WelcomeScreen();
+            showWelcomePage();
             this.dispose();
         }
     }
 
+    /**
+     * display message
+     * @param message message to display
+     */
     public void showMessage(String message) {
         showMessageDialog(null, message);
     }
 
+    /**
+     * create a new welcome page
+     */
     public void showWelcomePage() {
-        WelcomeScreen screen = new WelcomeScreen();
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createWelcomeScreen();
     }
+
+    /**
+     * close this window
+     */
 
     @Override
     public void close() {
         this.dispose();
     }
 
+    /**
+     * return this window
+     * @return this
+     */
     @Override
     public JFrame getFrame() {
         return this;

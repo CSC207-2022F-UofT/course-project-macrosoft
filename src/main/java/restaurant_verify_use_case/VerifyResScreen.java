@@ -1,9 +1,7 @@
 package restaurant_verify_use_case;
 
-import login_use_case.*;
+import components.ScreenFactory;
 import org.bson.types.ObjectId;
-import restaurant_homepage_use_case.RestaurantHomepageController;
-import restaurant_homepage_use_case.RestaurantHomepageScreen;
 import components.LabelTextPanel;
 
 import javax.swing.*;
@@ -21,6 +19,8 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
     public VerifyResScreen(VerifyResController controller) {
 
         this.verifyResController = controller;
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
         JLabel title = new JLabel("Verify Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -74,21 +74,22 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
         return this;
     }
 
+    /**
+     * initiate a new login screen
+     */
     public void showLoginScreen() {
-        UserLoginPresenter userLoginPresenter = new UserLoginProcessor(null);
-        UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginPresenter);
-        RestaurantLoginInputBoundary restaurantLoginInteractor = new RestaurantLoginInteractor(userLoginPresenter);
-        UserLoginController userLoginController = new UserLoginController(userLoginInteractor, restaurantLoginInteractor);
-        UserLoginScreenInterface screen = new UserLoginScreen(userLoginController);
-
-        userLoginPresenter.setLoginScreen(screen);
-
-        screen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createLoginSreen();
     }
 
+    /**
+     * initiate a new restaurant homepage
+     * @param restaurantId  id of the current restaurant
+     * @param restaurantName name of the current restaurant
+     */
     public void showRestaurantHomePage(ObjectId restaurantId, String restaurantName) {
-        RestaurantHomepageController restaurantHomepageController = new RestaurantHomepageController(restaurantId);
-        RestaurantHomepageScreen restaurantHomepageScreen = new RestaurantHomepageScreen(restaurantHomepageController, restaurantName);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createRestaurantHomepageScreen(restaurantId, restaurantName);
     }
 
     public void showMessage(String message) {

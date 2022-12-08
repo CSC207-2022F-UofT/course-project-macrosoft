@@ -4,6 +4,8 @@ import javax.swing.*;
 
 public interface ChangeRestaurantInfoScreenInterface {
     void close();
+
     void showMessage(String message);
+
     JFrame getFrame();
 }

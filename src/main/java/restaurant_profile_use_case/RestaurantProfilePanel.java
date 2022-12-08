@@ -1,10 +1,8 @@
 package restaurant_profile_use_case;
 
-import change_password_use_case.*;
-import change_restaurant_info_use_case.*;
+import components.ScreenFactory;
 import restaurant_order_history_use_case.OrderWatcherSingleton;
 import user_shopping_cart_use_case.ShoppingCartSingleton;
-import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -19,19 +17,22 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
     private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 20, 0);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(30, 30, 30, 30);
 
-    private JLabel nameLabel = new JLabel("Name");
-    private JLabel emailLabel = new JLabel("Email");
-    private JLabel locationLabel = new JLabel("Location");
-    private JLabel phoneLabel = new JLabel("Phone");
-    private RestaurantProfileController restaurantProfileController;
+    private final JLabel nameLabel = new JLabel("Name");
+    private final JLabel emailLabel = new JLabel("Email");
+    private final JLabel locationLabel = new JLabel("Location");
+    private final JLabel phoneLabel = new JLabel("Phone");
+    private final RestaurantProfileController restaurantProfileController;
 
     public RestaurantProfilePanel(RestaurantProfileController restaurantProfileController) {
+        // initialize the controller
         this.restaurantProfileController = restaurantProfileController;
 
+        // set the layout and color of the screen
         this.setOpaque(true);
         this.setBackground(GREY_WHITE);
         this.setLayout(new BorderLayout());
 
+        // new title panel
         JPanel titlePanel = new JPanel();
         JLabel titleLabel = new JLabel("Restaurant Profile");
         titleLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
@@ -97,6 +98,10 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         changeInfoButton.setFont(new Font("Serif", Font.BOLD, 15));
         changeInfoButton.setForeground(BG_DARK_GREEN);
         changeInfoButton.addActionListener(new ActionListener() {
+            /**
+             * display the change restaurant info screen
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 showChangeRestaurantInfoScreen();
@@ -109,6 +114,10 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         changePasswordButton.setFont(new Font("Serif", Font.BOLD, 15));
         changePasswordButton.setForeground(BG_DARK_GREEN);
         changePasswordButton.addActionListener(new ActionListener() {
+            /**
+             * display the change password screen
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 showChangePasswordScreen();
@@ -121,6 +130,10 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         logoutButton.setFont(new Font("Serif", Font.BOLD, 15));
         logoutButton.setForeground(BG_DARK_GREEN);
         logoutButton.addActionListener(new ActionListener() {
+            /**
+             * log out of the current account
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 logout();
@@ -133,68 +146,84 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         this.add(buttonsPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * update the name label on the screen
+     * @param newName new name after change
+     */
+
     @Override
     public void updateNameLabel(String newName) {
         nameLabel.setText(newName);
     }
+
+    /**
+     * update the email label
+     * @param newEmail new email after change
+     */
 
     @Override
     public void updateEmailLabel(String newEmail) {
         emailLabel.setText(newEmail);
     }
 
+    /**
+     * update the location label
+     * @param newLocation new location after change
+     */
+
     @Override
     public void updateLocationLabel(String newLocation) {
         locationLabel.setText(newLocation);
     }
+
+    /**
+     * update the phone label
+     * @param newPhone new phone number after change
+     */
 
     @Override
     public void updatePhoneLabel(String newPhone) {
         phoneLabel.setText(newPhone);
     }
 
+    /**
+     * update all data in the panel
+     */
     @Override
     public void updatePanelData() {
         restaurantProfileController.getRestaurantProfile();
     }
 
+    /**
+     * initiate a new change password screen
+     */
     public void showChangePasswordScreen() {
-        ChangePasswordPresenter changePasswordPresenter = new ChangePasswordProcessor(null);
-        ChangePasswordInputBoundary changePasswordInputBoundary = new ChangePasswordInteractor(changePasswordPresenter);
-        ChangePasswordController changePasswordController = new ChangePasswordController(
-                changePasswordInputBoundary,
-                restaurantProfileController.getCurrentRestaurantId());
-
-        ChangePasswordScreenInterface changePasswordScreen = new ChangePasswordScreen(changePasswordController);
-
-        changePasswordPresenter.setChangePasswordScreenInterface(changePasswordScreen);
-
-        changePasswordScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createChangePasswordScreen(restaurantProfileController.getCurrentRestaurantId());
     }
 
+    /**
+     * initiate a new change restaurant info screen
+     */
     public void showChangeRestaurantInfoScreen() {
-        ChangeRestaurantInfoPresenter changeRestaurantInfoPresenter = new ChangeRestaurantInfoProcessor(null);
-        ChangeRestaurantInfoInputBoundary changeRestaurantInfoInputBoundary = new ChangeRestaurantInfoInteractor(changeRestaurantInfoPresenter);
-        ChangeRestaurantInfoController changeRestaurantInfoController = new ChangeRestaurantInfoController(
-                changeRestaurantInfoInputBoundary,
-                restaurantProfileController.getCurrentRestaurantId());
-
-        ChangeRestaurantInfoScreenInterface changeRestaurantInfoScreen = new ChangeRestaurantInfoScreen(changeRestaurantInfoController);
-
-        changeRestaurantInfoPresenter.setScreen(changeRestaurantInfoScreen);
-
-        changeRestaurantInfoScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createChangeRestaurantInfoScreen(restaurantProfileController.getCurrentRestaurantId());
     }
 
+    /**
+     * log out of the current account
+     */
     public void logout() {
         ShoppingCartSingleton.setSingletonInstance(new ShoppingCartSingleton(null, new HashMap<>()));
         OrderWatcherSingleton.getOrderWatcherSingletonInstance().getOrderWatcher().interrupt();
 
-        java.awt.Window win[] = java.awt.Window.getWindows();
-        for(int i=0;i<win.length;i++){
-            win[i].dispose();
+        java.awt.Window[] win = java.awt.Window.getWindows();
+
+        for(Window curWin: win){
+            curWin.dispose();
         }
 
-        WelcomeScreen screen = new WelcomeScreen();
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createWelcomeScreen();
     }
 }

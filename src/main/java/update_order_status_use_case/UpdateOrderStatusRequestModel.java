@@ -2,7 +2,6 @@ package update_order_status_use_case;
 
 // Application Business Rule Layer
 
-import entities.*;
 import org.bson.types.ObjectId;
 
 public class UpdateOrderStatusRequestModel {

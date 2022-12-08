@@ -1,8 +1,6 @@
 package welcome_use_case;
 
-import login_use_case.*;
-import restaurant_register_use_case.*;
-import user_register_use_case.*;
+import components.ScreenFactory;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -13,17 +11,11 @@ import java.awt.event.ActionListener;
 public class WelcomeScreen {
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Color WHITE = new Color(255, 255, 255);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
-    private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
     private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(200, 0, 20, 0);
     private static final Border emptyBorder4 = BorderFactory.createEmptyBorder(10, 0, 0, 10);
-    private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
 
     public WelcomeScreen() {
@@ -85,43 +77,42 @@ public class WelcomeScreen {
         registerAsRestButton.setForeground(BG_DARK_GREEN);
 
         loginButton.addActionListener(new ActionListener() {
+            /**
+             * create anew login screen
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
-                UserLoginPresenter userLoginPresenter = new UserLoginProcessor(null);
-                UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginPresenter);
-                RestaurantLoginInputBoundary restaurantLoginInteractor = new RestaurantLoginInteractor(userLoginPresenter);
-                UserLoginController userLoginController = new UserLoginController(userLoginInteractor, restaurantLoginInteractor);
-                UserLoginScreenInterface screen = new UserLoginScreen(userLoginController);
-                userLoginPresenter.setLoginScreen(screen);
-                screen.getFrame().setVisible(true);
+                ScreenFactory screenFactory = new ScreenFactory();
+                screenFactory.createLoginSreen();
 
                 frame.dispose();
             }
         });
 
         registerButton.addActionListener(new ActionListener() {
+            /**
+             * create a new register screen
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegisterUserPresenter registerUserPresenter = new RegisterUserProcessor(null);
-                RegisterUserInputBoundary registerUserInputBoundary = new RegisterUserInteractor(registerUserPresenter);
-                RegisterUserController registerUserController = new RegisterUserController(registerUserInputBoundary);
-                RegisterUserScreenInterface screen = new RegisterUserScreen(registerUserController);
-                registerUserPresenter.setScreen(screen);
-                screen.getFrame().setVisible(true);
+                ScreenFactory screenFactory = new ScreenFactory();
+                screenFactory.createUserRegisterScreen();
 
                 frame.dispose();
             }
         });
 
         registerAsRestButton.addActionListener(new ActionListener() {
+            /**
+             * create a new restaurant register screen
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegisterRestaurantPresenter registerRestaurantPresenter = new RegisterRestaurantProcessor(null);
-                RegisterRestaurantInputBoundary registerRestaurantInputBoundary = new RegisterRestaurantInteractor(registerRestaurantPresenter);
-                RegisterRestaurantController registerRestaurantController = new RegisterRestaurantController(registerRestaurantInputBoundary);
-                RegisterRestaurantScreenInterface screen = new RegisterRestaurantScreen(registerRestaurantController);
-                registerRestaurantPresenter.setScreen(screen);
-                screen.getFrame().setVisible(true);
+                ScreenFactory screenFactory = new ScreenFactory();
+                screenFactory.createRestaurantRegisterScreen();
 
                 frame.dispose();
             }

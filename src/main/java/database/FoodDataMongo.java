@@ -8,17 +8,32 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FoodDataMongo implements FoodDataGateway{
+/**
+ * This class is responsible for all interactions with the MongoDB database
+ * related to food.
+ */
+public class FoodDataMongo implements FoodDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
 
-    public FoodDataMongo(MongoCollectionFetcher mongoCollectionFetcher){
+    /**
+     * Constructor for FoodDataMongo
+     *
+     * @param mongoCollectionFetcher the fetcher for the collection
+     */
+    public FoodDataMongo(MongoCollectionFetcher mongoCollectionFetcher) {
         this.mongoCollectionFetcher = mongoCollectionFetcher;
     }
 
+    /**
+     * Gets food by food id and restaurant id
+     *
+     * @param foodId the food id
+     * @param restId the restaurant id
+     * @return the food with the given food id and restaurant id
+     */
     @Override
     public Food getFood(ObjectId foodId, ObjectId restId) {
         Bson queryFilter = Filters.eq("restaurantId", restId);
@@ -32,23 +47,13 @@ public class FoodDataMongo implements FoodDataGateway{
         return null;
     }
 
-    public Document convertMenuToDoc(Menu curMenu){
-        List<Document> foodDocLst = new ArrayList<>();
-        for(Food curFood: curMenu.getFoodList()){
-            foodDocLst.add(convertFoodToDoc(curFood));
-        }
-
-        return new Document("Food", foodDocLst)
-                .append("restaurantId", curMenu.getRestaurantId());
-    }
-
     /**
+     * Converts a document to a menu
      *
-     * @param menuDoc
-     * @return
+     * @param menuDoc the document to convert
+     * @return the menu
      */
-
-    public Menu convertDocToMenu(Document menuDoc){
+    public Menu convertDocToMenu(Document menuDoc) {
 
         List<Food> foodList = menuDoc.getList("Food", Document.class).
                 stream()
@@ -60,13 +65,13 @@ public class FoodDataMongo implements FoodDataGateway{
     }
 
     /**
+     * Converts a document to a food
      *
-     * @param foodDoc
-     * @return
+     * @param foodDoc the document to convert
+     * @return the food
      */
-
-    public Food convertDocToFood(Document foodDoc){
-        if (foodDoc.isEmpty()){
+    public Food convertDocToFood(Document foodDoc) {
+        if (foodDoc.isEmpty()) {
             return null;
         }
         return new Food(foodDoc.getString("name"),
@@ -74,19 +79,5 @@ public class FoodDataMongo implements FoodDataGateway{
                 foodDoc.getString("category"),
                 foodDoc.getDouble("price").floatValue(),
                 foodDoc.getObjectId("_id"));
-    }
-
-    /**
-     *
-     * @param curFood
-     * @return
-     */
-
-    public Document convertFoodToDoc(Food curFood){
-        return new Document("_id", curFood.getItemID())
-                .append("name", curFood.getName())
-                .append("description", curFood.getDescription())
-                .append("category", curFood.getCategory())
-                .append("price", curFood.getPrice());
     }
 }

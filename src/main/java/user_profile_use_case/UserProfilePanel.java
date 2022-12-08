@@ -1,10 +1,7 @@
 package user_profile_use_case;
 
-import change_password_use_case.*;
-import change_user_info_use_case.*;
-import org.bson.types.ObjectId;
+import components.ScreenFactory;
 import user_shopping_cart_use_case.ShoppingCartSingleton;
-import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -19,9 +16,9 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
     private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 20, 0);
 
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(30, 30, 30, 30);
-    private JLabel nameLabel = new JLabel("Name");
-    private JLabel emailLabel = new JLabel("Email");
-    private UserProfileController userProfileController;
+    private final JLabel nameLabel = new JLabel("Name");
+    private final JLabel emailLabel = new JLabel("Email");
+    private final UserProfileController userProfileController;
 
     public UserProfilePanel(UserProfileController userProfileController) {
         this.userProfileController = userProfileController;
@@ -79,6 +76,10 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         changeInfoButton.setFont(new Font("Serif", Font.BOLD, 15));
         changeInfoButton.setForeground(BG_DARK_GREEN);
         changeInfoButton.addActionListener(new ActionListener() {
+            /**
+             * make a new change user info screen
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 showChangeUserInfoScreen();
@@ -91,6 +92,10 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         changePasswordButton.setFont(new Font("Serif", Font.BOLD, 15));
         changePasswordButton.setForeground(BG_DARK_GREEN);
         changePasswordButton.addActionListener(new ActionListener() {
+            /**
+             * make a new change password screen
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 showChangePasswordScreen();
@@ -103,6 +108,10 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         logoutButton.setFont(new Font("Serif", Font.BOLD, 15));
         logoutButton.setForeground(BG_DARK_GREEN);
         logoutButton.addActionListener(new ActionListener() {
+            /**
+             * logout of the current account
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 logout();
@@ -118,57 +127,61 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
 
 
     /**
-     * @param newName
+     * @param newName new name to change
      */
     @Override
     public void updateNameLabel(String newName) {
         nameLabel.setText(newName);
     }
+
+    /**
+     *
+     * @param newEmail new email to change
+     */
     @Override
     public void updateEmailLabel(String newEmail) {
         emailLabel.setText(newEmail);
     }
+
+    /**
+     * update the panel data
+     */
     @Override
     public void updatePanelData() {
         userProfileController.getUserProfile();
     }
 
+    /**
+     * make a new change password screen
+     */
+
     public void showChangePasswordScreen() {
-        ChangePasswordPresenter changePasswordPresenter = new ChangePasswordProcessor(null);
-        ChangePasswordInputBoundary changePasswordInputBoundary = new ChangePasswordInteractor(changePasswordPresenter);
-        ChangePasswordController changePasswordController = new ChangePasswordController(
-                changePasswordInputBoundary,
-                userProfileController.getCurrentUserId());
-
-        ChangePasswordScreenInterface changePasswordScreen = new ChangePasswordScreen(changePasswordController);
-
-        changePasswordPresenter.setChangePasswordScreenInterface(changePasswordScreen);
-
-        changePasswordScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createChangePasswordScreen(userProfileController.getCurrentUserId());
     }
+
+    /**
+     * make a new change user info screen
+     */
 
     public void showChangeUserInfoScreen() {
-        ChangeUserInfoPresenter changeUserInfoPresenter = new ChangeUserInfoProcessor(null);
-        ChangeUserInfoInputBoundary changeUserInfoInputBoundary = new ChangeUserInfoInteractor(changeUserInfoPresenter);
-        ChangeUserInfoController changeUserInfoController = new ChangeUserInfoController(
-                changeUserInfoInputBoundary,
-                userProfileController.getCurrentUserId());
-
-        ChangeUserInfoScreenInterface changeUserInfoScreen = new ChangeUserInfoScreen(changeUserInfoController);
-
-        changeUserInfoPresenter.setScreen(changeUserInfoScreen);
-
-        changeUserInfoScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createChangeUserInfoScreen(userProfileController.getCurrentUserId());
     }
+
+    /**
+     * logout of the current user
+     */
 
     public void logout() {
         ShoppingCartSingleton.setSingletonInstance(new ShoppingCartSingleton(null, new HashMap<>()));
 
-        java.awt.Window win[] = java.awt.Window.getWindows();
-        for(int i=0;i<win.length;i++){
-            win[i].dispose();
+        java.awt.Window[] win = java.awt.Window.getWindows();
+        for (Window window : win) {
+            window.dispose();
         }
 
-        WelcomeScreen screen = new WelcomeScreen();
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createWelcomeScreen();
     }
 }

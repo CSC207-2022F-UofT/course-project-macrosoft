@@ -1,16 +1,16 @@
 package user_make_review_use_case;
 
-import org.bson.types.ObjectId;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ReviewUI extends JFrame {
 
     String rev;
 
+    /**
+     * a screen used to present the ID of review saved
+     * @param successResponse
+     */
     public ReviewUI(MakeReviewResponseModel successResponse) {
         this.rev = successResponse.getReviewId();
 
@@ -21,12 +21,7 @@ public class ReviewUI extends JFrame {
         add(new JLabel("Review Id: " + rev));
 
         JButton ok = new JButton("OK");
-        ok.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        ok.addActionListener(e -> dispose());
         add(ok);
 
         pack();

@@ -23,6 +23,9 @@ public class TestMakeReviewUseCase {
     public void setup(){
     }
 
+    /**
+     * test if the MakeReviewUseCase saves the review input
+     */
     @Test
     public void testMakeReview(){
         // setup input metrics

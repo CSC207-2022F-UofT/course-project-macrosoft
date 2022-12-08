@@ -1,14 +1,8 @@
 package login_use_case;
 
+import components.ScreenFactory;
 import org.bson.types.ObjectId;
-import restaurant_homepage_use_case.RestaurantHomepageController;
-import restaurant_homepage_use_case.RestaurantHomepageScreen;
 import components.LabelTextPanel;
-import user_homepage_use_case.UserHomePageScreen;
-import user_homepage_use_case.UserHomepageController;
-import restaurant_verify_use_case.*;
-import user_verify_use_case.*;
-import welcome_use_case.WelcomeScreen;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -31,17 +25,10 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
     UserLoginController userLoginController;
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Color WHITE = new Color(255, 255, 255);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(50, 30, 0, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 100, 0, 100);
-    private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 20, 0);
-    private static final Border emptyBorder4 = BorderFactory.createEmptyBorder(10, 0, 0, 10);
-    private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
 
     /**
@@ -54,6 +41,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
         this.setSize(900, 700);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
          // the title panel
         JPanel titlePanel = new JPanel();
@@ -136,55 +124,72 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
             }
         }
         else if (evt.getActionCommand().equals("Cancel")) {
-            WelcomeScreen screen = new WelcomeScreen();
-            this.dispose();
+            ScreenFactory screenFactory = new ScreenFactory();
+            screenFactory.createWelcomeScreen();
+            this.close();
         }
     }
 
+    /**
+     * Initiate a new user verify screen through the screen factory.
+     * @param userId id of the current user. type: ObjectId
+     */
     @Override
     public void showVerifyScreen(ObjectId userId) {
-        VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
-        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
-        VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userId);
-        VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
-
-        verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
-
-        verifyUserScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createVerifyUserScreen(userId);
     }
 
+    /**
+     * Initiate a new restaurant verify screen through the screen factory.
+     * @param restaurantId id of the current restaurant. type: ObjectId
+     */
     public void showRestaurantVerifyScreen(ObjectId restaurantId) {
-        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
-        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
-        VerifyResController verifyResController = new VerifyResController(verifyResFacade, restaurantId);
-        VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
-
-        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
-
-        verifyResScreen.getFrame().setVisible(true);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createVerifyRestaurantScreen(restaurantId);
     }
 
+    /**
+     * display the message for login result
+     * @param message message to display
+     */
     @Override
     public void showMessage(String message) {
         showMessageDialog(null, message);
     }
 
+    /**
+     * display the user homepage, called after successfully logged in
+     * @param userId if of the current user
+     */
     @Override
     public void showUserHomepage(ObjectId userId) {
-        UserHomepageController controller = new UserHomepageController(userId);
-        UserHomePageScreen screen = new UserHomePageScreen(controller);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createUserHomepageScreen(userId);
     }
 
+    /**
+     * display the restaurant homepage, called after successfully logged in
+     * @param restaurantId  id of the current restaurant
+     * @param restaurantName   name of the current restaurant
+     */
     public void showRestaurantHomepage(ObjectId restaurantId, String restaurantName) {
-        RestaurantHomepageController controller = new RestaurantHomepageController(restaurantId);
-        RestaurantHomepageScreen screen = new RestaurantHomepageScreen(controller, restaurantName);
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createRestaurantHomepageScreen(restaurantId, restaurantName);
     }
 
+    /**
+     * close this screen
+     */
     @Override
     public void close() {
         this.dispose();
     }
 
+    /**
+     * return this frame
+     * @return the current frame
+     */
     @Override
     public JFrame getFrame() {
         return this;

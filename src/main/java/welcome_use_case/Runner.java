@@ -1,7 +1,10 @@
 package welcome_use_case;
 
+import components.ScreenFactory;
+
 public class Runner {
     public static void main(String[] args) {
-        WelcomeScreen screen = new WelcomeScreen();
+        ScreenFactory screenFactory = new ScreenFactory();
+        screenFactory.createWelcomeScreen();
     }
 }

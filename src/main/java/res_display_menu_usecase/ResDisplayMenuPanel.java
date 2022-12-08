@@ -1,8 +1,7 @@
 package res_display_menu_usecase;
 
-import menu_editing_use_case.*;
-import menu_editing_use_case.Screens.AddFoodScreen;
-import menu_editing_use_case.Screens.FoodEditingScreen;
+import components.ScreenFactory;
+import menu_editing_use_case.MenuEditingController;
 import org.bson.types.ObjectId;
 
 import javax.swing.*;
@@ -16,22 +15,22 @@ import java.util.List;
 public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelInterface, ActionListener{
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
     private static final Border blackLine = BorderFactory.createLineBorder(Color.black);
 
-    private ResDisplayMenuController controller;
+    final private ResDisplayMenuController controller;
+    final private MenuEditingController menuEditingController;
 
-    private JLabel nameLabel = new JLabel();
+    final private JLabel nameLabel = new JLabel();
 
-    private JPanel foodPanel = new JPanel();
+    final private JPanel foodPanel = new JPanel();
 
-    public ResDisplayMenuPanel(ResDisplayMenuController controller) {
+    public ResDisplayMenuPanel(ResDisplayMenuController controller, MenuEditingController menuEditingController) {
         this.controller = controller;
+        this.menuEditingController = menuEditingController;
+
         this.setLayout(new BorderLayout());
 
         JPanel resNamePanel = new JPanel();
@@ -70,20 +69,25 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
 
         addFoodButton.setForeground(BG_DARK_GREEN);
         addFoodButton.addActionListener(new ActionListener() {
+            /**
+             * initialize a new add food screen
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                AddFoodInputBoundary interactor_add = new MenuEditingInteractor(controller.getRestId());
-                RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(controller.getRestId());
-                MenuEditingController controller1 = new MenuEditingController(interactor_add, interactor_remove, controller.getRestId());
-
-                AddFoodScreen screen = new AddFoodScreen(controller1);
+                ScreenFactory screenFactory = new ScreenFactory();
+                screenFactory.createAddFoodScreen(controller.getRestId());
             }
         });
         refreshButton.setForeground(BG_DARK_GREEN);
         refreshButton.addActionListener(new ActionListener() {
+            /**
+             * update the menu panel
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 controller.displayMenuPage();
             }
         });
@@ -100,11 +104,12 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
     @Override
     public void updateNameLabel(String newName) {
         nameLabel.setText(newName);
-
     }
 
     @Override
+    @SuppressWarnings("rawtypes")
     public void updateMenuPanel(HashMap<String, List> menuDic) {
+
         foodPanel.removeAll();
 
         for(int i = 0; i< menuDic.get("name").size(); i++) {
@@ -112,51 +117,56 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
             JPanel f = new JPanel();
             f.setLayout(new GridLayout(0, 1));
 
-            String food_name = menuDic.get("name").get(i).toString();
-            String food_price = menuDic.get("price").get(i).toString();
-            String food_category = menuDic.get("category").get(i).toString();
-            String food_description = menuDic.get("description").get(i).toString();
-            ObjectId foodId = new ObjectId(menuDic.get("id").get(i).toString());
-
-            JLabel name = new JLabel("Name: " + food_name);
-            JLabel price = new JLabel("Price: " + food_price);
-            JLabel category = new JLabel("Category: " + food_category);
-            JLabel description = new JLabel("Description: " + food_description);
 
             JButton delete = new JButton("Delete");
+
+            String foodCategory = menuDic.get("category").get(i).toString();
+            String foodDescription = menuDic.get("description").get(i).toString();
+            String foodName = menuDic.get("name").get(i).toString();
+            String foodPrice = menuDic.get("price").get(i).toString();
+            ObjectId foodId = new ObjectId(menuDic.get("id").get(i).toString());
+
             delete.addActionListener(new ActionListener() {
+                /**
+                 * calls the controller to remove the current food
+                 * @param e the event to be processed
+                 */
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    AddFoodInputBoundary interactor_add = new MenuEditingInteractor(controller.getRestId());
-                    RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(controller.getRestId());
-                    MenuEditingController controller1 = new MenuEditingController(interactor_add, interactor_remove, controller.getRestId());
-
-                    controller1.remove(foodId);
+                    menuEditingController.remove(foodId);
+                    controller.displayMenuPage();
                 }
             });
 
             JButton edit = new JButton("Edit");
             edit.addActionListener(new ActionListener() {
+                /**
+                 * initialize a new food editing screen
+                 * @param e the event to be processed
+                 */
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    AddFoodInputBoundary interactor_add = new MenuEditingInteractor(controller.getRestId());
-                    RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(controller.getRestId());
-                    MenuEditingController controller1 = new MenuEditingController(interactor_add, interactor_remove, controller.getRestId());
-
-                    FoodEditingScreen screen = new FoodEditingScreen(controller1, food_name, food_category, food_description, food_price, foodId);
+                    ScreenFactory screenFactory = new ScreenFactory();
+                    screenFactory.createFoodEditingScreen(controller.getRestId(), foodName, foodCategory, foodDescription, foodPrice, foodId);
                 }
             });
+
+            JLabel name = new JLabel("Name: " + foodName);
+            JLabel price = new JLabel("Price: " + foodPrice);
+            JLabel category = new JLabel("Category: " + foodCategory);
+            JLabel description = new JLabel("Description: " + foodDescription);
+
+            name.setBorder(emptyBorder2);
+            price.setBorder(emptyBorder2);
+            category.setBorder(emptyBorder2);
+            description.setBorder(emptyBorder2);
 
             delete.setForeground(BG_DARK_GREEN);
             edit.setForeground(BG_DARK_GREEN);
 
-            name.setBorder(emptyBorder2);
             name.setForeground(BG_DARK_GREEN);
-            price.setBorder(emptyBorder2);
             price.setForeground(BG_DARK_GREEN);
-            category.setBorder(emptyBorder2);
             category.setForeground(BG_DARK_GREEN);
-            description.setBorder(emptyBorder2);
             description.setForeground(BG_DARK_GREEN);
 
             f.add(name);
@@ -168,6 +178,9 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
 
             foodPanel.add(f);
         }
+
+        foodPanel.repaint();
+        foodPanel.revalidate();
     }
 
     @Override

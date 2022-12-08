@@ -7,10 +7,6 @@ import database.MenuDataMongo;
 import database.MongoCollectionFetcher;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import entities.*;
 
 public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodInputBoundary{
@@ -24,10 +20,10 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
         this.resId = resId;
     }
 
+
     /**
      *
-     * @param requestModel
-     * @return
+     * @param requestModel an instance of AddFoodRequestModel
      */
 
     @Override
@@ -40,7 +36,7 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
                 requestModel.getPrice());
 
         menuDataGateway.setMenu(requestModel.getResId(), newMenu);
-    };
+    }
 
     @Override
     public void create(RemoveFoodRequestModel requestModel){
@@ -53,34 +49,6 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
 
     public Menu getMenu(){
         return menuDataGateway.getMenu(resId);
-    }
-
-
-    public HashMap<String, List> getMenuDic(){
-        HashMap<String, List> menuDic = new HashMap<>();
-        List<Food> foodLst = getMenu().getFoodList();
-
-        List<String> nameList = new ArrayList<>();
-        List<String> descriptionList = new ArrayList<>();
-        List<String> categoryList = new ArrayList<>();
-        List<Float> priceList = new ArrayList<>();
-        List<ObjectId> idList = new ArrayList<>();
-
-        for(Food curFood: foodLst){
-            nameList.add(curFood.getName());
-            descriptionList.add(curFood.getDescription());
-            categoryList.add(curFood.getCategory());
-            priceList.add(curFood.getPrice());
-            idList.add(curFood.getItemID());
-        }
-
-        menuDic.put("name", nameList);
-        menuDic.put("description", descriptionList);
-        menuDic.put("category", categoryList);
-        menuDic.put("price", priceList);
-        menuDic.put("id", idList);
-
-        return menuDic;
     }
 
     @Override
