@@ -32,6 +32,4 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter{
     public void setScreen(UpdateOrderStatusScreenInterface screen) {
         this.screen = screen;
     }
-
-
 }

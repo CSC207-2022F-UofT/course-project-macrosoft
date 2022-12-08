@@ -11,8 +11,7 @@ public class UpdateOrderStatusScreenTestTemp {
         UpdateOrderStatusInputBoundary interactor = new UpdateOrderStatusInteractor(presenter);
         UpdateOrderStatusController controller = new UpdateOrderStatusController(interactor, orderId);
 
-            UpdateOrderStatusScreenInterface screen = new UpdateOrderStatusScreen(controller,
-                    interactor.getOrderStatus(orderId));
+            UpdateOrderStatusScreenInterface screen = new UpdateOrderStatusScreen(controller);
 
             presenter.setScreen(screen);
 

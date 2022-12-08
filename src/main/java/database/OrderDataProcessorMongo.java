@@ -1,5 +1,6 @@
 package database;
 
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.InsertOneResult;
 import entities.Food;
@@ -28,6 +29,24 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
      */
     public OrderDataProcessorMongo(MongoCollectionFetcher fetcher) {
         this.mongoCollectionFetcher = fetcher;
+    }
+
+    @Override
+    public void save(Order order) {
+        Document orderDoc = new Document("orderId", order.getOrderID())
+                .append("restaurantID", order.getRestaurantID())
+                .append("userID", order.getUserID())
+                .append("items", order.getItems())
+                .append("orderStatus", order.getOrderStatus())
+                .append("orderDate", order.getOrderDate());
+        this.mongoCollectionFetcher.getCollection("Orders").insertOne(orderDoc);
+    }
+
+    @Override
+    public void deleteByOrderId(ObjectId orderId) {
+        MongoCollection orderCollection = mongoCollectionFetcher.getCollection("Orders");
+        Bson filter = Filters.eq("orderID", orderId);
+        orderCollection.deleteOne(filter);
     }
 
     /**

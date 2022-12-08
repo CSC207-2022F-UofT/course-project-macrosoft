@@ -12,8 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UpdateOrderStatusInteractorTest {
 
-
-
     @BeforeEach
     void setUp() {
         Order order = TestFactory.getOrder();
@@ -58,14 +56,13 @@ public class UpdateOrderStatusInteractorTest {
         assertEquals(interactor.getOrderStatus(orderId), expected);
     }
 
-
     // delete the created order from database after the test have been run
      @AfterEach
      void tearDown() {
          ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
          MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
          OrderDataGateway gateway = new OrderDataProcessorMongo(fetcher);
-         gateway.delete(gateway.findById(orderId));
+         gateway.deleteByOrderId(orderId);
      }
 
 }
