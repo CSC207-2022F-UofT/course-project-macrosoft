@@ -19,6 +19,8 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
     public VerifyResScreen(VerifyResController controller) {
 
         this.verifyResController = controller;
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
         JLabel title = new JLabel("Verify Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);

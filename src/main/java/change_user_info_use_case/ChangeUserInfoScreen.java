@@ -39,6 +39,7 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
         this.setSize(900, 700);
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(GREY_WHITE);
+        this.setResizable(false);
 
         // panel that contains the title
         JPanel titlePanel = new JPanel();

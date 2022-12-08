@@ -42,6 +42,7 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
         this.setSize(900, 700);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
 
         // the title panel
         JPanel titlePanel = new JPanel();
