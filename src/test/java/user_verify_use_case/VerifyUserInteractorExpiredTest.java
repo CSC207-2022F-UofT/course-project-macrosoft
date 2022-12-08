@@ -13,9 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VerifyUserInteractorExpiredTest {
 
-    static {
-        System.setProperty("java.awt.headless", "true");
-    }
 
     //setting up test document in the database
     @BeforeEach
@@ -52,7 +49,7 @@ public class VerifyUserInteractorExpiredTest {
         VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
 
         verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
-        verifyUserScreen.getFrame().setVisible(false);
+        verifyUserScreen.getFrame().setVisible(true);
 
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
 

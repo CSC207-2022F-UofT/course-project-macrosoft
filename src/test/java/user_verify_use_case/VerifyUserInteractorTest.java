@@ -14,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VerifyUserInteractorTest {
 
-    static {
-        System.setProperty("java.awt.headless", "true");
-    }
 
     // setting up a test document in our database
     @BeforeEach
@@ -50,7 +47,8 @@ class VerifyUserInteractorTest {
         VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
 
         verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
-        verifyUserScreen.getFrame().setVisible(false);
+        verifyUserScreen.getFrame().setVisible(true);
+
 
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
         assertEquals(verifyUserInteractor.verifyUser(userID,"898912"), actual);
@@ -67,7 +65,7 @@ class VerifyUserInteractorTest {
         VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
 
         verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
-        verifyUserScreen.getFrame().setVisible(false);
+        verifyUserScreen.getFrame().setVisible(true);
 
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
         assertEquals(verifyUserInteractor.verifyUser(userID,"898913"), actual);

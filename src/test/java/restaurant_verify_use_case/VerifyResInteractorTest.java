@@ -14,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VerifyResInteractorTest {
 
-    static {
-        System.setProperty("java.awt.headless", "true");
-    }
 
     // setting up a test document in our database
     @BeforeEach
@@ -68,7 +65,7 @@ class VerifyResInteractorTest {
         VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
 
         verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
-        verifyResScreen.getFrame().setVisible(false);
+        verifyResScreen.getFrame().setVisible(true);
 
         VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResPresenter);
         assertEquals(verifyResInteractor.verifyRes(resID,"898911"), actual);

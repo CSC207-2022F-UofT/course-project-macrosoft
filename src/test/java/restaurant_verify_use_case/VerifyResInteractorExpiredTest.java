@@ -16,9 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class VerifyResInteractorExpiredTest {
     // setting up a test document in our database
 
-    static {
-        System.setProperty("java.awt.headless", "true");
-    }
     @BeforeEach
     void setUp() {
 
