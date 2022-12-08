@@ -5,7 +5,16 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * This class is used to hash passwords to hex values.
+ */
 public class PasswordHasher {
+    /**
+     * Hash the password
+     *
+     * @param input the password
+     * @return the hashed password
+     */
     public static byte[] getSHA(String input) throws NoSuchAlgorithmException
     {
         // Static getInstance method is called with hashing SHA
@@ -17,6 +26,12 @@ public class PasswordHasher {
         return md.digest(input.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * Convert the hashed password to hex
+     *
+     * @param hash the hashed password
+     * @return the hex value of the hashed password
+     */
     public static String toHexString(byte[] hash)
     {
         // Convert byte array into signum representation

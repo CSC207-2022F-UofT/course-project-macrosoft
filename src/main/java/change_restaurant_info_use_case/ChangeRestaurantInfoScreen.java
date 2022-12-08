@@ -13,7 +13,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaurantInfoScreenInterface, ActionListener {
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(100, 30, 30, 30);
     JTextField newName = new JTextField(15);
@@ -23,7 +23,7 @@ public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaura
 
     ChangeRestaurantInfoController controller;
 
-    public ChangeRestaurantInfoScreen(ChangeRestaurantInfoController controller){
+    public ChangeRestaurantInfoScreen(ChangeRestaurantInfoController controller) {
         // Initialize the controller
         this.controller = controller;
 
@@ -38,7 +38,7 @@ public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaura
         titlePanel.setBackground(GREY_WHITE);
         titlePanel.setBorder(emptyBorder);
         JLabel title = new JLabel("Change Restaurant Information");
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         title.setForeground(BG_DARK_GREEN);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         titlePanel.add(title);
@@ -157,8 +157,7 @@ public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaura
             } catch (Exception e) {
                 showMessageDialog(this, e.getMessage());
             }
-        }
-        else if (evt.getActionCommand().equals("Cancel")) {
+        } else if (evt.getActionCommand().equals("Cancel")) {
             this.close();
         }
     }
