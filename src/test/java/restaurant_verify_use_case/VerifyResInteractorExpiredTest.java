@@ -12,7 +12,7 @@ import user_verify_use_case.AddMinutesInteractor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class VerifyResInteractorTestExpired {
+public class VerifyResInteractorExpiredTest {
     // setting up a test document in our database
     @BeforeEach
     void setUp() {
