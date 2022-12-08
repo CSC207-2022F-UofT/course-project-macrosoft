@@ -20,15 +20,10 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
     JPanel shoppingCartPanel = new JPanel(new GridLayout(0, 3));
 
     private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
-    private static final Color BG_LIGHT_GREEN = new Color(87, 118, 83);
-    private static final Color HL_LIGHT_GREEN = new Color(166, 199, 148);
-    private static final Color HL_ORANGE_YELLOW = new Color(232, 181, 93);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
-    private static final Color WHITE = new Color(255, 255, 255);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(20, 20, 20, 20);
-    private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
     JLabel title;
 
@@ -64,6 +59,10 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
         buttonPanel.add(checkoutButton);
 
         refreshButton.addActionListener(new ActionListener() {
+            /**
+             * call the controller to display shopping cart
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.displayShoppingCart();
@@ -71,6 +70,10 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
         });
 
         checkoutButton.addActionListener(new ActionListener() {
+            /**
+             * call the controller to check out
+             * @param e the event to be processed
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.checkout();
@@ -88,7 +91,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
     }
 
     /**
-     * @param message
+     * @param message message to display
      */
     @Override
     public void showMessage(String message) {
@@ -120,7 +123,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
             foodNameLabel.setFont(new Font("Serif", Font.PLAIN, 15));
             foodNameLabel.setForeground(BG_DARK_GREEN);
 
-            JLabel quantityLabel = new JLabel("Quantity: " + String.valueOf(cart.get(foodName).get("quantity")));
+            JLabel quantityLabel = new JLabel("Quantity: " + cart.get(foodName).get("quantity"));
             quantityLabel.setFont(new Font("Serif", Font.PLAIN, 15));
             quantityLabel.setForeground(BG_DARK_GREEN);
 
@@ -136,6 +139,10 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
             JButton deleteButton = new JButton("Delete");
 
             deleteButton.addActionListener(new ActionListener() {
+                /**
+                 * called the controller to delete an item
+                 * @param e the event to be processed
+                 */
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     controller.deleteItem((ObjectId) cart.get(foodName).get("id"));

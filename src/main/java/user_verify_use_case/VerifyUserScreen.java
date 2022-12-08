@@ -73,16 +73,28 @@ public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUs
         return this;
     }
 
+    /**
+     * create a new login screen
+     */
     public void showLoginScreen() {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createLoginSreen();
     }
 
+    /**
+     * create a new homepage
+     * @param userId id of the current user
+     */
     @Override
     public void showUserHomepage(ObjectId userId) {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createUserHomepageScreen(userId);
     }
+
+    /**
+     * display message
+     * @param message message
+     */
 
     public void showMessage(String message) {
         showMessageDialog(null, message);

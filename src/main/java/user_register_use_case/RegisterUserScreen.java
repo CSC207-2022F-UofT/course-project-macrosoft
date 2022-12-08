@@ -132,20 +132,35 @@ public class RegisterUserScreen extends JFrame implements RegisterUserScreenInte
         }
     }
 
+    /**
+     * display message
+     * @param message message to display
+     */
     public void showMessage(String message) {
         showMessageDialog(null, message);
     }
 
+    /**
+     * create a new welcome page
+     */
     public void showWelcomePage() {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createWelcomeScreen();
     }
+
+    /**
+     * close this window
+     */
 
     @Override
     public void close() {
         this.dispose();
     }
 
+    /**
+     * return this window
+     * @return this
+     */
     @Override
     public JFrame getFrame() {
         return this;
