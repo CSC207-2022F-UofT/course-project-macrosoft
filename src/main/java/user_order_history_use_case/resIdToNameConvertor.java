@@ -7,7 +7,18 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
+/**
+ * This class is the restaurant ID to restaurant name convertor for the order history use case
+ */
 public class resIdToNameConvertor {
+
+
+    /**
+     * Get the restaurant name by restaurant ID
+     *
+     * @param resId the restaurant ID
+     * @return the restaurant name by the given ID
+     */
     public String getResNameById(ObjectId resId){
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         Bson queryFilter = Filters.eq("_id", resId);
