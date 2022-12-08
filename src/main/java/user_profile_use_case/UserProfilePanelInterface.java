@@ -1,7 +1,9 @@
 package user_profile_use_case;
-
+/*
+interface of the screen
+ */
 public interface UserProfilePanelInterface {
-    public void updateNameLabel(String newName);
-    public void updateEmailLabel(String newEmail);
-    public void updatePanelData();
+    void updateNameLabel(String newName);
+    void updateEmailLabel(String newEmail);
+    void updatePanelData();
 }

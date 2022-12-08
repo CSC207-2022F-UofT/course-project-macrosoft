@@ -8,8 +8,10 @@ public class UserProfileProcessor implements UserProfilePresenter {
         this.userProfilePanel = userProfilePanelInterface;
     }
 
+
     /**
-     *
+     * when the user is found, update the name and information according to the response model
+     * @param userProfileResponseModel response model
      */
     @Override
     public void userFound(UserProfileResponseModel userProfileResponseModel) {
@@ -17,14 +19,19 @@ public class UserProfileProcessor implements UserProfilePresenter {
         userProfilePanel.updateEmailLabel(userProfileResponseModel.getEmail());
     }
 
+
     /**
-     *
+     * when the user is not found
      */
     @Override
     public void userNotFound() {
 
     }
 
+    /**
+     * set the panel to the given panel
+     * @param userProfilePanel panel
+     */
     public void setUserProfilePanel(UserProfilePanelInterface userProfilePanel) {
         this.userProfilePanel = userProfilePanel;
     }
