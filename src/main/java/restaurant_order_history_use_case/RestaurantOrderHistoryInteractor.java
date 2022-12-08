@@ -87,7 +87,7 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
         ArrayList<HashMap<String, Object>> orderInfos = new ArrayList<>();
 
         for (Order order : orders) {
-            if (order.getOrderStatus().equals("Order Complete") || order.getOrderStatus().equals("Cancelled")) continue;
+            if (order.getOrderStatus().equals("Order Complete") || order.getOrderStatus().equals("Order Cancelled")) continue;
 
             HashMap<String, Object> orderInfo = new HashMap<>();
             orderInfo.put("ID", order.getOrderID());
