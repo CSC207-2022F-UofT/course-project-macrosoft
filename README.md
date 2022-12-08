@@ -27,10 +27,10 @@ More details will be introduced in the next few sections of this document.
 
 <p align="center">
 
-|               | Restaurant    | User          |
+|               | username      | password      |
 | ------------  | ------------- | ------------- |
-| username      | yinuo's res   | 123456        |
-| password      | davidlin123   | lzy123456     | </p>
+| Restaurant    | yinuo's res   | 123456        |
+| User          | davidlin123   | lzy123456     | </p>
 
 ### 2. Login/Register Window.
 
