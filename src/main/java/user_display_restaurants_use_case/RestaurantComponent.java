@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class RestaurantComponent extends JPanel {
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(10, 20, 10, 20);
 

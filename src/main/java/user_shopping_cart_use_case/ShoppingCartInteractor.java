@@ -7,13 +7,24 @@ import org.bson.types.ObjectId;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This class is the interactor of shopping cart use case.
+ */
 public class ShoppingCartInteractor implements ShoppingCartInputBoundary {
     ShoppingCartPresenter presenter;
 
+    /**
+     * Constructor for ShoppingCartInteractor
+     *
+     * @param presenter the presenter
+     */
     public ShoppingCartInteractor(ShoppingCartPresenter presenter) {
         this.presenter = presenter;
     }
 
+    /**
+     * Display shopping cart.
+     */
     public void displayShoppingCart() {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         MenuDataGateway menuDataGateway = new MenuDataMongo(fetcher);
@@ -33,7 +44,7 @@ public class ShoppingCartInteractor implements ShoppingCartInputBoundary {
 
         HashMap<String, HashMap<String, Object>> cartDisplay = new HashMap<>();
 
-        for (ObjectId foodId: cart.keySet()) {
+        for (ObjectId foodId : cart.keySet()) {
             String name = GetFoodNameById(menu, foodId);
             if (!name.isEmpty()) {
 
@@ -47,8 +58,15 @@ public class ShoppingCartInteractor implements ShoppingCartInputBoundary {
         presenter.displayShoppingCart(restaurantName, cartDisplay);
     }
 
+    /**
+     * Gets food name by id.
+     *
+     * @param menu   the menu
+     * @param foodId the food id
+     * @return the food name by id
+     */
     public String GetFoodNameById(List<Food> menu, ObjectId foodId) {
-        for (Food food: menu) {
+        for (Food food : menu) {
             if (food.getItemID().toHexString().equals(foodId.toHexString())) return food.getName();
         }
         return "";

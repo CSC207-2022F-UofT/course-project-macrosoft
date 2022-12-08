@@ -12,19 +12,20 @@ import java.awt.event.ActionListener;
 public class FoodEditingScreen {
     MenuEditingController controller;
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(5, 15, 5, 15);
     private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 0, 0);
 
     /**
      * constructor of the screen
-     * @param controller an instance of MenuEditingController
-     * @param name name of the food to add, string
-     * @param category category of the food to add, string
+     *
+     * @param controller  an instance of MenuEditingController
+     * @param name        name of the food to add, string
+     * @param category    category of the food to add, string
      * @param description description of the food to add, string
-     * @param price price of the food to add, string
-     * @param id id of the current user that make this action
+     * @param price       price of the food to add, string
+     * @param id          id of the current user that make this action
      */
     public FoodEditingScreen(MenuEditingController controller, String name, String category, String description, String price, ObjectId id) {
 
@@ -40,7 +41,7 @@ public class FoodEditingScreen {
         // title panel
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel("Edit Food Item");
-        title.setFont(new Font("Serif", Font.ITALIC|Font.BOLD, 35));
+        title.setFont(new Font("Serif", Font.ITALIC | Font.BOLD, 35));
         title.setForeground(GREY_WHITE);
         titlePanel.add(title);
         titlePanel.setOpaque(true);

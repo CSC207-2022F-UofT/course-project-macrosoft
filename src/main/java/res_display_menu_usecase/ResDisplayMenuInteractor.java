@@ -3,14 +3,27 @@ package res_display_menu_usecase;
 import database.*;
 import entities.Menu;
 
+/**
+ * This class is the interactor for the display menu use case.
+ */
 public class ResDisplayMenuInteractor implements ResDisplayMenuInputBoundary {
 
-    private ResDisplayMenuPresenter presenter;
+    private final ResDisplayMenuPresenter presenter;
 
+    /**
+     * Constructor for ResDisplayMenuInteractor
+     *
+     * @param presenter the presenter
+     */
     public ResDisplayMenuInteractor(ResDisplayMenuPresenter presenter) {
         this.presenter = presenter;
     }
 
+    /**
+     * Displays the menu.
+     *
+     * @param requestModel the request model
+     */
     @Override
     public void displayMenu(ResDisplayMenuRequestModel requestModel) {
         MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();

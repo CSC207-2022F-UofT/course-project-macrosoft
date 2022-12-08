@@ -14,14 +14,27 @@ import java.util.stream.Collectors;
 // Use case layer
 // Single Responsibility: Display orders
 
-public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
+/**
+ * This class is the interactor of the user order history.
+ */
+public class OrderHistoryInteractor implements OrderHistoryInputBoundary {
 
     private final OrderHistoryPresenter presenter;
 
+    /**
+     * Constructor for OrderHistoryInteractor
+     *
+     * @param presenter the presenter
+     */
     public OrderHistoryInteractor(OrderHistoryPresenter presenter) {
         this.presenter = presenter;
     }
 
+    /**
+     * Display orders.
+     *
+     * @param requestModel the request model
+     */
     @Override
     public void displayOrders(OrderHistoryRequestModel requestModel) {
         MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
@@ -36,13 +49,12 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
         String name = curUser.getFirstName() + " " + curUser.getLastName();
 
 
-        if(orderList == null){
+        if (orderList == null) {
             presenter.orderNotFound();
-        }
-        else {
+        } else {
             ArrayList<HashMap<String, Object>> result = new ArrayList<>();
 
-            for (Order order: orderList) {
+            for (Order order : orderList) {
                 HashMap<String, Object> info = new HashMap<>();
                 restaurantDataGateway.getRestaurantNameById(order.getRestaurantID());
 
@@ -53,7 +65,7 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
 
                 ArrayList<HashMap<String, Object>> foods = new ArrayList<>();
 
-                for (OrderItem food: order.getItems()) {
+                for (OrderItem food : order.getItems()) {
                     HashMap<String, Object> item = new HashMap<>();
                     item.put("name", food.getFood().getName());
                     item.put("description", food.getFood().getDescription());
@@ -74,6 +86,11 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
         }
     }
 
+    /**
+     * Display current orders.
+     *
+     * @param requestModel the request model
+     */
     public void displayCurrentOrders(OrderHistoryRequestModel requestModel) {
         MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();
         OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(mongoCollectionFetcher);
@@ -87,10 +104,9 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
         String name = curUser.getFirstName() + " " + curUser.getLastName();
 
 
-        if(orderList == null){
+        if (orderList == null) {
             presenter.orderNotFound();
-        }
-        else {
+        } else {
             orderList = orderList
                     .stream()
                     .filter(order -> (!order.getOrderStatus().equals("Order Complete") && !order.getOrderStatus().equals("Cancelled")))
@@ -98,7 +114,7 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
 
             ArrayList<HashMap<String, Object>> result = new ArrayList<>();
 
-            for (Order order: orderList) {
+            for (Order order : orderList) {
                 HashMap<String, Object> info = new HashMap<>();
                 restaurantDataGateway.getRestaurantNameById(order.getRestaurantID());
 
@@ -109,7 +125,7 @@ public class OrderHistoryInteractor implements OrderHistoryInputBoundary{
 
                 ArrayList<HashMap<String, Object>> foods = new ArrayList<>();
 
-                for (OrderItem food: order.getItems()) {
+                for (OrderItem food : order.getItems()) {
                     HashMap<String, Object> item = new HashMap<>();
                     item.put("name", food.getFood().getName());
                     item.put("description", food.getFood().getDescription());

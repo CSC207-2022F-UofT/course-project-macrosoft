@@ -7,16 +7,26 @@ import library.PasswordHasher;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
+/**
+ * This class is the interactor of the user register use case.
+ */
+public class RegisterUserInteractor implements RegisterUserInputBoundary {
 
-public class RegisterUserInteractor implements RegisterUserInputBoundary{
+    private final RegisterUserPresenter presenter;
 
-    private RegisterUserPresenter presenter;
-
+    /**
+     * Constructor for RegisterUserInteractor
+     *
+     * @param presenter the presenter
+     */
     public RegisterUserInteractor(RegisterUserPresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
+     * Register user.
+     *
+     * @param requestModel the request model
      * @return 1000: Success
      * 1001: Username Exists
      */

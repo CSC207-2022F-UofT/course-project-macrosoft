@@ -9,11 +9,11 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterface{
+public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterface {
 
     OrderHistoryController orderHistoryController;
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
@@ -23,7 +23,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
     private final JPanel orderDisplayPanel = new JPanel();
 
     @SuppressWarnings("Unchecked")
-    public OrderHistoryPanel(OrderHistoryController controller){
+    public OrderHistoryPanel(OrderHistoryController controller) {
 
         this.orderHistoryController = controller;
 
@@ -33,7 +33,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
         String orderTitle = "Order History";
 
         JLabel title = new JLabel(orderTitle);
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setBorder(emptyBorder);
 
@@ -55,7 +55,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
 
         orderDisplayPanel.setBackground(GREY_WHITE);
         orderDisplayPanel.setBorder(blackLine);
-        GridLayout layout = new GridLayout(0 ,2);
+        GridLayout layout = new GridLayout(0, 2);
         layout.setVgap(40);
         layout.setHgap(40);
         orderDisplayPanel.setLayout(layout);
@@ -70,7 +70,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
 
         JLabel orderHistory = new JLabel();
         orderHistory.setText("You do not have any orders.");
-        orderHistory.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 60));
+        orderHistory.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 60));
         orderDisplayPanel.add(orderHistory);
 
 
@@ -81,6 +81,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
 
     /**
      * set the order panel
+     *
      * @param orderHistoryResponseModel response model
      */
     @SuppressWarnings("unchecked")
@@ -88,7 +89,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
     public void setOrder(OrderHistoryResponseModel orderHistoryResponseModel) {
         orderDisplayPanel.removeAll();
 
-        for(HashMap<String, Object> order : orderHistoryResponseModel.getOrders()){
+        for (HashMap<String, Object> order : orderHistoryResponseModel.getOrders()) {
             JPanel orderPanel = new JPanel();
             orderPanel.setLayout(new GridLayout(0, 1));
             JLabel id = new JLabel("ID: " + order.get("orderId"));

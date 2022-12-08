@@ -6,12 +6,16 @@ import database.VerificationCodeProcessorMongo;
 import entities.VerificationCode;
 import org.bson.types.ObjectId;
 
+/**
+ * This class is the interactor of get verification code.
+ */
 public class GetCodeInteractor {
 
     /**
+     * Gets verification code.
      *
-     * @param userId: a user entity
-     * @return: return verification code or nothing
+     * @param userId a user entity
+     * @return verification code or nothing
      */
     public static String getVerificationCode(ObjectId userId) {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();

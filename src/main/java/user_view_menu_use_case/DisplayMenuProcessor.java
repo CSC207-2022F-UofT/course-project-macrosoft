@@ -1,16 +1,24 @@
 package user_view_menu_use_case;
 
-public class DisplayMenuProcessor implements DisplayMenuPresenter{
+/**
+ * This class is the processor of view menu use case.
+ */
+public class DisplayMenuProcessor implements DisplayMenuPresenter {
 
     private DisplayMenuPanelInterface displayMenuPanel;
 
+    /**
+     * Constructor of DisplayMenuProcessor.
+     *
+     * @param displayMenuPanel a display menu panel
+     */
     public DisplayMenuProcessor(DisplayMenuPanelInterface displayMenuPanel) {
         this.displayMenuPanel = displayMenuPanel;
     }
 
-
     /**
-     * set the panel to the given panel
+     * Sets the panel to the given panel
+     *
      * @param displayMenuPanel new panel
      */
     public void setDisplayMenuPanel(DisplayMenuPanelInterface displayMenuPanel) {
@@ -18,7 +26,8 @@ public class DisplayMenuProcessor implements DisplayMenuPresenter{
     }
 
     /**
-     * update panel information according to the given response model
+     * Updates panel information according to the given response model
+     *
      * @param responseModel response model
      */
     @Override

@@ -1,11 +1,27 @@
 package user_verify_use_case;
-/*
-presenter of the use case
- */
+
 import org.bson.types.ObjectId;
 
+/**
+ * presenter of the use case
+ */
 public interface VerifyUserPresenter {
+    /**
+     * Sets verify user screen.
+     *
+     * @param verifyUserScreen the verify user screen
+     */
     void setVerifyUserScreen(VerifyUserScreenInterface verifyUserScreen);
+
+    /**
+     * Verify user successfully.
+     *
+     * @param currentUser the current user
+     */
     void verifiedSuccess(ObjectId currentUser);
+
+    /**
+     * Verify user failed.
+     */
     void verifiedFailed();
 }

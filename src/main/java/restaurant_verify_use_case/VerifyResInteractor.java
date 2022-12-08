@@ -3,17 +3,26 @@ package restaurant_verify_use_case;
 import database.*;
 import org.bson.types.ObjectId;
 
+/**
+ * This class is the interactor for the restaurant verify use case.
+ */
 public class VerifyResInteractor {
     private VerifyResPresenter presenter;
 
-
+    /**
+     * Constructor for VerifyResInteractor.
+     *
+     * @param presenter the presenter
+     */
     public VerifyResInteractor(VerifyResPresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
-     * @param restaurantId
-     * @param code
+     * Verifies restaurant by its id and code.
+     *
+     * @param restaurantId the restaurant id
+     * @param code         the code
      * @return 1000: Success
      * 1001: Entered Incorrect Code
      * 1002: Expired or code doesn't exist

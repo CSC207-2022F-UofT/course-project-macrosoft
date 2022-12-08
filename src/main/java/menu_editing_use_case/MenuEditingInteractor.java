@@ -9,25 +9,32 @@ import org.bson.types.ObjectId;
 
 import entities.*;
 
-public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodInputBoundary{
+/**
+ * This class is the interactor for the add food use case.
+ */
+public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodInputBoundary {
 
     ObjectId resId;
 
     MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
     MenuDataGateway menuDataGateway = new MenuDataMongo(fetcher);
 
+    /**
+     * Constructor for MenuEditingInteractor
+     *
+     * @param resId the restaurant id
+     */
     public MenuEditingInteractor(ObjectId resId) {
         this.resId = resId;
     }
 
-
     /**
+     * Creates a new food item and adds it to the menu.
      *
-     * @param requestModel an instance of AddFoodRequestModel
+     * @param requestModel the request model
      */
-
     @Override
-    public void create(AddFoodRequestModel requestModel){
+    public void create(AddFoodRequestModel requestModel) {
         AddFoodHelper helper = new AddFoodHelper();
         Menu newMenu = helper.add(requestModel.getCurMenu(),
                 requestModel.getName(),
@@ -38,8 +45,13 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
         menuDataGateway.setMenu(requestModel.getResId(), newMenu);
     }
 
+    /**
+     * Removes a food item from the menu.
+     *
+     * @param requestModel the request model
+     */
     @Override
-    public void create(RemoveFoodRequestModel requestModel){
+    public void create(RemoveFoodRequestModel requestModel) {
         RemoveFoodHelper helper = new RemoveFoodHelper();
         Menu newMenu = helper.remove(requestModel.getCurMenu(), requestModel.getFoodToRemove());
 
@@ -47,16 +59,22 @@ public class MenuEditingInteractor implements AddFoodInputBoundary, RemoveFoodIn
 
     }
 
-    public Menu getMenu(){
+    /**
+     * Gets the menu.
+     *
+     * @return the menu
+     */
+    public Menu getMenu() {
         return menuDataGateway.getMenu(resId);
     }
 
+    /**
+     * Gets the restaurant id.
+     *
+     * @return the restaurant id
+     */
     @Override
     public ObjectId getResId() {
         return resId;
-    }
-
-    public void setResId(ObjectId resId) {
-        this.resId = resId;
     }
 }

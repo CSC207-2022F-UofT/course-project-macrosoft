@@ -13,10 +13,14 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
+/**
+ * This class is the interactor of generate email.
+ */
 public class GenerateEmailInteractor {
     /**
-     * @param userId: the user id of user
+     * Generate verification email.
      *
+     * @param userId the user id of user
      */
     public void generateVerificationEmail(ObjectId userId) {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
@@ -43,6 +47,13 @@ public class GenerateEmailInteractor {
         sendEmail(user.getEmail(), "Verify Your Email", emailBody);
     }
 
+    /**
+     * Send email.
+     *
+     * @param to      the email address of receiver
+     * @param subject the subject of email
+     * @param body    the body of email
+     */
     public static void sendEmail(String to, String subject, String body) {
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
