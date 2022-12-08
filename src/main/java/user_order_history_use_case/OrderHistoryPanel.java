@@ -9,6 +9,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+/**
+ * The class for the OrderHistory Panel
+ */
 public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterface{
 
     OrderHistoryController orderHistoryController;
@@ -22,7 +26,12 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
 
     private final JPanel orderDisplayPanel = new JPanel();
 
-    @SuppressWarnings("Unchecked")
+    /**
+     * The constructor for the order history panel
+     * A window with all the user order history and buttons to "refresh, get ongoing orders, view details and make review"
+     *
+     * @param controller An instance of order history controller
+     */
     public OrderHistoryPanel(OrderHistoryController controller){
 
         this.orderHistoryController = controller;
@@ -81,6 +90,7 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
 
     /**
      * set the order panel
+     *
      * @param orderHistoryResponseModel response model
      */
     @SuppressWarnings("unchecked")
@@ -109,8 +119,15 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
             orderTime.setBorder(emptyBorder2);
             orderStatus.setBorder(emptyBorder2);
 
+            /**
+             * Initiate a new order screen showing all the ordered items along with price per item/total price descriptions and category
+             */
             viewDetails.addActionListener(e -> new OrderHistoryDetailScreen((ArrayList<HashMap<String, Object>>) order.get("orderItems")));
 
+
+            /**
+             * Initiate a new screen for the user to enter the review for the current order including rating(Out of 10) subject and comment.
+             */
             makeReview.addActionListener(e -> {
                 ScreenFactory screenFactory = new ScreenFactory();
                 screenFactory.createMakeReviewScreen((ObjectId) order.get("orderId"));
@@ -131,6 +148,9 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
         orderDisplayPanel.repaint();
     }
 
+    /**
+     * Get updates of the order history
+     */
     @Override
     public void updateOrder() {
         orderHistoryController.getOrders();
