@@ -16,6 +16,7 @@ public class RestaurantHomepageScreen {
 
         // initialize a frame
         final JFrame frame = new JFrame("Restaurant Homepage");
+        frame.setResizable(false);
         frame.setSize(900, 700);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);

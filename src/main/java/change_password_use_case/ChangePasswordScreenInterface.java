@@ -6,12 +6,25 @@ import javax.swing.*;
 
 /**
  * This interface is the screen interface for the change password use case.
+ * The ChangePasswordScreen implements it
  */
 public interface ChangePasswordScreenInterface {
 
-    public void close();
+    /**
+     * close the current screen
+     */
+    void close();
 
-    public void showMessage(String message);
 
-    public JFrame getFrame();
+    /**
+     * display the resulting message
+     * @param message resulting message
+     */
+    void showMessage(String message);
+
+    /**
+     * return the current frame
+     * @return this frame
+     */
+    JFrame getFrame();
 }

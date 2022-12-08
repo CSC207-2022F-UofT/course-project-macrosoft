@@ -1,7 +1,8 @@
 package user_shopping_cart_use_case;
 
-import org.bson.types.ObjectId;
-
+/*
+presenter of the shopping cart
+ */
 import java.util.HashMap;
 
 public interface ShoppingCartPresenter {

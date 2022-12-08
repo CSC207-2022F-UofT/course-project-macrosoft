@@ -34,9 +34,8 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter{
      * @return null
      */
     @Override
-    public UpdateOrderStatusResponseModel prepareSuccessView() {
+    public void prepareSuccessView() {
         screen.close();
-        return null;
     }
 
     /**

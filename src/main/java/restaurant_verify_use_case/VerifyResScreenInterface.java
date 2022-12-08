@@ -1,5 +1,7 @@
 package restaurant_verify_use_case;
-
+/*
+interface of the screen
+ */
 import org.bson.types.ObjectId;
 
 import javax.swing.*;

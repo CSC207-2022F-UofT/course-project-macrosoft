@@ -50,6 +50,7 @@ public class UpdateOrderStatusScreen extends JFrame implements UpdateOrderStatus
         // add the panel to the screen and set its title
         this.add(panel, BorderLayout.CENTER);
         this.setTitle("Order Status");
+        this.setLocationRelativeTo(null);
         this.pack();
 
         comboBox.addActionListener(this);

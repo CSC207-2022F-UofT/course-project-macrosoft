@@ -14,11 +14,11 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
     JTextField searchTextBar;
-
-    JScrollPane resScrollPanel;
     public UserDisplayRestaurantPanel(UserDisplayRestaurantController controller) {
         //initialize the controller
         this.controller = controller;
+        this.setOpaque(true);
+        this.setBackground(GREY_WHITE);
 
         // creating a search bar
         JPanel searchPanel = new JPanel();
@@ -31,6 +31,8 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
         searchPanel.add(searchButton);
 
         searchPanel.setMaximumSize(new Dimension(this.getWidth(), 50));
+        searchPanel.setOpaque(true);
+        searchPanel.setBackground(GREY_WHITE);
 
         restaurantPanel.setOpaque(true);
         restaurantPanel.setBackground(GREY_WHITE);
@@ -38,14 +40,14 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
         this.setLayout(new BorderLayout());
         this.add(searchPanel, BorderLayout.NORTH);
 
-        resScrollPanel = new JScrollPane(restaurantPanel);
+        JScrollPane resScrollPanel = new JScrollPane(restaurantPanel);
         resScrollPanel.setOpaque(true);
         resScrollPanel.setBackground(GREY_WHITE);
-        restaurantPanel.setBackground(GREY_WHITE);
+
         resScrollPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
         resScrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        this.add(resScrollPanel);
+        this.add(resScrollPanel, BorderLayout.CENTER);
     }
 
     public void refreshData() {
@@ -67,6 +69,14 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
             restLabel.setFont(new Font("Serif", Font.PLAIN, 17));
             restLabel.setHorizontalAlignment(SwingConstants.CENTER);
             restaurantPanel.add(new RestaurantComponent(restLabel, restId));
+        }
+
+        if(restaurantInfo.keySet().size() < 6){
+            for (int i = 0; i < 3 ;i++){
+                JPanel j = new JPanel();
+                j.setOpaque(false);
+                restaurantPanel.add(j);
+            }
         }
 
         restaurantPanel.repaint();

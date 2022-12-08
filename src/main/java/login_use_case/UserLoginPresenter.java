@@ -1,5 +1,7 @@
 package login_use_case;
-
+/*
+presenter of the login use case
+ */
 public interface UserLoginPresenter {
     UserLoginResponseModel loginSuccess(UserLoginResponseModel response);
     UserLoginResponseModel loginFailed(UserLoginResponseModel response);

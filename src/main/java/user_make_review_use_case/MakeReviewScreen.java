@@ -13,18 +13,22 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
     JTextArea commentArea;
     JComboBox<Integer> ratingBox;
 
+
     /**
      * A window with text input fields and buttons for user to input review info for an order
      */
     public MakeReviewScreen(MakeReviewController controller) {
 
         this.makeReviewController = controller;
+        this.setLocationRelativeTo(null);
 
-        this.setPreferredSize(new Dimension(700,500));
 
-        JLabel title = new JLabel("Review");
+        JPanel titlePanel = new JPanel();
+        titlePanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        JLabel title = new JLabel("How's This Order?");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 20));
+        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 30));
+        titlePanel.add(title);
 
         Integer[] ratingChoices = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         this.ratingBox = new JComboBox<>(ratingChoices);
@@ -37,17 +41,21 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
 
         JLabel subjectLabel = new JLabel("Subject:");
         this.subjectArea = new JTextArea();
-        subjectArea.setColumns(50);
+        subjectArea.setColumns(30);
         subjectArea.setRows(2);
         JPanel subjectPanel = new JPanel();
+        subjectPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
+        subjectPanel.setLayout(new GridLayout(2, 1));
         subjectPanel.add(subjectLabel);
         subjectPanel.add(subjectArea);
 
         JLabel commentLabel = new JLabel("Comment:");
         this.commentArea = new JTextArea();
-        commentArea.setColumns(50);
-        commentArea.setRows(10);
+        commentArea.setColumns(30);
+        commentArea.setRows(6);
         JPanel commentPanel = new JPanel();
+        commentPanel.setLayout(new GridLayout(2, 1));
+        commentPanel.setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 30));
         commentPanel.add(commentLabel);
         commentPanel.add(commentArea);
 
@@ -55,6 +63,7 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         JButton discard = new JButton("Discard");
 
         JPanel buttons = new JPanel();
+        buttons.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         buttons.add(save);
         buttons.add(discard);
 
@@ -64,7 +73,7 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         JPanel main = new JPanel();
         main.setLayout(new BoxLayout(main, BoxLayout.Y_AXIS));
 
-        main.add(title);
+        main.add(titlePanel);
         main.add(ratingPanel);
         main.add(subjectPanel);
         main.add(commentPanel);
