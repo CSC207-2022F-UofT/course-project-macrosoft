@@ -100,7 +100,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
 
     public void displayShoppingCart(String restaurantName, HashMap<String, HashMap<String, Object>> cart) {
         if (restaurantName == null || cart.size() == 0) {
-            title.setText("Your Shopping is Empty");
+            title.setText("Your Shopping Cart is Empty");
         }
         else {
             title.setText("Your Shopping Cart with " + restaurantName);
