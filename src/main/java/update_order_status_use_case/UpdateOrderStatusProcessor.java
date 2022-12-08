@@ -7,10 +7,18 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter {
         this.screen = screen;
     }
 
+    /**
+     * return the current screen
+     * @return this screen
+     */
     public UpdateOrderStatusScreenInterface getScreen() {
         return screen;
     }
 
+    /**
+     * set the current screen
+     * @param screen new screen
+     */
     public void setScreen(UpdateOrderStatusScreenInterface screen) {
         this.screen = screen;
     }
@@ -24,7 +32,12 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter {
         screen.close();
     }
 
+    /**
+     * when update order status failed
+     * @param message display the message
+     */
     @Override
     public void prepareFailView(String message) {
+
     }
 }
