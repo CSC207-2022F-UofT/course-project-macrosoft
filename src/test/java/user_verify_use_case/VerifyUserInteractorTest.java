@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import javax.swing.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class VerifyUserInteractorTest {
@@ -51,7 +53,8 @@ class VerifyUserInteractorTest {
 
 
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
-        assertEquals(verifyUserFacade.verifyUser(userID,"898912"), actual);
+        assertEquals(verifyUserInteractor.verifyUser(userID,"898912"), actual);
+
 
     }
     // testing verify user interactor with an invalid code
@@ -70,7 +73,7 @@ class VerifyUserInteractorTest {
 
 
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
-        assertEquals(verifyUserFacade.verifyUser(userID,"898913"), actual);
+        assertEquals(verifyUserInteractor.verifyUser(userID,"898913"), actual);
 
     }
 
