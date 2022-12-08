@@ -10,14 +10,14 @@ import entities.*;
  * This class is the interactor for the restaurant login use case.
  */
 public class RestaurantLoginInteractor implements RestaurantLoginInputBoundary {
-    private final UserLoginPresenter presenter;
+    private final UserLoginOutputBoundary presenter;
 
     /**
      * Constructor for RestaurantLoginInteractor
      *
      * @param presenter the presenter
      */
-    public RestaurantLoginInteractor(UserLoginPresenter presenter) {
+    public RestaurantLoginInteractor(UserLoginOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

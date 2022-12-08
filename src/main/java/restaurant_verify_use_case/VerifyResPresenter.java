@@ -3,26 +3,49 @@ package restaurant_verify_use_case;
 import org.bson.types.ObjectId;
 
 /**
- * presenter of the restaurant verify use case
+ * This class is the processor for the restaurant verify use case.
  */
-public interface VerifyResPresenter {
-    /**
-     * Susseccfully verified the current restaurant.
-     *
-     * @param currentRestaurantId the restaurant id
-     * @param restaurantName      the restaurant name
-     */
-    void verifiedSuccess(ObjectId currentRestaurantId, String restaurantName);
+public class VerifyResPresenter implements VerifyResOutputBoundary {
+
+    private VerifyResScreenInterface verifyResScreenInterface;
 
     /**
-     * Failed to verify the current restaurant.
+     * Constructor for VerifyResPresenter.
+     *
+     * @param verifyResScreenInterface the view
      */
-    void verifiedFailed();
+    public VerifyResPresenter(VerifyResScreenInterface verifyResScreenInterface) {
+        this.verifyResScreenInterface = verifyResScreenInterface;
+    }
 
     /**
-     * Sets verify restaurant view.
+     * When verification success, create a new restaurant homepage for the current user
+     * close the verification window,
      *
-     * @param verifyResScreenInterface the verify restaurant view
+     * @param currentRestaurantId id of the current restaurant
+     * @param restaurantName      name of the current restaurant
      */
-    void setVerifyResScreenInterface(VerifyResScreenInterface verifyResScreenInterface);
+    @Override
+    public void verifiedSuccess(ObjectId currentRestaurantId, String restaurantName) {
+        // Go to user homepage and pass the current user, note user means rest. in this case
+        verifyResScreenInterface.showRestaurantHomePage(currentRestaurantId, restaurantName);
+        verifyResScreenInterface.close();
+    }
+
+    /**
+     * When verification failed, display a message to the user.
+     */
+    @Override
+    public void verifiedFailed() {
+        verifyResScreenInterface.showMessage("Failed");
+    }
+
+    /**
+     * Sets the current screen
+     *
+     * @param verifyResScreenInterface new screen
+     */
+    public void setVerifyResScreenInterface(VerifyResScreenInterface verifyResScreenInterface) {
+        this.verifyResScreenInterface = verifyResScreenInterface;
+    }
 }

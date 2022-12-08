@@ -19,14 +19,14 @@ import java.util.stream.Collectors;
  */
 public class OrderHistoryInteractor implements OrderHistoryInputBoundary {
 
-    private final OrderHistoryPresenter presenter;
+    private final OrderHistoryOutputBoundary presenter;
 
     /**
      * Constructor for OrderHistoryInteractor
      *
      * @param presenter the presenter
      */
-    public OrderHistoryInteractor(OrderHistoryPresenter presenter) {
+    public OrderHistoryInteractor(OrderHistoryOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

@@ -7,14 +7,14 @@ import entities.Restaurant;
  * This class is the interactor for the restaurant profile use case.
  */
 public class RestaurantProfileIneractor implements RestaurantProfileInputBoundary{
-    private final RestaurantProfilePresenter presenter;
+    private final RestaurantProfileOutputBoundary presenter;
 
     /**
      * Constructor for RestaurantProfileIneractor
      *
      * @param presenter the presenter
      */
-    public RestaurantProfileIneractor(RestaurantProfilePresenter presenter) {
+    public RestaurantProfileIneractor(RestaurantProfileOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

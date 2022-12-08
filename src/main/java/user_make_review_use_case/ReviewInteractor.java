@@ -8,9 +8,9 @@ import org.bson.types.ObjectId;
 
 
 public class ReviewInteractor implements MakeReviewInputBoundary {
-    MakeReviewPresenter presenter;
+    MakeReviewOutputBoundary presenter;
 
-    public ReviewInteractor(MakeReviewPresenter presenter) {
+    public ReviewInteractor(MakeReviewOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

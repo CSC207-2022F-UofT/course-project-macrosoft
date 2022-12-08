@@ -6,23 +6,21 @@ import database.RestaurantDataMongo;
 import entities.Restaurant;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * This class is the interactor for user display restaurants use case.
  */
 public class UserDisplayRestaurantInteractor implements UserDisplayRestaurantInputBoundary {
-    UserDisplayRestaurantPresenter presenter;
+    UserDisplayRestaurantOutputBoundary presenter;
 
     /**
      * Constructor for UserDisplayRestaurantInteractor
      *
-     * @param presenter UserDisplayRestaurantPresenter presenter
+     * @param presenter UserDisplayRestaurantOutputBoundary presenter
      */
-    public UserDisplayRestaurantInteractor(UserDisplayRestaurantPresenter presenter) {
+    public UserDisplayRestaurantInteractor(UserDisplayRestaurantOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

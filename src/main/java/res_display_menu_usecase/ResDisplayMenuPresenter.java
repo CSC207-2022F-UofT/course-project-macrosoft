@@ -1,21 +1,38 @@
 package res_display_menu_usecase;
 
 /**
- * presenter of the display menu use case.
+ * This class is the processor for the display menu use case.
  */
-public interface ResDisplayMenuPresenter {
-    /**
-     * Present the menu.
-     *
-     * @param responseModel the response model
-     */
-    void presentMenu(ResDisplayMenuResponseModel responseModel);
+public class ResDisplayMenuPresenter implements ResDisplayMenuOutputBoundary {
+
+    private ResDisplayMenuPanelInterface displayMenuPanel;
 
     /**
-     * Sets the display menu panel.
+     * Constructor for ResDisplayMenuPresenter
      *
-     * @param displayMenuPane the new display menu panel
+     * @param displayMenuPanel the display menu panel
      */
-    void setDisplayMenuPanel(ResDisplayMenuPanelInterface displayMenuPane);
+    public ResDisplayMenuPresenter(ResDisplayMenuPanelInterface displayMenuPanel) {
+        this.displayMenuPanel = displayMenuPanel;
+    }
 
+    /**
+     * set the menu panel to the given menu panel
+     *
+     * @param displayMenuPanel new menu panel
+     */
+    public void setDisplayMenuPanel(ResDisplayMenuPanelInterface displayMenuPanel) {
+        this.displayMenuPanel = displayMenuPanel;
+    }
+
+    /**
+     * update the name and menu label on the panel, according to the response model
+     *
+     * @param responseModel response model
+     */
+    @Override
+    public void presentMenu(ResDisplayMenuResponseModel responseModel) {
+        displayMenuPanel.updateNameLabel(responseModel.getRestName());
+        displayMenuPanel.updateMenuPanel(responseModel.getMenuDic());
+    }
 }

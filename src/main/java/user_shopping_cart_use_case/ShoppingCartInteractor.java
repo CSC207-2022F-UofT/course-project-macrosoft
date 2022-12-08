@@ -11,14 +11,14 @@ import java.util.List;
  * This class is the interactor of shopping cart use case.
  */
 public class ShoppingCartInteractor implements ShoppingCartInputBoundary {
-    ShoppingCartPresenter presenter;
+    ShoppingCartOutputBoundary presenter;
 
     /**
      * Constructor for ShoppingCartInteractor
      *
      * @param presenter the presenter
      */
-    public ShoppingCartInteractor(ShoppingCartPresenter presenter) {
+    public ShoppingCartInteractor(ShoppingCartOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

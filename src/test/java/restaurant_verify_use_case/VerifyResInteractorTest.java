@@ -41,16 +41,16 @@ class VerifyResInteractorTest {
     void testVerifyResValid() {
         ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
         int actual = 1000;
-        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
-        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
+        VerifyResOutputBoundary verifyResOutputBoundary = new VerifyResPresenter(null);
+        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResOutputBoundary);
         VerifyResController verifyResController = new VerifyResController(verifyResFacade, resID);
         VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
 
-        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
+        verifyResOutputBoundary.setVerifyResScreenInterface(verifyResScreen);
 
         verifyResScreen.getFrame().setVisible(true);
 
-        VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResPresenter);
+        VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResOutputBoundary);
         assertEquals(verifyResInteractor.verifyRes(resID,"898912"), actual);
 
     }
@@ -59,15 +59,15 @@ class VerifyResInteractorTest {
     void testVerifyResInvalid() {
         ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
         int actual = 1001;
-        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
-        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
+        VerifyResOutputBoundary verifyResOutputBoundary = new VerifyResPresenter(null);
+        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResOutputBoundary);
         VerifyResController verifyResController = new VerifyResController(verifyResFacade, resID);
         VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
 
-        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
+        verifyResOutputBoundary.setVerifyResScreenInterface(verifyResScreen);
         verifyResScreen.getFrame().setVisible(true);
 
-        VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResPresenter);
+        VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResOutputBoundary);
         assertEquals(verifyResInteractor.verifyRes(resID,"898911"), actual);
 
     }

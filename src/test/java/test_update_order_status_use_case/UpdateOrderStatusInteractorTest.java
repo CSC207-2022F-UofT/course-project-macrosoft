@@ -23,7 +23,7 @@ public class UpdateOrderStatusInteractorTest {
         String newStatus = "Order Received";
 
         UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
-        UpdateOrderStatusPresenter presenter = new UpdateOrderStatusProcessor(null);
+        UpdateOrderStatusOutputBoundary presenter = new UpdateOrderStatusPresenter(null);
         UpdateOrderStatusInteractor interactor = new UpdateOrderStatusInteractor(presenter);
         String expected = "Order Received";
         interactor.updateOrderStatus(request);
@@ -36,7 +36,7 @@ public class UpdateOrderStatusInteractorTest {
         String newStatus = "Confirming Order";
 
         UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
-        UpdateOrderStatusPresenter presenter = new UpdateOrderStatusProcessor(null);
+        UpdateOrderStatusOutputBoundary presenter = new UpdateOrderStatusPresenter(null);
         UpdateOrderStatusInteractor interactor = new UpdateOrderStatusInteractor(presenter);
         String expected = "Confirming Order";
         interactor.updateOrderStatus(request);
@@ -49,7 +49,7 @@ public class UpdateOrderStatusInteractorTest {
         String newStatus = "Ready For Pickup";
 
         UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
-        UpdateOrderStatusPresenter presenter = new UpdateOrderStatusProcessor(null);
+        UpdateOrderStatusOutputBoundary presenter = new UpdateOrderStatusPresenter(null);
         UpdateOrderStatusInteractor interactor = new UpdateOrderStatusInteractor(presenter);
         String expected = "Ready For Pickup";
         interactor.updateOrderStatus(request);

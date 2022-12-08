@@ -9,8 +9,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class VerifyUserInteractorTest {
@@ -42,16 +40,16 @@ class VerifyUserInteractorTest {
     void testVerifyUserValid() {
         ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
         int actual = 1000;
-        VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
-        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
+        VerifyUserOutputBoundary verifyUserOutputBoundary = new VerifyUserPresenter(null);
+        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserOutputBoundary);
         VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userID);
         VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
 
-        verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
+        verifyUserOutputBoundary.setVerifyUserScreen(verifyUserScreen);
         verifyUserScreen.getFrame().setVisible(true);
 
 
-        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
+        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserOutputBoundary);
         assertEquals(verifyUserInteractor.verifyUser(userID,"898912"), actual);
 
     }
@@ -62,16 +60,16 @@ class VerifyUserInteractorTest {
         ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
         int actual = 1001;
 
-        VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
-        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
+        VerifyUserOutputBoundary verifyUserOutputBoundary = new VerifyUserPresenter(null);
+        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserOutputBoundary);
         VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userID);
         VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
 
-        verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
+        verifyUserOutputBoundary.setVerifyUserScreen(verifyUserScreen);
         verifyUserScreen.getFrame().setVisible(true);
 
 
-        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
+        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserOutputBoundary);
         assertEquals(verifyUserInteractor.verifyUser(userID,"898913"), actual);
 
     }

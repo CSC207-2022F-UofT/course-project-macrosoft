@@ -5,20 +5,35 @@ import org.bson.types.ObjectId;
 import java.util.HashMap;
 
 /**
- * presenter of the usecase
+ * This class is the processor of the user display restaurants use case.
  */
-public interface UserDisplayRestaurantPresenter {
-    /**
-     * Sets the screen
-     *
-     * @param screen the screen
-     */
-    void setScreen(UserDisplayRestaurantPanelInterface screen);
+public class UserDisplayRestaurantPresenter implements UserDisplayRestaurantOutputBoundary {
+    UserDisplayRestaurantPanelInterface screen;
 
     /**
-     * Displays restaurants
+     * Constructor for UserDisplayRestaurantPresenter
      *
-     * @param restaurantInfo restaurant info
+     * @param screen UserDisplayRestaurantPanelInterface screen
      */
-    void displayRestaurants(HashMap<ObjectId, String> restaurantInfo);
+    public UserDisplayRestaurantPresenter(UserDisplayRestaurantPanelInterface screen) {
+        this.screen = screen;
+    }
+
+    /**
+     * Sets the current screen
+     *
+     * @param screen screen
+     */
+    public void setScreen(UserDisplayRestaurantPanelInterface screen) {
+        this.screen = screen;
+    }
+
+    /**
+     * Display the restaurants given the restaurant information
+     *
+     * @param restaurantInfo a hashmap that maps object id (restaurant id)to string(restaurant name)
+     */
+    public void displayRestaurants(HashMap<ObjectId, String> restaurantInfo) {
+        this.screen.updateRestaurantPanel(restaurantInfo);
+    }
 }

@@ -7,8 +7,6 @@ import user_order_history_use_case.OrderHistoryDetailScreen;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -52,19 +50,9 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         titlePanel.add(refreshButton);
         titlePanel.add(showCurrentOrdersButton);
 
-        refreshButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                restaurantOrderHistoryController.getOrders();
-            }
-        });
+        refreshButton.addActionListener(e -> restaurantOrderHistoryController.getOrders());
 
-        showCurrentOrdersButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                restaurantOrderHistoryController.getUnfufilledOrders();
-            }
-        });
+        showCurrentOrdersButton.addActionListener(e -> restaurantOrderHistoryController.getUnfufilledOrders());
 
         orderDisplayPanel.setBackground(GREY_WHITE);
         orderDisplayPanel.setBorder(blackline);
@@ -86,23 +74,9 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         orderHistory.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 60));
         orderDisplayPanel.add(orderHistory);
 
-//        JPanel right = new JPanel();
-//        JPanel left = new JPanel();
-//        JPanel bottom = new JPanel();
-//
-//        right.setPreferredSize(new Dimension(50 ,0));
-//        left.setPreferredSize(new Dimension(50 ,0));
-//        bottom.setPreferredSize(new Dimension(0 ,100));
-//        right.setBackground(BG_DARK_GREEN);
-//        left.setBackground(BG_DARK_GREEN);
-//        bottom.setBackground(BG_DARK_GREEN);
-
         this.setLayout(new BorderLayout());
         this.add(orderHistoryScroll, BorderLayout.CENTER);
         this.add(titlePanel, BorderLayout.NORTH);
-//        this.add(right, BorderLayout.EAST);
-//        this.add(left, BorderLayout.WEST);
-//        this.add(bottom, BorderLayout.SOUTH);
     }
 
     @Override
@@ -132,19 +106,9 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
             orderStatus.setForeground(BG_DARK_GREEN);
             orderStatus.setBorder(emptyBorder2);
 
-            viewDetails.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new OrderHistoryDetailScreen((ArrayList<HashMap<String, Object>>) orderInfo.get("OrderItems"));
-                }
-            });
+            viewDetails.addActionListener(e -> new OrderHistoryDetailScreen((ArrayList<HashMap<String, Object>>) orderInfo.get("OrderItems")));
 
-            setStatus.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    showEditOrderStatusScreen((ObjectId) orderInfo.get("ID"));
-                }
-            });
+            setStatus.addActionListener(e -> showEditOrderStatusScreen((ObjectId) orderInfo.get("ID")));
 
             orderPanel.add(orderId);
             orderPanel.add(userName);
@@ -162,7 +126,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
     }
 
     public void showEditOrderStatusScreen(ObjectId orderId) {
-        UpdateOrderStatusPresenter orderStatusPresenter = new UpdateOrderStatusProcessor(null);
+        UpdateOrderStatusOutputBoundary orderStatusPresenter = new UpdateOrderStatusPresenter(null);
         UpdateOrderStatusInputBoundary orderStatusInteractor = new UpdateOrderStatusInteractor(orderStatusPresenter);
         UpdateOrderStatusController orderStatusController = new UpdateOrderStatusController(orderStatusInteractor, orderId);
         UpdateOrderStatusScreenInterface screen = new UpdateOrderStatusScreen(orderStatusController);
@@ -177,7 +141,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
     }
 
     /**
-     * @param message
+     * @param message result message
      */
     @Override
     public void showMessage(String message) {

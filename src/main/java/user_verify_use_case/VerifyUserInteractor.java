@@ -8,14 +8,14 @@ import org.bson.types.ObjectId;
  */
 public class VerifyUserInteractor {
 
-    private final VerifyUserPresenter presenter;
+    private final VerifyUserOutputBoundary presenter;
 
     /**
      * Constructor of VerifyUserInteractor.
      *
      * @param presenter a verify user presenter
      */
-    public VerifyUserInteractor(VerifyUserPresenter presenter) {
+    public VerifyUserInteractor(VerifyUserOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

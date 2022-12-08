@@ -9,14 +9,14 @@ import org.bson.types.ObjectId;
  */
 public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoundary {
 
-    private final RegisterRestaurantPresenter presenter;
+    private final RegisterRestaurantOutputBoundary presenter;
 
     /**
      * Constructor for RegisterRestaurantInteractor
      *
      * @param presenter the presenter
      */
-    public RegisterRestaurantInteractor(RegisterRestaurantPresenter presenter) {
+    public RegisterRestaurantInteractor(RegisterRestaurantOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

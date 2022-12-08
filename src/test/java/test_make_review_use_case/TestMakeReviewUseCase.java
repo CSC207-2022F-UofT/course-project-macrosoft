@@ -11,7 +11,6 @@ import org.junit.Test;
 import user_make_review_use_case.*;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class TestMakeReviewUseCase {
         Date d = new Date();
 
         // run the use case
-        MakeReviewPresenter presenter = new MakeReviewResponseFormatter();
+        MakeReviewOutputBoundary presenter = new MakeReviewPresenter();
         ReviewInteractor i = new ReviewInteractor(presenter);
         MakeReviewRequestModel request= new MakeReviewRequestModel(orderId, rating, comment, p, subject, d);
         i.makeReview(request);

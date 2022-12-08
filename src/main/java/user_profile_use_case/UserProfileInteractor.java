@@ -10,14 +10,14 @@ import entities.User;
  */
 public class UserProfileInteractor implements UserProfileInputBoundary {
 
-    private final UserProfilePresenter presenter;
+    private final UserProfileOutputBoundary presenter;
 
     /**
      * Constructor for UserProfileInteractor
      *
      * @param presenter the presenter
      */
-    public UserProfileInteractor(UserProfilePresenter presenter) {
+    public UserProfileInteractor(UserProfileOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

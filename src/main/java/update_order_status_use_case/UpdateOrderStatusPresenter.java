@@ -1,28 +1,59 @@
 package update_order_status_use_case;
 
-// Interface Adaptors Layer
+// Interface adapter layer
 
 /**
- * This interface if the presenter for update order status use case.
+ * This class is the processor which implements presenter of update order status use case.
  */
-public interface UpdateOrderStatusPresenter {
+public class UpdateOrderStatusPresenter implements UpdateOrderStatusOutputBoundary {
+
+    private UpdateOrderStatusScreenInterface screen;
 
     /**
-     * This method prepare success view for the update order status use case.
-     */
-    void prepareSuccessView();
-
-    /**
-     * This method prepare fail view for the update order status use case.
-     *
-     * @param str String fail message
-     */
-    void prepareFailView(String str);
-
-    /**
-     * This method set screen for the update order status use case.
+     * Constructor for UpdateOrderStatusPresenter
      *
      * @param screen UpdateOrderStatusScreenInterface current screen
      */
-    void setScreen(UpdateOrderStatusScreenInterface screen);
+    public UpdateOrderStatusPresenter(UpdateOrderStatusScreenInterface screen) {
+        this.screen = screen;
+    }
+
+    /**
+     * Get current screen
+     *
+     * @return UpdateOrderStatusScreenInterface current screen
+     */
+    public UpdateOrderStatusScreenInterface getScreen() {
+        return screen;
+    }
+
+    /**
+     * This method override the same method in the presenter.
+     * Handle the case when update order status is successful.
+     */
+    @Override
+    public void prepareSuccessView() {
+        screen.close();
+    }
+
+    /**
+     * This method override the same method in the presenter.
+     * Handle the case when update order status is failed.
+     *
+     * @param str String fail message
+     */
+    @Override
+    public void prepareFailView(String str) {
+    }
+
+    /**
+     * This method override the same method in the presenter.
+     * Set the screen
+     *
+     * @param screen UpdateOrderStatusScreenInterface current screen
+     */
+    @Override
+    public void setScreen(UpdateOrderStatusScreenInterface screen) {
+        this.screen = screen;
+    }
 }

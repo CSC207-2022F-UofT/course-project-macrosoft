@@ -8,15 +8,15 @@ import org.bson.types.ObjectId;
  */
 public class VerifyUserFacade {
 
-    private final VerifyUserPresenter verifyUserPresenter;
+    private final VerifyUserOutputBoundary verifyUserOutputBoundary;
 
     /**
      * Constructor of VerifyUserFacade.
      *
-     * @param verifyUserPresenter a verify user presenter
+     * @param verifyUserOutputBoundary a verify user presenter
      */
-    public VerifyUserFacade(VerifyUserPresenter verifyUserPresenter) {
-        this.verifyUserPresenter = verifyUserPresenter;
+    public VerifyUserFacade(VerifyUserOutputBoundary verifyUserOutputBoundary) {
+        this.verifyUserOutputBoundary = verifyUserOutputBoundary;
     }
 
     /**
@@ -36,7 +36,7 @@ public class VerifyUserFacade {
      * @param code   a verification code
      */
     public void verifyUser(ObjectId userID, String code) {
-        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(this.verifyUserPresenter);
+        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(this.verifyUserOutputBoundary);
         verifyUserInteractor.verifyUser(userID, code);
     }
 }

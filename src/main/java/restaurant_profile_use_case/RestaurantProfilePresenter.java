@@ -1,25 +1,49 @@
 package restaurant_profile_use_case;
 
 /**
- * presenter of the restaurant profile use case.
+ * This class is the processor for the restaurant profile use case.
  */
-public interface RestaurantProfilePresenter {
+public class RestaurantProfilePresenter implements RestaurantProfileOutputBoundary {
+
+    private RestaurantProfilePanelInterface restaurantProfilePanel;
+
     /**
-     * Sets the restaurant profile panel.
+     * Constructor for RestaurantProfilePresenter
      *
      * @param restaurantProfilePanel the restaurant profile panel
      */
-    void setRestaurantProfilePanel(RestaurantProfilePanelInterface restaurantProfilePanel);
+    public RestaurantProfilePresenter(RestaurantProfilePanelInterface restaurantProfilePanel) {
+        this.restaurantProfilePanel = restaurantProfilePanel;
+    }
 
     /**
-     * Doesn't find the restaurant.
-     */
-    void restaurantNotFound();
-
-    /**
-     * Finds the restaurant.
+     * set the panel
      *
-     * @param restaurantProfileResponseModel the response model
+     * @param restaurantProfilePanel new panel
      */
-    void restaurantFound(RestaurantProfileResponseModel restaurantProfileResponseModel);
+    @Override
+    public void setRestaurantProfilePanel(RestaurantProfilePanelInterface restaurantProfilePanel) {
+        this.restaurantProfilePanel = restaurantProfilePanel;
+    }
+
+    /**
+     * when the restaurant is not found, don't do anything
+     */
+    @Override
+    public void restaurantNotFound() {
+
+    }
+
+    /**
+     * update the restaurant information when the restaurant is found
+     *
+     * @param restaurantProfileResponseModel response model
+     */
+    @Override
+    public void restaurantFound(RestaurantProfileResponseModel restaurantProfileResponseModel) {
+        restaurantProfilePanel.updateNameLabel(restaurantProfileResponseModel.getName());
+        restaurantProfilePanel.updateEmailLabel(restaurantProfileResponseModel.getEmail());
+        restaurantProfilePanel.updateLocationLabel(restaurantProfileResponseModel.getLocation());
+        restaurantProfilePanel.updatePhoneLabel(restaurantProfileResponseModel.getPhone());
+    }
 }

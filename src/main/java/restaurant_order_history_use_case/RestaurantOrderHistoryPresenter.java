@@ -1,25 +1,47 @@
 package restaurant_order_history_use_case;
 
 /**
- * presenter of the restaurant order history use case.
+ * processor of the restaurant order history use case
  */
-public interface RestaurantOrderHistoryPresenter {
-    /**
-     * Presents the screen.
-     *
-     * @param screen the screen
-     */
-    void setScreen(RestaurantOrderHistoryPanelInterface screen);
+public class RestaurantOrderHistoryPresenter implements RestaurantOrderHistoryOutputBoundary {
+    RestaurantOrderHistoryPanelInterface screen;
+
+    public RestaurantOrderHistoryPresenter(RestaurantOrderHistoryPanelInterface screen) {
+        this.screen = screen;
+    }
 
     /**
-     * Sets the orders.
+     * set orders according to the response model
      *
-     * @param responseModel the response model
+     * @param responseModel response model
      */
-    void setOrders(RestaurantOrderHistoryResponseModel responseModel);
+    public void setOrders(RestaurantOrderHistoryResponseModel responseModel) {
+        this.screen.setOrder(responseModel.getOrderInfo());
+    }
 
     /**
-     * new order.
+     * return the current screen
+     *
+     * @return this screen
      */
-    void newOrder();
+    public RestaurantOrderHistoryPanelInterface getScreen() {
+        return screen;
+    }
+
+    /**
+     * set the current screen
+     *
+     * @param screen new screen
+     */
+    public void setScreen(RestaurantOrderHistoryPanelInterface screen) {
+        this.screen = screen;
+    }
+
+    /**
+     * show a message when there is a new order comming to the current restaurant.
+     */
+    public void newOrder() {
+        this.screen.showMessage("You have a new order!");
+        this.screen.updateOrder();
+    }
 }

@@ -1,27 +1,50 @@
 package user_register_use_case;
 
 /**
- * presenter of the use case
+ * This interface is the input boundary of the user register use case.
  */
-public interface RegisterUserPresenter {
-    /**
-     * Failed to register a user.
-     *
-     * @param message the message
-     */
-    void registerFailed(String message);
+public class RegisterUserPresenter implements RegisterUserOutputBoundary {
+
+    RegisterUserScreenInterface screen;
+
 
     /**
-     * Register successful.
-     *
-     * @param message the message
-     */
-    void registerSuccessful(String message);
-
-    /**
-     * Sets screen.
+     * Instantiates a new Register user processor.
      *
      * @param screen the screen
      */
-    void setScreen(RegisterUserScreenInterface screen);
+    public RegisterUserPresenter(RegisterUserScreenInterface screen) {
+        this.screen = screen;
+    }
+
+    /**
+     * When registration failed, display a message
+     *
+     * @param message result message
+     */
+    @Override
+    public void registerFailed(String message) {
+        screen.showMessage(message);
+    }
+
+    /**
+     * When registration success, show a message, show the welcome page, and close the register window
+     *
+     * @param message result messsage
+     */
+    @Override
+    public void registerSuccessful(String message) {
+        screen.showMessage(message);
+        screen.showWelcomePage();
+        screen.close();
+    }
+
+    /**
+     * Sets the screen to the given screen
+     *
+     * @param screen new screen
+     */
+    public void setScreen(RegisterUserScreenInterface screen) {
+        this.screen = screen;
+    }
 }
