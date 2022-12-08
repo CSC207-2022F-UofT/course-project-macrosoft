@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class WelcomeScreen {
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
@@ -36,7 +36,7 @@ public class WelcomeScreen {
         JPanel centrePanel = new JPanel();
         centrePanel.setOpaque(false);
         JLabel greetingLabel = new JLabel("WELCOME TO SKIP-THE-LINE");
-        greetingLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        greetingLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         greetingLabel.setForeground(GREY_WHITE);
         greetingLabel.setBorder(emptyBorder3);
         centrePanel.add(greetingLabel);

@@ -18,16 +18,16 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
 
     RestaurantOrderHistoryController restaurantOrderHistoryController;
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
     private static final Border blackline = BorderFactory.createLineBorder(Color.black);
 
-    private JPanel orderDisplayPanel = new JPanel();
+    private final JPanel orderDisplayPanel = new JPanel();
 
-    public RestaurantOrderHistoryPanel(RestaurantOrderHistoryController controller, String restaurantName){
+    public RestaurantOrderHistoryPanel(RestaurantOrderHistoryController controller, String restaurantName) {
 
         this.restaurantOrderHistoryController = controller;
 
@@ -36,7 +36,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
         String orderTitle = restaurantName + "'s Order History";
 
         JLabel title = new JLabel(orderTitle);
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setBorder(emptyBorder);
 
@@ -68,7 +68,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
 
         orderDisplayPanel.setBackground(GREY_WHITE);
         orderDisplayPanel.setBorder(blackline);
-        GridLayout layout = new GridLayout(0 ,2);
+        GridLayout layout = new GridLayout(0, 2);
         layout.setVgap(40);
         layout.setHgap(40);
         orderDisplayPanel.setLayout(layout);
@@ -83,7 +83,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
 
         JLabel orderHistory = new JLabel();
         orderHistory.setText("You do not have any order history");
-        orderHistory.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 60));
+        orderHistory.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 60));
         orderDisplayPanel.add(orderHistory);
 
 //        JPanel right = new JPanel();
@@ -109,7 +109,7 @@ public class RestaurantOrderHistoryPanel extends JPanel implements RestaurantOrd
     public void setOrder(ArrayList<HashMap<String, Object>> orderInfos) {
         orderDisplayPanel.removeAll();
 
-        for(HashMap<String, Object> orderInfo : orderInfos){
+        for (HashMap<String, Object> orderInfo : orderInfos) {
             JPanel orderPanel = new JPanel();
             orderPanel.setLayout(new GridLayout(0, 1));
             JLabel orderId = new JLabel("ID: " + orderInfo.get("ID"));

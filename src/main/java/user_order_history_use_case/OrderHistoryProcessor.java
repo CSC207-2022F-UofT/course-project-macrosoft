@@ -1,14 +1,23 @@
 package user_order_history_use_case;
 
-public class OrderHistoryProcessor implements OrderHistoryPresenter{
+/**
+ * This class is the processor of the user order history.
+ */
+public class OrderHistoryProcessor implements OrderHistoryPresenter {
     private OrderHistoryPanelInterface orderHistoryPanel;
 
+    /**
+     * Constructor for OrderHistoryProcessor
+     *
+     * @param orderHistoryPanel the order history panel
+     */
     public OrderHistoryProcessor(OrderHistoryPanelInterface orderHistoryPanel) {
         this.orderHistoryPanel = orderHistoryPanel;
     }
 
     /**
-     * when the order is found, set order to the order.
+     * When the order is found, set order to the order.
+     *
      * @param orderHistoryResponseModel response model
      */
     @Override
@@ -17,7 +26,7 @@ public class OrderHistoryProcessor implements OrderHistoryPresenter{
     }
 
     /**
-     * when the order is not found
+     * Order is not found
      */
     @Override
     public void orderNotFound() {
@@ -26,6 +35,7 @@ public class OrderHistoryProcessor implements OrderHistoryPresenter{
 
     /**
      * Set the panel to the given panel
+     *
      * @param orderHistoryPanel panel
      */
     @Override

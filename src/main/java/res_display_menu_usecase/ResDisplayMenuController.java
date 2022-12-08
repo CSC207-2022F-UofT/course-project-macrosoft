@@ -3,27 +3,48 @@ package res_display_menu_usecase;
 import org.bson.types.ObjectId;
 import user_shopping_cart_use_case.ShoppingCartSingleton;
 
+/**
+ * This class is the controller for the display menu use case.
+ */
 public class ResDisplayMenuController {
 
-    private ResDisplayMenuInputBoundary interactor;
+    private final ResDisplayMenuInputBoundary interactor;
 
-    private ObjectId restId;
+    private final ObjectId restId;
 
+    /**
+     * Constructor for ResDisplayMenuController
+     *
+     * @param interactor the interactor
+     * @param restId     the restaurant id
+     */
     public ResDisplayMenuController(ResDisplayMenuInputBoundary interactor, ObjectId restId) {
         this.interactor = interactor;
         this.restId = restId;
     }
 
+    /**
+     * Displays the menu page.
+     */
     public void displayMenuPage(){
         ResDisplayMenuRequestModel requestModel = new ResDisplayMenuRequestModel(restId);
         interactor.displayMenu(requestModel);
     }
 
+    /**
+     * Adds a food item to the shopping cart.
+     *
+     * @param foodId the food id
+     */
     public void addItem(ObjectId foodId, String quantity) {
         int quantityInt = Integer.parseInt(quantity);
         ShoppingCartSingleton.getSingletonInstance().addFood(foodId, quantityInt);
     }
 
+    /**
+     * Gets the restaurant id
+     * @return the restaurant id
+     */
     public ObjectId getRestId() {
         return restId;
     }

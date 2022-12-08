@@ -4,15 +4,26 @@ import database.*;
 import library.PasswordHasher;
 import org.bson.types.ObjectId;
 
-public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoundary{
+/**
+ * This class is the interactor for the restaurant register use case.
+ */
+public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoundary {
 
-    private RegisterRestaurantPresenter presenter;
+    private final RegisterRestaurantPresenter presenter;
+
+    /**
+     * Constructor for RegisterRestaurantInteractor
+     *
+     * @param presenter the presenter
+     */
     public RegisterRestaurantInteractor(RegisterRestaurantPresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
-     * @param requestModel
+     * Registers a restaurant.
+     *
+     * @param requestModel the request model
      * @return 1000: Success
      * 1001: Username Exists
      */

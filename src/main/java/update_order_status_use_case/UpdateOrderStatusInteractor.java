@@ -27,7 +27,6 @@ public class UpdateOrderStatusInteractor implements UpdateOrderStatusInputBounda
      * Get the order status with given orderId
      *
      * @param orderId ObjectId  order ID that is used to track a specific order
-     *
      * @return String order status of the current order
      */
     @Override

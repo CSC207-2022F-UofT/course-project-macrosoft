@@ -9,7 +9,7 @@ import org.bson.types.ObjectId;
  */
 public class AddFoodRequestModel {
 
-    private ObjectId resId;
+    private final ObjectId resId;
     private Menu curMenu;
 
     private String name;
@@ -125,14 +125,6 @@ public class AddFoodRequestModel {
      */
     public ObjectId getResId() {
         return resId;
-    }
-
-    /**
-     * Sets the restaurant id
-     * @param resId the restaurant id
-     */
-    public void setResId(ObjectId resId) {
-        this.resId = resId;
     }
 }
 

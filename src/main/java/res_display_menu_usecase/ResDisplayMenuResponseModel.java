@@ -3,30 +3,41 @@ package res_display_menu_usecase;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This class is the response model for the display menu use case.
+ */
 public class ResDisplayMenuResponseModel {
 
-    private HashMap<String, List> menuDic;
+    private final HashMap<String, List> menuDic;
 
-    private String restName;
+    private final String restName;
 
+    /**
+     * Constructor for ResDisplayMenuResponseModel
+     *
+     * @param menuDic the menu dictionary
+     * @param restName the rest name
+     */
     public ResDisplayMenuResponseModel(HashMap<String, List> menuDic, String restName) {
         this.menuDic = menuDic;
         this.restName = restName;
     }
 
+    /**
+     * Gets the menu dictionary.
+     *
+     * @return the menu dictionary
+     */
     public HashMap<String, List> getMenuDic() {
         return menuDic;
     }
 
-    public void setMenuDic(HashMap<String, List> menuDic) {
-        this.menuDic = menuDic;
-    }
-
+    /**
+     * Gets the rest name.
+     *
+     * @return the rest name
+     */
     public String getRestName() {
         return restName;
-    }
-
-    public void setRestName(String restName) {
-        this.restName = restName;
     }
 }

@@ -58,11 +58,9 @@ public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUs
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Verify")) {
             verifyUserController.verifyUser(verificationCode.getText());
-        }
-        else if (evt.getActionCommand().equals("Generate Email")) {
+        } else if (evt.getActionCommand().equals("Generate Email")) {
             verifyUserController.generateEmail();
-        }
-        else if (evt.getActionCommand().equals("Cancel")) {
+        } else if (evt.getActionCommand().equals("Cancel")) {
             this.showLoginScreen();
             this.dispose();
         }
@@ -83,6 +81,7 @@ public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUs
 
     /**
      * create a new homepage
+     *
      * @param userId id of the current user
      */
     @Override
@@ -93,6 +92,7 @@ public class VerifyUserScreen extends JFrame implements ActionListener, VerifyUs
 
     /**
      * display message
+     *
      * @param message message
      */
 

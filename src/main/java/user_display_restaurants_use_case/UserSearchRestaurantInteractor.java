@@ -9,13 +9,26 @@ import org.bson.types.ObjectId;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This class is the interactor for user search restaurants use case.
+ */
 public class UserSearchRestaurantInteractor implements UserSearchRestaurantInputBoundary {
     UserDisplayRestaurantPresenter presenter;
 
+    /**
+     * Constructor for UserSearchRestaurantInteractor
+     *
+     * @param presenter UserDisplayRestaurantPresenter presenter
+     */
     public UserSearchRestaurantInteractor(UserDisplayRestaurantPresenter presenter) {
         this.presenter = presenter;
     }
 
+    /**
+     * Search restaurants by name
+     *
+     * @param searchString name
+     */
     public void search(String searchString) {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
@@ -24,7 +37,7 @@ public class UserSearchRestaurantInteractor implements UserSearchRestaurantInput
 
         HashMap<ObjectId, String> restaurantInfo = new HashMap<>();
 
-        for (Restaurant restaurant: restaurantList) {
+        for (Restaurant restaurant : restaurantList) {
             restaurantInfo.put(restaurant.getRestaurantID(), restaurant.getName());
         }
 

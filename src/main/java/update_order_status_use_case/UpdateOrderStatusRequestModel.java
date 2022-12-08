@@ -9,13 +9,13 @@ import org.bson.types.ObjectId;
  */
 public class UpdateOrderStatusRequestModel {
 
-    private ObjectId orderId;
-    private String newStatus;
+    private final ObjectId orderId;
+    private final String newStatus;
 
     /**
      * Constructor for UpdateOrderStatusRequestModel
      *
-     * @param orderId ObjectId order id of current order
+     * @param orderId   ObjectId order id of current order
      * @param newStatus String new order status of current order
      */
     public UpdateOrderStatusRequestModel(ObjectId orderId, String newStatus) {
@@ -25,22 +25,21 @@ public class UpdateOrderStatusRequestModel {
 
     /**
      * Get current order id
+     *
      * @return ObjectId current order id
      */
-    public ObjectId getCurOrderId() {return this.orderId;}
+    public ObjectId getCurOrderId() {
+        return this.orderId;
+    }
 
     /**
      * Get new order status of current order
+     *
      * @return String new order status
      */
-    public String getNewStatus() {return this.newStatus;}
-
-
-
-
-
-
-
+    public String getNewStatus() {
+        return this.newStatus;
+    }
 
 
 }

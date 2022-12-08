@@ -2,12 +2,15 @@ package user_verify_use_case;
 
 import java.util.Date;
 
+/**
+ * This class is the interactor of add a minute.
+ */
 public class AddMinutesInteractor {
 
     /**
-     * @param minutes: time to add
-     * @param beforeTime: previous time
-     * @return afterAddingMins: new time
+     * @param minutes    time to add
+     * @param beforeTime previous time
+     * @return afterAddingMins new time
      */
     public static Date addMinutesToDate(int minutes, Date beforeTime) {
         long curTimeInMs = beforeTime.getTime();

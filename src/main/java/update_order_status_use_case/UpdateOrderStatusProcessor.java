@@ -5,7 +5,7 @@ package update_order_status_use_case;
 /**
  * This class is the processor which implements presenter of update order status use case.
  */
-public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter{
+public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter {
 
     private UpdateOrderStatusScreenInterface screen;
 
@@ -14,7 +14,7 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter{
      *
      * @param screen UpdateOrderStatusScreenInterface current screen
      */
-    public  UpdateOrderStatusProcessor(UpdateOrderStatusScreenInterface screen) {
+    public UpdateOrderStatusProcessor(UpdateOrderStatusScreenInterface screen) {
         this.screen = screen;
     }
 
@@ -30,8 +30,6 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter{
     /**
      * This method override the same method in the presenter.
      * Handle the case when update order status is successful.
-     *
-     * @return null
      */
     @Override
     public void prepareSuccessView() {
@@ -43,8 +41,6 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter{
      * Handle the case when update order status is failed.
      *
      * @param str String fail message
-     *
-     * @return null
      */
     @Override
     public void prepareFailView(String str) {

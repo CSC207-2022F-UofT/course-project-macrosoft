@@ -59,11 +59,9 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
     public void actionPerformed(ActionEvent evt) {
         if (evt.getActionCommand().equals("Verify")) {
             verifyResController.verifyRes(verificationCode.getText());
-        }
-        else if (evt.getActionCommand().equals("Generate Email")) {
+        } else if (evt.getActionCommand().equals("Generate Email")) {
             verifyResController.generateEmail();
-        }
-        else if (evt.getActionCommand().equals("Cancel")) {
+        } else if (evt.getActionCommand().equals("Cancel")) {
             this.showLoginScreen();
             this.dispose();
         }
@@ -84,7 +82,8 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
 
     /**
      * initiate a new restaurant homepage
-     * @param restaurantId  id of the current restaurant
+     *
+     * @param restaurantId   id of the current restaurant
      * @param restaurantName name of the current restaurant
      */
     public void showRestaurantHomePage(ObjectId restaurantId, String restaurantName) {

@@ -1,9 +1,17 @@
 package restaurant_register_use_case;
 
+/**
+ * This class is the processor for the restaurant register use case.
+ */
 public class RegisterRestaurantProcessor implements RegisterRestaurantPresenter {
 
     private RegisterRestaurantScreenInterface screen;
 
+    /**
+     * Constructor for RegisterRestaurantProcessor
+     *
+     * @param screen the screen
+     */
     public RegisterRestaurantProcessor(RegisterRestaurantScreenInterface screen) {
         this.screen = screen;
     }

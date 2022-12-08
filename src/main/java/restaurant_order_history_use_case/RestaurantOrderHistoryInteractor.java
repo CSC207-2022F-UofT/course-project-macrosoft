@@ -10,15 +10,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * This class is the interactor for the restaurant order history use case.
+ */
 public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryInputBoundary {
     RestaurantOrderHistoryPresenter presenter;
 
+    /**
+     * Constructor for RestaurantOrderHistoryInteractor
+     *
+     * @param presenter RestaurantOrderHistoryPresenter presenter for the restaurant order history use case
+     */
     public RestaurantOrderHistoryInteractor(RestaurantOrderHistoryPresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
+     * Gets the orders for the current restaurant.
      *
+     * @param restaurantId the current restaurant id
      */
     @Override
     public void getOrders(ObjectId restaurantId) {
@@ -30,7 +40,7 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
 
         ArrayList<HashMap<String, Object>> orderInfos = new ArrayList<>();
 
-        for (Order order: orders) {
+        for (Order order : orders) {
             HashMap<String, Object> orderInfo = new HashMap<>();
             orderInfo.put("ID", order.getOrderID());
 
@@ -41,7 +51,7 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
 
             ArrayList<HashMap<String, Object>> foods = new ArrayList<>();
 
-            for (OrderItem food: order.getItems()) {
+            for (OrderItem food : order.getItems()) {
                 HashMap<String, Object> item = new HashMap<>();
                 item.put("name", food.getFood().getName());
                 item.put("description", food.getFood().getDescription());
@@ -62,7 +72,9 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
     }
 
     /**
-     * @param restaurantId
+     * Gets the fulfilled orders for the current restaurant.
+     *
+     * @param restaurantId the current restaurant id
      */
     @Override
     public void getUnfufilledOrders(ObjectId restaurantId) {
@@ -74,7 +86,7 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
 
         ArrayList<HashMap<String, Object>> orderInfos = new ArrayList<>();
 
-        for (Order order: orders) {
+        for (Order order : orders) {
             if (order.getOrderStatus().equals("Order Complete") || order.getOrderStatus().equals("Cancelled")) continue;
 
             HashMap<String, Object> orderInfo = new HashMap<>();
@@ -92,10 +104,20 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
         presenter.setOrders(responseModel);
     }
 
+    /**
+     * Gets the presenter for the restaurant order history use case.
+     *
+     * @return RestaurantOrderHistoryPresenter presenter for the restaurant order history use case
+     */
     public RestaurantOrderHistoryPresenter getPresenter() {
         return presenter;
     }
 
+    /**
+     * Sets the presenter for the restaurant order history use case.
+     *
+     * @param presenter RestaurantOrderHistoryPresenter presenter for the restaurant order history use case
+     */
     public void setPresenter(RestaurantOrderHistoryPresenter presenter) {
         this.presenter = presenter;
     }

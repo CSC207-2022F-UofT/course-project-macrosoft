@@ -11,13 +11,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This class is the interactor for user display restaurants use case.
+ */
 public class UserDisplayRestaurantInteractor implements UserDisplayRestaurantInputBoundary {
     UserDisplayRestaurantPresenter presenter;
 
+    /**
+     * Constructor for UserDisplayRestaurantInteractor
+     *
+     * @param presenter UserDisplayRestaurantPresenter presenter
+     */
     public UserDisplayRestaurantInteractor(UserDisplayRestaurantPresenter presenter) {
         this.presenter = presenter;
     }
 
+    /**
+     * Display all restaurants
+     */
     public void displayAllRestaurants() {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         RestaurantDataGateway restaurantDataGateway = new RestaurantDataMongo(fetcher);
@@ -26,7 +37,7 @@ public class UserDisplayRestaurantInteractor implements UserDisplayRestaurantInp
 
         HashMap<ObjectId, String> restaurantInfo = new HashMap<>();
 
-        for (Restaurant restaurant: restaurantList) {
+        for (Restaurant restaurant : restaurantList) {
             restaurantInfo.put(restaurant.getRestaurantID(), restaurant.getName());
         }
 

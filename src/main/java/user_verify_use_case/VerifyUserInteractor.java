@@ -3,17 +3,27 @@ package user_verify_use_case;
 import database.*;
 import org.bson.types.ObjectId;
 
+/**
+ * This class is the interactor of get verification code.
+ */
 public class VerifyUserInteractor {
 
-    private VerifyUserPresenter presenter;
+    private final VerifyUserPresenter presenter;
 
+    /**
+     * Constructor of VerifyUserInteractor.
+     *
+     * @param presenter a verify user presenter
+     */
     public VerifyUserInteractor(VerifyUserPresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
-     * @param userId
-     * @param code
+     * Verify user with its id and verification code.
+     *
+     * @param userId the user id
+     * @param code   the verification code
      * @return 1000: Success
      * 1001: Entered Incorrect Code
      * 1002: Expired or code doesn't exist

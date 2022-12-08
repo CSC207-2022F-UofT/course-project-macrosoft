@@ -1,6 +1,9 @@
 package restaurant_verify_use_case;
 import java.util.Date;
 
+/**
+ * This class is the interactor for the restaurant verify use case.
+ */
 public class AddMinutesInteractor {
 
     /**

@@ -11,13 +11,13 @@ public class UpdateOrderStatusController {
 
     final UpdateOrderStatusInputBoundary updateInteractor;
 
-    private ObjectId orderId;
+    private final ObjectId orderId;
 
     /**
      * Constructor for UpdateOrderStatusController
      *
      * @param updateInteractor the update order status interactor
-     * @param orderId ObjectId order id of current order
+     * @param orderId          ObjectId order id of current order
      */
     public UpdateOrderStatusController(UpdateOrderStatusInputBoundary updateInteractor, ObjectId orderId) {
         this.updateInteractor = updateInteractor;

@@ -14,16 +14,25 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
+/**
+ * This class is the interactor for the restaurant verify use case.
+ */
 public class GenerateEmailInteractor {
     VerifyResPresenter presenter;
 
+    /**
+     * Constructor for GenerateEmailInteractor
+     *
+     * @param presenter presenter for the interactor
+     */
     public GenerateEmailInteractor(VerifyResPresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
-     * @param restaurantID: the restaurant id
+     * Generate a verification code
      *
+     * @param restaurantID: the restaurant id
      */
     public void generateVerificationEmail(ObjectId restaurantID) {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
@@ -50,6 +59,13 @@ public class GenerateEmailInteractor {
         sendEmail(restaurant.getEmail(), "Verify Your Email", emailBody);
     }
 
+    /**
+     * Send email to the restaurant
+     *
+     * @param to      the email of the restaurant
+     * @param subject the subject of the email
+     * @param body    the body of the email
+     */
     public static void sendEmail(String to, String subject, String body) {
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";

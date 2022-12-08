@@ -3,15 +3,25 @@ package restaurant_profile_use_case;
 import database.*;
 import entities.Restaurant;
 
+/**
+ * This class is the interactor for the restaurant profile use case.
+ */
 public class RestaurantProfileIneractor implements RestaurantProfileInputBoundary{
-    private RestaurantProfilePresenter presenter;
+    private final RestaurantProfilePresenter presenter;
 
+    /**
+     * Constructor for RestaurantProfileIneractor
+     *
+     * @param presenter the presenter
+     */
     public RestaurantProfileIneractor(RestaurantProfilePresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
-     * @param
+     * Displays the restaurant profile.
+     *
+     * @param restaurantProfileRequestModel the request model
      */
     @Override
     public void displayRestaurantProfile(RestaurantProfileRequestModel restaurantProfileRequestModel) {

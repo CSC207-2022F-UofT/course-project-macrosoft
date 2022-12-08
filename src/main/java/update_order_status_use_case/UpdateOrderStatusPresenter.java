@@ -9,8 +9,6 @@ public interface UpdateOrderStatusPresenter {
 
     /**
      * This method prepare success view for the update order status use case.
-     *
-     * @return null
      */
     void prepareSuccessView();
 
@@ -18,8 +16,6 @@ public interface UpdateOrderStatusPresenter {
      * This method prepare fail view for the update order status use case.
      *
      * @param str String fail message
-     *
-     * @return null
      */
     void prepareFailView(String str);
 

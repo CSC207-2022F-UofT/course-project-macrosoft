@@ -6,7 +6,7 @@ import java.awt.*;
 public class RestaurantHomepageScreen {
 
     RestaurantHomepageController controller;
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
     public RestaurantHomepageScreen(RestaurantHomepageController controller, String restaurantName) {

@@ -2,19 +2,28 @@ package restaurant_verify_use_case;
 
 import org.bson.types.ObjectId;
 
+/**
+ * This class is the processor for the restaurant verify use case.
+ */
 public class VerifyResProcessor implements VerifyResPresenter {
 
     private VerifyResScreenInterface verifyResScreenInterface;
 
+    /**
+     * Constructor for VerifyResProcessor.
+     *
+     * @param verifyResScreenInterface the view
+     */
     public VerifyResProcessor(VerifyResScreenInterface verifyResScreenInterface) {
         this.verifyResScreenInterface = verifyResScreenInterface;
     }
 
     /**
-     *  When verification success, create a new restaurant homepage for the current user
-     *  close the verification window,
+     * When verification success, create a new restaurant homepage for the current user
+     * close the verification window,
+     *
      * @param currentRestaurantId id of the current restaurant
-     * @param restaurantName name of the current restaurant
+     * @param restaurantName      name of the current restaurant
      */
     @Override
     public void verifiedSuccess(ObjectId currentRestaurantId, String restaurantName) {
@@ -24,7 +33,7 @@ public class VerifyResProcessor implements VerifyResPresenter {
     }
 
     /**
-     * when verification failed, display a message to the user.
+     * When verification failed, display a message to the user.
      */
     @Override
     public void verifiedFailed() {
@@ -32,7 +41,8 @@ public class VerifyResProcessor implements VerifyResPresenter {
     }
 
     /**
-     * set the current screen
+     * Sets the current screen
+     *
      * @param verifyResScreenInterface new screen
      */
     public void setVerifyResScreenInterface(VerifyResScreenInterface verifyResScreenInterface) {

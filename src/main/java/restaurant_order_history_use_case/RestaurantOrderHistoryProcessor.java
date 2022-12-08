@@ -1,9 +1,8 @@
 package restaurant_order_history_use_case;
-/*
-processor of the restaurant order history use case
+
+/**
+ * processor of the restaurant order history use case
  */
-
-
 public class RestaurantOrderHistoryProcessor implements RestaurantOrderHistoryPresenter {
     RestaurantOrderHistoryPanelInterface screen;
 
@@ -13,6 +12,7 @@ public class RestaurantOrderHistoryProcessor implements RestaurantOrderHistoryPr
 
     /**
      * set orders according to the response model
+     *
      * @param responseModel response model
      */
     public void setOrders(RestaurantOrderHistoryResponseModel responseModel) {
@@ -21,6 +21,7 @@ public class RestaurantOrderHistoryProcessor implements RestaurantOrderHistoryPr
 
     /**
      * return the current screen
+     *
      * @return this screen
      */
     public RestaurantOrderHistoryPanelInterface getScreen() {
@@ -29,7 +30,8 @@ public class RestaurantOrderHistoryProcessor implements RestaurantOrderHistoryPr
 
     /**
      * set the current screen
-     * @param screen  new screen
+     *
+     * @param screen new screen
      */
     public void setScreen(RestaurantOrderHistoryPanelInterface screen) {
         this.screen = screen;

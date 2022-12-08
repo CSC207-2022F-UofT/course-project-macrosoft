@@ -5,14 +5,27 @@ import entities.*;
 import user_profile_use_case.UserProfileRequestModel;
 import user_profile_use_case.UserProfileResponseModel;
 
-public class DisplayMenuInteractor implements DisplayMenuInputBoundary{
+/**
+ * This class is the interactor of view menu use case.
+ */
+public class DisplayMenuInteractor implements DisplayMenuInputBoundary {
 
-    private DisplayMenuPresenter presenter;
+    private final DisplayMenuPresenter presenter;
 
+    /**
+     * Constructor of DisplayMenuInteractor.
+     *
+     * @param presenter a display menu presenter
+     */
     public DisplayMenuInteractor(DisplayMenuPresenter presenter) {
         this.presenter = presenter;
     }
 
+    /**
+     * Display menu.
+     *
+     * @param requestModel a request model
+     */
     @Override
     public void displayMenu(DisplayMenuRequestModel requestModel) {
         MongoCollectionFetcher mongoCollectionFetcher = MongoCollectionFetcher.getFetcher();

@@ -5,16 +5,26 @@ import database.UserDataGateway;
 import database.UserDataProcessorMongo;
 import entities.User;
 
+/**
+ * This class is the interactor of the user profile.
+ */
 public class UserProfileInteractor implements UserProfileInputBoundary {
 
-    private UserProfilePresenter presenter;
+    private final UserProfilePresenter presenter;
 
+    /**
+     * Constructor for UserProfileInteractor
+     *
+     * @param presenter the presenter
+     */
     public UserProfileInteractor(UserProfilePresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
-     * @param
+     * Display user profile.
+     *
+     * @param userProfileRequestModel the request model
      */
     @Override
     public void displayUserProfile(UserProfileRequestModel userProfileRequestModel) {
@@ -25,8 +35,7 @@ public class UserProfileInteractor implements UserProfileInputBoundary {
 
         if (user == null) {
             presenter.userNotFound();
-        }
-        else {
+        } else {
             UserProfileResponseModel userProfileResponseModel = new UserProfileResponseModel(user.getFirstName(), user.getLastName(), user.getEmail());
             presenter.userFound(userProfileResponseModel);
         }

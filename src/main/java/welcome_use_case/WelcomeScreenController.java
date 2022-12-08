@@ -2,19 +2,31 @@ package welcome_use_case;
 
 import components.ScreenFactory;
 
+/**
+ * This class is the controller of welcome use case.
+ */
 public class WelcomeScreenController {
 
-    public void getLoginScreen(){
+    /**
+     * Gets login screen.
+     */
+    public void getLoginScreen() {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createLoginSreen();
     }
 
-    public void getRegisterRestaurantScreen(){
+    /**
+     * Gets register restaurant screen.
+     */
+    public void getRegisterRestaurantScreen() {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createRestaurantRegisterScreen();
     }
 
-    public void getRegisterUserScreen(){
+    /**
+     * Gets register user screen.
+     */
+    public void getRegisterUserScreen() {
         ScreenFactory screenFactory = new ScreenFactory();
         screenFactory.createUserRegisterScreen();
     }

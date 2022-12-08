@@ -1,16 +1,24 @@
 package restaurant_profile_use_case;
 
-
-public class RestaurantProfileProcessor implements RestaurantProfilePresenter{
+/**
+ * This class is the processor for the restaurant profile use case.
+ */
+public class RestaurantProfileProcessor implements RestaurantProfilePresenter {
 
     private RestaurantProfilePanelInterface restaurantProfilePanel;
 
+    /**
+     * Constructor for RestaurantProfileProcessor
+     *
+     * @param restaurantProfilePanel the restaurant profile panel
+     */
     public RestaurantProfileProcessor(RestaurantProfilePanelInterface restaurantProfilePanel) {
         this.restaurantProfilePanel = restaurantProfilePanel;
     }
 
     /**
      * set the panel
+     *
      * @param restaurantProfilePanel new panel
      */
     @Override
@@ -28,6 +36,7 @@ public class RestaurantProfileProcessor implements RestaurantProfilePresenter{
 
     /**
      * update the restaurant information when the restaurant is found
+     *
      * @param restaurantProfileResponseModel response model
      */
     @Override
