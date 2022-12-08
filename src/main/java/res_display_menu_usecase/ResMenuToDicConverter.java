@@ -12,13 +12,13 @@ import java.util.List;
  * This class is the converter for the restaurant menu to a dictionary.
  */
 public class ResMenuToDicConverter {
-
     /**
      * Converts the menu to a dictionary.
      *
      * @param curMenu the menu
      * @return the HashMap
      */
+    @SuppressWarnings("rawtypes")
     public static HashMap<String, List> getMenuDic(Menu curMenu){
         HashMap<String, List> menuDic = new HashMap<>();
         List<Food> foodLst = curMenu.getFoodList();

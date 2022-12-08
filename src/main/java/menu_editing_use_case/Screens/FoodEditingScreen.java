@@ -120,7 +120,7 @@ public class FoodEditingScreen {
              */
             @Override
             public void actionPerformed(ActionEvent e) {
-                controller.add(name, description, category, Float.parseFloat(price));
+                controller.add(nameField.getText(), descriptionField.getText(), categoryField.getText(), Float.parseFloat(priceField.getText()));
                 controller.remove(id);
                 frame.dispose();
             }

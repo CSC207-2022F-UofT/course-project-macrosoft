@@ -35,8 +35,8 @@ public class WelcomeScreen {
         // creating the centre panel
         JPanel centrePanel = new JPanel();
         centrePanel.setOpaque(false);
-        JLabel greetingLabel = new JLabel("WELCOME TO SKIP-THE-LINE");
-        greetingLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
+        JLabel greetingLabel = new JLabel("WELCOME TO FOODQEE");
+        greetingLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
         greetingLabel.setForeground(GREY_WHITE);
         greetingLabel.setBorder(emptyBorder3);
         centrePanel.add(greetingLabel);
