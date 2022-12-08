@@ -94,7 +94,7 @@ public class GenerateEmailInteractor {
         session.setDebug(true);
 
         try {
-            InternetAddress from = new InternetAddress("davidzylin@gmail.com", "Skip the Line");
+            InternetAddress from = new InternetAddress("davidzylin@gmail.com", "FoodQee");
 
             // Create a default MimeMessage object.
             MimeMessage message = new MimeMessage(session);
