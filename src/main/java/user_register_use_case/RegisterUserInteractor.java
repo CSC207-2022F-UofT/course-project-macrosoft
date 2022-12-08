@@ -12,14 +12,14 @@ import org.bson.types.ObjectId;
  */
 public class RegisterUserInteractor implements RegisterUserInputBoundary {
 
-    private final RegisterUserPresenter presenter;
+    private final RegisterUserOutputBoundary presenter;
 
     /**
      * Constructor for RegisterUserInteractor
      *
      * @param presenter the presenter
      */
-    public RegisterUserInteractor(RegisterUserPresenter presenter) {
+    public RegisterUserInteractor(RegisterUserOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

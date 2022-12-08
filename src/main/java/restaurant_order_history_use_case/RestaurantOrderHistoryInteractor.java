@@ -14,14 +14,14 @@ import java.util.List;
  * This class is the interactor for the restaurant order history use case.
  */
 public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryInputBoundary {
-    RestaurantOrderHistoryPresenter presenter;
+    RestaurantOrderHistoryOutputBoundary presenter;
 
     /**
      * Constructor for RestaurantOrderHistoryInteractor
      *
-     * @param presenter RestaurantOrderHistoryPresenter presenter for the restaurant order history use case
+     * @param presenter RestaurantOrderHistoryOutputBoundary presenter for the restaurant order history use case
      */
-    public RestaurantOrderHistoryInteractor(RestaurantOrderHistoryPresenter presenter) {
+    public RestaurantOrderHistoryInteractor(RestaurantOrderHistoryOutputBoundary presenter) {
         this.presenter = presenter;
     }
 
@@ -107,18 +107,18 @@ public class RestaurantOrderHistoryInteractor implements RestaurantOrderHistoryI
     /**
      * Gets the presenter for the restaurant order history use case.
      *
-     * @return RestaurantOrderHistoryPresenter presenter for the restaurant order history use case
+     * @return RestaurantOrderHistoryOutputBoundary presenter for the restaurant order history use case
      */
-    public RestaurantOrderHistoryPresenter getPresenter() {
+    public RestaurantOrderHistoryOutputBoundary getPresenter() {
         return presenter;
     }
 
     /**
      * Sets the presenter for the restaurant order history use case.
      *
-     * @param presenter RestaurantOrderHistoryPresenter presenter for the restaurant order history use case
+     * @param presenter RestaurantOrderHistoryOutputBoundary presenter for the restaurant order history use case
      */
-    public void setPresenter(RestaurantOrderHistoryPresenter presenter) {
+    public void setPresenter(RestaurantOrderHistoryOutputBoundary presenter) {
         this.presenter = presenter;
     }
 }

@@ -1,9 +1,36 @@
 package change_user_info_use_case;
-/*
-Presenter of the change user information use case
- */
-public interface ChangeUserInfoPresenter {
-    void changeUserInfoSuccess(String message);
-    void changeUserInfoFailed(String message);
-    void setScreen(ChangeUserInfoScreenInterface screen);
+
+public class ChangeUserInfoPresenter implements ChangeUserInfoOutputBoundary {
+
+    ChangeUserInfoScreenInterface screen;
+
+
+    public ChangeUserInfoPresenter(ChangeUserInfoScreenInterface screen) {
+        this.screen = screen;
+    }
+
+    /**
+     * @param message result message
+     */
+    @Override
+    public void changeUserInfoSuccess(String message) {
+        this.screen.showMessage(message);
+        this.screen.close();
+    }
+
+    /**
+     * @param message result message
+     */
+    @Override
+    public void changeUserInfoFailed(String message) {
+        this.screen.showMessage(message);
+    }
+
+    public ChangeUserInfoScreenInterface getScreen() {
+        return screen;
+    }
+
+    public void setScreen(ChangeUserInfoScreenInterface screen) {
+        this.screen = screen;
+    }
 }

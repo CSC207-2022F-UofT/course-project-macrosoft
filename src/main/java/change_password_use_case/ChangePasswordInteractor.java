@@ -15,14 +15,14 @@ import java.security.NoSuchAlgorithmException;
  */
 public class ChangePasswordInteractor implements ChangePasswordInputBoundary {
 
-    private final ChangePasswordPresenter presenter;
+    private final ChangePasswordOutputBoundary presenter;
 
     /**
      * Constructor for ChangePasswordInteractor
      *
      * @param presenter the change password presenter
      */
-    public ChangePasswordInteractor(ChangePasswordPresenter presenter) {
+    public ChangePasswordInteractor(ChangePasswordOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

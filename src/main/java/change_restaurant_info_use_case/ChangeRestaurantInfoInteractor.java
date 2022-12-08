@@ -6,14 +6,14 @@ import database.*;
  * This class is the interactor for the change restaurant information use case.
  */
 public class ChangeRestaurantInfoInteractor implements ChangeRestaurantInfoInputBoundary {
-    ChangeRestaurantInfoPresenter presenter;
+    ChangeRestaurantInfoOutputBoundary presenter;
 
     /**
      * Constructor for ChangeRestaurantInfoInteractor
      *
      * @param presenter the presenter
      */
-    public ChangeRestaurantInfoInteractor(ChangeRestaurantInfoPresenter presenter) {
+    public ChangeRestaurantInfoInteractor(ChangeRestaurantInfoOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

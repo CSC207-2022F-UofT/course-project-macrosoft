@@ -1,25 +1,45 @@
 package user_order_history_use_case;
 
 /**
- * presenter of the use case
+ * This class is the processor of the user order history.
  */
-public interface OrderHistoryPresenter {
-    /**
-     * Find the order.
-     *
-     * @param orderHistoryResponseModel the order history response model
-     */
-    void orderFound(OrderHistoryResponseModel orderHistoryResponseModel);
+public class OrderHistoryPresenter implements OrderHistoryOutputBoundary {
+    private OrderHistoryPanelInterface orderHistoryPanel;
 
     /**
-     * Order not found.
-     */
-    void orderNotFound();
-
-    /**
-     * Sets order history panel.
+     * Constructor for OrderHistoryPresenter
      *
      * @param orderHistoryPanel the order history panel
      */
-    void setOrderHistoryPanel(OrderHistoryPanelInterface orderHistoryPanel);
+    public OrderHistoryPresenter(OrderHistoryPanelInterface orderHistoryPanel) {
+        this.orderHistoryPanel = orderHistoryPanel;
+    }
+
+    /**
+     * When the order is found, set order to the order.
+     *
+     * @param orderHistoryResponseModel response model
+     */
+    @Override
+    public void orderFound(OrderHistoryResponseModel orderHistoryResponseModel) {
+        orderHistoryPanel.setOrder(orderHistoryResponseModel);
+    }
+
+    /**
+     * Order is not found
+     */
+    @Override
+    public void orderNotFound() {
+
+    }
+
+    /**
+     * Set the panel to the given panel
+     *
+     * @param orderHistoryPanel panel
+     */
+    @Override
+    public void setOrderHistoryPanel(OrderHistoryPanelInterface orderHistoryPanel) {
+        this.orderHistoryPanel = orderHistoryPanel;
+    }
 }

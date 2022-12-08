@@ -9,14 +9,14 @@ import library.PasswordHasher;
  * This class is the interactor for the user login use case.
  */
 public class UserLoginInteractor implements UserLoginInputBoundary {
-    private final UserLoginPresenter presenter;
+    private final UserLoginOutputBoundary presenter;
 
     /**
      * Constructor for UserLoginInteractor
      *
      * @param presenter the presenter
      */
-    public UserLoginInteractor(UserLoginPresenter presenter) {
+    public UserLoginInteractor(UserLoginOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

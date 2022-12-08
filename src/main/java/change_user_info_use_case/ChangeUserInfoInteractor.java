@@ -10,14 +10,14 @@ import database.UserDataProcessorMongo;
  * This class is the interactor for the change user information use case.
  */
 public class ChangeUserInfoInteractor implements ChangeUserInfoInputBoundary {
-    ChangeUserInfoPresenter presenter;
+    ChangeUserInfoOutputBoundary presenter;
 
     /**
      * Constructor for ChangeUserInfoInteractor
      *
      * @param presenter the presenter
      */
-    public ChangeUserInfoInteractor(ChangeUserInfoPresenter presenter) {
+    public ChangeUserInfoInteractor(ChangeUserInfoOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

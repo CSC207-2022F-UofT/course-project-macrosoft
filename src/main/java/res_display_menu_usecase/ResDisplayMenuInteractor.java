@@ -8,14 +8,14 @@ import entities.Menu;
  */
 public class ResDisplayMenuInteractor implements ResDisplayMenuInputBoundary {
 
-    private final ResDisplayMenuPresenter presenter;
+    private final ResDisplayMenuOutputBoundary presenter;
 
     /**
      * Constructor for ResDisplayMenuInteractor
      *
      * @param presenter the presenter
      */
-    public ResDisplayMenuInteractor(ResDisplayMenuPresenter presenter) {
+    public ResDisplayMenuInteractor(ResDisplayMenuOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

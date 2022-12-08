@@ -20,7 +20,7 @@ public class Main {
 //        OrderDataGateway gateway = new OrderDataProcessorMongo(fetcher);
 //
 //        List<Order> curOrder = gateway.findAllByRestaurant(curRes.getRestaurantID());
-//        UpdateOrderStatusPresenter presenter = new UpdateOrderStatusResponseFormatter();
+//        UpdateOrderStatusOutputBoundary presenter = new UpdateOrderStatusResponseFormatter();
 //        UpdateOrderStatusInputBoundary interactor = new UpdateOrderStatusInteractor(presenter, gateway,curOrder.get(0));
 //        UpdateOrderStatusController controller = new UpdateOrderStatusController(interactor);
 //        UpdateOrderStatusScreen screen = new UpdateOrderStatusScreen(controller);

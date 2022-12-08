@@ -1,19 +1,46 @@
 package change_restaurant_info_use_case;
 
 /**
- * this class is the presenter of the change restaurant information use case
- * It has one implementation which is the change restaurant information processor
+ * This class is the processor for the change restaurant informatoin use case.
  */
+public class ChangeRestaurantInfoPresenter implements ChangeRestaurantInfoOutputBoundary {
+    ChangeRestaurantInfoScreenInterface screen;
 
 
-public interface ChangeRestaurantInfoPresenter {
+    public ChangeRestaurantInfoPresenter(ChangeRestaurantInfoScreenInterface screen) {
+        this.screen = screen;
+    }
+
     /**
-     * success
      * @param message success message
      */
-    void changeRestaurantInfoSuccess(String message);
+    @Override
+    public void changeRestaurantInfoSuccess(String message) {
+        this.screen.showMessage(message);
+        this.screen.close();
+    }
 
-    void changeRestaurantInfoFailed(String message);
+    /**
+     * @param message failed message
+     */
+    @Override
+    public void changeRestaurantInfoFailed(String message) {
+        this.screen.showMessage(message);
+    }
 
-    void setScreen(ChangeRestaurantInfoScreenInterface screen);
+    /**
+     * return the current screen
+     * @return this screen
+     */
+    public ChangeRestaurantInfoScreenInterface getScreen() {
+        return screen;
+    }
+
+    /**
+     * set the scrent screen to the given new screen
+     * @param screen new screen
+     */
+    public void setScreen(ChangeRestaurantInfoScreenInterface screen) {
+        this.screen = screen;
+    }
 }

@@ -18,14 +18,14 @@ import java.util.Random;
  * This class is the interactor for the restaurant verify use case.
  */
 public class GenerateEmailInteractor {
-    VerifyResPresenter presenter;
+    VerifyResOutputBoundary presenter;
 
     /**
      * Constructor for GenerateEmailInteractor
      *
      * @param presenter presenter for the interactor
      */
-    public GenerateEmailInteractor(VerifyResPresenter presenter) {
+    public GenerateEmailInteractor(VerifyResOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

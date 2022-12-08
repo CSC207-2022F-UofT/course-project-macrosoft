@@ -41,51 +41,51 @@ public class ScreenFactory {
     }
 
     public void createLoginSreen() {
-        UserLoginPresenter userLoginPresenter = new UserLoginProcessor(null);
-        UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginPresenter);
-        RestaurantLoginInputBoundary restaurantLoginInteractor = new RestaurantLoginInteractor(userLoginPresenter);
+        UserLoginOutputBoundary userLoginOutputBoundary = new UserLoginPresenter(null);
+        UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginOutputBoundary);
+        RestaurantLoginInputBoundary restaurantLoginInteractor = new RestaurantLoginInteractor(userLoginOutputBoundary);
         UserLoginController userLoginController = new UserLoginController(userLoginInteractor, restaurantLoginInteractor);
         UserLoginScreenInterface screen = new UserLoginScreen(userLoginController);
-        userLoginPresenter.setLoginScreen(screen);
+        userLoginOutputBoundary.setLoginScreen(screen);
         screen.getFrame().setVisible(true);
     }
 
     public void createUserRegisterScreen() {
-        RegisterUserPresenter registerUserPresenter = new RegisterUserProcessor(null);
-        RegisterUserInputBoundary registerUserInputBoundary = new RegisterUserInteractor(registerUserPresenter);
+        RegisterUserOutputBoundary registerUserOutputBoundary = new RegisterUserPresenter(null);
+        RegisterUserInputBoundary registerUserInputBoundary = new RegisterUserInteractor(registerUserOutputBoundary);
         RegisterUserController registerUserController = new RegisterUserController(registerUserInputBoundary);
         RegisterUserScreenInterface screen = new RegisterUserScreen(registerUserController);
-        registerUserPresenter.setScreen(screen);
+        registerUserOutputBoundary.setScreen(screen);
         screen.getFrame().setVisible(true);
     }
 
     public void createRestaurantRegisterScreen() {
-        RegisterRestaurantPresenter registerRestaurantPresenter = new RegisterRestaurantProcessor(null);
-        RegisterRestaurantInputBoundary registerRestaurantInputBoundary = new RegisterRestaurantInteractor(registerRestaurantPresenter);
+        RegisterRestaurantOutputBoundary registerRestaurantOutputBoundary = new RegisterRestaurantPresenter(null);
+        RegisterRestaurantInputBoundary registerRestaurantInputBoundary = new RegisterRestaurantInteractor(registerRestaurantOutputBoundary);
         RegisterRestaurantController registerRestaurantController = new RegisterRestaurantController(registerRestaurantInputBoundary);
         RegisterRestaurantScreenInterface screen = new RegisterRestaurantScreen(registerRestaurantController);
-        registerRestaurantPresenter.setScreen(screen);
+        registerRestaurantOutputBoundary.setScreen(screen);
         screen.getFrame().setVisible(true);
     }
 
     public void createVerifyUserScreen(ObjectId userId) {
-        VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
-        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
+        VerifyUserOutputBoundary verifyUserOutputBoundary = new VerifyUserPresenter(null);
+        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserOutputBoundary);
         VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userId);
         VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
 
-        verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
+        verifyUserOutputBoundary.setVerifyUserScreen(verifyUserScreen);
 
         verifyUserScreen.getFrame().setVisible(true);
     }
 
     public void createVerifyRestaurantScreen(ObjectId restaurantId) {
-        VerifyResPresenter verifyResPresenter = new VerifyResProcessor(null);
-        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResPresenter);
+        VerifyResOutputBoundary verifyResOutputBoundary = new VerifyResPresenter(null);
+        VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResOutputBoundary);
         VerifyResController verifyResController = new VerifyResController(verifyResFacade, restaurantId);
         VerifyResScreenInterface verifyResScreen = new VerifyResScreen(verifyResController);
 
-        verifyResPresenter.setVerifyResScreenInterface(verifyResScreen);
+        verifyResOutputBoundary.setVerifyResScreenInterface(verifyResScreen);
 
         verifyResScreen.getFrame().setVisible(true);
     }
@@ -101,7 +101,7 @@ public class ScreenFactory {
     }
 
     public JPanel createRestaurantOrderHistoryPanel(ObjectId currentRestaurantId, String restaurantName) {
-        RestaurantOrderHistoryPresenter presenter =  new RestaurantOrderHistoryProcessor(null);
+        RestaurantOrderHistoryOutputBoundary presenter =  new RestaurantOrderHistoryPresenter(null);
         RestaurantOrderHistoryInputBoundary interactor = new RestaurantOrderHistoryInteractor(presenter);
         RestaurantOrderHistoryController controller = new RestaurantOrderHistoryController(interactor, currentRestaurantId);
 
@@ -117,7 +117,7 @@ public class ScreenFactory {
     }
 
     public JPanel createRestaurantProfilePanel(ObjectId currentRestaurantId) {
-        RestaurantProfilePresenter presenter =  new RestaurantProfileProcessor(null);
+        RestaurantProfileOutputBoundary presenter =  new RestaurantProfilePresenter(null);
         RestaurantProfileInputBoundary interactor = new RestaurantProfileIneractor(presenter);
         RestaurantProfileController controller = new RestaurantProfileController(interactor, currentRestaurantId);
 
@@ -129,7 +129,7 @@ public class ScreenFactory {
     }
 
     public JPanel createRestaurantDisplayMenuPanel(ObjectId currentRestaurantId) {
-        ResDisplayMenuPresenter presenter = new ResDisplayMenuProcessor(null);
+        ResDisplayMenuOutputBoundary presenter = new ResDisplayMenuPresenter(null);
         ResDisplayMenuInputBoundary interactor = new ResDisplayMenuInteractor(presenter);
         ResDisplayMenuController controller = new ResDisplayMenuController(interactor, currentRestaurantId);
 
@@ -162,7 +162,7 @@ public class ScreenFactory {
     }
 
     public void createUpdateOrderStatusScreen(ObjectId orderId) {
-        UpdateOrderStatusPresenter orderStatusPresenter = new UpdateOrderStatusProcessor(null);
+        UpdateOrderStatusOutputBoundary orderStatusPresenter = new UpdateOrderStatusPresenter(null);
         UpdateOrderStatusInputBoundary orderStatusInteractor = new UpdateOrderStatusInteractor(orderStatusPresenter);
         UpdateOrderStatusController orderStatusController = new UpdateOrderStatusController(orderStatusInteractor, orderId);
         UpdateOrderStatusScreenInterface screen = new UpdateOrderStatusScreen(orderStatusController);
@@ -176,35 +176,35 @@ public class ScreenFactory {
     }
 
     public void createChangePasswordScreen(ObjectId userId) {
-        ChangePasswordPresenter changePasswordPresenter = new ChangePasswordProcessor(null);
-        ChangePasswordInputBoundary changePasswordInputBoundary = new ChangePasswordInteractor(changePasswordPresenter);
+        ChangePasswordOutputBoundary changePasswordOutputBoundary = new ChangePasswordPresenter(null);
+        ChangePasswordInputBoundary changePasswordInputBoundary = new ChangePasswordInteractor(changePasswordOutputBoundary);
         ChangePasswordController changePasswordController = new ChangePasswordController(
                 changePasswordInputBoundary,
                 userId);
 
         ChangePasswordScreenInterface changePasswordScreen = new ChangePasswordScreen(changePasswordController);
 
-        changePasswordPresenter.setChangePasswordScreenInterface(changePasswordScreen);
+        changePasswordOutputBoundary.setChangePasswordScreenInterface(changePasswordScreen);
 
         changePasswordScreen.getFrame().setVisible(true);
     }
 
     public void createChangeRestaurantInfoScreen(ObjectId restaurantId) {
-        ChangeRestaurantInfoPresenter changeRestaurantInfoPresenter = new ChangeRestaurantInfoProcessor(null);
-        ChangeRestaurantInfoInputBoundary changeRestaurantInfoInputBoundary = new ChangeRestaurantInfoInteractor(changeRestaurantInfoPresenter);
+        ChangeRestaurantInfoOutputBoundary changeRestaurantInfoOutputBoundary = new ChangeRestaurantInfoPresenter(null);
+        ChangeRestaurantInfoInputBoundary changeRestaurantInfoInputBoundary = new ChangeRestaurantInfoInteractor(changeRestaurantInfoOutputBoundary);
         ChangeRestaurantInfoController changeRestaurantInfoController = new ChangeRestaurantInfoController(
                 changeRestaurantInfoInputBoundary,
                 restaurantId);
 
         ChangeRestaurantInfoScreenInterface changeRestaurantInfoScreen = new ChangeRestaurantInfoScreen(changeRestaurantInfoController);
 
-        changeRestaurantInfoPresenter.setScreen(changeRestaurantInfoScreen);
+        changeRestaurantInfoOutputBoundary.setScreen(changeRestaurantInfoScreen);
 
         changeRestaurantInfoScreen.getFrame().setVisible(true);
     }
 
     public JPanel createUserDisplayMenu(ObjectId restaurantId) {
-        DisplayMenuPresenter presenter = new DisplayMenuProcessor(null);
+        DisplayMenuOutputBoundary presenter = new DisplayMenuPresenter(null);
         DisplayMenuInputBoundary interactor = new DisplayMenuInteractor(presenter);
         DisplayMenuController controller = new DisplayMenuController(interactor, restaurantId);
 
@@ -217,27 +217,27 @@ public class ScreenFactory {
     }
 
     public JPanel createUserOrderHistoryPanel(ObjectId userId){
-        OrderHistoryPresenter orderHistoryPresenter = new OrderHistoryProcessor(null);
-        OrderHistoryInputBoundary orderHistoryInteractor = new OrderHistoryInteractor(orderHistoryPresenter);
+        OrderHistoryOutputBoundary orderHistoryOutputBoundary = new OrderHistoryPresenter(null);
+        OrderHistoryInputBoundary orderHistoryInteractor = new OrderHistoryInteractor(orderHistoryOutputBoundary);
         OrderHistoryController orderHistoryController = new OrderHistoryController(orderHistoryInteractor, userId);
 
         OrderHistoryPanelInterface orderHistoryPanel = new OrderHistoryPanel(orderHistoryController);
 
-        orderHistoryPresenter.setOrderHistoryPanel(orderHistoryPanel);
+        orderHistoryOutputBoundary.setOrderHistoryPanel(orderHistoryPanel);
         orderHistoryPanel.updateOrder();
 
         return (JPanel) orderHistoryPanel;
     }
 
     public JPanel createUserDisplayRestaurantsPanel(ObjectId userId) {
-        UserDisplayRestaurantPresenter userDisplayRestaurantPresenter = new UserDisplayRestaurantProcessor(null);
-        UserDisplayRestaurantInputBoundary userDisplayRestaurantInteractor = new UserDisplayRestaurantInteractor(userDisplayRestaurantPresenter);
-        UserSearchRestaurantInputBoundary userSearchRestaurantInteractor = new UserSearchRestaurantInteractor(userDisplayRestaurantPresenter);
+        UserDisplayRestaurantOutputBoundary userDisplayRestaurantOutputBoundary = new UserDisplayRestaurantPresenter(null);
+        UserDisplayRestaurantInputBoundary userDisplayRestaurantInteractor = new UserDisplayRestaurantInteractor(userDisplayRestaurantOutputBoundary);
+        UserSearchRestaurantInputBoundary userSearchRestaurantInteractor = new UserSearchRestaurantInteractor(userDisplayRestaurantOutputBoundary);
         UserDisplayRestaurantController userDisplayRestaurantController = new UserDisplayRestaurantController(userDisplayRestaurantInteractor, userSearchRestaurantInteractor);
 
         UserDisplayRestaurantPanelInterface screen = new UserDisplayRestaurantPanel(userDisplayRestaurantController);
 
-        userDisplayRestaurantPresenter.setScreen(screen);
+        userDisplayRestaurantOutputBoundary.setScreen(screen);
 
         screen.refreshData();
 
@@ -245,16 +245,16 @@ public class ScreenFactory {
     }
 
     public JPanel getShoppingCartPanel(ObjectId userId) {
-        ShoppingCartPresenter shoppingCartPresenter = new ShoppingCartProcessor(null);
+        ShoppingCartOutputBoundary shoppingCartOutputBoundary = new ShoppingCartPresenter(null);
         CheckoutPresenter checkoutPresenter = new CheckoutProcessor(null);
-        ShoppingCartInputBoundary shoppingCartInputBoundary = new ShoppingCartInteractor(shoppingCartPresenter);
+        ShoppingCartInputBoundary shoppingCartInputBoundary = new ShoppingCartInteractor(shoppingCartOutputBoundary);
         CheckoutInputBoundary checkoutInputBoundary = new CheckoutInteractor(checkoutPresenter);
         ShoppingCartController shoppingCartController = new ShoppingCartController(shoppingCartInputBoundary, checkoutInputBoundary, userId);
 
         ShoppingCartPanelInterface screen = new ShoppingCartPanel(shoppingCartController);
 
         checkoutPresenter.setScreen(screen);
-        shoppingCartPresenter.setScreen(screen);
+        shoppingCartOutputBoundary.setScreen(screen);
 
         screen.refreshData();
 
@@ -262,21 +262,21 @@ public class ScreenFactory {
     }
 
     public JPanel createUserProfilePanel(ObjectId userId){
-        UserProfilePresenter userProfilePresenter = new UserProfileProcessor(null);
-        UserProfileInputBoundary userProfileInteractor = new UserProfileInteractor(userProfilePresenter);
+        UserProfileOutputBoundary userProfileOutputBoundary = new UserProfilePresenter(null);
+        UserProfileInputBoundary userProfileInteractor = new UserProfileInteractor(userProfileOutputBoundary);
         UserProfileController userProfileController = new UserProfileController(userProfileInteractor, userId);
 
         UserProfilePanelInterface userProfilePanel = new UserProfilePanel(userProfileController);
 
 
-        userProfilePresenter.setUserProfilePanel(userProfilePanel);
+        userProfileOutputBoundary.setUserProfilePanel(userProfilePanel);
         userProfilePanel.updatePanelData();
 
         return (JPanel)userProfilePanel;
     }
 
     public void createMakeReviewScreen(ObjectId orderId) {
-        MakeReviewPresenter presenter = new MakeReviewResponseFormatter();
+        MakeReviewOutputBoundary presenter = new MakeReviewPresenter();
         MakeReviewInputBoundary inputBoundary = new ReviewInteractor(presenter);
         MakeReviewController makeReviewController = new MakeReviewController(inputBoundary, orderId);
         MakeReviewScreen screen = new MakeReviewScreen(makeReviewController);
@@ -284,15 +284,15 @@ public class ScreenFactory {
     }
 
     public void createChangeUserInfoScreen(ObjectId userId) {
-        ChangeUserInfoPresenter changeUserInfoPresenter = new ChangeUserInfoProcessor(null);
-        ChangeUserInfoInputBoundary changeUserInfoInputBoundary = new ChangeUserInfoInteractor(changeUserInfoPresenter);
+        ChangeUserInfoOutputBoundary changeUserInfoOutputBoundary = new ChangeUserInfoPresenter(null);
+        ChangeUserInfoInputBoundary changeUserInfoInputBoundary = new ChangeUserInfoInteractor(changeUserInfoOutputBoundary);
         ChangeUserInfoController changeUserInfoController = new ChangeUserInfoController(
                 changeUserInfoInputBoundary,
                 userId);
 
         ChangeUserInfoScreenInterface changeUserInfoScreen = new ChangeUserInfoScreen(changeUserInfoController);
 
-        changeUserInfoPresenter.setScreen(changeUserInfoScreen);
+        changeUserInfoOutputBoundary.setScreen(changeUserInfoScreen);
 
         changeUserInfoScreen.getFrame().setVisible(true);
     }

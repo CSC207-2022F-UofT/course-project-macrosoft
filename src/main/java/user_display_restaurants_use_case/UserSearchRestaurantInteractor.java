@@ -13,14 +13,14 @@ import java.util.List;
  * This class is the interactor for user search restaurants use case.
  */
 public class UserSearchRestaurantInteractor implements UserSearchRestaurantInputBoundary {
-    UserDisplayRestaurantPresenter presenter;
+    UserDisplayRestaurantOutputBoundary presenter;
 
     /**
      * Constructor for UserSearchRestaurantInteractor
      *
-     * @param presenter UserDisplayRestaurantPresenter presenter
+     * @param presenter UserDisplayRestaurantOutputBoundary presenter
      */
-    public UserSearchRestaurantInteractor(UserDisplayRestaurantPresenter presenter) {
+    public UserSearchRestaurantInteractor(UserDisplayRestaurantOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

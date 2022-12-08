@@ -7,14 +7,14 @@ import org.bson.types.ObjectId;
  */
 public class VerifyResFacade {
 
-    private final VerifyResPresenter presenter;
+    private final VerifyResOutputBoundary presenter;
 
     /**
      * Constructor for VerifyResFacade.
      *
      * @param presenter the presenter
      */
-    public VerifyResFacade(VerifyResPresenter presenter) {
+    public VerifyResFacade(VerifyResOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

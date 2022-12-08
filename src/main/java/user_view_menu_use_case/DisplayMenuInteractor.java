@@ -2,22 +2,20 @@ package user_view_menu_use_case;
 
 import database.*;
 import entities.*;
-import user_profile_use_case.UserProfileRequestModel;
-import user_profile_use_case.UserProfileResponseModel;
 
 /**
  * This class is the interactor of view menu use case.
  */
 public class DisplayMenuInteractor implements DisplayMenuInputBoundary {
 
-    private final DisplayMenuPresenter presenter;
+    private final DisplayMenuOutputBoundary presenter;
 
     /**
      * Constructor of DisplayMenuInteractor.
      *
      * @param presenter a display menu presenter
      */
-    public DisplayMenuInteractor(DisplayMenuPresenter presenter) {
+    public DisplayMenuInteractor(DisplayMenuOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

@@ -3,7 +3,7 @@ package res_display_menu_usecase;
 public class Test {
 
     public Test() {
-//        ResDisplayMenuPresenter presenter = new ResDisplayMenuProcessor(null);
+//        ResDisplayMenuOutputBoundary presenter = new ResDisplayMenuPresenter(null);
 //        ResDisplayMenuInputBoundary interactor = new ResDisplayMenuInteractor(presenter);
 //        ResDisplayMenuController controller = new ResDisplayMenuController(interactor, new ObjectId("63797394ee00665db6a0a950"));
 //        MenuEditingController controller1 = new MenuEditingController();

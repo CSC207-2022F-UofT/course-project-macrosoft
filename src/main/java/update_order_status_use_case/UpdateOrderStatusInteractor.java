@@ -12,14 +12,14 @@ import org.bson.types.ObjectId;
  */
 public class UpdateOrderStatusInteractor implements UpdateOrderStatusInputBoundary {
 
-    final UpdateOrderStatusPresenter presenter;
+    final UpdateOrderStatusOutputBoundary presenter;
 
     /**
      * Constructor for UpdateOrderStatusInteractor
      *
-     * @param presenter UpdateOrderStatusPresenter the update order status presenter
+     * @param presenter UpdateOrderStatusOutputBoundary the update order status presenter
      */
-    public UpdateOrderStatusInteractor(UpdateOrderStatusPresenter presenter) {
+    public UpdateOrderStatusInteractor(UpdateOrderStatusOutputBoundary presenter) {
         this.presenter = presenter;
     }
 

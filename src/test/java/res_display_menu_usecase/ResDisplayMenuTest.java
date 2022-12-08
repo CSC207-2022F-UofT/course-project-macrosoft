@@ -4,13 +4,11 @@ import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
-
 class ResDisplayMenuTest {
 
     @Test
     public void test_get_resId() {
-        ResDisplayMenuPresenter presenter = new ResDisplayMenuProcessor(null);
+        ResDisplayMenuOutputBoundary presenter = new ResDisplayMenuPresenter(null);
         ResDisplayMenuInputBoundary interactor = new ResDisplayMenuInteractor(presenter);
         ResDisplayMenuController controller = new ResDisplayMenuController(interactor, new ObjectId("63797394ee00665db6a0a950"));
 

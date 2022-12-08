@@ -8,13 +8,13 @@ public class Main {
 //        User curUser = LoginUserInteractor.getCurUser();
 //
 //        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
-//        OrderHistoryPresenter presenter = new OrderHistoryProcessor();
+//        OrderHistoryOutputBoundary presenter = new OrderHistoryPresenter();
 //        OrderDataGateway orderDataGateway = new OrderDataProcessorMongo(fetcher);
 //        OrderHistoryInputBoundary orderHistoryInputBoundary = new OrderHistoryInteractor(presenter, orderDataGateway, curUser);
 //        OrderHistoryController controller = new OrderHistoryController(orderHistoryInputBoundary);
 //
 //
-//        OrderHistoryPresenter presenter = new OrderHistoryProcessor(null);
+//        OrderHistoryOutputBoundary presenter = new OrderHistoryPresenter(null);
 //        OrderHistoryPanel Screen = new OrderHistoryPanel(new OrderHistoryController(new OrderHistoryInteractor(presenter), new ObjectId("63335e7abb6cd6599ed6f64b")));
 //        presenter.setOrderHistoryPanel(Screen);
 //        Screen.updateOrder();

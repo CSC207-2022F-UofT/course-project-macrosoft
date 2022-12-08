@@ -2,23 +2,39 @@ package user_shopping_cart_use_case;
 
 import java.util.HashMap;
 
-
 /**
- * presenter of the shopping cart
+ * This class is the processor of shopping cart use case.
  */
-public interface ShoppingCartPresenter {
-    /**
-     * Display shopping cart.
-     *
-     * @param restaurantName      the restaurant name
-     * @param shoppingCartDisplay the shopping cart display
-     */
-    void displayShoppingCart(String restaurantName, HashMap<String, HashMap<String, Object>> shoppingCartDisplay);
+public class ShoppingCartPresenter implements ShoppingCartOutputBoundary {
+
+    ShoppingCartPanelInterface screen;
 
     /**
-     * Sets screen.
+     * Constructor of ShoppingCartPresenter.
      *
      * @param screen the screen
      */
-    void setScreen(ShoppingCartPanelInterface screen);
+    public ShoppingCartPresenter(ShoppingCartPanelInterface screen) {
+        this.screen = screen;
+    }
+
+    /**
+     * Display the shopping cart screen with given information
+     *
+     * @param restaurantName      name of the current restaurant
+     * @param shoppingCartDisplay items in the shopping cart
+     */
+    @Override
+    public void displayShoppingCart(String restaurantName, HashMap<String, HashMap<String, Object>> shoppingCartDisplay) {
+        screen.displayShoppingCart(restaurantName, shoppingCartDisplay);
+    }
+
+    /**
+     * Sets the screen to the given screen
+     *
+     * @param screen new screen
+     */
+    public void setScreen(ShoppingCartPanelInterface screen) {
+        this.screen = screen;
+    }
 }

@@ -43,15 +43,15 @@ public class VerifyUserInteractorExpiredTest {
     void testVerifyUserExpired() {
         ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
         int actual = 1002;
-        VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
-        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
+        VerifyUserOutputBoundary verifyUserOutputBoundary = new VerifyUserPresenter(null);
+        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserOutputBoundary);
         VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userID);
         VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
 
-        verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
+        verifyUserOutputBoundary.setVerifyUserScreen(verifyUserScreen);
         verifyUserScreen.getFrame().setVisible(true);
 
-        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
+        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserOutputBoundary);
 
         assertEquals(verifyUserInteractor.verifyUser(userID,"898912"), actual);
 

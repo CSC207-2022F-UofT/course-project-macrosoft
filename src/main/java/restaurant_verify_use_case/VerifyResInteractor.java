@@ -7,14 +7,14 @@ import org.bson.types.ObjectId;
  * This class is the interactor for the restaurant verify use case.
  */
 public class VerifyResInteractor {
-    private VerifyResPresenter presenter;
+    private final VerifyResOutputBoundary presenter;
 
     /**
      * Constructor for VerifyResInteractor.
      *
      * @param presenter the presenter
      */
-    public VerifyResInteractor(VerifyResPresenter presenter) {
+    public VerifyResInteractor(VerifyResOutputBoundary presenter) {
         this.presenter = presenter;
     }
 
