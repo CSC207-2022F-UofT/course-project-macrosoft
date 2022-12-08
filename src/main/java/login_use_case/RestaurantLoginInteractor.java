@@ -6,18 +6,28 @@ import library.PasswordHasher;
 
 import entities.*;
 
-public class RestaurantLoginInteractor implements RestaurantLoginInputBoundary{
-    private UserLoginPresenter presenter;
+/**
+ * This class is the interactor for the restaurant login use case.
+ */
+public class RestaurantLoginInteractor implements RestaurantLoginInputBoundary {
+    private final UserLoginPresenter presenter;
 
+    /**
+     * Constructor for RestaurantLoginInteractor
+     *
+     * @param presenter the presenter
+     */
     public RestaurantLoginInteractor(UserLoginPresenter presenter) {
         this.presenter = presenter;
     }
 
     /**
-     * @param requestModel
+     * Login the restaurant
+     *
+     * @param requestModel the request model
      * @return 1000: Success
-     * 1001: Not Verified
-     * 1002: Invalid Credential
+     *         1001: Not Verified
+     *         1002: Invalid Credential
      */
     public UserLoginResponseModel login(RestaurantLoginRequestModel requestModel) {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
@@ -49,6 +59,6 @@ public class RestaurantLoginInteractor implements RestaurantLoginInputBoundary{
             }
         }
 
-        return presenter.loginFailed(new UserLoginResponseModel(1003, null,null));
+        return presenter.loginFailed(new UserLoginResponseModel(1003, null, null));
     }
 }

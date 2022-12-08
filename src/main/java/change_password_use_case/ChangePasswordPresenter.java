@@ -7,6 +7,7 @@ package change_password_use_case;
  * The ChangePasswordProcessor implements this interface
  */
 public interface ChangePasswordPresenter {
+
     /**
      * Success view.
      * @param responseModel response model
@@ -17,6 +18,7 @@ public interface ChangePasswordPresenter {
      * failed view
      * @param responseModel request model
      */
+
     void changePasswordFailed(ChangePasswordResponseModel responseModel);
 
     void setChangePasswordScreenInterface(ChangePasswordScreenInterface changePasswordScreenInterface);

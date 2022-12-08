@@ -5,13 +5,26 @@ import database.*;
 import entities.*;
 import library.PasswordHasher;
 
+/**
+ * This class is the interactor for the user login use case.
+ */
 public class UserLoginInteractor implements UserLoginInputBoundary {
-    private UserLoginPresenter presenter;
+    private final UserLoginPresenter presenter;
 
+    /**
+     * Constructor for UserLoginInteractor
+     *
+     * @param presenter the presenter
+     */
     public UserLoginInteractor(UserLoginPresenter presenter) {
         this.presenter = presenter;
     }
 
+    /**
+     * Login the user
+     *
+     * @param requestModel the request model
+     */
     public UserLoginResponseModel login(UserLoginRequestModel requestModel) {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);

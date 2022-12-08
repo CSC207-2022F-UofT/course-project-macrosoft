@@ -13,6 +13,10 @@ import org.bson.types.ObjectId;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is responsible for all interactions with the MongoDB database
+ * related to restaurants.
+ */
 public class RestaurantDataMongo implements RestaurantDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
 

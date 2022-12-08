@@ -12,6 +12,8 @@ public interface ChangeRestaurantInfoPresenter {
      * @param message success message
      */
     void changeRestaurantInfoSuccess(String message);
+
     void changeRestaurantInfoFailed(String message);
+
     void setScreen(ChangeRestaurantInfoScreenInterface screen);
 }

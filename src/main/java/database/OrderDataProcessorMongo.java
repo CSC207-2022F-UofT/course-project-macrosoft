@@ -14,33 +14,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class is responsible for all interactions with the MongoDB database
+ * related to orders.
+ */
 public class OrderDataProcessorMongo implements OrderDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
+
+    /**
+     * Constructor for OrderDataProcessorMongo
+     *
+     * @param fetcher the fetcher for the collection
+     */
     public OrderDataProcessorMongo(MongoCollectionFetcher fetcher) {
         this.mongoCollectionFetcher = fetcher;
     }
 
     /**
-     * @param order
-     * @return
-     */
-    @Override
-    public String save(Order order) {
-        return null;
-    }
-
-    /**
-     * @param order
-     * @return
-     */
-    @Override
-    public String delete(Order order) {
-        return null;
-    }
-
-    /**
-     * @param order
-     * @return
+     * Creates a new order
+     *
+     * @param order the order to create
+     * @return the id of the new order
      */
     @Override
     public ObjectId create(Order order) {
@@ -52,7 +46,9 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
     }
 
     /**
-     * @return
+     * Finds all orders
+     *
+     * @return a list of all orders
      */
     @Override
     public List<Order> findAll() {
@@ -67,8 +63,10 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
     }
 
     /**
-     * @param userId
-     * @return
+     * Finds all orders by user id
+     *
+     * @param userId the user id
+     * @return a list of all orders by user id
      */
     @Override
     public List<Order> findAllByUser(ObjectId userId) {
@@ -85,8 +83,10 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
     }
 
     /**
-     * @param restaurantId
-     * @return
+     * Finds all orders by restaurant id
+     *
+     * @param restaurantId the restaurant id
+     * @return a list of all orders by restaurant id
      */
     @Override
     public List<Order> findAllByRestaurant(ObjectId restaurantId) {
@@ -103,8 +103,10 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
     }
 
     /**
-     * @param id
-     * @return
+     * Finds an order by id
+     *
+     * @param id the id of the order
+     * @return the order
      */
     @Override
     public Order findById(ObjectId id) {
@@ -124,8 +126,10 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
     }
 
     /**
-     * @param orderId
-     * @param newStatus
+     * Updates an order status
+     *
+     * @param orderId   the order id
+     * @param newStatus the new status of the order
      */
     @Override
     public void updateStatus(ObjectId orderId, String newStatus) {
@@ -135,6 +139,12 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
         mongoCollectionFetcher.getCollection("Orders").updateOne(queryFilter, update);
     }
 
+    /**
+     * Converts a document to an order
+     *
+     * @param document the document to convert
+     * @return the order
+     */
     public Order convertDocumentToOrder(Document document) {
         FoodDataGateway foodDataGateway = new FoodDataMongo(MongoCollectionFetcher.getFetcher());
 
@@ -156,6 +166,12 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
                 document.getString("orderStatus"));
     }
 
+    /**
+     * Converts an order to a document
+     *
+     * @param order the order to convert
+     * @return the document
+     */
     public Document convertOrderToDocument(Order order) {
         List<Document> items = order.getItems()
                 .stream()
@@ -172,13 +188,25 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
                 .append("orderDate", order.getOrderDate());
     }
 
-    public Document convertFoodToDoc(Food curFood){
+    /**
+     * Converts a food to a document
+     *
+     * @param curFood the food to convert
+     * @return the document
+     */
+    public Document convertFoodToDoc(Food curFood) {
         return new Document("name", curFood.getName())
                 .append("description", curFood.getDescription())
                 .append("category", curFood.getCategory())
                 .append("price", curFood.getPrice());
     }
 
+    /**
+     * Converts a document to a food
+     *
+     * @param doc the document to convert
+     * @return the food
+     */
     public Food convertDocToFood(Document doc) {
         return new Food(doc.getString("name"),
                 doc.getString("description"),

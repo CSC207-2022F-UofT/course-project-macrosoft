@@ -12,73 +12,70 @@ import org.bson.types.ObjectId;
 
 import java.util.Date;
 
-public class VerificationCodeProcessorMongo implements VerificationCodeDataGateway{
+/**
+ * This class is responsible for all interactions with the MongoDB database
+ * related to verification codes.
+ */
+public class VerificationCodeProcessorMongo implements VerificationCodeDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
+
+    /**
+     * Constructor for VerificationCodeProcessorMongo
+     *
+     * @param fetcher the fetcher for the collection
+     */
     public VerificationCodeProcessorMongo(MongoCollectionFetcher fetcher) {
         this.mongoCollectionFetcher = fetcher;
     }
 
     /**
-     * @param verificationCode
-     * @return
+     * Saves a verification code to the database with the given user id
+     *
+     * @param userId           the id of the user
+     * @param verificationCode the verification code to be saved
      */
     @Override
-    public String save(ObjectId userId, VerificationCode verificationCode) {
+    public void save(ObjectId userId, VerificationCode verificationCode) {
         Document verificationCodeDoc = new Document("userID", userId)
                 .append("code", verificationCode.getCode())
                 .append("createdTime", verificationCode.getCreateDate());
 
         this.mongoCollectionFetcher.getCollection("Verification").insertOne(verificationCodeDoc);
-
-        return null;
     }
 
     /**
-     * @param verificationCode
-     * @return
+     * Deletes a verification code from the database with the given user id
+     *
+     * @param userId the id of the user
      */
     @Override
-    public String delete(VerificationCode verificationCode) {
-        return null;
-    }
-
-    /**
-     * @param verificationCode
-     * @return
-     */
-    @Override
-    public String create(VerificationCode verificationCode) {
-        return null;
-    }
-
-    /**
-     * @param userId
-     * @return
-     */
-    @Override
-    public String deleteByUserId(ObjectId userId) {
+    public void deleteByUserId(ObjectId userId) {
         MongoCollection verificationCollection = mongoCollectionFetcher.getCollection("Verification");
 
         Bson filter = Filters.eq("userID", userId);
         verificationCollection.deleteOne(filter);
-
-        return null;
     }
 
-    public String update(ObjectId restaurantID, VerificationCode verificationCode) {
-        Bson filter = Filters.eq("userID", restaurantID);
+    /**
+     * Updates the verification code in the database with the given user id
+     *
+     * @param userID           the id of the user
+     * @param verificationCode the verification code to be updated
+     */
+    public void update(ObjectId userID, VerificationCode verificationCode) {
+        Bson filter = Filters.eq("userID", userID);
         Bson update = Updates.combine(
                 Updates.set("code", verificationCode.getCode()),
                 Updates.set("createdTime", verificationCode.getCreateDate()));
 
         this.mongoCollectionFetcher.getCollection("Verification").updateOne(filter, update);
-
-        return null;
     }
 
     /**
-     * @param userId
-     * @return
+     * Validates and reads the verification code from the database with the given user id
+     *
+     * @param userId the id of the user
+     * @return the verification code
      */
     @Override
     public VerificationCode validateAndReadByUser(ObjectId userId) {
