@@ -37,7 +37,7 @@ public class OrderHistoryController {
 
 
     /**
-     * Get user ongoing order
+     * Get user ongoing orders
      */
     public void getCurrentOrder() {
         if(currentUserId == null){
@@ -51,6 +51,8 @@ public class OrderHistoryController {
 
     /**
      * Get the current user id
+     *
+     * @return should return thr current User ID
      */
     public ObjectId getCurrentUserId() {
         return currentUserId;
