@@ -51,7 +51,7 @@ class VerifyUserInteractorTest {
 
 
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
-        assertEquals(verifyUserInteractor.verifyUser(userID,"898912"), actual);
+        assertEquals(verifyUserFacade.verifyUser(userID,"898912"), actual);
 
     }
     // testing verify user interactor with an invalid code
@@ -59,6 +59,7 @@ class VerifyUserInteractorTest {
     void testVerifyUserInvalid() {
         ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
         int actual = 1001;
+
         VerifyUserPresenter verifyUserPresenter = new VerifyUserProcessor(null);
         VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserPresenter);
         VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userID);
@@ -67,8 +68,9 @@ class VerifyUserInteractorTest {
         verifyUserPresenter.setVerifyUserScreen(verifyUserScreen);
         verifyUserScreen.getFrame().setVisible(true);
 
+
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserPresenter);
-        assertEquals(verifyUserInteractor.verifyUser(userID,"898913"), actual);
+        assertEquals(verifyUserFacade.verifyUser(userID,"898913"), actual);
 
     }
 
