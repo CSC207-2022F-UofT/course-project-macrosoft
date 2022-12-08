@@ -53,7 +53,7 @@ public class ResDisplayMenuPanel extends JPanel implements ResDisplayMenuPanelIn
         emptyPanel.setBackground(BG_DARK_GREEN);
         emptyPanel.add(this.foodPanel);
 
-        JScrollPane menuScroll = new JScrollPane(emptyPanel);
+        JScrollPane menuScroll = new JScrollPane(foodPanel);
         menuScroll.setBorder(emptyBorder2);
         menuScroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         menuScroll.setBackground(BG_DARK_GREEN);
