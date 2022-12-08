@@ -15,21 +15,16 @@ public class UpdateOrderStatusProcessor implements UpdateOrderStatusPresenter {
         this.screen = screen;
     }
 
-    /**
-     * @return
-     */
-    @Override
-    public UpdateOrderStatusResponseModel prepareSuccessView() {
-        screen.close();
-        return null;
-    }
 
     /**
-     * @param message
-     * @return
+     * when update order status success, close the screen
      */
     @Override
-    public UpdateOrderStatusResponseModel prepareFailView(String message) {
-        return null;
+    public void prepareSuccessView() {
+        screen.close();
+    }
+
+    @Override
+    public void prepareFailView(String message) {
     }
 }

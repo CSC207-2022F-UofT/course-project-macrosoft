@@ -3,12 +3,21 @@ package change_password_use_case;
 // Use case layer
 
 /**
- * This class is the presenter for the change password use case.
+ * This class is the presenter interface for the change password use case.
+ * The ChangePasswordProcessor implements this interface
  */
 public interface ChangePasswordPresenter {
-    public void changePasswordSuccess(ChangePasswordResponseModel responseModel);
+    /**
+     * Success view.
+     * @param responseModel response model
+     */
+    void changePasswordSuccess(ChangePasswordResponseModel responseModel);
 
-    public void changePasswordFailed(ChangePasswordResponseModel responseModel);
+    /**
+     * failed view
+     * @param responseModel request model
+     */
+    void changePasswordFailed(ChangePasswordResponseModel responseModel);
 
-    public void setChangePasswordScreenInterface(ChangePasswordScreenInterface changePasswordScreenInterface);
+    void setChangePasswordScreenInterface(ChangePasswordScreenInterface changePasswordScreenInterface);
 }

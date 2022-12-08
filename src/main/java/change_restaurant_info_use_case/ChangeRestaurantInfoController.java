@@ -9,15 +9,20 @@ import org.bson.types.ObjectId;
  */
 public class ChangeRestaurantInfoController {
     private ChangeRestaurantInfoInputBoundary interactor;
-    private ObjectId currentRestaurantId;
+    private final ObjectId currentRestaurantId;
 
     public ChangeRestaurantInfoController(ChangeRestaurantInfoInputBoundary interactor, ObjectId currentRestaurantId) {
         this.interactor = interactor;
         this.currentRestaurantId = currentRestaurantId;
     }
 
-
-
+    /**
+     * Makes the given information into a request model, and calls the interactor to process the request model.
+     * @param name new name
+     * @param email new email
+     * @param location new location
+     * @param phone new phone
+     */
     public void changeRestaurantInfo(String name, String email, String location, String phone) {
         ChangeRestaurantInfoRequestModel requestModel = new ChangeRestaurantInfoRequestModel(this.currentRestaurantId, null, null, null, null);
         if (!name.isEmpty()) requestModel.setNewName(name);
@@ -36,11 +41,4 @@ public class ChangeRestaurantInfoController {
         this.interactor = interactor;
     }
 
-    public ObjectId getCurrentRestaurantId() {
-        return currentRestaurantId;
-    }
-
-    public void setCurrentRestaurantId(ObjectId currentRestaurantId) {
-        this.currentRestaurantId = currentRestaurantId;
-    }
 }

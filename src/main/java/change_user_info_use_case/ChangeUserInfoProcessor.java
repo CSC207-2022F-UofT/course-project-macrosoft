@@ -10,7 +10,7 @@ public class ChangeUserInfoProcessor implements ChangeUserInfoPresenter {
     }
 
     /**
-     * @param message
+     * @param message result message
      */
     @Override
     public void changeUserInfoSuccess(String message) {
@@ -19,7 +19,7 @@ public class ChangeUserInfoProcessor implements ChangeUserInfoPresenter {
     }
 
     /**
-     * @param message
+     * @param message result message
      */
     @Override
     public void changeUserInfoFailed(String message) {

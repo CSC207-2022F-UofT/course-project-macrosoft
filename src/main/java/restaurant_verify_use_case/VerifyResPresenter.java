@@ -1,9 +1,11 @@
 package restaurant_verify_use_case;
-
+/*
+presenter of the restaurant verify use case
+ */
 import org.bson.types.ObjectId;
 
 public interface VerifyResPresenter {
-    String verifiedSuccess(ObjectId currentRestaurantId, String restaurantName);
-    String verifiedFailed();
+    void verifiedSuccess(ObjectId currentRestaurantId, String restaurantName);
+    void verifiedFailed();
     void setVerifyResScreenInterface(VerifyResScreenInterface verifyResScreenInterface);
 }
