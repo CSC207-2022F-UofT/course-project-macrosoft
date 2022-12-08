@@ -17,7 +17,7 @@ public class VerifyResInteractorExpiredTest {
     // setting up a test document in our database
 
     static {
-        System.setProperty("java.awt.headless", "false");
+        System.setProperty("java.awt.headless", "true");
     }
     @BeforeEach
     void setUp() {

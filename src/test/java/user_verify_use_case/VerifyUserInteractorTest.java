@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class VerifyUserInteractorTest {
 
     static {
-        System.setProperty("java.awt.headless", "false");
+        System.setProperty("java.awt.headless", "true");
     }
 
     // setting up a test document in our database
