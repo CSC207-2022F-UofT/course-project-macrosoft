@@ -46,7 +46,6 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
 
         // Set the position and size of the screen
         this.setSize(900, 700);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
