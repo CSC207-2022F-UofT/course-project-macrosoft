@@ -11,12 +11,12 @@ More details will be introduced in the next few sections of this document.
 1. Run the file named `Main` and a JFrame window will pop out, this is our welcome screen
 2. The window can be closed by clicking on the top left/right corner(depending on Mac or Windows) as you would do to all other windows. 
 3. The components will navigate between each other on click according to their functionalities.
-4. Note that there are also runable files in some of the usecase, these are used to run the use case separately. It also helps when doing UI design since displaying a specific screen does not require navigating to that screen from the very beginning. 
+4. Note that there are also runnable files in some of the use cases, these are used to run the use cases separately. They are very helpful when doing UI design since displaying a specific screen does not require navigating to that screen from the very beginning. 
 
-## components
+## Screens and Features
 ### 1. Welcome Screen. 
-[Screenshots to be add]
-This screen is the first screen that shows up when the program is successfully runned. It contains a simple greeting message and two buttons used for register and login.
+<img width="1012" alt="Screen Shot 2022-12-07 at 11 12 06 PM" src="https://user-images.githubusercontent.com/94703030/206354816-cd6a17a9-a21d-4b03-9e46-1c5ca493a2d8.png">
+This screen is the first screen that shows up when the program is successfully runned. It contains a simple greeting message and two buttons used for register and login. You can login use our sample accounts
 
 ### 2. Login/Register Window.
 [Screenshots to be add]
