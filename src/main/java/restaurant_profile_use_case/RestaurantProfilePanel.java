@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class RestaurantProfilePanel extends JPanel implements RestaurantProfilePanelInterface {
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 20, 0);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(30, 30, 30, 30);
@@ -35,7 +35,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         // new title panel
         JPanel titlePanel = new JPanel();
         JLabel titleLabel = new JLabel("Restaurant Profile");
-        titleLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        titleLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         titleLabel.setForeground(BG_DARK_GREEN);
         titlePanel.add(titleLabel);
         titlePanel.setOpaque(true);
@@ -90,7 +90,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
         this.add(containCentre, BorderLayout.CENTER);
 
         // Add button panel
-        LayoutManager gridLayout1 = new GridLayout(0,3);
+        LayoutManager gridLayout1 = new GridLayout(0, 3);
         JPanel buttonsPanel = new JPanel(gridLayout1);
 
         JButton changeInfoButton = new JButton("Change Info");
@@ -148,6 +148,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
 
     /**
      * update the name label on the screen
+     *
      * @param newName new name after change
      */
 
@@ -158,6 +159,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
 
     /**
      * update the email label
+     *
      * @param newEmail new email after change
      */
 
@@ -168,6 +170,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
 
     /**
      * update the location label
+     *
      * @param newLocation new location after change
      */
 
@@ -178,6 +181,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
 
     /**
      * update the phone label
+     *
      * @param newPhone new phone number after change
      */
 
@@ -219,7 +223,7 @@ public class RestaurantProfilePanel extends JPanel implements RestaurantProfileP
 
         java.awt.Window[] win = java.awt.Window.getWindows();
 
-        for(Window curWin: win){
+        for (Window curWin : win) {
             curWin.dispose();
         }
 

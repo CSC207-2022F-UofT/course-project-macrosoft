@@ -34,8 +34,8 @@ public class VerifyResFacade {
      * @param restaurantID the restaurant id
      * @param code         the code
      */
-    public int verifyRes(ObjectId restaurantID, String code) {
+    public void verifyRes(ObjectId restaurantID, String code) {
         VerifyResInteractor verifyResInteractor = new VerifyResInteractor(presenter);
-        return verifyResInteractor.verifyRes(restaurantID, code);
+        verifyResInteractor.verifyRes(restaurantID, code);
     }
 }

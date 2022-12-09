@@ -6,7 +6,18 @@ package user_make_review_use_case;
  */
 public interface MakeReviewOutputBoundary {
 
-    MakeReviewResponseModel prepareSuccessView(MakeReviewResponseModel responseModel);
+    /**
+     * react to the successfully saving the review,
+     * create a new window (ReviewUI) to notify user that the task is successful
+     *
+     * @param responseModel response model
+     */
+    void prepareSuccessView(MakeReviewResponseModel responseModel);
 
-    MakeReviewResponseModel prepareFailView(String str);
+    /**
+     * prepare the response view when save review failed
+     *
+     * @param str error message
+     */
+    void prepareFailView(String str);
 }

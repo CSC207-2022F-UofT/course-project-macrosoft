@@ -22,7 +22,7 @@ class GetCodeInteractorTest {
         ObjectId resID = new ObjectId("638fd7e653160338d1041386");
         long millis = System.currentTimeMillis();
         java.util.Date date = new java.util.Date(millis);
-        VerificationCode code = new VerificationCode(date,"123456");
+        VerificationCode code = new VerificationCode(date, "123456");
 
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);

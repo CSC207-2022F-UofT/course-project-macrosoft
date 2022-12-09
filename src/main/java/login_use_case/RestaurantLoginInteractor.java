@@ -26,8 +26,8 @@ public class RestaurantLoginInteractor implements RestaurantLoginInputBoundary {
      *
      * @param requestModel the request model
      * @return 1000: Success
-     *         1001: Not Verified
-     *         1002: Invalid Credential
+     * 1001: Not Verified
+     * 1002: Invalid Credential
      */
     public UserLoginResponseModel login(RestaurantLoginRequestModel requestModel) {
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();

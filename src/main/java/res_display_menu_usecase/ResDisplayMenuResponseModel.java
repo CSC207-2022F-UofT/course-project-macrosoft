@@ -15,7 +15,7 @@ public class ResDisplayMenuResponseModel {
     /**
      * Constructor for ResDisplayMenuResponseModel
      *
-     * @param menuDic the menu dictionary
+     * @param menuDic  the menu dictionary
      * @param restName the rest name
      */
     public ResDisplayMenuResponseModel(HashMap<String, List> menuDic, String restName) {

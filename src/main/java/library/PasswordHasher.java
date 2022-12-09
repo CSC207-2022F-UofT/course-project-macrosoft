@@ -15,8 +15,7 @@ public class PasswordHasher {
      * @param input the password
      * @return the hashed password
      */
-    public static byte[] getSHA(String input) throws NoSuchAlgorithmException
-    {
+    public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
         // Static getInstance method is called with hashing SHA
         MessageDigest md = MessageDigest.getInstance("SHA-256");
 
@@ -32,8 +31,7 @@ public class PasswordHasher {
      * @param hash the hashed password
      * @return the hex value of the hashed password
      */
-    public static String toHexString(byte[] hash)
-    {
+    public static String toHexString(byte[] hash) {
         // Convert byte array into signum representation
         BigInteger number = new BigInteger(1, hash);
 
@@ -41,8 +39,7 @@ public class PasswordHasher {
         StringBuilder hexString = new StringBuilder(number.toString(16));
 
         // Pad with leading zeros
-        while (hexString.length() < 64)
-        {
+        while (hexString.length() < 64) {
             hexString.insert(0, '0');
         }
 

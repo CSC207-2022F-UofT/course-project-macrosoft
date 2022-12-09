@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreenInterface, ActionListener {
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(100, 30, 30, 30);
 
@@ -47,7 +47,7 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
         titlePanel.setBackground(GREY_WHITE);
         titlePanel.setBorder(emptyBorder);
         JLabel title = new JLabel("Change User Information");
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         title.setForeground(BG_DARK_GREEN);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         titlePanel.add(title);
@@ -153,8 +153,7 @@ public class ChangeUserInfoScreen extends JFrame implements ChangeUserInfoScreen
             } catch (Exception e) {
                 showMessageDialog(this, e.getMessage());
             }
-        }
-        else if (evt.getActionCommand().equals("Cancel")) {
+        } else if (evt.getActionCommand().equals("Cancel")) {
             this.close();
         }
     }

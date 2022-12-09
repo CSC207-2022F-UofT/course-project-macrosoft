@@ -6,7 +6,7 @@ import entities.Restaurant;
 /**
  * This class is the interactor for the restaurant profile use case.
  */
-public class RestaurantProfileIneractor implements RestaurantProfileInputBoundary{
+public class RestaurantProfileIneractor implements RestaurantProfileInputBoundary {
     private final RestaurantProfileOutputBoundary presenter;
 
     /**
@@ -32,8 +32,7 @@ public class RestaurantProfileIneractor implements RestaurantProfileInputBoundar
 
         if (restaurant == null) {
             presenter.restaurantNotFound();
-        }
-        else {
+        } else {
             RestaurantProfileResponseModel restaurantProfileResponseModel = new RestaurantProfileResponseModel(restaurant.getName(), restaurant.getEmail(), restaurant.getLocation(), restaurant.getPhone());
             presenter.restaurantFound(restaurantProfileResponseModel);
         }

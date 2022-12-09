@@ -91,14 +91,20 @@ public class VerifyResScreen extends JFrame implements VerifyResScreenInterface,
         screenFactory.createRestaurantHomepageScreen(restaurantId, restaurantName);
     }
 
+    /**
+     * show a message to the user
+     *
+     * @param message the message to be shown
+     */
     public void showMessage(String message) {
         showMessageDialog(null, message);
     }
 
+    /**
+     * Close the current screen
+     */
     @Override
     public void close() {
         this.dispose();
     }
-
-
 }

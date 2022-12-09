@@ -18,6 +18,7 @@ public class RegisterRestaurantPresenter implements RegisterRestaurantOutputBoun
 
     /**
      * when registration failed, display a message
+     *
      * @param message result message
      */
     @Override
@@ -27,6 +28,7 @@ public class RegisterRestaurantPresenter implements RegisterRestaurantOutputBoun
 
     /**
      * when the registration passes, display a message
+     *
      * @param message result message
      */
     @Override
@@ -38,6 +40,7 @@ public class RegisterRestaurantPresenter implements RegisterRestaurantOutputBoun
 
     /**
      * set the screen
+     *
      * @param screen new screen
      */
     @Override

@@ -19,7 +19,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
      */
     JPanel shoppingCartPanel = new JPanel(new GridLayout(0, 3));
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
@@ -52,7 +52,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
 
         title = new JLabel("Your Shopping is Empty");
         title.setBorder(emptyBorder2);
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         title.setForeground(BG_DARK_GREEN);
 
         buttonPanel.add(title);
@@ -102,8 +102,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
     public void displayShoppingCart(String restaurantName, HashMap<String, HashMap<String, Object>> cart) {
         if (restaurantName == null || cart.size() == 0) {
             title.setText("Your Shopping Cart is Empty");
-        }
-        else {
+        } else {
             title.setText("Shopping Cart: " + restaurantName);
         }
 
@@ -113,7 +112,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartPanelInterf
         this.shoppingCartPanel.setBackground(GREY_WHITE);
         this.shoppingCartPanel.setBorder(emptyBorder3);
 
-        for (String foodName: cart.keySet()) {
+        for (String foodName : cart.keySet()) {
             JPanel itemPanel = new JPanel();
             itemPanel.setOpaque(true);
             itemPanel.setBackground(GREY_WHITE);

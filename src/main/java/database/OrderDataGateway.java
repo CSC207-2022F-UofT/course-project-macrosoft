@@ -13,16 +13,14 @@ public interface OrderDataGateway {
     /**
      * Save an order
      *
-     * @param order
-     * @return null
+     * @param order the order
      */
     void save(Order order);
 
     /**
      * delete an order
      *
-     * @param orderId
-     * @return
+     * @param orderId the order id
      */
     void deleteByOrderId(ObjectId orderId);
 

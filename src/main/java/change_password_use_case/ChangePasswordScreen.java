@@ -14,15 +14,12 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class ChangePasswordScreen extends JFrame implements ChangePasswordScreenInterface, ActionListener {
 
-
     /**
      * Color and border variables.
      */
-
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(100, 30, 30, 30);
-
 
     /**
      * The username chosen by the user
@@ -39,6 +36,11 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
 
     private final ChangePasswordController changePasswordController;
 
+    /**
+     * Constructor for ChangePasswordScreen
+     *
+     * @param controller the change password controller
+     */
     public ChangePasswordScreen(ChangePasswordController controller) {
 
         // Initialize the controller
@@ -58,7 +60,7 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
         titlePanel.setBackground(GREY_WHITE);
         titlePanel.setBorder(emptyBorder);
         JLabel title = new JLabel("Change Password");
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         title.setForeground(BG_DARK_GREEN);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         titlePanel.add(title);
@@ -131,12 +133,13 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
      * Close this frame
      */
     @Override
-    public void close(){
+    public void close() {
         this.dispose();
     }
 
     /**
      * Displays a prompt message box with
+     *
      * @param message the message to be displayed in the prompt
      */
     @Override
@@ -167,8 +170,7 @@ public class ChangePasswordScreen extends JFrame implements ChangePasswordScreen
             } catch (Exception e) {
                 showMessageDialog(this, e.getMessage());
             }
-        }
-        else if (evt.getActionCommand().equals("Cancel")) {
+        } else if (evt.getActionCommand().equals("Cancel")) {
             this.close();
         }
     }

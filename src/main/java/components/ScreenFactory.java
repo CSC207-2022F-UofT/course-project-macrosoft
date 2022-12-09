@@ -33,13 +33,23 @@ import java.util.HashMap;
 
 // Responsibility: create screen
 
+/**
+ * This class is the factory of the screen
+ */
 public class ScreenFactory {
+
+    /**
+     * Create welcome screen
+     */
     public void createWelcomeScreen() {
 
         WelcomeScreenController controller = new WelcomeScreenController();
         WelcomeScreen screen = new WelcomeScreen(controller);
     }
 
+    /**
+     * Create login screen
+     */
     public void createLoginSreen() {
         UserLoginOutputBoundary userLoginOutputBoundary = new UserLoginPresenter(null);
         UserLoginInputBoundary userLoginInteractor = new UserLoginInteractor(userLoginOutputBoundary);
@@ -50,6 +60,9 @@ public class ScreenFactory {
         screen.getFrame().setVisible(true);
     }
 
+    /**
+     * Create user register screen
+     */
     public void createUserRegisterScreen() {
         RegisterUserOutputBoundary registerUserOutputBoundary = new RegisterUserPresenter(null);
         RegisterUserInputBoundary registerUserInputBoundary = new RegisterUserInteractor(registerUserOutputBoundary);
@@ -59,6 +72,9 @@ public class ScreenFactory {
         screen.getFrame().setVisible(true);
     }
 
+    /**
+     * Create restaurant register screen
+     */
     public void createRestaurantRegisterScreen() {
         RegisterRestaurantOutputBoundary registerRestaurantOutputBoundary = new RegisterRestaurantPresenter(null);
         RegisterRestaurantInputBoundary registerRestaurantInputBoundary = new RegisterRestaurantInteractor(registerRestaurantOutputBoundary);
@@ -68,6 +84,11 @@ public class ScreenFactory {
         screen.getFrame().setVisible(true);
     }
 
+    /**
+     * Create user verify screen with the given user id
+     *
+     * @param userId the user id
+     */
     public void createVerifyUserScreen(ObjectId userId) {
         VerifyUserOutputBoundary verifyUserOutputBoundary = new VerifyUserPresenter(null);
         VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserOutputBoundary);
@@ -79,6 +100,11 @@ public class ScreenFactory {
         verifyUserScreen.getFrame().setVisible(true);
     }
 
+    /**
+     * Create restaurant verify screen with the given restaurant id
+     *
+     * @param restaurantId the restaurant id
+     */
     public void createVerifyRestaurantScreen(ObjectId restaurantId) {
         VerifyResOutputBoundary verifyResOutputBoundary = new VerifyResPresenter(null);
         VerifyResFacade verifyResFacade = new VerifyResFacade(verifyResOutputBoundary);
@@ -90,18 +116,36 @@ public class ScreenFactory {
         verifyResScreen.getFrame().setVisible(true);
     }
 
+    /**
+     * Create user homepage screen with the given user id
+     *
+     * @param userId the user id
+     */
     public void createUserHomepageScreen(ObjectId userId) {
         UserHomepageController controller = new UserHomepageController(userId);
         UserHomePageScreen screen = new UserHomePageScreen(controller);
     }
 
+    /**
+     * Create restaurant homepage screen with the given restaurant id and restaurant name
+     *
+     * @param restaurantId   the restaurant id
+     * @param restaurantName the restaurant name
+     */
     public void createRestaurantHomepageScreen(ObjectId restaurantId, String restaurantName) {
         RestaurantHomepageController controller = new RestaurantHomepageController(restaurantId);
         RestaurantHomepageScreen screen = new RestaurantHomepageScreen(controller, restaurantName);
     }
 
+    /**
+     * Create restaurant order history screen with the given restaurant id and restaurant name
+     *
+     * @param currentRestaurantId the restaurant id
+     * @param restaurantName      the restaurant name
+     * @return the restaurant order history screen
+     */
     public JPanel createRestaurantOrderHistoryPanel(ObjectId currentRestaurantId, String restaurantName) {
-        RestaurantOrderHistoryOutputBoundary presenter =  new RestaurantOrderHistoryPresenter(null);
+        RestaurantOrderHistoryOutputBoundary presenter = new RestaurantOrderHistoryPresenter(null);
         RestaurantOrderHistoryInputBoundary interactor = new RestaurantOrderHistoryInteractor(presenter);
         RestaurantOrderHistoryController controller = new RestaurantOrderHistoryController(interactor, currentRestaurantId);
 
@@ -116,8 +160,14 @@ public class ScreenFactory {
         return (JPanel) panel;
     }
 
+    /**
+     * Create restaurant profile screen with the given restaurant id
+     *
+     * @param currentRestaurantId the restaurant id
+     * @return the restaurant profile screen
+     */
     public JPanel createRestaurantProfilePanel(ObjectId currentRestaurantId) {
-        RestaurantProfileOutputBoundary presenter =  new RestaurantProfilePresenter(null);
+        RestaurantProfileOutputBoundary presenter = new RestaurantProfilePresenter(null);
         RestaurantProfileInputBoundary interactor = new RestaurantProfileIneractor(presenter);
         RestaurantProfileController controller = new RestaurantProfileController(interactor, currentRestaurantId);
 
@@ -128,6 +178,12 @@ public class ScreenFactory {
         return panel;
     }
 
+    /**
+     * Create restaurant menu screen with the given restaurant id
+     *
+     * @param currentRestaurantId the restaurant id
+     * @return the restaurant menu screen
+     */
     public JPanel createRestaurantDisplayMenuPanel(ObjectId currentRestaurantId) {
         ResDisplayMenuOutputBoundary presenter = new ResDisplayMenuPresenter(null);
         ResDisplayMenuInputBoundary interactor = new ResDisplayMenuInteractor(presenter);
@@ -145,6 +201,11 @@ public class ScreenFactory {
         return (JPanel) displayMenuPanel;
     }
 
+    /**
+     * Create add food screen with the given restaurant id
+     *
+     * @param restaurantId the restaurant id
+     */
     public void createAddFoodScreen(ObjectId restaurantId) {
         AddFoodInputBoundary interactor_add = new MenuEditingInteractor(restaurantId);
         RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(restaurantId);
@@ -153,6 +214,16 @@ public class ScreenFactory {
         new AddFoodScreen(controller1);
     }
 
+    /**
+     * Create edit food screen
+     *
+     * @param restaurantId    the restaurant id
+     * @param foodName        the food name
+     * @param foodCategory    the food category
+     * @param foodDescription the food description
+     * @param foodPrice       the food price
+     * @param foodId          the food id
+     */
     public void createFoodEditingScreen(ObjectId restaurantId, String foodName, String foodCategory, String foodDescription, String foodPrice, ObjectId foodId) {
         AddFoodInputBoundary interactor_add = new MenuEditingInteractor(restaurantId);
         RemoveFoodInputBoundary interactor_remove = new MenuEditingInteractor(restaurantId);
@@ -161,6 +232,11 @@ public class ScreenFactory {
         new FoodEditingScreen(controller1, foodName, foodCategory, foodDescription, foodPrice, foodId);
     }
 
+    /**
+     * Create update order status screen with the given order id
+     *
+     * @param orderId the order id
+     */
     public void createUpdateOrderStatusScreen(ObjectId orderId) {
         UpdateOrderStatusOutputBoundary orderStatusPresenter = new UpdateOrderStatusPresenter(null);
         UpdateOrderStatusInputBoundary orderStatusInteractor = new UpdateOrderStatusInteractor(orderStatusPresenter);
@@ -171,10 +247,20 @@ public class ScreenFactory {
         screen.getFrame().setVisible(true);
     }
 
+    /**
+     * Create order detail screen with the given order information
+     *
+     * @param orderInfo the order information
+     */
     public void createOrderDetailScreen(ArrayList<HashMap<String, Object>> orderInfo) {
         new OrderHistoryDetailScreen(orderInfo);
     }
 
+    /**
+     * Create change password screen with the given user id
+     *
+     * @param userId the user id
+     */
     public void createChangePasswordScreen(ObjectId userId) {
         ChangePasswordOutputBoundary changePasswordOutputBoundary = new ChangePasswordPresenter(null);
         ChangePasswordInputBoundary changePasswordInputBoundary = new ChangePasswordInteractor(changePasswordOutputBoundary);
@@ -189,6 +275,11 @@ public class ScreenFactory {
         changePasswordScreen.getFrame().setVisible(true);
     }
 
+    /**
+     * Create change restaurant information screen with the given restaurant id
+     *
+     * @param restaurantId the restaurant id
+     */
     public void createChangeRestaurantInfoScreen(ObjectId restaurantId) {
         ChangeRestaurantInfoOutputBoundary changeRestaurantInfoOutputBoundary = new ChangeRestaurantInfoPresenter(null);
         ChangeRestaurantInfoInputBoundary changeRestaurantInfoInputBoundary = new ChangeRestaurantInfoInteractor(changeRestaurantInfoOutputBoundary);
@@ -203,6 +294,12 @@ public class ScreenFactory {
         changeRestaurantInfoScreen.getFrame().setVisible(true);
     }
 
+    /**
+     * Create user display menu screen with the given restaurant id
+     *
+     * @param restaurantId the restaurant id
+     * @return the user display menu screen
+     */
     public JPanel createUserDisplayMenu(ObjectId restaurantId) {
         DisplayMenuOutputBoundary presenter = new DisplayMenuPresenter(null);
         DisplayMenuInputBoundary interactor = new DisplayMenuInteractor(presenter);
@@ -216,7 +313,13 @@ public class ScreenFactory {
         return (JPanel) displayMenuPanel;
     }
 
-    public JPanel createUserOrderHistoryPanel(ObjectId userId){
+    /**
+     * Create user order history screen with the given user id
+     *
+     * @param userId the user id
+     * @return the user order history screen
+     */
+    public JPanel createUserOrderHistoryPanel(ObjectId userId) {
         OrderHistoryOutputBoundary orderHistoryOutputBoundary = new OrderHistoryPresenter(null);
         OrderHistoryInputBoundary orderHistoryInteractor = new OrderHistoryInteractor(orderHistoryOutputBoundary);
         OrderHistoryController orderHistoryController = new OrderHistoryController(orderHistoryInteractor, userId);
@@ -229,6 +332,12 @@ public class ScreenFactory {
         return (JPanel) orderHistoryPanel;
     }
 
+    /**
+     * Create user display restaurant screen with the given user id
+     *
+     * @param userId the user id
+     * @return the user display restaurant screen
+     */
     public JPanel createUserDisplayRestaurantsPanel(ObjectId userId) {
         UserDisplayRestaurantOutputBoundary userDisplayRestaurantOutputBoundary = new UserDisplayRestaurantPresenter(null);
         UserDisplayRestaurantInputBoundary userDisplayRestaurantInteractor = new UserDisplayRestaurantInteractor(userDisplayRestaurantOutputBoundary);
@@ -244,6 +353,12 @@ public class ScreenFactory {
         return (JPanel) screen;
     }
 
+    /**
+     * Gets shopping cart panel by user id
+     *
+     * @param userId user id
+     * @return JPanel
+     */
     public JPanel getShoppingCartPanel(ObjectId userId) {
         ShoppingCartOutputBoundary shoppingCartOutputBoundary = new ShoppingCartPresenter(null);
         CheckoutPresenter checkoutPresenter = new CheckoutProcessor(null);
@@ -261,7 +376,13 @@ public class ScreenFactory {
         return (JPanel) screen;
     }
 
-    public JPanel createUserProfilePanel(ObjectId userId){
+    /**
+     * Create user search restaurant screen with the given user id
+     *
+     * @param userId the user id
+     * @return the user search restaurant screen
+     */
+    public JPanel createUserProfilePanel(ObjectId userId) {
         UserProfileOutputBoundary userProfileOutputBoundary = new UserProfilePresenter(null);
         UserProfileInputBoundary userProfileInteractor = new UserProfileInteractor(userProfileOutputBoundary);
         UserProfileController userProfileController = new UserProfileController(userProfileInteractor, userId);
@@ -272,9 +393,14 @@ public class ScreenFactory {
         userProfileOutputBoundary.setUserProfilePanel(userProfilePanel);
         userProfilePanel.updatePanelData();
 
-        return (JPanel)userProfilePanel;
+        return (JPanel) userProfilePanel;
     }
 
+    /**
+     * Create make review screen with the given order id
+     *
+     * @param orderId the order id
+     */
     public void createMakeReviewScreen(ObjectId orderId) {
         MakeReviewOutputBoundary presenter = new MakeReviewPresenter();
         MakeReviewInputBoundary inputBoundary = new ReviewInteractor(presenter);
@@ -283,6 +409,11 @@ public class ScreenFactory {
         screen.setVisible(true);
     }
 
+    /**
+     * Create change user information screen with the given user id
+     *
+     * @param userId the user id
+     */
     public void createChangeUserInfoScreen(ObjectId userId) {
         ChangeUserInfoOutputBoundary changeUserInfoOutputBoundary = new ChangeUserInfoPresenter(null);
         ChangeUserInfoInputBoundary changeUserInfoInputBoundary = new ChangeUserInfoInteractor(changeUserInfoOutputBoundary);

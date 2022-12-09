@@ -125,6 +125,7 @@ public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaura
 
     /**
      * display the result as a message to the user.
+     *
      * @param message message to display
      */
     @Override
@@ -134,6 +135,7 @@ public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaura
 
     /**
      * return this frame.
+     *
      * @return this frame
      */
     @Override
@@ -143,6 +145,7 @@ public class ChangeRestaurantInfoScreen extends JFrame implements ChangeRestaura
 
     /**
      * Actions that the save and cancel buttons correspond to
+     *
      * @param evt the event to be processed
      */
     @Override

@@ -1,17 +1,23 @@
 package login_use_case;
 
-/*
-processor of the login use case. Implements the presenter
+/**
+ * processor of the login use case. Implements the presenter
  */
 public class UserLoginPresenter implements UserLoginOutputBoundary {
     private UserLoginScreenInterface loginScreen;
 
+    /**
+     * Constructor for UserLoginPresenter
+     *
+     * @param loginScreen the login screen
+     */
     public UserLoginPresenter(UserLoginScreenInterface loginScreen) {
         this.loginScreen = loginScreen;
     }
 
     /**
      * when user login success, display the success message, create a home page, and close the login window;
+     *
      * @param response response model
      * @return the response model
      */
@@ -25,6 +31,7 @@ public class UserLoginPresenter implements UserLoginOutputBoundary {
 
     /**
      * when restaurant login success, display the success message, create a home page, and close the login window;
+     *
      * @param response response model
      * @return the response model
      */
@@ -37,6 +44,7 @@ public class UserLoginPresenter implements UserLoginOutputBoundary {
 
     /**
      * When login failed. display the failed message
+     *
      * @param response response model
      * @return response model
      */
@@ -48,6 +56,7 @@ public class UserLoginPresenter implements UserLoginOutputBoundary {
 
     /**
      * When login success and the user is not verified, display the message and create a new verify window.
+     *
      * @param response response model
      * @return response model
      */
@@ -61,6 +70,7 @@ public class UserLoginPresenter implements UserLoginOutputBoundary {
 
     /**
      * When login success and the restaurant is not verified, display the message and create a new verify window.
+     *
      * @param response response model
      * @return response model
      */
@@ -73,6 +83,7 @@ public class UserLoginPresenter implements UserLoginOutputBoundary {
 
     /**
      * set the login screen to the given screen
+     *
      * @param loginScreen new login screen
      */
     public void setLoginScreen(UserLoginScreenInterface loginScreen) {

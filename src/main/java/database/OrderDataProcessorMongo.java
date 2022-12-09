@@ -31,6 +31,11 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
         this.mongoCollectionFetcher = fetcher;
     }
 
+    /**
+     * Saves an order to the database
+     *
+     * @param order the order to save
+     */
     @Override
     public void save(Order order) {
         Document orderDoc = new Document("orderId", order.getOrderID())
@@ -42,6 +47,11 @@ public class OrderDataProcessorMongo implements OrderDataGateway {
         this.mongoCollectionFetcher.getCollection("Orders").insertOne(orderDoc);
     }
 
+    /**
+     * Deletes an order from the database
+     *
+     * @param orderId the order id
+     */
     @Override
     public void deleteByOrderId(ObjectId orderId) {
         MongoCollection orderCollection = mongoCollectionFetcher.getCollection("Orders");

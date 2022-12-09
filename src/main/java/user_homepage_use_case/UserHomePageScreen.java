@@ -7,7 +7,7 @@ import java.awt.*;
 public class UserHomePageScreen {
     UserHomepageController controller;
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(50, 30, 30, 30);
 
@@ -48,7 +48,7 @@ public class UserHomePageScreen {
         JLabel greetingLabel = new JLabel("Pick Your Favourite Restaurant! ");
         greetingLabel.setBackground(GREY_WHITE);
         greetingLabel.setForeground(BG_DARK_GREEN);
-        greetingLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        greetingLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         greetingPanel.setBackground(GREY_WHITE);
         greetingPanel.setBorder(emptyBorder);
         greetingPanel.add(greetingLabel);

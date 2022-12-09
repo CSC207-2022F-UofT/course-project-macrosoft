@@ -1,4 +1,5 @@
 package user_view_menu_use_case;
+
 import org.bson.types.ObjectId;
 
 import javax.swing.*;
@@ -9,9 +10,9 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.List;
 
-public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterface, ActionListener{
+public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterface, ActionListener {
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 10, 0, 10);
@@ -35,17 +36,17 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
         resNamePanel.setBackground(BG_DARK_GREEN);
         resNamePanel.setAlignmentX(CENTER_ALIGNMENT);
 
-        nameLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        nameLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         nameLabel.setForeground(GREY_WHITE);
         nameLabel.setBorder(emptyBorder);
         resNamePanel.add(this.nameLabel);
 
-        addLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 15));
+        addLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 15));
         addLabel.setForeground(GREY_WHITE);
         addLabel.setBorder(emptyBorder);
         resNamePanel.add(this.addLabel);
 
-        phoneLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 15));
+        phoneLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 15));
         phoneLabel.setForeground(GREY_WHITE);
         phoneLabel.setBorder(emptyBorder);
         resNamePanel.add(this.phoneLabel);
@@ -109,7 +110,7 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
     public void updateMenuPanel(HashMap<String, List> menuDic) {
         foodPanel.removeAll();
 
-        for(int i = 0; i< menuDic.get("name").size(); i++) {
+        for (int i = 0; i < menuDic.get("name").size(); i++) {
 
             JPanel f = new JPanel();
             f.setLayout(new GridLayout(0, 1));
@@ -172,14 +173,22 @@ public class DisplayMenuPanel extends JPanel implements DisplayMenuPanelInterfac
 
     }
 
+    /**
+     * Updates the panel data
+     */
     @Override
     public void updatePanelData() {
         controller.displayMenuPage();
     }
 
+    /**
+     * Performs the action associated with the button
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Exit")){
+        if (e.getActionCommand().equals("Exit")) {
             JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
             frame.dispose();
         }

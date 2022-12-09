@@ -27,6 +27,7 @@ public interface ReviewDataGateway {
 
     /**
      * Finds a review by its linked orderId
+     *
      * @param id orderId
      * @return the review with the given orderId
      */

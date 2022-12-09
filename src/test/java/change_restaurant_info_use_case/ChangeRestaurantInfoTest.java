@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * This class is the test of change restaurant info use case.
+ */
 class ChangeRestaurantInfoTest {
 
     MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
@@ -40,8 +43,7 @@ class ChangeRestaurantInfoTest {
     }
 
     @Test
-    void testChangeResInfo()
-    {
+    void testChangeResInfo() {
         changeRestaurantInfoController.changeRestaurantInfo("yinuo's res2", "yinuozhao959@gmail.com", "Eaton Centre", "6041238687");
         Assertions.assertEquals(gateway.getRestaurantNameById(restaurantId), "yinuo's res2");
     }

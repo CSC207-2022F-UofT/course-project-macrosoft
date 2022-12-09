@@ -54,7 +54,7 @@ public class VerifyResInteractorExpiredTest {
         verifyResScreen.getFrame().setVisible(true);
 
         VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResOutputBoundary);
-        assertEquals(verifyResInteractor.verifyRes(resID,"898912"), actual);
+        assertEquals(verifyResInteractor.verifyRes(resID, "898912"), actual);
 
     }
 }

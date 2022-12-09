@@ -6,7 +6,7 @@ import entities.Menu;
 import org.bson.types.ObjectId;
 
 /**
- * This class is the input boundary for the remove food use case.
+ * This interface is the input boundary for the remove food use case.
  */
 public interface RemoveFoodInputBoundary {
 

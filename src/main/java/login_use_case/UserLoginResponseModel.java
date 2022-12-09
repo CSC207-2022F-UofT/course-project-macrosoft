@@ -6,7 +6,7 @@ import org.bson.types.ObjectId;
  * This class is the response model for the user login use case.
  */
 public class UserLoginResponseModel {
-    private int responseCode;
+    private final int responseCode;
     private String name;
     private ObjectId userId;
 

@@ -1,4 +1,5 @@
 package menu_editing_use_case;
+
 import entities.*;
 import org.bson.types.ObjectId;
 
@@ -18,9 +19,9 @@ public class RemoveFoodRequestModel {
     /**
      * Constructor for RemoveFoodRequestModel
      *
-     * @param resId         the restaurant id
-     * @param curMenu       the current menu
-     * @param foodToRemove  the food to remove
+     * @param resId        the restaurant id
+     * @param curMenu      the current menu
+     * @param foodToRemove the food to remove
      */
     public RemoveFoodRequestModel(ObjectId resId, Menu curMenu, ObjectId foodToRemove) {
         this.resId = resId;
@@ -30,6 +31,7 @@ public class RemoveFoodRequestModel {
 
     /**
      * Gets the current menu
+     *
      * @return the current menu
      */
     public Menu getCurMenu() {
@@ -38,6 +40,7 @@ public class RemoveFoodRequestModel {
 
     /**
      * Sets the current menu
+     *
      * @param curMenu the current menu
      */
     public void setCurMenu(Menu curMenu) {
@@ -46,6 +49,7 @@ public class RemoveFoodRequestModel {
 
     /**
      * Gets the food id to remove
+     *
      * @return the food id
      */
     public ObjectId getFoodToRemove() {
@@ -54,6 +58,7 @@ public class RemoveFoodRequestModel {
 
     /**
      * Gets the restaurant id
+     *
      * @return the restaurant id
      */
     public ObjectId getResId() {

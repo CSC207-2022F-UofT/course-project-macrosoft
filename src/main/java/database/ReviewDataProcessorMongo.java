@@ -68,14 +68,16 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway {
         Bson filter = Filters.eq("_id", id);
 
         Document doc = (Document) getReviewCollection().find(filter).first();
-        if (doc != null){
+        if (doc != null) {
             return convertDocumentToReview(doc);
+        } else {
+            return null;
         }
-        else {return null;}
     }
 
     /**
      * find the review given the orderID
+     *
      * @param OrderID the id of an order
      * @return review object if it exists, else null
      */
@@ -83,10 +85,11 @@ public class ReviewDataProcessorMongo implements ReviewDataGateway {
     public Review findByOrderId(ObjectId OrderID) {
         Bson filter = Filters.eq("orderID", OrderID);
         Document doc = (Document) getReviewCollection().find(filter).first();
-        if (doc != null){
+        if (doc != null) {
             return convertDocumentToReview(doc);
+        } else {
+            return null;
         }
-        else {return null;}
     }
 
     /**

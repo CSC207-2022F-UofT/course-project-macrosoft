@@ -16,17 +16,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * This class is the test of make review use case.
+ */
 public class TestMakeReviewUseCase {
     @Before
-    public void setup(){
+    public void setup() {
     }
 
     /**
      * test if the MakeReviewUseCase saves the review input
      */
     @Test
-    public void testMakeReview(){
+    public void testMakeReview() {
         // setup input metrics
         ObjectId orderId = new ObjectId();
         int rating = 7;
@@ -38,7 +40,7 @@ public class TestMakeReviewUseCase {
         // run the use case
         MakeReviewOutputBoundary presenter = new MakeReviewPresenter();
         ReviewInteractor i = new ReviewInteractor(presenter);
-        MakeReviewRequestModel request= new MakeReviewRequestModel(orderId, rating, comment, p, subject, d);
+        MakeReviewRequestModel request = new MakeReviewRequestModel(orderId, rating, comment, p, subject, d);
         i.makeReview(request);
 
         // check database to see if the review has been saved
@@ -60,7 +62,8 @@ public class TestMakeReviewUseCase {
     }
 
     @After
-    public void teardown(){}
+    public void teardown() {
+    }
 
 }
 

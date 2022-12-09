@@ -58,12 +58,12 @@ public class UpdateOrderStatusInteractorTest {
     }
 
     // delete the created order from database after the test have been run
-     @AfterEach
-     void tearDown() {
-         ObjectId orderId = new ObjectId("63917c69140e363c13186cc5");
-         MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
-         OrderDataGateway gateway = new OrderDataProcessorMongo(fetcher);
-         gateway.deleteByOrderId(orderId);
-     }
+    @AfterEach
+    void tearDown() {
+        ObjectId orderId = new ObjectId("63917c69140e363c13186cc5");
+        MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
+        OrderDataGateway gateway = new OrderDataProcessorMongo(fetcher);
+        gateway.deleteByOrderId(orderId);
+    }
 
 }

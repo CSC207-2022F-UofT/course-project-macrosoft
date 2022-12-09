@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * This class is the test of user login use case.
+ */
 class UserLoginTest {
 
     ObjectId resId = new ObjectId("6392a48f5bfef323e3d5c00d");
@@ -24,9 +26,10 @@ class UserLoginTest {
     @AfterEach
     void tearDown() {
     }
+
     @Test
-    void testLogin(){
-        RestaurantLoginRequestModel requestModel = new RestaurantLoginRequestModel("InorTestingRes","cptbtptp");
+    void testLogin() {
+        RestaurantLoginRequestModel requestModel = new RestaurantLoginRequestModel("InorTestingRes", "cptbtptp");
         UserLoginResponseModel responseModel = restaurantLoginInteractor.login(requestModel);
         Assertions.assertEquals(responseModel.getUserId(), resId);
     }

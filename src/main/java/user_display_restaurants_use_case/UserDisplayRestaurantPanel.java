@@ -10,10 +10,11 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
 
     UserDisplayRestaurantController controller;
     JPanel restaurantPanel = new JPanel(new GridLayout(0, 3));
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
     JTextField searchTextBar;
+
     public UserDisplayRestaurantPanel(UserDisplayRestaurantController controller) {
         //initialize the controller
         this.controller = controller;
@@ -44,7 +45,7 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
         resScrollPanel.setOpaque(true);
         resScrollPanel.setBackground(GREY_WHITE);
 
-        resScrollPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        resScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         resScrollPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         this.add(resScrollPanel, BorderLayout.CENTER);
@@ -56,6 +57,7 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
 
     /**
      * update the restaurant panel
+     *
      * @param restaurantInfo hash map, restaurant information
      */
 
@@ -71,8 +73,8 @@ public class UserDisplayRestaurantPanel extends JPanel implements UserDisplayRes
             restaurantPanel.add(new RestaurantComponent(restLabel, restId));
         }
 
-        if(restaurantInfo.keySet().size() < 6){
-            for (int i = 0; i < 3 ;i++){
+        if (restaurantInfo.keySet().size() < 6) {
+            for (int i = 0; i < 3; i++) {
                 JPanel j = new JPanel();
                 j.setOpaque(false);
                 restaurantPanel.add(j);

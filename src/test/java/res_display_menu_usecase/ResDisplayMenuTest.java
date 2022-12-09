@@ -8,6 +8,9 @@ import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * This class is the test of restaurant display menu use case.
+ */
 class ResDisplayMenuTest {
 
     @Test
@@ -29,6 +32,13 @@ class ResDisplayMenuTest {
         catch (Exception e){
             assert false;
         }
+    }
 
+    @Test
+    void addItem() {
+    }
+
+    @Test
+    void getRestId() {
     }
 }

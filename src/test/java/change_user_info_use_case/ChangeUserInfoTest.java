@@ -9,7 +9,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * This class is the test of change user info use case.
+ */
 class ChangeUserInfoTest {
 
     MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
@@ -23,6 +25,7 @@ class ChangeUserInfoTest {
             userId);
 
     ChangeUserInfoScreenInterface changeUserInfoScreen = new ChangeUserInfoScreen(changeUserInfoController);
+
     @BeforeEach
     void setUp() {
         changeUserInfoOutputBoundary.setScreen(changeUserInfoScreen);
@@ -34,7 +37,7 @@ class ChangeUserInfoTest {
     }
 
     @Test
-    void testChangeUserInfo(){
+    void testChangeUserInfo() {
         changeUserInfoController.changeUserInfo("Yeeno", "Zhou", "yinuozhao959@gmail.com");
         Assertions.assertEquals(gateway.findById(userId).getFirstName(), "Yeeno");
     }
