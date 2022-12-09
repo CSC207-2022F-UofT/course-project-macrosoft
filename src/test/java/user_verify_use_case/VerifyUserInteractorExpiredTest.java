@@ -22,7 +22,7 @@ public class VerifyUserInteractorExpiredTest {
         long millis = System.currentTimeMillis();
         java.util.Date date = new java.util.Date(millis);
         java.util.Date new_date = AddMinutesInteractor.addMinutesToDate(-5, date);
-        VerificationCode code = new VerificationCode(new_date,"898912");
+        VerificationCode code = new VerificationCode(new_date, "898912");
 
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
@@ -53,7 +53,7 @@ public class VerifyUserInteractorExpiredTest {
 
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserOutputBoundary);
 
-        assertEquals(verifyUserInteractor.verifyUser(userID,"898912"), actual);
+        assertEquals(verifyUserInteractor.verifyUser(userID, "898912"), actual);
 
     }
 }

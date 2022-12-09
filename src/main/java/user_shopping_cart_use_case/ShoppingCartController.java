@@ -9,7 +9,7 @@ public class ShoppingCartController {
     ShoppingCartInputBoundary shoppingCartInteractor;
     CheckoutInputBoundary checkoutInteractor;
 
-    private ObjectId currentUserId;
+    private final ObjectId currentUserId;
 
     /**
      * Constructor for ShoppingCartController

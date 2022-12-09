@@ -9,5 +9,5 @@ public interface RegisterRestaurantInputBoundary {
      *
      * @param requestModel the request model
      */
-    int registerRestaurant(RegisterRestaurantRequestModel requestModel);
+    void registerRestaurant(RegisterRestaurantRequestModel requestModel);
 }

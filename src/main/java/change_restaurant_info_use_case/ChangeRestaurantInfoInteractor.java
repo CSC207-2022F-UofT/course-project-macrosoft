@@ -19,6 +19,7 @@ public class ChangeRestaurantInfoInteractor implements ChangeRestaurantInfoInput
 
     /**
      * Change restaurant information according to the given request model.
+     *
      * @param requestModel request model
      */
     @Override

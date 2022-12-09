@@ -26,7 +26,7 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
     JTextField phone = new JTextField(15);
     RegisterRestaurantController registerRestaurantController;
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(50, 30, 0, 30);
     private static final Border emptyBorder2 = BorderFactory.createEmptyBorder(0, 100, 0, 100);
@@ -47,7 +47,7 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
         // the title panel
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel("Register New Account");
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         titlePanel.add(title);
@@ -150,7 +150,6 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
     }
 
     /**
-     *
      * @param message resulting message to display
      */
     public void showMessage(String message) {
@@ -177,6 +176,7 @@ public class RegisterRestaurantScreen extends JFrame implements RegisterRestaura
 
     /**
      * return the frame
+     *
      * @return this frame
      */
     @Override

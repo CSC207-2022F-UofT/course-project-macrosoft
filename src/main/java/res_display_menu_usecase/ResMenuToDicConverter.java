@@ -19,7 +19,7 @@ public class ResMenuToDicConverter {
      * @return the HashMap
      */
     @SuppressWarnings("rawtypes")
-    public static HashMap<String, List> getMenuDic(Menu curMenu){
+    public static HashMap<String, List> getMenuDic(Menu curMenu) {
         HashMap<String, List> menuDic = new HashMap<>();
         List<Food> foodLst = curMenu.getFoodList();
 
@@ -29,7 +29,7 @@ public class ResMenuToDicConverter {
         List<Float> priceList = new ArrayList<>();
         List<ObjectId> idList = new ArrayList<>();
 
-        for(Food curFood: foodLst){
+        for (Food curFood : foodLst) {
             nameList.add(curFood.getName());
             descriptionList.add(curFood.getDescription());
             categoryList.add(curFood.getCategory());

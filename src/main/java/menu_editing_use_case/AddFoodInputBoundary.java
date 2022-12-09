@@ -6,7 +6,7 @@ import entities.*;
 import org.bson.types.ObjectId;
 
 /**
- * This class is the input boundary for the add food use case.
+ * This interface is the input boundary for the add food use case.
  */
 public interface AddFoodInputBoundary {
 

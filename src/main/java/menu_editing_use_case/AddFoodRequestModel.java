@@ -1,4 +1,5 @@
 package menu_editing_use_case;
+
 import entities.*;
 import org.bson.types.ObjectId;
 
@@ -41,6 +42,7 @@ public class AddFoodRequestModel {
 
     /**
      * Gets the current menu
+     *
      * @return the current menu
      */
     public Menu getCurMenu() {
@@ -49,6 +51,7 @@ public class AddFoodRequestModel {
 
     /**
      * Sets the current menu
+     *
      * @param curMenu the current menu
      */
     public void setCurMenu(Menu curMenu) {
@@ -57,6 +60,7 @@ public class AddFoodRequestModel {
 
     /**
      * Gets the restaurant name
+     *
      * @return the restaurant name
      */
     public String getName() {
@@ -65,6 +69,7 @@ public class AddFoodRequestModel {
 
     /**
      * Sets the restaurant name
+     *
      * @param name the restaurant name
      */
     public void setName(String name) {
@@ -73,6 +78,7 @@ public class AddFoodRequestModel {
 
     /**
      * Gets the category
+     *
      * @return the category
      */
     public String getCategory() {
@@ -81,6 +87,7 @@ public class AddFoodRequestModel {
 
     /**
      * Sets the category
+     *
      * @param category the category
      */
     public void setCategory(String category) {
@@ -89,6 +96,7 @@ public class AddFoodRequestModel {
 
     /**
      * Gets the description
+     *
      * @return the description
      */
     public String getDescription() {
@@ -97,6 +105,7 @@ public class AddFoodRequestModel {
 
     /**
      * Sets the description
+     *
      * @param description the description
      */
     public void setDescription(String description) {
@@ -105,6 +114,7 @@ public class AddFoodRequestModel {
 
     /**
      * Gets the price
+     *
      * @return the price
      */
     public float getPrice() {
@@ -113,6 +123,7 @@ public class AddFoodRequestModel {
 
     /**
      * Sets the price
+     *
      * @param price the price
      */
     public void setPrice(float price) {
@@ -121,6 +132,7 @@ public class AddFoodRequestModel {
 
     /**
      * Gets the restaurant id
+     *
      * @return the restaurant id
      */
     public ObjectId getResId() {

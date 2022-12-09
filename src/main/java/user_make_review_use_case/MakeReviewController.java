@@ -13,8 +13,9 @@ public class MakeReviewController {
 
     /**
      * a controller that takes in user input and sends request to interactor
-     * @param reviewInteractor
-     * @param currentId
+     *
+     * @param reviewInteractor the interactor
+     * @param currentId        the current user id
      */
     public MakeReviewController(MakeReviewInputBoundary reviewInteractor, ObjectId currentId) {
         this.reviewInteractor = reviewInteractor;
@@ -23,17 +24,17 @@ public class MakeReviewController {
 
     /**
      * generate a request (with all the data needed) and send this request to interactor
-     * @param rating
-     * @param comment
-     * @param picPathList
-     * @param subjectLine
-     * @param lastEditTime
-     * @return
+     *
+     * @param rating       the rating
+     * @param comment      the comment
+     * @param picPathList  the list of picture paths
+     * @param subjectLine  the subject line
+     * @param lastEditTime the last edit time
      */
-    public MakeReviewResponseModel makeReview(int rating, String comment, List<Path> picPathList, String subjectLine, Date lastEditTime) {
+    public void makeReview(int rating, String comment, List<Path> picPathList, String subjectLine, Date lastEditTime) {
 
         MakeReviewRequestModel requestMode = new MakeReviewRequestModel(currentId, rating, comment, picPathList, subjectLine, lastEditTime);
 
-        return  reviewInteractor.makeReview(requestMode);
+        reviewInteractor.makeReview(requestMode);
     }
 }

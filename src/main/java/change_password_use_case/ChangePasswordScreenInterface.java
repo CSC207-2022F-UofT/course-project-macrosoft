@@ -11,19 +11,21 @@ import javax.swing.*;
 public interface ChangePasswordScreenInterface {
 
     /**
-     * close the current screen
+     * Close the current screen
      */
     void close();
 
 
     /**
-     * display the resulting message
+     * Display the resulting message
+     *
      * @param message resulting message
      */
     void showMessage(String message);
 
     /**
-     * return the current frame
+     * Return the current frame
+     *
      * @return this frame
      */
     JFrame getFrame();

@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test class for RegisterUserController
+ */
 class RegisterUserControllerTest {
 
     MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
@@ -30,8 +33,8 @@ class RegisterUserControllerTest {
     }
 
     @Test
-    void testRegisterUser(){
-        RegisterUserRequestModel request = new RegisterUserRequestModel("yinuozhao959@gmail.com","testUserrrrrr", "testUser", "testUser", "testUser");
+    void testRegisterUser() {
+        RegisterUserRequestModel request = new RegisterUserRequestModel("yinuozhao959@gmail.com", "testUserrrrrr", "testUser", "testUser", "testUser");
         int num = registerUserInputBoundary.registerUser(request);
         Assertions.assertEquals(num, 1000);
     }

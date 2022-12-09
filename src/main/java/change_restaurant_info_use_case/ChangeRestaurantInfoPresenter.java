@@ -7,6 +7,11 @@ public class ChangeRestaurantInfoPresenter implements ChangeRestaurantInfoOutput
     ChangeRestaurantInfoScreenInterface screen;
 
 
+    /**
+     * Constructor for ChangeRestaurantInfoPresenter
+     *
+     * @param screen the screen
+     */
     public ChangeRestaurantInfoPresenter(ChangeRestaurantInfoScreenInterface screen) {
         this.screen = screen;
     }
@@ -30,6 +35,7 @@ public class ChangeRestaurantInfoPresenter implements ChangeRestaurantInfoOutput
 
     /**
      * return the current screen
+     *
      * @return this screen
      */
     public ChangeRestaurantInfoScreenInterface getScreen() {
@@ -38,6 +44,7 @@ public class ChangeRestaurantInfoPresenter implements ChangeRestaurantInfoOutput
 
     /**
      * set the scrent screen to the given new screen
+     *
      * @param screen new screen
      */
     public void setScreen(ChangeRestaurantInfoScreenInterface screen) {

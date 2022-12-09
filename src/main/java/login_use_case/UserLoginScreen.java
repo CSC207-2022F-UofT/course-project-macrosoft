@@ -24,7 +24,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
 
     UserLoginController userLoginController;
 
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(50, 30, 0, 30);
@@ -43,10 +43,10 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
-         // the title panel
+        // the title panel
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel("Login To Your Account");
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         titlePanel.add(title);
@@ -113,8 +113,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
-        }
-        else if (evt.getActionCommand().equals("Log in as Restaurant")) {
+        } else if (evt.getActionCommand().equals("Log in as Restaurant")) {
             try {
                 UserLoginResponseModel userLoginResponseModel = userLoginController.loginAsRestaurant(username.getText(),
                         String.valueOf(password.getPassword()));
@@ -122,8 +121,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
-        }
-        else if (evt.getActionCommand().equals("Cancel")) {
+        } else if (evt.getActionCommand().equals("Cancel")) {
             ScreenFactory screenFactory = new ScreenFactory();
             screenFactory.createWelcomeScreen();
             this.close();
@@ -132,6 +130,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
 
     /**
      * Initiate a new user verify screen through the screen factory.
+     *
      * @param userId id of the current user. type: ObjectId
      */
     @Override
@@ -142,6 +141,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
 
     /**
      * Initiate a new restaurant verify screen through the screen factory.
+     *
      * @param restaurantId id of the current restaurant. type: ObjectId
      */
     public void showRestaurantVerifyScreen(ObjectId restaurantId) {
@@ -151,6 +151,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
 
     /**
      * display the message for login result
+     *
      * @param message message to display
      */
     @Override
@@ -160,6 +161,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
 
     /**
      * display the user homepage, called after successfully logged in
+     *
      * @param userId if of the current user
      */
     @Override
@@ -170,8 +172,9 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
 
     /**
      * display the restaurant homepage, called after successfully logged in
-     * @param restaurantId  id of the current restaurant
-     * @param restaurantName   name of the current restaurant
+     *
+     * @param restaurantId   id of the current restaurant
+     * @param restaurantName name of the current restaurant
      */
     public void showRestaurantHomepage(ObjectId restaurantId, String restaurantName) {
         ScreenFactory screenFactory = new ScreenFactory();
@@ -188,6 +191,7 @@ public class UserLoginScreen extends JFrame implements ActionListener, UserLogin
 
     /**
      * return this frame
+     *
      * @return the current frame
      */
     @Override

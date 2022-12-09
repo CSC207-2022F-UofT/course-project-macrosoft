@@ -24,18 +24,16 @@ public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoun
      * Registers a restaurant.
      *
      * @param requestModel the request model
-     * @return 1000: Success
-     * 1001: Username Exists
      */
-    public int registerRestaurant(RegisterRestaurantRequestModel requestModel) {
+    public void registerRestaurant(RegisterRestaurantRequestModel requestModel) {
         if (!requestModel.getEmail().matches("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$")) {
             presenter.registerFailed("Invalid email");
-            return 1002;
+            return;
         }
 
         if (requestModel.getUsername().length() < 6) {
             presenter.registerFailed("Username Too Short");
-            return 1002;
+            return;
         }
 
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
@@ -45,7 +43,7 @@ public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoun
 
         if (authInfoDataGateway.getUserByUsername(requestModel.getUsername()) != null) {
             presenter.registerFailed("Username already exist");
-            return 1001;
+            return;
         }
 
 
@@ -55,7 +53,7 @@ public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoun
         try {
             hashedPassword = PasswordHasher.toHexString(PasswordHasher.getSHA(requestModel.getPassword()));
         } catch (Exception e) {
-            return 1;
+            return;
         }
 
         authInfoDataGateway.create(requestModel.getUsername(), hashedPassword, restID);
@@ -66,6 +64,5 @@ public class RegisterRestaurantInteractor implements RegisterRestaurantInputBoun
 
         presenter.registerSuccessful("Success");
 
-        return 1000;
     }
 }

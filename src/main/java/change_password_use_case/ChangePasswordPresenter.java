@@ -9,6 +9,11 @@ public class ChangePasswordPresenter implements ChangePasswordOutputBoundary {
 
     private ChangePasswordScreenInterface changePasswordScreenInterface;
 
+    /**
+     * Constructor for ChangePasswordPresenter
+     *
+     * @param changePasswordScreenInterface ChangePasswordScreenInterface current screen
+     */
     public ChangePasswordPresenter(ChangePasswordScreenInterface changePasswordScreenInterface) {
         this.changePasswordScreenInterface = changePasswordScreenInterface;
     }

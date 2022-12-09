@@ -26,7 +26,7 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         titlePanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         JLabel title = new JLabel("How's This Order?");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 30));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 30));
         titlePanel.add(title);
 
         Integer[] ratingChoices = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
@@ -35,7 +35,7 @@ public class MakeReviewScreen extends JFrame implements ActionListener {
         JPanel ratingPanel = new JPanel();
         ratingPanel.add(ratingLabel);
         ratingPanel.add(ratingBox);
-        ratingPanel.setBounds(100, 100,100,50);
+        ratingPanel.setBounds(100, 100, 100, 50);
         ratingPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel subjectLabel = new JLabel("Subject:");

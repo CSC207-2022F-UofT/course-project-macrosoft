@@ -35,6 +35,7 @@ public class RestaurantOrderHistoryController {
 
     /**
      * Gets the intercator for the current restaurant.
+     *
      * @return the interactor
      */
     public RestaurantOrderHistoryInputBoundary getInteractor() {
@@ -43,6 +44,7 @@ public class RestaurantOrderHistoryController {
 
     /**
      * Sets the interactor for the current restaurant.
+     *
      * @param interactor the interactor
      */
     public void setInteractor(RestaurantOrderHistoryInputBoundary interactor) {

@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * This class is the test of change password use case.
+ */
 class ChangePasswordTest {
     MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
     ObjectId userId = new ObjectId("63797394ee00665db6a0a950");
@@ -23,19 +26,19 @@ class ChangePasswordTest {
     ChangePasswordScreenInterface changePasswordScreen = new ChangePasswordScreen(changePasswordController);
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         changePasswordOutputBoundary.setChangePasswordScreenInterface(changePasswordScreen);
 
 
     }
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         changePasswordController.changePassword("234567", "123456", "123456");
     }
 
     @Test
-    void testChangePassword(){
+    void testChangePassword() {
         changePasswordController.changePassword("123456", "234567", "234567");
 
         changePasswordOutputBoundary.setChangePasswordScreenInterface(changePasswordScreen);

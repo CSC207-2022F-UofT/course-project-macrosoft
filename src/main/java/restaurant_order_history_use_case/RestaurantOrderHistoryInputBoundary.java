@@ -3,7 +3,7 @@ package restaurant_order_history_use_case;
 import org.bson.types.ObjectId;
 
 /**
- * This class is the input boundary for the restaurant order history use case.
+ * This interface is the input boundary for the restaurant order history use case.
  */
 public interface RestaurantOrderHistoryInputBoundary {
     /**

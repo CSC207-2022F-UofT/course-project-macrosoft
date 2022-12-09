@@ -22,12 +22,13 @@ class VerifyResInteractorTest {
         ObjectId resID = new ObjectId("638fd7e653160338d10413bb");
         long millis = System.currentTimeMillis();
         java.util.Date date = new java.util.Date(millis);
-        VerificationCode code = new VerificationCode(date,"898912");
+        VerificationCode code = new VerificationCode(date, "898912");
 
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         verificationCodeDataGateway.save(resID, code);
     }
+
     // removing the test document from database after tests are run
     @AfterEach
     void tearDown() {
@@ -36,6 +37,7 @@ class VerifyResInteractorTest {
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         verificationCodeDataGateway.deleteByUserId(resID);
     }
+
     // testing verify restaurant interactor with a valid code
     @Test
     void testVerifyResValid() {
@@ -51,9 +53,10 @@ class VerifyResInteractorTest {
         verifyResScreen.getFrame().setVisible(true);
 
         VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResOutputBoundary);
-        assertEquals(verifyResInteractor.verifyRes(resID,"898912"), actual);
+        assertEquals(verifyResInteractor.verifyRes(resID, "898912"), actual);
 
     }
+
     // testing verify Res interactor with an invalid code
     @Test
     void testVerifyResInvalid() {
@@ -68,7 +71,7 @@ class VerifyResInteractorTest {
         verifyResScreen.getFrame().setVisible(true);
 
         VerifyResInteractor verifyResInteractor = new VerifyResInteractor(verifyResOutputBoundary);
-        assertEquals(verifyResInteractor.verifyRes(resID,"898911"), actual);
+        assertEquals(verifyResInteractor.verifyRes(resID, "898911"), actual);
 
     }
 }

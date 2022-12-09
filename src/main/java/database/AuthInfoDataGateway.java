@@ -13,7 +13,7 @@ public interface AuthInfoDataGateway {
      *
      * @param username the username of the user
      * @param password the password of the user
-     * @param userId  the id of the user
+     * @param userId   the id of the user
      */
     void create(String username, String password, ObjectId userId);
 
@@ -52,5 +52,10 @@ public interface AuthInfoDataGateway {
      */
     AuthInfo getUserByUsername(String username);
 
+    /**
+     * Removes the user by username
+     *
+     * @param username the username of the user
+     */
     void removeByUsername(String username);
 }

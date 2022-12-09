@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import entities.*;
 
+/**
+ * This class is the test of register restaurant use case.
+ */
 class RegisterRestaurantControllerTest {
 
     MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
@@ -32,7 +35,7 @@ class RegisterRestaurantControllerTest {
     }
 
     @Test
-    void testRegisterRes(){
+    void testRegisterRes() {
         registerRestaurantController.register("testResssss", "testRes", "123456", "yinuozhao959@gmail.com", "uoft", "7781234567");
         Assertions.assertNotNull(gateway.findByRestaurantName("testResssss"));
         Restaurant res = gateway.findByRestaurantName("testResssss").get(0);

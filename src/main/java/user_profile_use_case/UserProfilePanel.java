@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class UserProfilePanel extends JPanel implements UserProfilePanelInterface {
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
     private static final Border emptyBorder3 = BorderFactory.createEmptyBorder(20, 0, 20, 0);
 
@@ -29,7 +29,7 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
 
         JPanel titlePanel = new JPanel();
         JLabel titleLabel = new JLabel("User Profile");
-        titleLabel.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        titleLabel.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         titleLabel.setForeground(BG_DARK_GREEN);
         titlePanel.add(titleLabel);
         titlePanel.setOpaque(true);
@@ -68,7 +68,7 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
         this.add(containCentre, BorderLayout.CENTER);
 
         // Add button panel
-        LayoutManager gridLayout1 = new GridLayout(0,3);
+        LayoutManager gridLayout1 = new GridLayout(0, 3);
         JPanel buttonsPanel = new JPanel(gridLayout1);
 
         JButton changeInfoButton = new JButton("Change Info");
@@ -135,7 +135,6 @@ public class UserProfilePanel extends JPanel implements UserProfilePanelInterfac
     }
 
     /**
-     *
      * @param newEmail new email to change
      */
     @Override

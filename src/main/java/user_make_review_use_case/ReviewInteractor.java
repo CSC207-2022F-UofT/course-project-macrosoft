@@ -6,7 +6,9 @@ import entities.Review;
 import database.ReviewDataGateway;
 import org.bson.types.ObjectId;
 
-
+/**
+ * This class is the interactor of the make review use case.
+ */
 public class ReviewInteractor implements MakeReviewInputBoundary {
     MakeReviewOutputBoundary presenter;
 
@@ -24,8 +26,13 @@ public class ReviewInteractor implements MakeReviewInputBoundary {
         return gateway.save(review);
     }
 
+    /**
+     * make a review
+     *
+     * @param requestModel the request model
+     */
     @Override
-    public MakeReviewResponseModel makeReview(MakeReviewRequestModel requestModel) {
+    public void makeReview(MakeReviewRequestModel requestModel) {
         try {
             Review rev = new Review(new ObjectId(),
                     requestModel.getCurOrder(),
@@ -42,10 +49,10 @@ public class ReviewInteractor implements MakeReviewInputBoundary {
             MakeReviewResponseModel response = new MakeReviewResponseModel(result);
 
             // call presenter to modify UI based on response model
-            return this.presenter.prepareSuccessView(response);
+            this.presenter.prepareSuccessView(response);
 
         } catch (Exception e) {
-            return this.presenter.prepareFailView(e.getMessage());
+            this.presenter.prepareFailView(e.getMessage());
         }
     }
 

@@ -9,7 +9,8 @@ public class ReviewUI extends JFrame {
 
     /**
      * a screen used to present the ID of review saved
-     * @param successResponse
+     *
+     * @param successResponse response model
      */
     public ReviewUI(MakeReviewResponseModel successResponse) {
         this.rev = successResponse.getReviewId();

@@ -21,12 +21,13 @@ class VerifyUserInteractorTest {
         ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
         long millis = System.currentTimeMillis();
         java.util.Date date = new java.util.Date(millis);
-        VerificationCode code = new VerificationCode(date,"898912");
+        VerificationCode code = new VerificationCode(date, "898912");
 
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         verificationCodeDataGateway.save(userID, code);
     }
+
     // removing the test document from database after tests are run
     @AfterEach
     void tearDown() {
@@ -35,6 +36,7 @@ class VerifyUserInteractorTest {
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         verificationCodeDataGateway.deleteByUserId(userID);
     }
+
     // testing verify user interactor with a valid code
     @Test
     void testVerifyUserValid() {
@@ -50,7 +52,7 @@ class VerifyUserInteractorTest {
 
 
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserOutputBoundary);
-        assertEquals(verifyUserInteractor.verifyUser(userID,"898912"), actual);
+        assertEquals(verifyUserInteractor.verifyUser(userID, "898912"), actual);
 
     }
 
@@ -70,7 +72,7 @@ class VerifyUserInteractorTest {
 
 
         VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserOutputBoundary);
-        assertEquals(verifyUserInteractor.verifyUser(userID,"898913"), actual);
+        assertEquals(verifyUserInteractor.verifyUser(userID, "898913"), actual);
 
     }
 

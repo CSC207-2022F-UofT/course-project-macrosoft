@@ -8,6 +8,9 @@ import entities.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * This class is the test of menu editing use case.
+ */
 class MenuEditingTest {
 
     /**
@@ -28,7 +31,7 @@ class MenuEditingTest {
         controller.add("tiramisu", "goodie goodie", "sweets", 12.00f);
         Menu curMenu = gateway.getMenu(resId);
         Integer list_size = curMenu.getFoodList().size();
-        Food curFood = curMenu.getFoodList().get(list_size-1);
+        Food curFood = curMenu.getFoodList().get(list_size - 1);
         ObjectId food_id = curFood.getItemID();
         Assertions.assertEquals(curFood.getName(), "tiramisu");
 

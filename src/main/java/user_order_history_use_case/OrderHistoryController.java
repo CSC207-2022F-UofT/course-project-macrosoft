@@ -21,7 +21,7 @@ public class OrderHistoryController {
     }
 
     /**
-     * Geta orders.
+     * Gets orders.
      */
     public void getOrders() {
         if (currentUserId == null) {

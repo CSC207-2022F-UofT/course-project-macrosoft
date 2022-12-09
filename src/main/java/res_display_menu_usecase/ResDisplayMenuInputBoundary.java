@@ -1,7 +1,7 @@
 package res_display_menu_usecase;
 
 /**
- * This class is the input boundary for the display menu use case.
+ * This interface is the input boundary for the display menu use case.
  */
 public interface ResDisplayMenuInputBoundary {
 

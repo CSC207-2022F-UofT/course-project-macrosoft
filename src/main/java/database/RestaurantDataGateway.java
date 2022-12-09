@@ -87,5 +87,10 @@ public interface RestaurantDataGateway {
      */
     void updateMenuId(ObjectId restaurantId, ObjectId menuId);
 
+    /**
+     * Deletes a restaurant by its id
+     *
+     * @param id the id of the restaurant to be deleted
+     */
     void removeResById(ObjectId id);
 }

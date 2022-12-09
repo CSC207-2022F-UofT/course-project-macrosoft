@@ -2,24 +2,23 @@ package user_make_review_use_case;
 
 public class MakeReviewPresenter implements MakeReviewOutputBoundary {
     /**
-     * react to the successfully saving the review, create a new window (ReviewUI) to notify user that the task is successful
-     * @param response
-     * @return
+     * react to the successfully saving the review,
+     * create a new window (ReviewUI) to notify user that the task is successful
+     *
+     * @param response response model
      */
     @Override
-    public MakeReviewResponseModel prepareSuccessView(MakeReviewResponseModel response) {
+    public void prepareSuccessView(MakeReviewResponseModel response) {
         ReviewUI ui = new ReviewUI(response);
         ui.setVisible(true);
-        return null;
     }
 
     /**
      * prepare the response view when save review failed
+     *
      * @param error error message
-     * @return return
      */
     @Override
-    public MakeReviewResponseModel prepareFailView(String error) {
-        return null;
+    public void prepareFailView(String error) {
     }
 }

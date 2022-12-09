@@ -37,6 +37,7 @@ public class ChangeUserInfoRequestModel {
 
     /**
      * Sets the user id
+     *
      * @param userId the user id
      */
     public void setUserId(ObjectId userId) {

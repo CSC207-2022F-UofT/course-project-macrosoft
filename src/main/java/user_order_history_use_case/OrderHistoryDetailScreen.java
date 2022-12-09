@@ -11,7 +11,7 @@ import java.util.HashMap;
  * The class for order history detail screen
  */
 public class OrderHistoryDetailScreen {
-    private static final Color BG_DARK_GREEN =  new Color(38, 73, 65);
+    private static final Color BG_DARK_GREEN = new Color(38, 73, 65);
     private static final Color GREY_WHITE = new Color(214, 210, 205);
 
     private static final Border emptyBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
@@ -27,13 +27,13 @@ public class OrderHistoryDetailScreen {
      * A window with all the ordered food displayed in single panel respectively along with the total price for the order
      * @param infos A list of all the info needed for each ordered food, including name, price per item/ price in total, category, description and number of items
      */
-    public OrderHistoryDetailScreen(ArrayList<HashMap<String, Object>> infos){
+    public OrderHistoryDetailScreen(ArrayList<HashMap<String, Object>> infos) {
 
 
         JFrame frame = new JFrame("Order details");
 
         frame.setLayout(new BorderLayout());
-        frame.setSize(900,700);
+        frame.setSize(900, 700);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
@@ -41,7 +41,7 @@ public class OrderHistoryDetailScreen {
         titlePanel.setBackground(BG_DARK_GREEN);
 
         JLabel title = new JLabel("Order Details");
-        title.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 40));
+        title.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 40));
         title.setForeground(GREY_WHITE);
         title.setBorder(emptyBorder);
         titlePanel.add(title);
@@ -50,7 +50,7 @@ public class OrderHistoryDetailScreen {
         orderDisplayDetailPanel = new JPanel();
         orderDisplayDetailPanel.setBackground(GREY_WHITE);
         orderDisplayDetailPanel.setBorder(blackline);
-        GridLayout layout = new GridLayout(0 ,3);
+        GridLayout layout = new GridLayout(0, 3);
         layout.setVgap(40);
         layout.setHgap(40);
         orderDisplayDetailPanel.setLayout(layout);
@@ -70,15 +70,15 @@ public class OrderHistoryDetailScreen {
         totalOrderPrice = new JLabel("Total: $" + 0.0);
         totalOrderPrice.setHorizontalTextPosition(JLabel.CENTER);
         totalOrderPrice.setForeground(GREY_WHITE);
-        totalOrderPrice.setFont(new Font("Serif", Font.BOLD|Font.ITALIC, 30));
+        totalOrderPrice.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 30));
         totalPanel.add(totalOrderPrice);
         totalPanel.setBorder(emptyBorder);
 
         JPanel right = new JPanel();
         JPanel left = new JPanel();
 
-        right.setPreferredSize(new Dimension(50 ,0));
-        left.setPreferredSize(new Dimension(50 ,0));
+        right.setPreferredSize(new Dimension(50, 0));
+        left.setPreferredSize(new Dimension(50, 0));
         right.setBackground(BG_DARK_GREEN);
         left.setBackground(BG_DARK_GREEN);
 
@@ -114,7 +114,7 @@ public class OrderHistoryDetailScreen {
 
         double totalPrice = 0;
 
-        for(HashMap<String, Object> info : orderInfos){
+        for (HashMap<String, Object> info : orderInfos) {
             JPanel foodPanel = new JPanel();
             foodPanel.setBackground(Color.lightGray);
             foodPanel.setLayout(new GridLayout(0, 1));

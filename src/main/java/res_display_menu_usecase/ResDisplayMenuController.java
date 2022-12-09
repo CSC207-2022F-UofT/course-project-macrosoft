@@ -26,23 +26,14 @@ public class ResDisplayMenuController {
     /**
      * Displays the menu page.
      */
-    public void displayMenuPage(){
+    public void displayMenuPage() {
         ResDisplayMenuRequestModel requestModel = new ResDisplayMenuRequestModel(restId);
         interactor.displayMenu(requestModel);
     }
 
     /**
-     * Adds a food item to the shopping cart.
-     *
-     * @param foodId the food id
-     */
-    public void addItem(ObjectId foodId, String quantity) {
-        int quantityInt = Integer.parseInt(quantity);
-        ShoppingCartSingleton.getSingletonInstance().addFood(foodId, quantityInt);
-    }
-
-    /**
      * Gets the restaurant id
+     *
      * @return the restaurant id
      */
     public ObjectId getRestId() {
