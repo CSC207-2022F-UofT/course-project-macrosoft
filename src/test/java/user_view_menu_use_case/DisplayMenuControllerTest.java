@@ -24,6 +24,8 @@ class DisplayMenuControllerTest {
             DisplayMenuOutputBoundary presenter = new DisplayMenuPresenter(null);
             DisplayMenuInputBoundary interactor = new DisplayMenuInteractor(presenter);
             DisplayMenuController controller = new DisplayMenuController(interactor, new ObjectId("63797394ee00665db6a0a950"));
+            DisplayMenuPanelInterface panel = new DisplayMenuPanel(controller);
+            presenter.setDisplayMenuPanel(panel);
             controller.displayMenuPage();
             assert true;
         }
