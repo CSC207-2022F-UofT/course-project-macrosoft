@@ -19,7 +19,7 @@ public class TestFactory {
     // setting up a order that has order id "63335f66bb6cd6599ed6f64d";
 
     public static Order getOrder() {
-        ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
+        ObjectId orderId = new ObjectId("63917c69140e363c13186cc5");
         ObjectId restaurantId = new ObjectId("63797394ee00665db6a0a950");
         ObjectId userId = new ObjectId("63335e7abb6cd6599ed6f64b");
 
@@ -29,7 +29,7 @@ public class TestFactory {
         ArrayList<OrderItem> items = new ArrayList<>();
         items.add(0, o1);
 
-        String orderStatus = new String("Confirming Order");
+        String orderStatus = "Confirming Order";
         Date orderDate = new Date();
 
         Order order = new Order(orderId, orderDate, restaurantId, userId, items, orderStatus);

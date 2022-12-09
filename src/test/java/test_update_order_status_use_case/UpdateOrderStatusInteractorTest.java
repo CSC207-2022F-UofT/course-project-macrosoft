@@ -19,12 +19,12 @@ public class UpdateOrderStatusInteractorTest {
 
     @Test
     public void testUpdateOrderStatusChange() {
-        ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
+        ObjectId orderId = new ObjectId("63917c69140e363c13186cc5");
         String newStatus = "Order Received";
 
         UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
         UpdateOrderStatusOutputBoundary presenter = new UpdateOrderStatusPresenter(null);
-        UpdateOrderStatusInteractor interactor = new UpdateOrderStatusInteractor(presenter);
+        UpdateOrderStatusInputBoundary interactor = new UpdateOrderStatusInteractor(presenter);
         String expected = "Order Received";
         interactor.updateOrderStatus(request);
         assertEquals(interactor.getOrderStatus(orderId), expected);
@@ -32,25 +32,26 @@ public class UpdateOrderStatusInteractorTest {
 
     @Test
     public void testUpdateOrderStatusRemainTheSame() {
-        ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
+        ObjectId orderId = new ObjectId("63917c69140e363c13186cc5");
         String newStatus = "Confirming Order";
 
         UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
         UpdateOrderStatusOutputBoundary presenter = new UpdateOrderStatusPresenter(null);
-        UpdateOrderStatusInteractor interactor = new UpdateOrderStatusInteractor(presenter);
+        UpdateOrderStatusInputBoundary interactor = new UpdateOrderStatusInteractor(presenter);
         String expected = "Confirming Order";
         interactor.updateOrderStatus(request);
-        assertEquals(interactor.getOrderStatus(orderId), expected);
+        String actual = interactor.getOrderStatus(orderId);
+        assertEquals(actual, expected);
     }
 
     @Test
     public void testUpdateOrderStatusSkipMultipleStatus() {
-        ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
+        ObjectId orderId = new ObjectId("63917c69140e363c13186cc5");
         String newStatus = "Ready For Pickup";
 
         UpdateOrderStatusRequestModel request = new UpdateOrderStatusRequestModel(orderId, newStatus);
         UpdateOrderStatusOutputBoundary presenter = new UpdateOrderStatusPresenter(null);
-        UpdateOrderStatusInteractor interactor = new UpdateOrderStatusInteractor(presenter);
+        UpdateOrderStatusInputBoundary interactor = new UpdateOrderStatusInteractor(presenter);
         String expected = "Ready For Pickup";
         interactor.updateOrderStatus(request);
         assertEquals(interactor.getOrderStatus(orderId), expected);
@@ -59,7 +60,7 @@ public class UpdateOrderStatusInteractorTest {
     // delete the created order from database after the test have been run
      @AfterEach
      void tearDown() {
-         ObjectId orderId = new ObjectId("63335f66bb6cd6599ed6f64d");
+         ObjectId orderId = new ObjectId("63917c69140e363c13186cc5");
          MongoCollectionFetcher fetcher = new MongoCollectionFetcher();
          OrderDataGateway gateway = new OrderDataProcessorMongo(fetcher);
          gateway.deleteByOrderId(orderId);
