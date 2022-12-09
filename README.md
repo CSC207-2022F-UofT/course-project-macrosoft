@@ -91,6 +91,10 @@ We construct our project in a way that it is consistent with both the Clean Arch
 - We tested most of the use case through controller/interactor, because all the other methdos/classes are reacheable from there. 
 - We have imlemenetd responsive message dialogs, where each individual action will evoke a message window telling the user whether the current actill fails or success. Such dislogs also pops up when running tests, and the tests only pass when the dialog is closed. Since github Action cannot close the poped up windows, the tests fails when it trys to run them.
 - Testing of all getters and setters are omitted as those methods are simple. 
+- The table below is our test coverage summary:
+![Coverage Report _ Summary](https://user-images.githubusercontent.com/94703030/206628784-af871794-3f80-42c5-822d-8bbc271c57a6.jpg)
+
+
 
 ## Future Enhencements
 - Payment System.
