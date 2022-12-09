@@ -1,8 +1,6 @@
 package restaurant_register_use_case;
 
-import database.MongoCollectionFetcher;
-import database.RestaurantDataGateway;
-import database.RestaurantDataMongo;
+import database.*;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -14,6 +12,7 @@ class RegisterRestaurantControllerTest {
 
     MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
     RestaurantDataGateway gateway = new RestaurantDataMongo(fetcher);
+    AuthInfoDataGateway authInfoDataGateway = new AuthInfoProcessorMongo(fetcher);
     RegisterRestaurantOutputBoundary registerRestaurantOutputBoundary = new RegisterRestaurantPresenter(null);
     RegisterRestaurantInputBoundary registerRestaurantInputBoundary = new RegisterRestaurantInteractor(registerRestaurantOutputBoundary);
     RegisterRestaurantController registerRestaurantController = new RegisterRestaurantController(registerRestaurantInputBoundary);
@@ -28,6 +27,7 @@ class RegisterRestaurantControllerTest {
 
     @AfterEach
     void tearDown() {
+        authInfoDataGateway.removeByUsername("testRes");
         gateway.removeResById(newResId);
     }
 
