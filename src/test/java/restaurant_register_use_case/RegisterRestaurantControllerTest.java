@@ -10,6 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import entities.*;
 
+/**
+ * We are only testing the controller because other methods and classes can be reached by controller.
+ */
 class RegisterRestaurantControllerTest {
 
     MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();

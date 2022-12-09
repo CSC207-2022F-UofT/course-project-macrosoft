@@ -10,6 +10,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * We are only testing the controller because other methods and classes can be reached by controller.
+ */
+
 class ChangePasswordTest {
     MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
     ObjectId userId = new ObjectId("63797394ee00665db6a0a950");

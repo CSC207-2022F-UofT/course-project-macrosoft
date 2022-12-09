@@ -9,7 +9,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * We are only testing the controller because other methods and classes can be reached by controller.
+ */
 class ChangeUserInfoTest {
 
     MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();

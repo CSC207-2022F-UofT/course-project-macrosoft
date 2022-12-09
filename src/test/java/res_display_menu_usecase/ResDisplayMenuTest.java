@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 
 class ResDisplayMenuTest {
 
+    /**
+     * We are only testing the controller because other methods and classes can be reached by controller.
+     */
     @Test
     public void test_get_resId() {
         ResDisplayMenuOutputBoundary presenter = new ResDisplayMenuPresenter(null);
@@ -14,13 +17,5 @@ class ResDisplayMenuTest {
 
         ObjectId resId =  controller.getRestId();
         Assertions.assertEquals(resId.toString(), "63797394ee00665db6a0a950");
-    }
-
-    @Test
-    void addItem() {
-    }
-
-    @Test
-    void getRestId() {
     }
 }

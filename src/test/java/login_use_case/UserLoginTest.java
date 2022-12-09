@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * We are only testing the controller because other methods and classes can be reached by controller.
+ */
 class UserLoginTest {
 
     ObjectId resId = new ObjectId("6392a48f5bfef323e3d5c00d");
