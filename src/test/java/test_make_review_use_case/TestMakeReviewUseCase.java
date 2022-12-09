@@ -56,7 +56,6 @@ public class TestMakeReviewUseCase {
         assertEquals(review.getSubjectLine(), subject);
         assertEquals(review.getLastEditTime(), d);
         assertEquals(review.getPicPathList(), p);
-
     }
 
     @After
