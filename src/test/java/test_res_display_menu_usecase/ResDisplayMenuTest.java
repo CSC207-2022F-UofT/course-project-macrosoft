@@ -1,4 +1,4 @@
-package res_display_menu_usecase;
+package test_res_display_menu_usecase;
 
 import menu_editing_use_case.AddFoodInputBoundary;
 import menu_editing_use_case.MenuEditingController;
@@ -7,6 +7,7 @@ import menu_editing_use_case.RemoveFoodInputBoundary;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import res_display_menu_usecase.*;
 
 /**
  * This class is the test of restaurant display menu use case.

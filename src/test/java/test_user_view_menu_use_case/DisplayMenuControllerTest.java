@@ -1,10 +1,11 @@
-package user_view_menu_use_case;
+package test_user_view_menu_use_case;
 
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import res_display_menu_usecase.*;
+import user_view_menu_use_case.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

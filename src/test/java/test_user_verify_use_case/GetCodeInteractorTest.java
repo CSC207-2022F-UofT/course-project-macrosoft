@@ -1,13 +1,15 @@
-package user_verify_use_case;
+package test_user_verify_use_case;
 
 import database.MongoCollectionFetcher;
 import entities.VerificationCode;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import database.VerificationCodeProcessorMongo;
 import database.VerificationCodeDataGateway;
+import user_verify_use_case.GetCodeInteractor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,7 +49,7 @@ class GetCodeInteractorTest {
         ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
         String actual = "898912";
 
-        assertTrue(GetCodeInteractor.getVerificationCode(userID).equals(actual));
+        Assertions.assertTrue(GetCodeInteractor.getVerificationCode(userID).equals(actual));
     }
 
     //testing get verification code for a user that does not exist

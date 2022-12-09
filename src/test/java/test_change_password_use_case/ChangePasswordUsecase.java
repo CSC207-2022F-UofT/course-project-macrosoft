@@ -1,5 +1,6 @@
-package change_password_use_case;
+package test_change_password_use_case;
 
+import change_password_use_case.*;
 import database.AuthInfoDataGateway;
 import database.AuthInfoProcessorMongo;
 import database.MongoCollectionFetcher;
