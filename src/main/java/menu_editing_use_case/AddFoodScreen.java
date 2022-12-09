@@ -1,4 +1,4 @@
-package menu_editing_use_case.Screens;
+package menu_editing_use_case;
 
 import menu_editing_use_case.MenuEditingController;
 

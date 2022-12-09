@@ -7,20 +7,17 @@ import org.junit.jupiter.api.Test;
 class ResDisplayMenuTest {
 
     @Test
-    public void test_get_resId() {
-        ResDisplayMenuOutputBoundary presenter = new ResDisplayMenuPresenter(null);
-        ResDisplayMenuInputBoundary interactor = new ResDisplayMenuInteractor(presenter);
-        ResDisplayMenuController controller = new ResDisplayMenuController(interactor, new ObjectId("63797394ee00665db6a0a950"));
+    public void res_test_display() {
+        try {
+            ResDisplayMenuOutputBoundary presenter = new ResDisplayMenuPresenter(null);
+            ResDisplayMenuInputBoundary interactor = new ResDisplayMenuInteractor(presenter);
+            ResDisplayMenuController controller = new ResDisplayMenuController(interactor, new ObjectId("63797394ee00665db6a0a950"));
+            controller.displayMenuPage();
+            assert true;
+        }
+        catch (NullPointerException e){
+            assert false;
+        }
 
-        ObjectId resId =  controller.getRestId();
-        Assertions.assertEquals(resId.toString(), "63797394ee00665db6a0a950");
-    }
-
-    @Test
-    void addItem() {
-    }
-
-    @Test
-    void getRestId() {
     }
 }
