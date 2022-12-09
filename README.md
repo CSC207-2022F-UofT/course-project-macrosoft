@@ -1,4 +1,4 @@
-## ☀️ Note: Some of our tests evokes pop-up responsive message but Action cannot close the message dialog, the Github Classroom Workflow failes but all the implementition, including the tests themselves, are correct.
+## ☀️ Note: Some of our tests evoke pop-up responsive message, but Action cannot close the message dialog, thus the Github Classroom Workflow failes but all the implementition, including the tests themselves, are correct.
 
 # <p align="center">🍣🍦🥟Welcome to FOODQEE🍜🌯🍲</p>
 
@@ -16,7 +16,7 @@ Are you a food lover who is looking to try some new restaurants? Are you a resta
 9. [Closing Words](#closing-words)
 
 ## 🍿Introduction
-In this project, we aim to provide a platform for both customer and restaurant owners to place and process food orders. Customers are able to browse and search for the restaurant of their preference, add items from the menu of that restaurant, and place the order. Restaurant owners are able to upload and edit their menus, see the list of orders that have been placed and process those orders by changing the order status. 
+In this project, we aim to provide a platform for both customer and restaurant owners to place and process food orders. Customers are able to browse and search for the restaurant of their preference, add items to the shopping cart from the menu of that restaurant, and place the order. Restaurant owners are able to upload and edit their menus, see the list of orders that have been placed and process those orders by changing the order status. Users of FOODQEE must verifiy their account before entering, thus we ensures all users are reliable and safe.
 
 More details will be introduced in the next few sections of this document.
 
@@ -39,7 +39,6 @@ More details will be introduced in the next few sections of this document.
 - It contains a simple greeting message and two buttons used for register and login. 
 - We support registering two different types of account: user and restaurant. 
 - Login and Register will both direct you to a separe window. 
-- Note that the login is case sensitive, that means try logging in as a restaurant with the user crediential will fail.
 - You can try to register new account or login with our sample account given in the table below: 
 
 <p align="center">
@@ -54,18 +53,20 @@ More details will be introduced in the next few sections of this document.
 ### 2. Login/Register Window.
 
 - Depending on what action is taken on the previous screen, the login or register window will be called and allows users to log in to their existing account or register a new account. 
-- The login window should look like the one one the right.
-- Enter the username and password, the click on "login as restaurant" or "login as user". "Cancel" will take you back to the welcome screen.
-- When the given cridentials are correct, there will be a success message dialog. It may also says "You need to verify" if the account is not verified, more details on this in the next section.
-- Closing the message dialog will direct you to the homepage (Restaurant homepage or User homepage).
-- New Account registration is also divided by the type of user, with the screenshot on the left corresponding to user registeration, and the one onthe right is restaurant registeration, which requires a set of different information.
+- On the login screen, you can enter the username and password, then click on "login as restaurant" or "login as user". "Cancel" will take you back to the welcome screen.
+- When the given cridentials are correct, there will be a "success" message dialog. It may also say "You need to verify" if the account is not verified, we will introduce more details on this in the next section. If the given username and password does not math to any user in the database, login will fail.
+- Note that the login is case sensitive, that means try logging in as a restaurant with the user crediential will fail, pop-up dialog will show the message "failed", and vice-versa.
+- If loggin succeded, you will be directed to the homepage.
+- New Account registration is also divided by the type of user, which requires a set of different information. 
+- It is worth mentioning that we used Regex to determine whether the given email is a valid email. For instance, something like "123456" or "hello" are both invalid. Username also has to be more than 6 characters. 
+- Attempts to register an account with a username that already exist in the database will also fail, message with "user already exist" will be given when this happens.
+- ***To better protects user information, we used SHA256 to hash the password before saving it to the data base, therefore even in the case of the data leak, the origional password cannot be revealed.***
 
 ![Untitled_Artwork](https://user-images.githubusercontent.com/94703030/206567856-9a92f0e1-6e37-4fbc-829a-4c39b8f4ebeb.png)
 
-
 ### 3. Verification Window.
-- New users need to verify their account before using this platform. In this window, users can request a verification code being sent to their entered email. After the user has reviewed the code and entered it into the field provided, it will be compared with the code sent. Successful match will change the status of the account to "verified". 
-- Note that the verification code expires in 5 minutes from the time it was issued。
+- New users need to verify their account before using this platform. In this window, users can request a verification code being sent to their entered email. After the user has received the code and entered it into the field provided, it will be compared with the code sent. Successful match will change the status of the account to "verified". 
+- Note that the verification code expires in 5 minutes from the time it was issued.
 - Entering incorrect or expired verification code will not pass the verification.
 
 <p align="center"><img width="500" alt="Screen Shot 2022-12-08 at 4 16 54 PM" src="https://user-images.githubusercontent.com/94703030/206569373-ad43c9bb-5a2d-4309-b61c-490b80065845.png"></p>
@@ -77,22 +78,23 @@ More details will be introduced in the next few sections of this document.
 
 
 - The restaurant homepage consists of the following 3 different tabs:
-- Order History: Restaurant owners will be able to view the orders received and change the status of the order from this page. Status includes received, preparing, ready for picked up, picked up, order completed, and cancelled. Food items, quantity, total revenue can be seen if "view details" is clicked. 
-- Menu: The current menu of this restaurant. It also supports editing the menu by add, delete items, or modify the information of existing food items. Add and Edit will be done in seperate screen.
-- Profile: Shows the account information. Restaurant owners can modify all informations on this page, including the password, and logout of the acount.
+- Order History: Restaurant owners will be able to view the orders received and change the status of the order from this page. Status includes received, preparing, ready for picked up, picked up, order completed, and cancelled. Food items, quantity, total revenue can be seen if "view details" is clicked. After making any modification, clicking the "Refresh" button will display the changed contents. “Show current orders” filters out ourders that are completed or cancelled, and displays only orders that are qurrently in the queue. 
 - ***When an user placed an order to the current restaurant, there will be a pop up message "You have a new order".***
+- Menu: The current menu of this restaurant. It also supports editing the menu by add, delete items, or modify the information of existing food items. Add and Edit will be done in seperate screen. Similar to becore, "Refresh" will display changes to the menu, but deleting food does not require manual refresh. 
+- Profile: Shows the account information. Restaurant owners can modify all informations on this page, including the password, and logout of the acount.
+- ***When multiple screens are opened, logging out the account will close all windows simotaneously.***
 
 - The user homepage consists of the following 4 different tabs:
 
 <img width="500" alt="Screen Shot 2022-12-08 at 12 54 44 AM" src="https://user-images.githubusercontent.com/94703030/206368818-025630a3-7505-40f6-b3c1-43e10285fd0d.png"><img width="500" alt="Screen Shot 2022-12-08 at 12 56 02 AM" src="https://user-images.githubusercontent.com/94703030/206368853-0383eea9-b0e7-41af-b2cd-bfdc301303df.png"><img width="500" alt="Screen Shot 2022-12-08 at 12 56 19 AM" src="https://user-images.githubusercontent.com/94703030/206368930-ed824532-8d43-433e-8a94-ab2265fa9cc7.png"><img width="500" alt="Screen Shot 2022-12-08 at 12 56 25 AM" src="https://user-images.githubusercontent.com/94703030/206368944-71edf289-6a6a-4ae6-b956-839f127dedda.png">
 
-- Restaurants: Displays all restaurant in the platform. The search bar allows fuzzy search of keywords. By clicking in "Details", there will be a separate window of the restaurant's menu, from there the user can add items to the cart.
-- Shopoing Cart: Displays items that has been added to the cart, checking out will place the order.
-- Order History: All orders that the current user has placed. User can make review to past orders and view the details(items, total price and etc.)
-- Profile: Acount information of the current user. Can modify the acount info and password, as well as log out.
+- Restaurants: Displays all restaurant in the platform. The search bar allows fuzzy search of keywords, thus the search result contains all "close" match of the key word, ratehr than "exact match". By clicking in "Details", there will be a separate window that contains the restaurant's menu, from there the user can add items to the cart, with their desired quantity.
+- Shopoing Cart: Displays items that has been added to the cart, checking out will place the order. The shopping cart is initially emptu, after adding items and refreshing the page, it will shows the current restaurant, and items in the cart. Users can also modify the cart by removing unwanted items. It is worth mentioning that the shopping cart will be cleared if you enter a differnt restaurant and add items from that restaurant to the cart, this is made to avoid place an order that contains food from different restaurants. 
+- Order History: All orders that the current user has placed. After placing an order from the cart page, the order will be added to here. Similar to the restaurant homepage order historm, "Show current order" filters out orders that have been completed or cancelled, leaving only orders in queue. User can make reviews to past orders and view the details of each individual order(items, total price and etc.)
+- Profile: Acount information of the current user. Can modify the acount info and password, as well as log out, same as restaurant homepage.
 
 ## 🍔Database
-In this project, we used MongoDB as our database, which is a document-oriented NoSQL database. We created 6 different collections to store our data: 
+In this project, we used MongoDB as our database, which is a online document-oriented NoSQL database. We created 6 different collections to store our data: 
 <img align="right" width="600" alt="Screenshot 2022-11-22 at 12 39 14 AM" src="https://user-images.githubusercontent.com/94703030/203233617-86a474e9-7007-4e2d-84bd-0f30f125e7d5.png">
 1. AuthInfo: Stores the username and password for all users(restaurant owners and customers), along with an unique user id.
 2. Menus: Stores menus and the restaurant(id) of this menu.
@@ -100,6 +102,10 @@ In this project, we used MongoDB as our database, which is a document-oriented N
 4. Restaurants: Stores restaurant name, location, email, phone, and a unique restaurant id.
 5. Users: Stores customer's name, email, account verification status and an unique user id.
 6. Verification: Stores the verification code that has been set, with the user(id) that receives the code and the time it was requested.
+
+<img width="959" alt="Screen Shot 2022-12-09 at 2 13 41 AM" src="https://user-images.githubusercontent.com/94703030/206646085-2367112e-78bc-44da-89d8-1b158f23d3a0.png">
+
+Note that there are several overlap in the data saved across differnt collection, for instance, any order will contain a user id of the user that pleace the order, and a restaurant id of the restaurant that receives the order. Each Menu also saves a restaurant id. 
 
 ## 🍟Architecture and Design Pattern
 We construct our project in a way that it is consistent with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the pattern MVPC Model-View-Presenter-Controller design pattern. Each use case has its own package and all components, interactors, presenters and controllers are organized in the package of the by use case.
