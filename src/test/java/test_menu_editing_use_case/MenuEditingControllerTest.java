@@ -1,5 +1,9 @@
-package menu_editing_use_case;
+package test_menu_editing_use_case;
 
+import menu_editing_use_case.AddFoodInputBoundary;
+import menu_editing_use_case.MenuEditingController;
+import menu_editing_use_case.MenuEditingInteractor;
+import menu_editing_use_case.RemoveFoodInputBoundary;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

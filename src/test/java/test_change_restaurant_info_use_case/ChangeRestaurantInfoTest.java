@@ -1,5 +1,6 @@
-package change_restaurant_info_use_case;
+package test_change_restaurant_info_use_case;
 
+import change_restaurant_info_use_case.*;
 import database.MongoCollectionFetcher;
 import database.RestaurantDataGateway;
 import database.RestaurantDataMongo;

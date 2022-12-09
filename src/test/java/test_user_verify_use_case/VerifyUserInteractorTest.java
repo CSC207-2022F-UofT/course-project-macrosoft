@@ -1,4 +1,4 @@
-package user_verify_use_case;
+package test_user_verify_use_case;
 
 import database.MongoCollectionFetcher;
 import database.VerificationCodeDataGateway;
@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import user_verify_use_case.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 

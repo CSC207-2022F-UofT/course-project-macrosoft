@@ -1,4 +1,5 @@
-package res_display_menu_usecase;
+package test_res_display_menu_usecase;
+import res_display_menu_usecase.*;
 
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Assertions;

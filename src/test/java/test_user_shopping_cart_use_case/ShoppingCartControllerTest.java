@@ -1,4 +1,4 @@
-package user_shopping_cart_use_case;
+package test_user_shopping_cart_use_case;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

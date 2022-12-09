@@ -1,4 +1,4 @@
-package user_register_use_case;
+package test_user_register_use_case;
 
 import database.*;
 import entities.Restaurant;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import user_register_use_case.*;
 
 class RegisterUserControllerTest {
 
