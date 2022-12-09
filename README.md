@@ -1,4 +1,4 @@
-#Note: Some of our tests initiated screens but action cannot close the message dialog, the Github Classroom Workflow failes but all the implementition, including the tests themselves, are correct.
+# Note: Some of our tests initiated screens but action cannot close the message dialog, the Github Classroom Workflow failes but all the implementition, including the tests themselves, are correct.
 
 # Welcome to FOODQEE
 
