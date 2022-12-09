@@ -1,5 +1,6 @@
-package login_use_case;
+package test_login_use_case;
 
+import login_use_case.*;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

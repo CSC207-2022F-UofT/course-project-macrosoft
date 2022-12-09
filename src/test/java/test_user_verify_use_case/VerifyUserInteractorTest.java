@@ -1,4 +1,4 @@
-package user_verify_use_case;
+package test_user_verify_use_case;
 
 import database.MongoCollectionFetcher;
 import database.VerificationCodeDataGateway;
@@ -8,28 +8,28 @@ import org.bson.types.ObjectId;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import user_verify_use_case.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class VerifyUserInteractorExpiredTest {
+class VerifyUserInteractorTest {
 
 
-    //setting up test document in the database
+    // setting up a test document in our database
     @BeforeEach
     void setUp() {
 
         ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
         long millis = System.currentTimeMillis();
         java.util.Date date = new java.util.Date(millis);
-        java.util.Date new_date = AddMinutesInteractor.addMinutesToDate(-5, date);
-        VerificationCode code = new VerificationCode(new_date, "898912");
+        VerificationCode code = new VerificationCode(date, "898912");
 
         MongoCollectionFetcher fetcher = MongoCollectionFetcher.getFetcher();
         VerificationCodeDataGateway verificationCodeDataGateway = new VerificationCodeProcessorMongo(fetcher);
         verificationCodeDataGateway.save(userID, code);
     }
 
-    // deleting the document from database after test is run
+    // removing the test document from database after tests are run
     @AfterEach
     void tearDown() {
         ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
@@ -38,11 +38,11 @@ public class VerifyUserInteractorExpiredTest {
         verificationCodeDataGateway.deleteByUserId(userID);
     }
 
-    // testing verify user interactor with an expired code
+    // testing verify user interactor with a valid code
     @Test
-    void testVerifyUserExpired() {
+    void testVerifyUserValid() {
         ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
-        int actual = 1002;
+        int actual = 1000;
         VerifyUserOutputBoundary verifyUserOutputBoundary = new VerifyUserPresenter(null);
         VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserOutputBoundary);
         VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userID);
@@ -51,9 +51,30 @@ public class VerifyUserInteractorExpiredTest {
         verifyUserOutputBoundary.setVerifyUserScreen(verifyUserScreen);
         verifyUserScreen.getFrame().setVisible(true);
 
-        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserOutputBoundary);
 
+        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserOutputBoundary);
         assertEquals(verifyUserInteractor.verifyUser(userID, "898912"), actual);
 
     }
+
+    // testing verify user interactor with an invalid code
+    @Test
+    void testVerifyUserInvalid() {
+        ObjectId userID = new ObjectId("638fd7e653160338d10413bb");
+        int actual = 1001;
+
+        VerifyUserOutputBoundary verifyUserOutputBoundary = new VerifyUserPresenter(null);
+        VerifyUserFacade verifyUserFacade = new VerifyUserFacade(verifyUserOutputBoundary);
+        VerifyUserController verifyUserController = new VerifyUserController(verifyUserFacade, userID);
+        VerifyUserScreenInterface verifyUserScreen = new VerifyUserScreen(verifyUserController);
+
+        verifyUserOutputBoundary.setVerifyUserScreen(verifyUserScreen);
+        verifyUserScreen.getFrame().setVisible(true);
+
+
+        VerifyUserInteractor verifyUserInteractor = new VerifyUserInteractor(verifyUserOutputBoundary);
+        assertEquals(verifyUserInteractor.verifyUser(userID, "898913"), actual);
+
+    }
+
 }

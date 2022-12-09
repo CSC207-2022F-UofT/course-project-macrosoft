@@ -1,4 +1,4 @@
-package restaurant_register_use_case;
+package test_restaurant_register_use_case;
 
 import database.*;
 import org.bson.types.ObjectId;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import entities.*;
+import restaurant_register_use_case.*;
 
 /**
  * This class is the test of register restaurant use case.

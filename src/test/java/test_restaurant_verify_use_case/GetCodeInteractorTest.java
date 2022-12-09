@@ -1,4 +1,4 @@
-package restaurant_verify_use_case;
+package test_restaurant_verify_use_case;
 
 import database.MongoCollectionFetcher;
 

@@ -1,5 +1,6 @@
-package change_user_info_use_case;
+package test_change_user_info_use_case;
 
+import change_user_info_use_case.*;
 import database.MongoCollectionFetcher;
 import database.UserDataGateway;
 import database.UserDataProcessorMongo;
