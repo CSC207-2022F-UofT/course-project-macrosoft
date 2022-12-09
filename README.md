@@ -1,4 +1,4 @@
-# Note: Some of our tests evokes pop-up responsive message but Action cannot close the message dialog, the Github Classroom Workflow failes but all the implementition, including the tests themselves, are correct.
+## Note: Some of our tests evokes pop-up responsive message but Action cannot close the message dialog, the Github Classroom Workflow failes but all the implementition, including the tests themselves, are correct.
 
 # Welcome to FOODQEE
 
@@ -67,7 +67,6 @@ More details will be introduced in the next few sections of this document.
 
 - The user homepage consists of the following 4 different tabs:
 
-
 <img width="500" alt="Screen Shot 2022-12-08 at 12 54 44 AM" src="https://user-images.githubusercontent.com/94703030/206368818-025630a3-7505-40f6-b3c1-43e10285fd0d.png"><img width="500" alt="Screen Shot 2022-12-08 at 12 56 02 AM" src="https://user-images.githubusercontent.com/94703030/206368853-0383eea9-b0e7-41af-b2cd-bfdc301303df.png"><img width="500" alt="Screen Shot 2022-12-08 at 12 56 19 AM" src="https://user-images.githubusercontent.com/94703030/206368930-ed824532-8d43-433e-8a94-ab2265fa9cc7.png"><img width="500" alt="Screen Shot 2022-12-08 at 12 56 25 AM" src="https://user-images.githubusercontent.com/94703030/206368944-71edf289-6a6a-4ae6-b956-839f127dedda.png">
 
 - Restaurants: Displays all restaurant in the platform. The search bar allows fuzzy search of keywords. By clicking in "Details", there will be a separate window of the restaurant's menu, from there the user can add items to the cart.
@@ -87,6 +86,11 @@ In this project, we used MongoDB as our database, which is a document-oriented N
 
 ## Architecture and Design Pattern
 We construct our project in a way that it is consistent with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the pattern MVPC Model-View-Presenter-Controller design pattern. Each use case has its own package and all components, interactors, presenters and controllers are organized in the package of the by use case.
+
+## Test Coverage
+- We tested most of the use case through controller/interactor, because all the other methdos/classes are reacheable from there. 
+- We have imlemenetd responsive message dialogs, where each individual action will evoke a message window telling the user whether the current actill fails or success. Such dislogs also pops up when running tests, and the tests only pass when the dialog is closed. Since github Action cannot close the poped up windows, the tests fails when it trys to run them.
+- Testing of all getters and setters are omitted as those methods are simple. 
 
 ## Future Enhencements
 - Payment System.
