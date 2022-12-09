@@ -40,4 +40,5 @@ public interface UserDataGateway {
      * @param newEmail     the new email
      */
     void UpdateUserInfo(ObjectId userId, String newFirstName, String newLastName, String newEmail);
+
 }

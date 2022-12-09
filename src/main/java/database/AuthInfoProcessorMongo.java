@@ -4,7 +4,7 @@ import com.mongodb.MongoException;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
 import entities.AuthInfo;
-import entities.Order;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
@@ -88,6 +88,13 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway {
         return getAuthInfo(queryFilter);
     }
 
+    @Override
+    public void removeByUsername(String username) {
+        Bson filter = Filters.eq("username", username);
+        MongoCollection collection = mongoCollectionFetcher.getCollection("AuthInfo");
+        collection.deleteOne(filter);
+    }
+
     /**
      * Sets a new password for a user
      *
@@ -129,4 +136,6 @@ public class AuthInfoProcessorMongo implements AuthInfoDataGateway {
                     document.getObjectId("userID"));
         }
     }
+
+
 }

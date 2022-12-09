@@ -51,4 +51,6 @@ public interface AuthInfoDataGateway {
      * @return the user
      */
     AuthInfo getUserByUsername(String username);
+
+    void removeByUsername(String username);
 }
