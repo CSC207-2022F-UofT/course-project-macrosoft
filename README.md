@@ -1,4 +1,4 @@
-# Note: Some of our tests initiated screens but action cannot close the message dialog, the Github Classroom Workflow failes but all the implementition, including the tests themselves, are correct.
+## Note: Some of our tests initiated screens but action cannot close the message dialog, the Github Classroom Workflow failes but all the implementition, including the tests themselves, are correct. See the Test Coverage section below for more details about testing.
 
 # Welcome to FOODQEE
 
@@ -87,6 +87,10 @@ In this project, we used MongoDB as our database, which is a document-oriented N
 
 ## Architecture and Design Pattern
 We construct our project in a way that it is consistent with both the Clean Architecture and SOLID principle. The UI and algorithms also interact in a way that follows the pattern MVPC Model-View-Presenter-Controller design pattern. Each use case has its own package and all components, interactors, presenters and controllers are organized in the package of the by use case.
+
+## Test Coverage
+- We tested most of the use case through controller/interactor, because all the other methdos/classes are reacheable from there. 
+- We have imlemenetd responsive message dialogs, where each individual action will evoke a message window telling the user whether the current actill fails or success. Such dislogs also pops up when running tests, and the tests only pass when the dialog is closed. Since github Action cannot close the poped up windows, the tests fails when it trys to run them.
 
 ## Future Enhencements
 - Payment System.
