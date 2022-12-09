@@ -9,6 +9,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+/**
+ * The class for the OrderHistory Panel
+ */
 public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterface {
 
     OrderHistoryController orderHistoryController;
@@ -23,6 +27,13 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
     private final JPanel orderDisplayPanel = new JPanel();
 
     @SuppressWarnings("Unchecked")
+
+    /**
+     * The constructor for the order history panel
+     * A window with all the user order history and buttons to "refresh, get ongoing orders, view details and make review"
+     *
+     * @param controller An instance of order history controller
+     */
     public OrderHistoryPanel(OrderHistoryController controller) {
 
         this.orderHistoryController = controller;
@@ -133,6 +144,10 @@ public class OrderHistoryPanel extends JPanel implements OrderHistoryPanelInterf
         orderDisplayPanel.repaint();
     }
 
+
+    /**
+     * Get updates of the order history
+     */
     @Override
     public void updateOrder() {
         orderHistoryController.getOrders();
