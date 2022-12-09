@@ -8,7 +8,6 @@ import org.bson.types.ObjectId;
 public class AuthInfo {
     private String username;
     private String password;
-
     private ObjectId userId;
 
     /**

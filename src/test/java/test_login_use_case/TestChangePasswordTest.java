@@ -6,9 +6,9 @@ import login_use_case.UserLoginInputBoundary;
 import login_use_case.UserLoginResponseModel;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class TestUserLogin extends UserLoginController {
 
@@ -23,7 +23,7 @@ class TestUserLogin extends UserLoginController {
     @Test
     void testLoginValidUser() {
         UserLoginResponseModel responseModel = super.login("davidlin123", "lzy123456");
-        assert responseModel.getResponseCode() == 1000;
+        Assertions.assertEquals(responseModel.getResponseCode(), 1000);
     }
 
     @AfterEach

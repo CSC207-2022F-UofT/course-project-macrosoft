@@ -86,4 +86,6 @@ public interface RestaurantDataGateway {
      * @param menuId       the id of the menu to be added to the restaurant
      */
     void updateMenuId(ObjectId restaurantId, ObjectId menuId);
+
+    void removeResById(ObjectId id);
 }

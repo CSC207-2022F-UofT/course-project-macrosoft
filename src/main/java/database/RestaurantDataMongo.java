@@ -17,6 +17,7 @@ import java.util.List;
  * This class is responsible for all interactions with the MongoDB database
  * related to restaurants.
  */
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class RestaurantDataMongo implements RestaurantDataGateway {
     MongoCollectionFetcher mongoCollectionFetcher;
 
@@ -188,6 +189,13 @@ public class RestaurantDataMongo implements RestaurantDataGateway {
         Bson updates = Updates.set("menu", menuId);
 
         this.mongoCollectionFetcher.getCollection("Restaurants").updateOne(queryFilter, updates);
+    }
+
+    @Override
+    public void removeResById(ObjectId id) {
+        MongoCollection collection = mongoCollectionFetcher.getCollection("Restaurants");
+        Bson queryFiler = Filters.eq("_id", id);
+        collection.deleteOne(queryFiler);
     }
 
     /**
