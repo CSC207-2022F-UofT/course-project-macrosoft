@@ -1,4 +1,4 @@
-## ☀️ Note: Some of our tests evoke pop-up responsive message, but Action cannot close the message dialog, thus the Github Classroom Workflow failes but all the implementition, including the tests themselves, are correct.
+## ☀️ Note: Some of our tests evoke pop-up responsive message, but Action cannot close the message dialog, thus the Github Classroom Workflow failes but all the implementation, including the tests themselves, are correct.
 
 # <p align="center">🍣🍦🥟Welcome to FOODQEE🍜🌯🍲</p>
 
